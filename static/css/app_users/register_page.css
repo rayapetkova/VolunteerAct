@@ -141,6 +141,11 @@ form button {
     margin-top: 1.5em;
 }
 
+form button:hover {
+    cursor: pointer;
+    background-color: #0f4e94;
+}
+
 
 
 

@@ -26,7 +26,7 @@
     </header>
 
     <div class="login-box">
-        <form>
+        <form method="POST" action="{% url 'register-user' %}">
             <h1>Sign Up</h1>
 
             {% csrf_token %}

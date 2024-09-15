@@ -18,11 +18,6 @@ class AppUserForm(auth_forms.UserCreationForm):
         min_length=2
     )
 
-    bio = forms.CharField(
-        max_length=800,
-        min_length=10
-    )
-
     password2 = forms.CharField(
         label=_("Password confirmation"),
         required=False,
@@ -33,7 +28,7 @@ class AppUserForm(auth_forms.UserCreationForm):
 
     class Meta:
         model = UserModel
-        fields = '__all__'
+        fields = ('email', 'first_name', 'last_name', 'password1', 'password2')
 
     def save(self, commit=True):
         user = super().save(commit=commit)
