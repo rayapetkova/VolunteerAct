@@ -1,0 +1,110 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Register</title>
+    <link rel="stylesheet" href="{% static 'css/app_users/register_page.css' %}">
+</head>
+<body>
+    <header>
+        <section class="img-logo">
+            <img src="../images/volunteer_act_logo.png" alt="logo-img">
+        </section>
+
+        <section class="search-bar-section">
+            <input class="search-bar" type="search" placeholder="Search...">
+        </section>
+
+
+        <ul class="last-links">
+            <li><a href="#">Log In</a></li>
+            <li><a href="#">Sign Up</a></li>
+        </ul>
+
+    </header>
+
+    <div class="login-box">
+        <form>
+            <h1>Sign Up</h1>
+
+            {% csrf_token %}
+
+            {{ form.as_p }}
+{##}
+{#            <div class="field-box">#}
+{#                <label for="first_name">First Name</label>#}
+{#                <input type="text" name="first_name" id="first_name" required>#}
+{#            </div>#}
+{##}
+{#            <div class="field-box">#}
+{#                <label for="last_name">Last Name</label>#}
+{#                <input type="text" name="last_name" id="last_name" required>#}
+{#            </div>#}
+{##}
+{#            <div class="field-box">#}
+{#                <label for="email">Email</label>#}
+{#                <input type="email" name="email" id="email" required>#}
+{#            </div>#}
+{##}
+{#            <div class="field-box">#}
+{#                <label for="password">Password</label>#}
+{#                <input type="password" name="password" id="password" required>#}
+{#            </div>#}
+{##}
+{#            <div class="field-box">#}
+{#                <label for="confirm_password">Confirm Password</label>#}
+{#                <input type="password" name="confirm_password" id="confirm_password" required>#}
+{#            </div>#}
+{##}
+
+            <div class="login-container">
+                <p class="log-in-p">Already have an account?</p>
+                <a href="#">Log In</a>
+            </div>
+
+
+            <button type="submit">Sign Up</button>
+        </form>
+    </div>
+
+    <footer>
+        <section class="links-section">
+            <div>
+                <h6>Your Account</h6>
+                <a href="#">Sign Up</a>
+                <a href="#">Log In</a>
+                <a href="#">Contact Us</a>
+            </div>
+
+            <div>
+                <h6>Discover</h6>
+                <a href="#">Events</a>
+                <a href="#">Cities</a>
+                <a href="#">Categories</a>
+                <a href="#">Upcoming events</a>
+            </div>
+
+            <div>
+                <h6>Discover</h6>
+                <a href="#">Events</a>
+                <a href="#">Cities</a>
+                <a href="#">Categories</a>
+                <a href="#">Upcoming events</a>
+            </div>
+        </section>
+
+        <section class="follow-us">
+            <h6>Follow us</h6>
+
+            <div class="socials">
+                <a href="#"><img src="../images/github.png" alt="github_img"></a>
+                <a href="#"><img src="../images/linkedin.png" alt="linkedin_img"></a>
+                <a href="#"><img src="../images/facebook.png" alt="facebook_img"></a>
+            </div>
+        </section>
+    </footer>
+
+</body>
+</html>
