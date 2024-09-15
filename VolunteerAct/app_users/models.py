@@ -52,6 +52,15 @@ class Profile(models.Model):
         ]
     )
 
+    bio = models.CharField(
+        max_length=800,
+        null=True,
+        blank=True,
+        validators=[
+            validators.MinLengthValidator(10, message="Bio needs to be at least 10 characters long.")
+        ]
+    )
+
     user = models.OneToOneField(
         to=AppUser,
         on_delete=models.CASCADE
