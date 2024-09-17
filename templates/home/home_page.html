@@ -1,0 +1,282 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home Page</title>
+    <link rel="stylesheet" href="{% static "css/home/home_page.css" %}">
+</head>
+<body>
+    <header>
+        <section class="img-logo">
+            <img src="{% static "images/volunteer_act_logo.png" %}" alt="logo-img">
+        </section>
+
+        <section class="search-bar-section">
+            <input class="search-bar" type="search" placeholder="Search...">
+        </section>
+
+
+        <ul class="last-links">
+            <li><a href="#">Log In</a></li>
+            <li><a href="#">Sign Up</a></li>
+        </ul>
+
+    </header>
+
+    <div class="main-content">
+        <section class="first-section">
+            <div class="left">
+                <h1>The Change Network - Where Passion Meets Purpose</h1>
+
+                <p>Discover a community dedicated to making a difference. Whether you're looking to volunteer your time, donate to a worthy cause, or simply connect with like-minded individuals, VolunteerAct is your gateway to meaningful action. Explore various categories, join impactful events, and be part of a movement that’s changing the world!</p>
+
+                <button>Join VolunteerAct</button>
+            </div>
+
+            <div class="right">
+                <img src="{% static "images/volunteer_act_logo_cut.png" %}" alt="logo-img">
+            </div>
+        </section>
+
+        <section class="upcoming-events">
+            <div class="title-container">
+                <h2>Upcoming events</h2>
+                <a href="#">See all events</a>
+            </div>
+
+            <div class="events">
+                <div class="event-container">
+                    <div class="img-container">
+                        <img src="https://cdn.pixabay.com/photo/2017/02/10/12/12/volunteer-2055043_640.png" alt="event-img">
+                    </div>
+
+                    <div class="info">
+                        <h6>This is a random volunteer event - Online Free And Guided - Beginners</h6>
+                        <p>Hosted by: Raya Petkova</p>
+                    </div>
+                </div>
+
+                <div class="event-container">
+                    <div class="img-container">
+                        <img src="https://cdn.pixabay.com/photo/2017/02/10/12/12/volunteer-2055043_640.png" alt="event-img">
+                    </div>
+
+                    <div class="info">
+                        <h6>This is a random volunteer event - Online Free And Guided - Beginners</h6>
+                        <p>Hosted by: Raya Petkova</p>
+                    </div>
+                </div>
+
+                <div class="event-container">
+                    <div class="img-container">
+                        <img src="https://cdn.pixabay.com/photo/2017/02/10/12/12/volunteer-2055043_640.png" alt="event-img">
+                    </div>
+
+                    <div class="info">
+                        <h6>This is a random volunteer event - Online Free And Guided - Beginners</h6>
+                        <p>Hosted by: Raya Petkova</p>
+                    </div>
+                </div>
+
+                <div class="event-container">
+                    <div class="img-container">
+                        <img src="https://cdn.pixabay.com/photo/2017/02/10/12/12/volunteer-2055043_640.png" alt="event-img">
+                    </div>
+
+                    <div class="info">
+                        <h6>This is a random volunteer event - Online Free And Guided - Beginners</h6>
+                        <p>Hosted by: Raya Petkova</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="join-section">
+            <div class="left">
+                <h2>Join VolunteerAct</h2>
+
+                <p>People use VolunteerAct to connect with others, support meaningful causes, and turn their passion for helping into action.</p>
+
+                <button>Sign Up</button>
+            </div>
+
+            <div class="right">
+                <img src="{% static "images/join_hands_img.webp" %}" alt="join-hands-img">
+            </div>
+        </section>
+
+        <section class="explore-categories">
+            <h2>Explore categories</h2>
+
+            <div class="categories">
+                <div class="category-container">
+                    <img src="{% static "images/environment.png" %}" alt="elder_care">
+                    <p>Environment</p>
+                </div>
+
+                <div class="category-container">
+                    <img src="{% static "images/environment.png" %}" alt="elder_care">
+                    <p>Food & Hunger Relief</p>
+                </div>
+
+                <div class="category-container">
+                    <img src="{% static "images/animals.png" %}" alt="elder_care">
+                    <p>Animals & Wildlife</p>
+                </div>
+
+                <div class="category-container">
+                    <img src="{% static "images/elder_care.png" %}" alt="elder_care">
+                    <p>Elder Care</p>
+                </div>
+
+                <div class="category-container">
+                    <img src="{% static "images/mentorship.png" %}" alt="elder_care">
+                    <p>Mentorship</p>
+                </div>
+
+                <div class="category-container">
+                    <img src="{% static "images/special_needs.png" %}" alt="elder_care">
+                    <p>Special Needs</p>
+                </div>
+
+                <div class="category-container">
+                    <img src="{% static "images/homeless_outreach.png" %}" alt="elder_care">
+                    <p>Homeless Outreach</p>
+                </div>
+
+                <div class="category-container">
+                    <img src="{% static "images/books.png" %}" alt="elder_care">
+                    <p>Books & Literacy</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="popular-cities-section">
+            <h2>Popular cities on VolunteerAct</h2>
+
+            <div class="cities">
+                <div class="city-container">
+                    <button>
+                        <img src="https://upload.wikimedia.org/wikipedia/commons/2/27/%D0%98%D0%B7%D0%B3%D0%BB%D0%B5%D0%B4_%D0%BE%D1%82_%D0%9A%D0%B0%D0%BC%D0%B1%D0%B0%D0%BD%D0%B0%D1%80%D0%B8%D1%8F%D1%82%D0%B0_%D0%B2_%D0%A5%D0%B0%D1%81%D0%BA%D0%BE%D0%B2%D0%BE.JPG" alt="city-img">
+                    </button>
+
+                    <a>Haskovo</a>
+                </div>
+
+                <div class="city-container">
+                    <button>
+                        <img src="https://upload.wikimedia.org/wikipedia/commons/2/27/%D0%98%D0%B7%D0%B3%D0%BB%D0%B5%D0%B4_%D0%BE%D1%82_%D0%9A%D0%B0%D0%BC%D0%B1%D0%B0%D0%BD%D0%B0%D1%80%D0%B8%D1%8F%D1%82%D0%B0_%D0%B2_%D0%A5%D0%B0%D1%81%D0%BA%D0%BE%D0%B2%D0%BE.JPG" alt="city-img">
+                    </button>
+
+                    <a>Haskovo</a>
+                </div>
+
+                <div class="city-container">
+                    <button>
+                        <img src="https://upload.wikimedia.org/wikipedia/commons/2/27/%D0%98%D0%B7%D0%B3%D0%BB%D0%B5%D0%B4_%D0%BE%D1%82_%D0%9A%D0%B0%D0%BC%D0%B1%D0%B0%D0%BD%D0%B0%D1%80%D0%B8%D1%8F%D1%82%D0%B0_%D0%B2_%D0%A5%D0%B0%D1%81%D0%BA%D0%BE%D0%B2%D0%BE.JPG" alt="city-img">
+                    </button>
+
+                    <a>Haskovo</a>
+                </div>
+
+                <div class="city-container">
+                    <button>
+                        <img src="https://upload.wikimedia.org/wikipedia/commons/2/27/%D0%98%D0%B7%D0%B3%D0%BB%D0%B5%D0%B4_%D0%BE%D1%82_%D0%9A%D0%B0%D0%BC%D0%B1%D0%B0%D0%BD%D0%B0%D1%80%D0%B8%D1%8F%D1%82%D0%B0_%D0%B2_%D0%A5%D0%B0%D1%81%D0%BA%D0%BE%D0%B2%D0%BE.JPG" alt="city-img">
+                    </button>
+
+                    <a>Haskovo</a>
+                </div>
+
+                <div class="city-container">
+                    <button>
+                        <img src="https://upload.wikimedia.org/wikipedia/commons/2/27/%D0%98%D0%B7%D0%B3%D0%BB%D0%B5%D0%B4_%D0%BE%D1%82_%D0%9A%D0%B0%D0%BC%D0%B1%D0%B0%D0%BD%D0%B0%D1%80%D0%B8%D1%8F%D1%82%D0%B0_%D0%B2_%D0%A5%D0%B0%D1%81%D0%BA%D0%BE%D0%B2%D0%BE.JPG" alt="city-img">
+                    </button>
+
+                    <a>Haskovo</a>
+                </div>
+
+                <div class="city-container">
+                    <button>
+                        <img src="https://upload.wikimedia.org/wikipedia/commons/2/27/%D0%98%D0%B7%D0%B3%D0%BB%D0%B5%D0%B4_%D0%BE%D1%82_%D0%9A%D0%B0%D0%BC%D0%B1%D0%B0%D0%BD%D0%B0%D1%80%D0%B8%D1%8F%D1%82%D0%B0_%D0%B2_%D0%A5%D0%B0%D1%81%D0%BA%D0%BE%D0%B2%D0%BE.JPG" alt="city-img">
+                    </button>
+
+                    <a>Haskovo</a>
+                </div>
+            </div>
+        </section>
+
+        <section class="how-volunteeract-works">
+            <h2>How VolunteerAct works</h2>
+
+            <div class="containers">
+                <div class="box">
+                    <div class="img-container">
+                        <img src="{% static "images/search_img.png" %}" alt="search_img">
+                    </div>
+
+                    <div class="info">
+                        <h6>Discover events</h6>
+
+                        <p>Explore who’s hosting local and online events for all the things you love. Find out about passionate individuals and organizations creating opportunities for you to get involved.</p>
+
+                        <a href="#">Search events</a>
+                    </div>
+                </div>
+
+                <div class="box">
+                    <div class="img-container">
+                        <img src="{% static "images/plus_img.png" %}" alt="search_img">
+                    </div>
+
+                    <div class="info">
+                        <h6>Create an event</h6>
+
+                        <p>Create your own event to connect with people who share your interests and goals. Whether local or online, gather like-minded individuals to collaborate and make a meaningful impact together.</p>
+
+                        <a href="#">Create an event</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <footer>
+        <section class="links-section">
+            <div>
+                <h6>Your Account</h6>
+                <a href="#">Sign Up</a>
+                <a href="#">Log In</a>
+                <a href="#">Contact Us</a>
+            </div>
+
+            <div>
+                <h6>Discover</h6>
+                <a href="#">Events</a>
+                <a href="#">Cities</a>
+                <a href="#">Categories</a>
+                <a href="#">Upcoming events</a>
+            </div>
+
+            <div>
+                <h6>Discover</h6>
+                <a href="#">Events</a>
+                <a href="#">Cities</a>
+                <a href="#">Categories</a>
+                <a href="#">Upcoming events</a>
+            </div>
+        </section>
+
+        <section class="follow-us">
+            <h6>Follow us</h6>
+
+            <div class="socials">
+                <a href="#"><img src="{% static "images/github.png" %}" alt="github_img"></a>
+                <a href="#"><img src="{% static "images/linkedin.png" %}" alt="linkedin_img"></a>
+                <a href="#"><img src="{% static "images/facebook.png" %}" alt="facebook_img"></a>
+            </div>
+        </section>
+    </footer>
+</body>
+</html>
