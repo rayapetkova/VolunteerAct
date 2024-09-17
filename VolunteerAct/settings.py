@@ -29,7 +29,8 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
 
-    'VolunteerAct.app_users'
+    'VolunteerAct.app_users',
+    'VolunteerAct.home'
 ]
 
 MIDDLEWARE = [
