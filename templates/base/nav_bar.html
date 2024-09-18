@@ -1,0 +1,15 @@
+{% load static %}
+<header>
+    <a href="{% url 'home-page' %}" class="img-logo">
+        <img src="{% static "images/volunteer_act_logo.png" %}" alt="logo-img">
+    </a>
+
+    <section class="search-bar-section">
+        <input class="search-bar" type="search" placeholder="Search...">
+    </section>
+
+    <ul class="last-links">
+        <li><a href="{% url "login-user" %}">Log In</a></li>
+        <li><a href="{% url "register-user" %}">Sign Up</a></li>
+    </ul>
+</header>
