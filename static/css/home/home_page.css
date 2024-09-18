@@ -16,13 +16,13 @@ header {
     border-bottom: solid 1px rgb(190, 190, 190);
 }
 
-header section.img-logo {
+header .img-logo {
     width: 10%;
     display: flex;
     height: 100%;
 }
 
-header section.img-logo img {
+header .img-logo img {
     width: 100%
 }
 
