@@ -30,7 +30,8 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
 
     'VolunteerAct.app_users',
-    'VolunteerAct.home'
+    'VolunteerAct.home',
+    'VolunteerAct.categories'
 ]
 
 MIDDLEWARE = [
