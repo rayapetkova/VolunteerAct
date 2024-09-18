@@ -100,20 +100,22 @@ header ul.last-links li:nth-child(2) a {
 .main-content .first-section .left p {
     font-size: 20px;
     color: #5d5d5d;
+    margin-bottom: 1.5em;
 }
 
-.main-content .first-section .left button {
+.main-content .first-section .left a {
     background-color: #08376b;
     color: rgb(255, 255, 255);
     font-size: 1em;
-    padding: 0.8em 1em;
+    padding: 0.7em 1em;
     border: none;
     border-radius: 10px;
     opacity: 0.9;
     transition: 0.4s;
+    text-decoration: none;
 }
 
-.main-content .first-section .left button:hover {
+.main-content .first-section .left a:hover {
     cursor: pointer;
     background-color: #08366bce;
     opacity: 1;
@@ -233,19 +235,20 @@ header ul.last-links li:nth-child(2) a {
     font-size: 1.2em;
 }
 
-.join-section .left button {
+.join-section .left a {
     background-color: #35c0ed;
     border: none;
-    padding: 0.7em 2em;
+    padding: 0.6em 2em;
     color: rgb(255, 255, 255);
     font-weight: 600;
     font-size: 1em;
     border-radius: 5px;
     opacity: 0.9;
     transition: 0.4s;
+    text-decoration: none;
 }
 
-.join-section .left button:hover {
+.join-section .left a:hover {
     cursor: pointer;
     background-color: #63cef1;
     opacity: 1;
