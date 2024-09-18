@@ -1,0 +1,37 @@
+{% load static %}
+<footer>
+    <section class="links-section">
+        <div>
+            <h6>Your Account</h6>
+            <a href="{% url 'register-user' %}">Sign Up</a>
+            <a href="{% url 'login-user' %}">Log In</a>
+            <a href="#">Contact Us</a>
+        </div>
+
+        <div>
+            <h6>Discover</h6>
+            <a href="#">Events</a>
+            <a href="#">Cities</a>
+            <a href="#">Categories</a>
+            <a href="#">Upcoming events</a>
+        </div>
+
+        <div>
+            <h6>Discover</h6>
+            <a href="#">Events</a>
+            <a href="#">Cities</a>
+            <a href="#">Categories</a>
+            <a href="#">Upcoming events</a>
+        </div>
+    </section>
+
+    <section class="follow-us">
+        <h6>Follow us</h6>
+
+        <div class="socials">
+            <a href="#"><img src="{% static "images/github.png" %}" alt="github_img"></a>
+            <a href="#"><img src="{% static "images/linkedin.png" %}" alt="linkedin_img"></a>
+            <a href="#"><img src="{% static "images/facebook.png" %}" alt="facebook_img"></a>
+        </div>
+    </section>
+</footer>
