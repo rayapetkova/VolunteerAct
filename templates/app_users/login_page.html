@@ -16,7 +16,14 @@
             {% csrf_token %}
 
             <h1>Log In</h1>
-            {{ form.as_p }}
+
+            {% for field in form %}
+                <p>
+                    {{ field.label }}
+                    {{ field }}
+                </p>
+            {% endfor %}
+            {{ form.non_field_errors }}
 
             <div class="login-container">
                 <p class="log-in-p">Not a member yet? </p>
