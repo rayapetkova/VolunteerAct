@@ -1,0 +1,280 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+
+body {
+    background-color: rgb(255, 255, 255);
+    margin: 0;
+    padding: 0;
+    font-family: "Poppins", sans-serif;
+}
+
+
+
+
+
+header {
+    display: flex;
+    padding: 0.1% 10%;
+    border-bottom: solid 1px rgb(190, 190, 190);
+}
+
+header .img-logo {
+    width: 10%;
+    display: flex;
+    height: 100%;
+}
+
+header .img-logo img {
+    width: 100%
+}
+
+header section.search-bar-section {
+    display: flex;
+    align-items: center;
+    width: 30%;
+}
+
+header section.search-bar-section input {
+    width: 100%;
+    height: 60%;
+    border: solid 1px rgb(156, 156, 156);
+    border-radius: 10px;
+    padding: 1em;
+    font-family: inherit;
+    font-size: 1.1em;
+    margin-left: 7%;
+}
+
+header ul.last-links {
+    display: flex;
+    padding: 0;
+    margin-left: auto;
+    width: 11%;
+    justify-content: space-between;
+    align-items: center;
+}
+
+header ul.last-links li {
+    list-style: none;
+}
+
+header ul.last-links li a {
+    text-decoration: none;
+    color: rgb(0, 0, 0);
+    font-size: 1em;
+    font-weight: 600;
+}
+
+header ul.last-links li:nth-child(2) a {
+    background-color: #08376b;
+    padding: 0.7em;
+    color: rgb(255, 255, 255);
+    border-radius: 5px;
+}
+
+
+
+
+
+
+
+
+
+
+.info-section {
+    display: flex;
+    margin: 5em 20%;
+    padding: 2% 1%;
+    border-radius: 4px;
+    border: solid 1px rgb(214, 213, 213);
+    background-color: rgb(250, 250, 250);
+}
+
+.left {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 30%
+}
+
+.left .img-container {
+    width: 15em;
+    height: 15em;
+}
+
+.left .img-container img {
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    object-fit: cover;
+}
+
+.left .user-info .name {
+    font-size: 1.5em;
+    font-weight: 800;
+    color: #08376b;
+    margin-top: 0.8em;
+}
+
+
+
+
+.right {
+    width: 65%;
+    margin-left: 2%;
+}
+
+.right > h3 {
+    margin: 0;
+    border-bottom: solid;
+    border-width: 0.15em;
+    font-size: 1.5em;
+    color: #08376b;
+}
+
+.right form {
+    display: flex;
+    flex-direction: column;
+}
+
+.right form .row {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 1.3em;
+}
+
+.right form .row .field {
+    display: flex;
+    flex-direction: column;
+    width: 47%;
+}
+
+.right form .row .field label {
+    font-size: 1.2em;
+    color: rgb(97, 97, 97);
+}
+
+.right form .row .field input {
+    border: solid 1px rgb(160, 159, 161);
+    border-radius: 3px;
+    padding: 3% 3%;
+    color: rgb(107, 107, 107);
+    font-size: 1.1em;
+    background-color: rgba(240, 248, 255, 0.849);
+}
+
+.right form .row .field input:focus {
+    background-color: rgb(240, 248, 255);
+    outline: none;
+    color: black;
+}
+
+.right form .bio-row h3 {
+    margin: 0;
+    font-size: 1.2em;
+    color: rgb(97, 97, 97);
+    font-weight: 400;
+}
+
+.right form .bio-row {
+    display: flex;
+    flex-direction: column;
+    margin-top: 1.3em;
+}
+
+.right form .bio-row textarea {
+    border: solid 1px rgb(160, 159, 161);
+    border-radius: 3px;
+    font-family: inherit;
+    padding: 1% 1%;
+    color: rgb(107, 107, 107);
+    font-size: 1.1em;
+    background-color: rgba(240, 248, 255, 0.849);
+}
+
+.right form .bio-row textarea:focus {
+    background-color: rgb(240, 248, 255);
+    outline: none;
+    color: black;
+}
+
+.right form .update-button {
+    width: 15%;
+    padding: 1.5%;
+    background-color: #08376b;
+    border: none;
+    border-radius: 4px;
+    font-weight: 700;
+    color: rgb(255, 255, 255);
+    margin-top: 1em;
+}
+
+.right form .update-button:hover {
+    cursor: pointer;
+    background-color: rgb(206, 167, 29);
+}
+
+
+
+
+
+
+
+footer {
+    background-color: #212121;
+    padding: 4% 24%;
+    display: flex;
+    flex-direction: column;
+}
+
+footer .links-section {
+    display: flex;
+    justify-content: space-between;
+    width: 80%;
+}
+
+footer .links-section div {
+    display: flex;
+    flex-direction: column;
+}
+
+footer .links-section div h6 {
+    font-size: 1em;
+    margin: 0;
+    color: rgb(255, 255, 255);
+    margin-bottom: 0.8em;
+}
+
+footer .links-section div a {
+    color: #c5c4c4;
+    text-decoration: none;
+    font-size: 0.9em;
+    margin-bottom: 1em;
+}
+
+footer .links-section div a:hover {
+    color: rgb(255, 255, 255);
+}
+
+footer .follow-us {
+    margin-top: 3em;
+}
+footer .follow-us h6 {
+    font-size: 1em;
+    margin: 0;
+    color: rgb(255, 255, 255);
+    margin-bottom: 0.8em;
+}
+
+footer .follow-us .socials {
+    display: flex;
+    width: 11%;
+    justify-content: space-between;
+}
+
+footer .follow-us .socials a {
+    width: 28%;
+}
+
+footer .follow-us .socials a img {
+    width: 100%;
+}
