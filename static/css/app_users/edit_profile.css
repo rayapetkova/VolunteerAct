@@ -210,7 +210,21 @@ header ul.last-links li:nth-child(2) a {
 
 .right form .update-button:hover {
     cursor: pointer;
-    background-color: rgb(206, 167, 29);
+    background-color: #0f4e94;
+}
+
+form ul.errorlist {
+    margin: 0;
+    padding: 0;
+    width: 100%;
+}
+
+form ul.errorlist li {
+    list-style: none;
+    color: #d70000;
+    margin: 0;
+    padding: 0;
+    font-size: 0.85em;
 }
 
 
