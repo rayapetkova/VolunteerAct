@@ -18,17 +18,12 @@ class AppUserForm(auth_forms.UserCreationForm):
         min_length=2
     )
 
-    password2 = forms.CharField(
-        label=_("Password confirmation"),
-        required=False,
-        widget=forms.PasswordInput(attrs={"autocomplete": "new-password"}),
-        strip=False,
-        help_text=_("Enter the same password as before, for verification."),
-    )
-
     class Meta:
         model = UserModel
         fields = ('email', 'first_name', 'last_name', 'password1', 'password2')
+        labels = {
+            "password2": "Confirm password"
+        }
 
     def save(self, commit=True):
         user = super().save(commit=commit)
