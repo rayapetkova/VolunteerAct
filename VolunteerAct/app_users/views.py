@@ -18,6 +18,8 @@ class RegisterUserView(CreateView):
 
         login(self.request, self.object)
 
+        return result
+
 
 class LoginUserView(LoginView):
     template_name = 'app_users/login_page.html'

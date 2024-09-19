@@ -152,6 +152,7 @@ form ul.errorlist {
     margin: 0;
     padding: 0;
     width: 60%;
+    margin-top: 0.3em;
 }
 
 form ul.errorlist li {
