@@ -52,7 +52,7 @@ class Profile(models.Model):
         ]
     )
 
-    bio = models.CharField(
+    bio = models.TextField(
         max_length=800,
         null=True,
         blank=True,
