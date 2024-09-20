@@ -26,6 +26,7 @@ video {
 
 .main-content {
     padding: 45% 10%;
+    padding-bottom: 2%;
 }
 
 
@@ -35,21 +36,24 @@ video {
     justify-content: space-between;
     align-items: center;
     margin-top: 3em;
+    position: absolute;
+    top: 4%;
 }
 
 .main-content .first-section .left {
-    width: 50%;
+    width: 70%;
 }
 
 .main-content .first-section .left h1 {
     font-size: 50px;
-    color: #08376b;
+    color: #0c519a;
     margin-bottom: 0.5em;
+    width: 80%;
 }
 
 .main-content .first-section .left p {
     font-size: 20px;
-    color: #5d5d5d;
+    color: #ababab;
     margin-bottom: 1.5em;
 }
 
@@ -69,17 +73,6 @@ video {
     cursor: pointer;
     background-color: #08366bce;
     opacity: 1;
-}
-
-
-
-.main-content .first-section .right {
-    width: 40%;
-    align-self: flex-end;
-}
-
-.main-content .first-section .right img {
-    width: 100%;
 }
 
 
