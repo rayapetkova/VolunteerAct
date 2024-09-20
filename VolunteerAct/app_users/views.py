@@ -1,6 +1,6 @@
-from django.contrib.auth import login
+from django.contrib.auth import login, logout
 from django.contrib.auth.views import LoginView
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from django.urls import reverse_lazy, reverse
 from django.views.generic import CreateView, UpdateView
 
@@ -35,3 +35,8 @@ class ProfileUpdateView(UpdateView):
         return reverse('edit-profile', kwargs={
             "pk": self.request.user.profile.id
         })
+
+
+def logout_view(request):
+    logout(request)
+    return redirect('home-page')

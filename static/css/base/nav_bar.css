@@ -40,6 +40,10 @@ header ul.last-links {
     align-items: center;
 }
 
+header ul.logout-ul {
+    justify-content: end;
+}
+
 header ul.last-links li {
     list-style: none;
 }
@@ -51,7 +55,7 @@ header ul.last-links li a {
     font-weight: 600;
 }
 
-header ul.last-links li:nth-child(2) a {
+header ul.last-links li:nth-child(2) a, header ul.last-links .logout-btn a {
     background-color: #08376b;
     padding: 0.7em;
     color: rgb(255, 255, 255);
