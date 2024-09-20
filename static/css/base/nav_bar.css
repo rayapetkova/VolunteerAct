@@ -1,6 +1,9 @@
 header {
     display: flex;
     padding: 0.1% 10%;
+    position: absolute;
+    top: 0;
+    z-index: 10;
     border-bottom: solid 1px rgb(190, 190, 190);
 }
 
@@ -29,6 +32,8 @@ header section.search-bar-section input {
     font-family: inherit;
     font-size: 1.1em;
     margin-left: 7%;
+    background-color: transparent;
+    color: #f1f1f1;
 }
 
 header ul.last-links {
@@ -50,7 +55,7 @@ header ul.last-links li {
 
 header ul.last-links li a {
     text-decoration: none;
-    color: rgb(0, 0, 0);
+    color: rgb(255, 255, 255);
     font-size: 1em;
     font-weight: 600;
 }
