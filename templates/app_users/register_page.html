@@ -13,7 +13,10 @@
 
     {% include 'base/nav_bar.html' %}
 
-    <div class="login-box">
+    <video src="{% static 'images/volunteer_act_video.mp4' %}" muted autoplay loop></video>
+
+    <div class="main-content">
+        <div class="login-box">
         <form method="POST" action="{% url 'register-user' %}">
             <h1>Sign Up</h1>
 
@@ -37,8 +40,7 @@
             <button type="submit">Sign Up</button>
         </form>
     </div>
-
-    {% include 'base/footer.html' %}
+    </div>
 
 </body>
 </html>

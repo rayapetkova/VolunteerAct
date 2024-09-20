@@ -12,14 +12,38 @@ body {
 
 
 
+video {
+    width: 100%;
+    height: 100vh;
+    position: absolute;
+    top: 0;
+    object-fit: cover;
+    filter: brightness(30%);
+}
+
+
+
+
+
+
+.main-content {
+    width: 100%;
+    position: absolute;
+    display: flex;
+    justify-content: center;
+    top: 17%;
+}
+
+
 
 .login-box {
     display: flex;
     justify-content: center;
+    width: 35%;
 }
 
 form {
-    width: 30%;
+    width: 100%;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -30,24 +54,26 @@ form {
 }
 
 form h1 {
-    color: #08376b;
+    color: #ffffff;
     font-size: 2.5em;
     margin: 0;
+    margin-bottom: 0.3em;
 }
 
 form > p {
-    background-color: white;
     display: flex;
     flex-direction: column;
-    width: 60%;
+    width: 100%;
     margin: 0;
     margin-top: 1em;
+    color: #ffffff;
 }
 
 form p input {
-    padding: 0.7em 0.8em;
+    padding: 0.6em 0.8em;
     border: solid 1px rgb(156, 156, 156);
     border-radius: 4px;
+    font-size: 1em;
 }
 
 form .login-container {
@@ -58,15 +84,16 @@ form .login-container {
 form .log-in-p {
     margin: 0;
     margin-top: 1.3em;
+    color: #ffffff;
 }
 
 form .login-container a {
-    color: #2968af;
+    color: #418adc;
     margin-left: 0.6em;
 }
 
 form .login-container a:hover {
-    color: #5a8eca;
+    color: #6dacf8;
 }
 
 form button {
