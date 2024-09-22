@@ -240,6 +240,7 @@ video {
     border-radius: 10px;
     opacity: 0.9;
     transition: 0.5s;
+    text-decoration: none;
 }
 
 .explore-categories .categories .category-container:hover {

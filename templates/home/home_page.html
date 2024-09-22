@@ -80,63 +80,65 @@
             </div>
         </section>
 
-        <section class="join-section">
-            <div class="left">
-                <h2>Join VolunteerAct</h2>
+        {% if not request.user.is_authenticated %}
+            <section class="join-section">
+                <div class="left">
+                    <h2>Join VolunteerAct</h2>
 
-                <p>People use VolunteerAct to connect with others, support meaningful causes, and turn their passion for helping into action.</p>
+                    <p>People use VolunteerAct to connect with others, support meaningful causes, and turn their passion for helping into action.</p>
 
-                <a href="{% url 'register-user' %}">Sign Up</a>
-            </div>
+                    <a href="{% url 'register-user' %}">Sign Up</a>
+                </div>
 
-            <div class="right">
-                <img src="{% static "images/join_hands_img.webp" %}" alt="join-hands-img">
-            </div>
-        </section>
+                <div class="right">
+                    <img src="{% static "images/join_hands_img.webp" %}" alt="join-hands-img">
+                </div>
+            </section>
+        {% endif %}
 
         <section class="explore-categories">
             <h2>Explore categories</h2>
 
             <div class="categories">
-                <div class="category-container">
-                    <img src="{% static "images/environment.png" %}" alt="elder_care">
+                <a class="category-container" href="{% url 'category-page' pk=1 %}">
+                    <img src="{% static "images/environment.png" %}" alt="environment">
                     <p>Environment</p>
-                </div>
+                </a>
 
-                <div class="category-container">
-                    <img src="{% static "images/environment.png" %}" alt="elder_care">
+                <a class="category-container">
+                    <img src="{% static "images/food.png" %}" alt="food">
                     <p>Food & Hunger Relief</p>
-                </div>
+                </a>
 
-                <div class="category-container">
-                    <img src="{% static "images/animals.png" %}" alt="elder_care">
+                <a class="category-container">
+                    <img src="{% static "images/animals.png" %}" alt="animals">
                     <p>Animals & Wildlife</p>
-                </div>
+                </a>
 
-                <div class="category-container">
+                <a class="category-container">
                     <img src="{% static "images/elder_care.png" %}" alt="elder_care">
                     <p>Elder Care</p>
-                </div>
+                </a>
 
-                <div class="category-container">
-                    <img src="{% static "images/mentorship.png" %}" alt="elder_care">
+                <a class="category-container">
+                    <img src="{% static "images/mentorship.png" %}" alt="mentorship">
                     <p>Mentorship</p>
-                </div>
+                </a>
 
-                <div class="category-container">
-                    <img src="{% static "images/special_needs.png" %}" alt="elder_care">
+                <a class="category-container">
+                    <img src="{% static "images/special_needs.png" %}" alt="special_needs">
                     <p>Special Needs</p>
-                </div>
+                </a>
 
-                <div class="category-container">
-                    <img src="{% static "images/homeless_outreach.png" %}" alt="elder_care">
+                <a class="category-container">
+                    <img src="{% static "images/homeless_outreach.png" %}" alt="homeless_outreach">
                     <p>Homeless Outreach</p>
-                </div>
+                </a>
 
-                <div class="category-container">
-                    <img src="{% static "images/books.png" %}" alt="elder_care">
+                <a class="category-container">
+                    <img src="{% static "images/books.png" %}" alt="books">
                     <p>Books & Literacy</p>
-                </div>
+                </a>
             </div>
         </section>
 
