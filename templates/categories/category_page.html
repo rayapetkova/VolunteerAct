@@ -53,11 +53,11 @@
             <div class="left">
                 <h4>What we're about</h4>
 
-                <div class="text-info">
+                <div class="text-info fading-at-bottom">
                     <p>{{ object.long_description }}</p>
                 </div>
 
-                <p>Read more <img src="{% static 'images/arrow_down.png' %}" alt="arrow-down"></p>
+                <p id="read_more_desc">Read more <img src="{% static 'images/arrow_down.png' %}" alt="arrow-down"></p>
 
                 <div class="upcoming-events">
                     <div class="events-title-container">
@@ -170,4 +170,21 @@
     {% include 'base/footer.html' %}
 
 </body>
+
+    <script>
+        const readMoreBtn = document.getElementById('read_more_desc')
+        const longDescElement = document.getElementsByClassName('text-info')[0]
+
+        readMoreBtn.addEventListener('click', () => {
+            if (readMoreBtn.textContent.includes('Read more')) {
+                longDescElement.style.height = '25em'
+                readMoreBtn.innerHTML = 'Read less'
+                longDescElement.className = 'text-info'
+            } else {
+                readMoreBtn.innerHTML = 'Read more'
+                longDescElement.style.height = '17em'
+                longDescElement.className = 'text-info fading-at-bottom'
+            }
+        })
+    </script>
 </html>

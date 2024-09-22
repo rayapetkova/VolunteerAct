@@ -132,7 +132,7 @@ body {
     filter: brightness(90%);
 }
 
-.info-section .left .text-info::after {
+.info-section .left .text-info.fading-at-bottom::after {
     content: "";
     position: absolute;
     bottom: 0;
