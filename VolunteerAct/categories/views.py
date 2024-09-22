@@ -1,5 +1,9 @@
 from django.shortcuts import render
+from django.views.generic import DetailView
+
+from VolunteerAct.categories.models import Category
 
 
-def category_page(request, pk):
-    return render(request, 'categories/category_page.html')
+class CategoryDetailsView(DetailView):
+    model = Category
+    template_name = 'categories/category_page.html'

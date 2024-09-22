@@ -20,8 +20,8 @@
             </div>
 
             <div class="right">
-                <h2>Environment</h2>
-                <p>Join events focused on protecting and preserving our planet. Whether it’s a community cleanup, tree planting, or conservation project, make a positive impact on the environment and help build a sustainable future.</p>
+                <h2>{{ object.name }}</h2>
+                <p>{{ object.short_description }}</p>
 
                 <div class="more-info">
                     <div class="one">
@@ -54,11 +54,7 @@
                 <h4>What we're about</h4>
 
                 <div class="text-info">
-                    <p>The Environment category is dedicated to those who are committed to safeguarding our planet for future generations. In a world where environmental challenges grow more urgent every day, our goal is to inspire action and foster a deep connection to the natural world. We believe that through collective effort, we can make significant strides in addressing environmental issues and promoting sustainability.</p>
-                    <p>This category encompasses a wide range of activities designed to protect and restore the environment. From organizing local cleanups to reduce pollution, to planting trees that will thrive for decades, our events are hands-on opportunities to contribute to a healthier Earth. We also focus on conservation efforts, working to preserve vital ecosystems and protect endangered species. Through these initiatives, we aim to reduce our carbon footprint, enhance biodiversity, and promote ecological balance.</p>
-                    <p>Education is a key component of our mission. By participating in our events, you’ll not only be taking direct action, but also learning about the critical environmental issues facing our world today. We offer workshops, seminars, and community discussions that explore topics such as climate change, sustainable living, and renewable energy. This knowledge empowers participants to make informed decisions in their daily lives and advocate for broader systemic change.</p>
-                    <p>In the Environment category, you’ll find a supportive community of individuals who share your passion for the planet. Whether you’re an experienced environmentalist or just starting your journey, there’s a place for you here. Our events are designed to be inclusive and accessible, encouraging people from all walks of life to get involved. Together, we can tackle the most pressing environmental challenges and work towards a future where humans live in harmony with nature.</p>
-                    <p>Join us in the Environment category to be part of a movement that’s not just about preserving the present, but about creating a sustainable and thriving world for tomorrow. Every action counts, and together, we can make a lasting impact on the health of our planet.</p>
+                    <p>{{ object.long_description }}</p>
                 </div>
 
                 <p>Read more <img src="{% static 'images/arrow_down.png' %}" alt="arrow-down"></p>
@@ -77,7 +73,7 @@
                                 <div class="title-container">
                                     <h6>Be a Better Birder: Backyard Bird Feeding *Virtual Presentation*</h6>
                                     <div class="location">
-                                        <img src="{% static 'images/location.png' %}" alt="locations">
+                                        <img src="{% static 'images/location_grey.png' %}" alt="locations">
                                         <p>Online</p>
                                     </div>
                                 </div>
