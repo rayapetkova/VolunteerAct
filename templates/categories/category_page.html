@@ -1,0 +1,177 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Category Page</title>
+    <link rel="stylesheet" href="{% static 'css/base/nav_bar.css' %}">
+    <link rel="stylesheet" href="{% static 'css/base/footer.css' %}">
+    <link rel="stylesheet" href="{% static 'css/categories/category_page.css' %}">
+</head>
+<body>
+
+    {% include 'base/nav_bar.html' %}
+
+    <div class="main-section">
+        <section class="category-info">
+            <div class="left">
+                <img src="{% static 'images/environment_category.jpg' %}" alt="category-image">
+            </div>
+
+            <div class="right">
+                <h2>Environment</h2>
+                <p>Join events focused on protecting and preserving our planet. Whether it’s a community cleanup, tree planting, or conservation project, make a positive impact on the environment and help build a sustainable future.</p>
+
+                <div class="more-info">
+                    <div class="one">
+                        <img src="{% static 'images/events.png' %}" alt="events">
+                        <p>34 events</p>
+                    </div>
+
+                    <div class="one">
+                        <img src="{% static 'images/members.png' %}" alt="members">
+                        <p>23 active members</p>
+                    </div>
+
+                    <div class="one">
+                        <img src="{% static 'images/location.png' %}" alt="locations">
+                        <p>Online, Haskovo, Sofia, New York and others</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <div class="navigate-category">
+            <a href="#">About</a>
+            <a href="#">Events</a>
+            <a href="#">Photos</a>
+            <a href="#">Discussions</a>
+        </div>
+
+        <section class="info-section">
+            <div class="left">
+                <h4>What we're about</h4>
+
+                <div class="text-info">
+                    <p>The Environment category is dedicated to those who are committed to safeguarding our planet for future generations. In a world where environmental challenges grow more urgent every day, our goal is to inspire action and foster a deep connection to the natural world. We believe that through collective effort, we can make significant strides in addressing environmental issues and promoting sustainability.</p>
+                    <p>This category encompasses a wide range of activities designed to protect and restore the environment. From organizing local cleanups to reduce pollution, to planting trees that will thrive for decades, our events are hands-on opportunities to contribute to a healthier Earth. We also focus on conservation efforts, working to preserve vital ecosystems and protect endangered species. Through these initiatives, we aim to reduce our carbon footprint, enhance biodiversity, and promote ecological balance.</p>
+                    <p>Education is a key component of our mission. By participating in our events, you’ll not only be taking direct action, but also learning about the critical environmental issues facing our world today. We offer workshops, seminars, and community discussions that explore topics such as climate change, sustainable living, and renewable energy. This knowledge empowers participants to make informed decisions in their daily lives and advocate for broader systemic change.</p>
+                    <p>In the Environment category, you’ll find a supportive community of individuals who share your passion for the planet. Whether you’re an experienced environmentalist or just starting your journey, there’s a place for you here. Our events are designed to be inclusive and accessible, encouraging people from all walks of life to get involved. Together, we can tackle the most pressing environmental challenges and work towards a future where humans live in harmony with nature.</p>
+                    <p>Join us in the Environment category to be part of a movement that’s not just about preserving the present, but about creating a sustainable and thriving world for tomorrow. Every action counts, and together, we can make a lasting impact on the health of our planet.</p>
+                </div>
+
+                <p>Read more <img src="{% static 'images/arrow_down.png' %}" alt="arrow-down"></p>
+
+                <div class="upcoming-events">
+                    <div class="events-title-container">
+                        <h4>Upcoming events (2+)</h4>
+                        <a href="#">See all</a>
+                    </div>
+
+                    <div class="all-events">
+                        <div class="event-container">
+                            <p>Fri, Sep 6, 2024, 2:00 AM</p>
+
+                            <div class="title-and-img">
+                                <div class="title-container">
+                                    <h6>Be a Better Birder: Backyard Bird Feeding *Virtual Presentation*</h6>
+                                    <div class="location">
+                                        <img src="{% static 'images/location.png' %}" alt="locations">
+                                        <p>Online</p>
+                                    </div>
+                                </div>
+                                <img src="{% static 'images/environment_category.jpg' %}" alt="category-img">
+                            </div>
+
+                            <p>This Meetup is presented by the Forest Preserves of Cook County. You will meet FPCC staff or volunteers onsite. Join a naturalist as we explore this preserve while looking for local birds.  A limited amount of binoculars will be available for lending. Meet near the large brick shelter at Eggers Grove. Drive all the way into the preserve then turn left at stop sign.</p>
+                        </div>
+
+                        <div class="event-container">
+                            <p>Fri, Sep 6, 2024, 2:00 AM</p>
+
+                            <div class="title-and-img">
+                                <div class="title-container">
+                                    <h6>Be a Better Birder: Backyard Bird Feeding *Virtual Presentation*</h6>
+                                    <div class="location">
+                                        <img src="{% static 'images/location_grey.png' %}" alt="locations">
+                                        <p>Online</p>
+                                    </div>
+                                </div>
+                                <img src="{% static 'images/environment_category.jpg' %}" alt="category-img">
+                            </div>
+
+                            <p>This Meetup is presented by the Forest Preserves of Cook County. You will meet FPCC staff or volunteers onsite. Join a naturalist as we explore this preserve while looking for local birds.  A limited amount of binoculars will be available for lending. Meet near the large brick shelter at Eggers Grove. Drive all the way into the preserve then turn left at stop sign.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="past-events">
+                    <div class="events-title-container">
+                        <h4>Past events (2+)</h4>
+                        <a href="#">See all</a>
+                    </div>
+
+                    <div class="all-events">
+                        <div class="event-container">
+                            <p>Fri, Sep 6, 2024, 2:00 AM</p>
+
+                            <div class="title-and-img">
+                                <div class="title-container">
+                                    <h6>Be a Better Birder: Backyard Bird Feeding *Virtual Presentation*</h6>
+                                    <div class="location">
+                                        <img src="{% static 'images/location_grey.png' %}" alt="locations">
+                                        <p>Online</p>
+                                    </div>
+                                </div>
+                                <img src="{% static 'images/environment_category.jpg' %}" alt="category-img">
+                            </div>
+
+                            <p>This Meetup is presented by the Forest Preserves of Cook County. You will meet FPCC staff or volunteers onsite. Join a naturalist as we explore this preserve while looking for local birds.  A limited amount of binoculars will be available for lending. Meet near the large brick shelter at Eggers Grove. Drive all the way into the preserve then turn left at stop sign.</p>
+                        </div>
+
+                        <div class="event-container">
+                            <p>Fri, Sep 6, 2024, 2:00 AM</p>
+
+                            <div class="title-and-img">
+                                <div class="title-container">
+                                    <h6>Be a Better Birder: Backyard Bird Feeding *Virtual Presentation*</h6>
+                                    <div class="location">
+                                        <img src="{% static 'images/location_grey.png' %}" alt="locations">
+                                        <p>Online</p>
+                                    </div>
+                                </div>
+                                <img src="{% static 'images/environment_category.jpg' %}" alt="category-img">
+                            </div>
+
+                            <p>This Meetup is presented by the Forest Preserves of Cook County. You will meet FPCC staff or volunteers onsite. Join a naturalist as we explore this preserve while looking for local birds.  A limited amount of binoculars will be available for lending. Meet near the large brick shelter at Eggers Grove. Drive all the way into the preserve then turn left at stop sign.</p>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+
+            <div class="right">
+                <div class="title-and-see-all">
+                    <h4>Active members</h4>
+                    <a href="#">See all</a>
+                </div>
+
+                <div class="members">
+                    <img src="{% static 'images/person_img.jpg' %}" alt="profile-img">
+                    <img src="{% static 'images/person_img.jpg' %}" alt="profile-img">
+                    <img src="{% static 'images/person_img.jpg' %}" alt="profile-img">
+                    <img src="{% static 'images/person_img.jpg' %}" alt="profile-img">
+                    <img src="{% static 'images/person_img.jpg' %}" alt="profile-img">
+                    <img src="{% static 'images/person_img.jpg' %}" alt="profile-img">
+                    <img src="{% static 'images/person_img.jpg' %}" alt="profile-img">
+                    <img src="{% static 'images/person_img.jpg' %}" alt="profile-img">
+                </div>
+            </div>
+        </section>
+    </div>
+
+    {% include 'base/footer.html' %}
+
+</body>
+</html>

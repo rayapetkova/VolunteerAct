@@ -1,0 +1,266 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+
+body {
+    background-color: rgb(255, 255, 255);
+    margin: 0;
+    padding: 0;
+    font-family: "Poppins", sans-serif;
+}
+
+
+
+
+
+.category-info {
+    display: flex;
+    justify-content: space-between;
+    margin: 8% 15%;
+}
+
+.category-info .left {
+    width: 48%;
+}
+
+.category-info .left img {
+    width: 100%;
+    border-radius: 15px;
+}
+
+.category-info .right {
+    width: 48%;
+}
+
+.category-info .right h2 {
+    font-weight: 800;
+    font-size: 2em;
+    margin: 0
+}
+
+.category-info .right > p {
+    color: #474747;
+    font-weight: 600;
+    font-size: 1em;
+    margin-bottom: 1.7em;
+}
+
+.category-info .right .more-info {
+    display: flex;
+    flex-direction: column;
+}
+
+.category-info .right .more-info .one {
+    display: flex;
+    align-items: center;
+    margin-bottom: 1em;
+}
+
+.category-info .right .more-info .one img {
+    width: 1.3em;
+    height: 1.3em;
+    margin-right: 0.7em;
+}
+
+.category-info .right .more-info .one p {
+    margin: 0;
+    align-self: flex-end;
+}
+
+
+
+
+
+.navigate-category {
+    margin-top: 3em;
+    padding: 2em 0;
+    border-top: solid 1px #dadada;
+    border-bottom: solid 1px #dadada;
+    margin: 2% 15%;
+    margin-bottom: 0;
+}
+
+.navigate-category a {
+    text-decoration: none;
+    color: #5f5f5f;
+    margin-right: 1.7em;
+}
+
+.navigate-category a:hover {
+    text-decoration: underline;
+}
+
+
+
+
+
+.info-section {
+    display: flex;
+    justify-content: space-between;
+    background-color: rgb(249, 249, 249);
+    padding: 2% 15%;
+}
+
+.info-section .left {
+    width: 55%;
+    overflow: hidden;
+}
+
+.info-section .left h4 {
+    margin: 0;
+    font-size: 1.3em;
+}
+
+.info-section .left p {
+    font-size: 1em;
+    line-height: 1.4em;
+}
+
+.info-section .left .text-info {
+    height: 17em;
+    overflow: hidden;
+}
+
+.info-section .left > p {
+    color: #35c0ed;
+    display: flex;
+    align-items: center;
+    margin: 0;
+    width: 15%;
+}
+
+.info-section .left > p:hover {
+    cursor: pointer;
+    filter: brightness(90%);
+}
+
+.info-section .left .text-info::after {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    top: 97%;
+    height: 15%;
+    width: 40%;
+    background: linear-gradient(to bottom, rgba(255, 255, 255, 0) 0%, rgb(249 249 249) 80%);
+    pointer-events: none;
+}
+
+.info-section .left > p img {
+    width: 10%;
+    height: 2%;
+    margin-left: 0.3em;
+}
+
+
+
+
+
+
+.left .events-title-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1em;
+}
+
+.left .events-title-container a {
+    color: #2e5c91;
+    margin: 0;
+}
+
+.left .upcoming-events, .left .past-events {
+    margin-top: 4em;
+}
+
+.event-container {
+    background-color: rgb(255, 255, 255);
+    display: flex;
+    flex-direction: column;
+    padding: 1.5em;
+    border-radius: 10px;
+    margin-bottom: 1.5em;
+}
+
+.event-container > p:nth-child(1) {
+    color: #35c0ed;
+    font-weight: 700;
+    margin: 0;
+    font-size: 0.85em;
+}
+
+.title-and-img {
+    display: flex;
+    justify-content: space-between;
+}
+
+.event-container .title-and-img .title-container {
+    width: 60%;
+}
+
+.event-container .title-and-img h6 {
+    font-size: 1.3em;
+    margin: 0;
+    margin-top: 0.3em;
+}
+
+.title-and-img img {
+    width: 38%;
+    border-radius: 7px;
+}
+
+.event-container .location {
+    display: flex;
+    margin-top: 0.3em;
+    align-items: center;
+}
+
+.event-container .location img {
+    width: 1em;
+    height: 1em;
+    margin-right: 0.4em;
+}
+
+.event-container .location p {
+    margin: 0;
+}
+
+.past-events p,
+.past-events h6,
+.past-events .all-events p {
+    color: #707070;
+}
+
+
+
+
+
+.info-section .right {
+    width: 35%;
+}
+
+.info-section .right .title-and-see-all {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.info-section .right .title-and-see-all h4 {
+    font-size: 1.3em;
+    margin: 0;
+}
+
+.info-section .right .title-and-see-all a {
+    color: #2e5c91;
+}
+
+.info-section .right .members {
+    display: flex;
+    flex-flow: row wrap;
+    gap: 1em;
+    margin-top: 1em;
+}
+
+.info-section .right .members img {
+    width: 4em;
+    height: 4em;
+    object-fit: cover;
+    border-radius: 50%;
+}
