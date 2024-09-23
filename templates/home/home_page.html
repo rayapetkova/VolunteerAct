@@ -23,11 +23,15 @@
 
                 <p>Discover a community dedicated to making a difference. Whether you're looking to volunteer your time, donate to a worthy cause, or simply connect with like-minded individuals, VolunteerAct is your gateway to meaningful action. Explore various categories, join impactful events, and be part of a movement that’s changing the world!</p>
 
-                <a href="{% url 'register-user' %}">Join VolunteerAct</a>
+                {% if not request.user.is_authenticated %}
+                    <a href="{% url 'register-user' %}">Join VolunteerAct</a>
+                {% else %}
+                    <a href="#explore">Explore</a>
+                {% endif %}
             </div>
         </section>
 
-        <section class="upcoming-events">
+        <section class="upcoming-events" id="explore">
             <div class="title-container">
                 <h2>Upcoming events</h2>
                 <a href="#">See all events</a>
