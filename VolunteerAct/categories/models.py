@@ -7,6 +7,7 @@ from VolunteerAct.app_users.models import AppUser
 class Category(models.Model):
     name = models.CharField(
         max_length=30,
+        unique=True,
         null=False,
         blank=False,
         validators=[
@@ -35,4 +36,48 @@ class Category(models.Model):
     active_members = models.ManyToManyField(
         to=AppUser,
         related_name='categories'
+    )
+
+
+class Event(models.Model):
+    title = models.CharField(
+        max_length=70,
+        null=False,
+        blank=False,
+        validators=[
+            validators.MinLengthValidator(2, message="Title needs to be at lest 2 characters long.")
+        ]
+    )
+
+    details = models.CharField(
+        max_length=10000,
+        null=False,
+        blank=False,
+        validators=[
+            validators.MinLengthValidator(150, message="Details about the event need to be at least 150 characters long.")
+        ]
+    )
+
+    location = models.CharField(
+        max_length=100,
+        null=False,
+        blank=False,
+        validators=[
+            validators.MinLengthValidator(10, message="Exact location needs to be at least 10 characters long.")
+        ]
+    )
+
+    time = models.DateTimeField(
+        null=False,
+        blank=False
+    )
+
+    category = models.ForeignKey(
+        to=Category,
+        on_delete=models.CASCADE
+    )
+
+    attendees = models.ManyToManyField(
+        to=AppUser,
+        related_name='events'
     )
