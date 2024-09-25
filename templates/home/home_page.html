@@ -104,45 +104,12 @@
             <h2>Explore categories</h2>
 
             <div class="categories">
-                <a class="category-container" href="{% url 'category-page' pk=1 %}">
-                    <img src="{% static "images/environment.png" %}" alt="environment">
-                    <p>Environment</p>
-                </a>
-
-                <a class="category-container">
-                    <img src="{% static "images/food.png" %}" alt="food">
-                    <p>Food & Hunger Relief</p>
-                </a>
-
-                <a class="category-container">
-                    <img src="{% static "images/animals.png" %}" alt="animals">
-                    <p>Animals & Wildlife</p>
-                </a>
-
-                <a class="category-container">
-                    <img src="{% static "images/elder_care.png" %}" alt="elder_care">
-                    <p>Elder Care</p>
-                </a>
-
-                <a class="category-container">
-                    <img src="{% static "images/mentorship.png" %}" alt="mentorship">
-                    <p>Mentorship</p>
-                </a>
-
-                <a class="category-container">
-                    <img src="{% static "images/special_needs.png" %}" alt="special_needs">
-                    <p>Special Needs</p>
-                </a>
-
-                <a class="category-container">
-                    <img src="{% static "images/homeless_outreach.png" %}" alt="homeless_outreach">
-                    <p>Homeless Outreach</p>
-                </a>
-
-                <a class="category-container">
-                    <img src="{% static "images/books.png" %}" alt="books">
-                    <p>Books & Literacy</p>
-                </a>
+                {% for category in categories %}
+                    <a href="{% url 'category-page' pk=category.id %}" class="category-container">
+                        <img src="{% static "images/food.png" %}" alt="food">
+                        <p>{{ category.name }}</p>
+                    </a>
+                {% endfor %}
             </div>
         </section>
 
@@ -235,7 +202,7 @@
         </section>
     </div>
 
-    <iframe style="width: 100%; height: 900px" src="https://www.google.com/maps?q=Haskovo&output=embed&maptype=satellite"></iframe>
+    <iframe style="width: 100%; height: 900px" src="https://www.google.com/maps?q=Haskovo&output=embed"></iframe>
 
     {% include 'base/footer.html' %}
 
