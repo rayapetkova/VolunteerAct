@@ -67,6 +67,12 @@ class Event(models.Model):
         ]
     )
 
+    place = models.CharField(
+        max_length=150,
+        null=False,
+        blank=False
+    )
+
     time = models.DateTimeField(
         null=False,
         blank=False
