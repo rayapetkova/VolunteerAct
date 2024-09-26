@@ -63,5 +63,6 @@ class Profile(models.Model):
 
     user = models.OneToOneField(
         to=AppUser,
-        on_delete=models.CASCADE
+        on_delete=models.CASCADE,
+        related_name='profile'
     )

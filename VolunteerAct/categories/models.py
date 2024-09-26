@@ -38,7 +38,7 @@ class Category(models.Model):
     )
 
     active_members = models.ManyToManyField(
-        to=AppUser,
+        to=AppUserModel,
         related_name='categories'
     )
 
@@ -77,7 +77,7 @@ class Event(models.Model):
     )
 
     host = models.ForeignKey(
-        to=AppUser,
+        to=AppUserModel,
         on_delete=models.CASCADE
     )
 
