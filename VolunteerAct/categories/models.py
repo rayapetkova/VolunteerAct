@@ -59,18 +59,12 @@ class Event(models.Model):
     )
 
     location = models.CharField(
-        max_length=100,
+        max_length=150,
         null=False,
         blank=False,
         validators=[
             validators.MinLengthValidator(10, message="Exact location needs to be at least 10 characters long.")
         ]
-    )
-
-    place = models.CharField(
-        max_length=150,
-        null=False,
-        blank=False
     )
 
     time = models.DateTimeField(
