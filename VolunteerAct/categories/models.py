@@ -1,7 +1,11 @@
+from django.contrib.auth import get_user_model
 from django.core import validators
 from django.db import models
 
 from VolunteerAct.app_users.models import AppUser
+
+
+AppUserModel = get_user_model()
 
 
 class Category(models.Model):
@@ -70,6 +74,11 @@ class Event(models.Model):
     time = models.DateTimeField(
         null=False,
         blank=False
+    )
+
+    host = models.ForeignKey(
+        to=AppUser,
+        on_delete=models.CASCADE
     )
 
     category = models.ForeignKey(
