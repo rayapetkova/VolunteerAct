@@ -62,6 +62,15 @@ class Event(models.Model):
         ]
     )
 
+    city = models.CharField(
+        max_length=50,
+        null=False,
+        blank=False,
+        validators=[
+            validators.MinLengthValidator(2, message="City needs to be at least 2 characters long.")
+        ]
+    )
+
     location = models.CharField(
         max_length=150,
         null=False,
