@@ -14,7 +14,7 @@
     {% include 'base/nav_bar.html' %}
 
     <section class="upper-section">
-        <h2>We Speak English Conversation Club</h2>
+        <h2>{{ object.title }}</h2>
 
         <div class="host">
             <a href="#" class="img-container">
@@ -62,8 +62,9 @@
 
                 <section class="box">
                     <img src="{% static 'images/location_grey.png' %}" alt="location_grey_icon">
-                    <p>{{ object.location }}</p>
+                    <p>{{ object.location }}, {{ object.city }}</p>
                 </section>
+                <iframe src="https://www.google.com/maps?q=bul. Saedinenie, Haskovo&output=embed&maptype=satellite"></iframe>
             </div>
         </div>
     </section>

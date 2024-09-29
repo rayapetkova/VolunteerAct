@@ -140,7 +140,7 @@ body {
 
 .info-section .right .location-container {
     background-color: rgb(255, 255, 255);
-    padding: 1em;
+    padding: 1.4em;
     border-radius: 15px;
     width: 70%;
     position: sticky;
@@ -156,4 +156,10 @@ body {
     display: flex;
     align-items: center;
     gap: 0.4em;
+}
+
+.info-section .right .location-container iframe {
+    border: solid 1px grey;
+    border-radius: 5px;
+    height: 200px;
 }
