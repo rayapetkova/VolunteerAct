@@ -64,7 +64,7 @@
                     <img src="{% static 'images/location_grey.png' %}" alt="location_grey_icon">
                     <p>{{ object.location }}, {{ object.city }}</p>
                 </section>
-                <iframe src="https://www.google.com/maps?q=bul. Saedinenie, Haskovo&output=embed&maptype=satellite"></iframe>
+                <iframe src="https://www.google.com/maps?q={{ object.location }}, {{ object.city }}&output=embed&maptype=satellite"></iframe>
             </div>
         </div>
     </section>
