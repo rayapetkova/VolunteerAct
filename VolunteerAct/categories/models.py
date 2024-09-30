@@ -33,7 +33,7 @@ class Category(models.Model):
         null=False,
         blank=False,
         validators=[
-            validators.MinLengthValidator(70, message="Category's long description needs to be at least 70 characters long.")
+            validators.MinLengthValidator(450, message="Category's long description needs to be at least 70 characters long.")
         ]
     )
 
