@@ -61,87 +61,60 @@
 
                 <div class="upcoming-events">
                     <div class="events-title-container">
-                        <h4>Upcoming events (2+)</h4>
+                        <h4>Upcoming events ({{ upcoming_events|length }})</h4>
                         <a href="#">See all</a>
                     </div>
 
                     <div class="all-events">
-                        <div class="event-container">
-                            <p>Fri, Sep 6, 2024, 2:00 AM</p>
 
-                            <div class="title-and-img">
-                                <div class="title-container">
-                                    <h6>Be a Better Birder: Backyard Bird Feeding *Virtual Presentation*</h6>
-                                    <div class="location">
-                                        <img src="{% static 'images/location_grey.png' %}" alt="locations">
-                                        <p>Online</p>
+                        {% for upcoming_event in upcoming_events %}
+                            <div class="event-container">
+                                <p>{{ upcoming_event.time }}</p>
+
+                                <div class="title-and-img">
+                                    <div class="title-container">
+                                        <h6>{{ upcoming_event.title }}</h6>
+                                        <div class="location">
+                                            <img src="{% static 'images/location_grey.png' %}" alt="locations">
+                                            <p>{{ upcoming_event.location }}, {{ upcoming_event.city }}</p>
+                                        </div>
                                     </div>
+                                    <img src="{% static 'images/environment_category.jpg' %}" alt="category-img">
                                 </div>
-                                <img src="{% static 'images/environment_category.jpg' %}" alt="category-img">
+
+                                <p class="details">{{ upcoming_event.details }}</p>
                             </div>
+                        {% endfor %}
 
-                            <p>This Meetup is presented by the Forest Preserves of Cook County. You will meet FPCC staff or volunteers onsite. Join a naturalist as we explore this preserve while looking for local birds.  A limited amount of binoculars will be available for lending. Meet near the large brick shelter at Eggers Grove. Drive all the way into the preserve then turn left at stop sign.</p>
-                        </div>
-
-                        <div class="event-container">
-                            <p>Fri, Sep 6, 2024, 2:00 AM</p>
-
-                            <div class="title-and-img">
-                                <div class="title-container">
-                                    <h6>Be a Better Birder: Backyard Bird Feeding *Virtual Presentation*</h6>
-                                    <div class="location">
-                                        <img src="{% static 'images/location_grey.png' %}" alt="locations">
-                                        <p>Online</p>
-                                    </div>
-                                </div>
-                                <img src="{% static 'images/environment_category.jpg' %}" alt="category-img">
-                            </div>
-
-                            <p>This Meetup is presented by the Forest Preserves of Cook County. You will meet FPCC staff or volunteers onsite. Join a naturalist as we explore this preserve while looking for local birds.  A limited amount of binoculars will be available for lending. Meet near the large brick shelter at Eggers Grove. Drive all the way into the preserve then turn left at stop sign.</p>
-                        </div>
                     </div>
                 </div>
 
                 <div class="past-events">
                     <div class="events-title-container">
-                        <h4>Past events (2+)</h4>
+                        <h4>Past events ({{ past_events|length }})</h4>
                         <a href="#">See all</a>
                     </div>
 
                     <div class="all-events">
-                        <div class="event-container">
-                            <p>Fri, Sep 6, 2024, 2:00 AM</p>
 
-                            <div class="title-and-img">
-                                <div class="title-container">
-                                    <h6>Be a Better Birder: Backyard Bird Feeding *Virtual Presentation*</h6>
-                                    <div class="location">
-                                        <img src="{% static 'images/location_grey.png' %}" alt="locations">
-                                        <p>Online</p>
+                        {% for past_event in past_events %}
+                            <div class="event-container">
+                                <p>{{ past_event.time }}</p>
+
+                                <div class="title-and-img">
+                                    <div class="title-container">
+                                        <h6>{{ past_event.title }}</h6>
+                                        <div class="location">
+                                            <img src="{% static 'images/location_grey.png' %}" alt="locations">
+                                            <p>{{ past_event.location }}</p>
+                                        </div>
                                     </div>
+                                    <img src="{% static 'images/environment_category.jpg' %}" alt="category-img">
                                 </div>
-                                <img src="{% static 'images/environment_category.jpg' %}" alt="category-img">
+
+                                <p class="details">{{ past_event.details }}</p>
                             </div>
-
-                            <p>This Meetup is presented by the Forest Preserves of Cook County. You will meet FPCC staff or volunteers onsite. Join a naturalist as we explore this preserve while looking for local birds.  A limited amount of binoculars will be available for lending. Meet near the large brick shelter at Eggers Grove. Drive all the way into the preserve then turn left at stop sign.</p>
-                        </div>
-
-                        <div class="event-container">
-                            <p>Fri, Sep 6, 2024, 2:00 AM</p>
-
-                            <div class="title-and-img">
-                                <div class="title-container">
-                                    <h6>Be a Better Birder: Backyard Bird Feeding *Virtual Presentation*</h6>
-                                    <div class="location">
-                                        <img src="{% static 'images/location_grey.png' %}" alt="locations">
-                                        <p>Online</p>
-                                    </div>
-                                </div>
-                                <img src="{% static 'images/environment_category.jpg' %}" alt="category-img">
-                            </div>
-
-                            <p>This Meetup is presented by the Forest Preserves of Cook County. You will meet FPCC staff or volunteers onsite. Join a naturalist as we explore this preserve while looking for local birds.  A limited amount of binoculars will be available for lending. Meet near the large brick shelter at Eggers Grove. Drive all the way into the preserve then turn left at stop sign.</p>
-                        </div>
+                        {% endfor %}
 
                     </div>
                 </div>
