@@ -87,12 +87,14 @@ class Event(models.Model):
 
     host = models.ForeignKey(
         to=AppUserModel,
-        on_delete=models.CASCADE
+        on_delete=models.CASCADE,
+        related_name='host_events'
     )
 
     category = models.ForeignKey(
         to=Category,
-        on_delete=models.CASCADE
+        on_delete=models.CASCADE,
+        related_name='category_events'
     )
 
     attendees = models.ManyToManyField(
