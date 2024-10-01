@@ -38,6 +38,10 @@
                         <img src="{% static 'images/location.png' %}" alt="locations">
                         <p>Online, Haskovo, Sofia, New York and others</p>
                     </div>
+
+                    <div class="one">
+                        <a href="#" class="add-event-btn">Add Event</a>
+                    </div>
                 </div>
             </div>
         </section>
@@ -68,7 +72,7 @@
                     <div class="all-events">
 
                         {% for upcoming_event in upcoming_events %}
-                            <div class="event-container">
+                            <a href="{% url 'event-page' categoryId=object.id pk=upcoming_event.id %}" class="event-container">
                                 <p>{{ upcoming_event.time }}</p>
 
                                 <div class="title-and-img">
@@ -83,7 +87,7 @@
                                 </div>
 
                                 <p class="details">{{ upcoming_event.details }}</p>
-                            </div>
+                            </a>
                         {% endfor %}
 
                     </div>
@@ -98,7 +102,7 @@
                     <div class="all-events">
 
                         {% for past_event in past_events %}
-                            <div class="event-container">
+                            <a href="{% url 'event-page' categoryId=object.id pk=past_event.id %}" class="event-container">
                                 <p>{{ past_event.time }}</p>
 
                                 <div class="title-and-img">
@@ -113,7 +117,7 @@
                                 </div>
 
                                 <p class="details">{{ past_event.details }}</p>
-                            </div>
+                            </a>
                         {% endfor %}
 
                     </div>

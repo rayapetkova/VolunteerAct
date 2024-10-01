@@ -65,6 +65,24 @@ body {
     align-self: flex-end;
 }
 
+.category-info .add-event-btn {
+    background-color: #08376b;
+    color: rgb(255, 255, 255);
+    font-size: 0.8em;
+    padding: 0.7em 1em;
+    border: none;
+    border-radius: 10px;
+    opacity: 0.9;
+    transition: 0.4s;
+    text-decoration: none;
+}
+
+.category-info .add-event-btn:hover {
+    cursor: pointer;
+    background-color: #08366bce;
+    opacity: 1;
+}
+
 
 
 
@@ -178,6 +196,8 @@ body {
     margin-bottom: 1.5em;
     position: relative;
     height: 20em;
+    text-decoration: none;
+    color: #000000;
 }
 
 .event-container > p:nth-child(1) {
