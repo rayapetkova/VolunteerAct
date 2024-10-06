@@ -44,6 +44,13 @@
                     </div>
                 </div>
             </div>
+
+            <div class="add-event-container">
+                <form>
+                    <input type="text">
+                    <button>yes</button>
+                </form>
+            </div>
         </section>
 
         <div class="navigate-category">
@@ -88,6 +95,8 @@
 
                                 <p class="details">{{ upcoming_event.details }}</p>
                             </a>
+                        {% empty %}
+                            <p class="no-events">No upcoming events yet</p>
                         {% endfor %}
 
                     </div>
@@ -118,6 +127,8 @@
 
                                 <p class="details">{{ past_event.details }}</p>
                             </a>
+                        {% empty %}
+                            <p class="no-events">No past events yet</p>
                         {% endfor %}
 
                     </div>
@@ -162,6 +173,13 @@
                 longDescElement.style.height = '10em'
                 longDescElement.className = 'text-info fading-at-bottom'
             }
+        })
+
+        const addEventBtn = document.getElementsByClassName('add-event-btn')[0]
+        const addEventContainer = document.getElementsByClassName('add-event-container')[0]
+
+        addEventBtn.addEventListener('click', () => {
+            addEventContainer.style.display = 'block'
         })
     </script>
 </html>
