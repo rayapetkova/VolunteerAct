@@ -106,7 +106,7 @@
             <div class="categories">
                 {% for category in categories %}
                     <a href="{% url 'category-page' pk=category.id %}" class="category-container">
-                        <img src="{% static 'images/categories/' %}{{ category.id }}.png" alt="category-img">
+                        <img src="{{ category.image.url }}" alt="category-img">
                         <p>{{ category.name }}</p>
                     </a>
                 {% endfor %}
