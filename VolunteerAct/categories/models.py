@@ -3,12 +3,15 @@ from django.core import validators
 from django.db import models
 
 from VolunteerAct.app_users.models import AppUser
+from cloudinary.models import CloudinaryField
 
 
 AppUserModel = get_user_model()
 
 
 class Category(models.Model):
+    image = CloudinaryField('image')
+
     name = models.CharField(
         max_length=30,
         unique=True,
