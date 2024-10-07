@@ -20,8 +20,8 @@
             </div>
 
             <div class="right">
-                <h2>{{ object.name }}</h2>
-                <p>{{ object.short_description }}</p>
+                <h2>{{ category.name }}</h2>
+                <p>{{ category.short_description }}</p>
 
                 <div class="more-info">
                     <div class="one">
@@ -45,11 +45,19 @@
                 </div>
             </div>
 
-            <div class="add-event-container">
-                <form>
-                    <input type="text">
-                    <button>yes</button>
+            <div class="add-event-container {% if not event_form.errors %}not-displaying{% endif %}">
+                <form method="POST" action="{% url 'category-page' pk=category.pk %}">
+                    {% csrf_token %}
+
+                    {% for field in event_form %}
+                        {{ field.label }}
+                        {{ field }}
+                        {{ field.errors }}
+                    {% endfor %}
+
+                    <button type="submit" id="submitAddEventBtn">Add event</button>
                 </form>
+
             </div>
         </section>
 
@@ -65,7 +73,7 @@
                 <h4>What we're about</h4>
 
                 <div class="text-info fading-at-bottom">
-                    <p>{{ object.long_description }}</p>
+                    <p>{{ category.long_description }}</p>
                 </div>
 
                 <p id="read_more_desc">Read more <img src="{% static 'images/arrow_down.png' %}" alt="arrow-down"></p>
@@ -79,7 +87,7 @@
                     <div class="all-events">
 
                         {% for upcoming_event in upcoming_events %}
-                            <a href="{% url 'event-page' categoryId=object.id pk=upcoming_event.id %}" class="event-container">
+                            <a href="{% url 'event-page' categoryId=category.id pk=upcoming_event.id %}" class="event-container">
                                 <p>{{ upcoming_event.time }}</p>
 
                                 <div class="title-and-img">
@@ -111,7 +119,7 @@
                     <div class="all-events">
 
                         {% for past_event in past_events %}
-                            <a href="{% url 'event-page' categoryId=object.id pk=past_event.id %}" class="event-container">
+                            <a href="{% url 'event-page' categoryId=category.id pk=past_event.id %}" class="event-container">
                                 <p>{{ past_event.time }}</p>
 
                                 <div class="title-and-img">

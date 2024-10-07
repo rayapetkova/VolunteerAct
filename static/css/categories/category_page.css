@@ -95,6 +95,9 @@ body {
     height: 70%;
     width: 40%;
     left: 30%;
+}
+
+.category-info .not-displaying {
     display: none;
 }
 
