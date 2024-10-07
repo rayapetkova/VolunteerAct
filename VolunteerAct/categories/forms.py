@@ -6,7 +6,7 @@ from VolunteerAct.categories.models import Event
 class EventForm(ModelForm):
     class Meta:
         model = Event
-        fields = '__all__'
+        fields = ('title', 'details', 'city', 'location', 'time', )
 
         widgets = {
             'time': widgets.DateTimeInput(
