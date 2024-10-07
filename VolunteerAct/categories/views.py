@@ -2,23 +2,31 @@ from django.shortcuts import render
 from django.utils import timezone
 from django.views.generic import DetailView
 
+from VolunteerAct.categories.forms import EventForm
 from VolunteerAct.categories.models import Category, Event
 
 
-class CategoryDetailsView(DetailView):
-    model = Category
-    template_name = 'categories/category_page.html'
+def category_details(request, pk):
+    event_form = EventForm(request.POST or None)
+    category = Category.objects.get(pk=pk)
+    upcoming_events = category.category_events.filter(time__gt=timezone.now())
+    past_events = category.category_events.filter(time__lt=timezone.now())
 
-    def get_context_data(self, **kwargs):
-        context = super().get_context_data(**kwargs)
+    if request.method == "POST":
+        if event_form.is_valid():
+            event_form.save(commit=True)
+            print(event_form.cleaned_data)
+        else:
+            print(event_form.errors)
 
-        upcoming_events = self.object.category_events.filter(time__gt=timezone.now())
-        past_events = self.object.category_events.filter(time__lt=timezone.now())
+    context = {
+        'category': category,
+        'event_form': event_form,
+        'upcoming_events': upcoming_events,
+        'past_events': past_events
+    }
 
-        context['upcoming_events'] = upcoming_events
-        context['past_events'] = past_events
-
-        return context
+    return render(request, 'categories/category_page.html', context=context)
 
 
 class EventDetailsView(DetailView):
