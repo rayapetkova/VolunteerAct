@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from django.utils import timezone
 from django.views.generic import DetailView
 
@@ -20,6 +20,7 @@ def category_details(request, pk):
             event.category = category
 
             event.save()
+            return redirect('category-page', pk=pk)
 
     context = {
         'category': category,

@@ -10,160 +10,164 @@
     <link rel="stylesheet" href="{% static 'css/categories/category_page.css' %}">
 </head>
 <body>
+    <main>
 
-    {% include 'base/nav_bar.html' %}
+        {% include 'base/nav_bar.html' %}
 
-    <div class="main-section">
-        <section class="category-info">
-            <div class="left">
-                <img src="{% static 'images/environment_category.jpg' %}" alt="category-image">
-            </div>
+        <div class="main-section">
+            <section class="category-info">
+                <div class="left">
+                    <img src="{% static 'images/environment_category.jpg' %}" alt="category-image">
+                </div>
 
-            <div class="right">
-                <h2>{{ category.name }}</h2>
-                <p>{{ category.short_description }}</p>
+                <div class="right">
+                    <h2>{{ category.name }}</h2>
+                    <p>{{ category.short_description }}</p>
 
-                <div class="more-info">
-                    <div class="one">
-                        <img src="{% static 'images/events.png' %}" alt="events">
-                        <p>34 events</p>
-                    </div>
+                    <div class="more-info">
+                        <div class="one">
+                            <img src="{% static 'images/events.png' %}" alt="events">
+                            <p>34 events</p>
+                        </div>
 
-                    <div class="one">
-                        <img src="{% static 'images/members.png' %}" alt="members">
-                        <p>23 active members</p>
-                    </div>
+                        <div class="one">
+                            <img src="{% static 'images/members.png' %}" alt="members">
+                            <p>23 active members</p>
+                        </div>
 
-                    <div class="one">
-                        <img src="{% static 'images/location.png' %}" alt="locations">
-                        <p>Online, Haskovo, Sofia, New York and others</p>
-                    </div>
+                        <div class="one">
+                            <img src="{% static 'images/location.png' %}" alt="locations">
+                            <p>Online, Haskovo, Sofia, New York and others</p>
+                        </div>
 
-                    <div class="one">
-                        <a href="#" class="add-event-btn">Add Event</a>
+                        <div class="one">
+                            <a href="#" class="add-event-btn">Add Event</a>
+                        </div>
                     </div>
                 </div>
+            </section>
+
+            <div class="navigate-category">
+                <a href="#">About</a>
+                <a href="#">Events</a>
+                <a href="#">Photos</a>
+                <a href="#">Discussions</a>
             </div>
 
-            <div class="add-event-container {% if not event_form.errors %}not-displaying{% endif %}">
-                <form method="POST" action="{% url 'category-page' pk=category.pk %}">
-                    {% csrf_token %}
+            <section class="info-section">
+                <div class="left">
+                    <h4>What we're about</h4>
 
-                    {% for field in event_form %}
-                        {{ field.label }}
-                        {{ field }}
-                        {{ field.errors }}
-                    {% endfor %}
+                    <div class="text-info fading-at-bottom">
+                        <p>{{ category.long_description }}</p>
+                    </div>
 
-                    <button type="submit" id="submitAddEventBtn">Add event</button>
-                </form>
+                    <p id="read_more_desc">Read more <img src="{% static 'images/arrow_down.png' %}" alt="arrow-down"></p>
 
-            </div>
-        </section>
+                    <div class="upcoming-events">
+                        <div class="events-title-container">
+                            <h4>Upcoming events ({{ count_upcoming_events }})</h4>
+                            <a href="#">See all</a>
+                        </div>
 
-        <div class="navigate-category">
-            <a href="#">About</a>
-            <a href="#">Events</a>
-            <a href="#">Photos</a>
-            <a href="#">Discussions</a>
+                        <div class="all-events">
+
+                            {% for upcoming_event in upcoming_events %}
+                                <a href="{% url 'event-page' categoryId=category.id pk=upcoming_event.id %}" class="event-container">
+                                    <p>{{ upcoming_event.time }}</p>
+
+                                    <div class="title-and-img">
+                                        <div class="title-container">
+                                            <h6>{{ upcoming_event.title }}</h6>
+                                            <div class="location">
+                                                <img src="{% static 'images/location_grey.png' %}" alt="locations">
+                                                <p>{{ upcoming_event.location }}, {{ upcoming_event.city }}</p>
+                                            </div>
+                                        </div>
+                                        <img src="{% static 'images/environment_category.jpg' %}" alt="category-img">
+                                    </div>
+
+                                    <p class="details">{{ upcoming_event.details }}</p>
+                                </a>
+                            {% empty %}
+                                <p class="no-events">No upcoming events yet</p>
+                            {% endfor %}
+
+                        </div>
+                    </div>
+
+                    <div class="past-events">
+                        <div class="events-title-container">
+                            <h4>Past events ({{ count_past_events }})</h4>
+                            <a href="#">See all</a>
+                        </div>
+
+                        <div class="all-events">
+
+                            {% for past_event in past_events %}
+                                <a href="{% url 'event-page' categoryId=category.id pk=past_event.id %}" class="event-container">
+                                    <p>{{ past_event.time }}</p>
+
+                                    <div class="title-and-img">
+                                        <div class="title-container">
+                                            <h6>{{ past_event.title }}</h6>
+                                            <div class="location">
+                                                <img src="{% static 'images/location_grey.png' %}" alt="locations">
+                                                <p>{{ past_event.location }}</p>
+                                            </div>
+                                        </div>
+                                        <img src="{% static 'images/environment_category.jpg' %}" alt="category-img">
+                                    </div>
+
+                                    <p class="details">{{ past_event.details }}</p>
+                                </a>
+                            {% empty %}
+                                <p class="no-events">No past events yet</p>
+                            {% endfor %}
+
+                        </div>
+                    </div>
+                </div>
+
+                <div class="right">
+                    <div class="title-and-see-all">
+                        <h4>Active members</h4>
+                        <a href="#">See all</a>
+                    </div>
+
+                    <div class="members">
+                        <img src="{% static 'images/person_img.jpg' %}" alt="profile-img">
+                        <img src="{% static 'images/person_img.jpg' %}" alt="profile-img">
+                        <img src="{% static 'images/person_img.jpg' %}" alt="profile-img">
+                        <img src="{% static 'images/person_img.jpg' %}" alt="profile-img">
+                        <img src="{% static 'images/person_img.jpg' %}" alt="profile-img">
+                        <img src="{% static 'images/person_img.jpg' %}" alt="profile-img">
+                        <img src="{% static 'images/person_img.jpg' %}" alt="profile-img">
+                        <img src="{% static 'images/person_img.jpg' %}" alt="profile-img">
+                    </div>
+                </div>
+            </section>
         </div>
 
-        <section class="info-section">
-            <div class="left">
-                <h4>What we're about</h4>
+        {% include 'base/footer.html' %}
 
-                <div class="text-info fading-at-bottom">
-                    <p>{{ category.long_description }}</p>
-                </div>
+    </main>
 
-                <p id="read_more_desc">Read more <img src="{% static 'images/arrow_down.png' %}" alt="arrow-down"></p>
+    <div class="add-event-container {% if not event_form.errors %}not-displaying{% endif %}">
+        <form method="POST" action="{% url 'category-page' pk=category.pk %}">
+            {% csrf_token %}
 
-                <div class="upcoming-events">
-                    <div class="events-title-container">
-                        <h4>Upcoming events ({{ count_upcoming_events }})</h4>
-                        <a href="#">See all</a>
-                    </div>
+            {% for field in event_form %}
+                <p>
+                    {{ field.label }}
+                    {{ field }}
+                    {{ field.errors }}
+                </p>
+            {% endfor %}
 
-                    <div class="all-events">
-
-                        {% for upcoming_event in upcoming_events %}
-                            <a href="{% url 'event-page' categoryId=category.id pk=upcoming_event.id %}" class="event-container">
-                                <p>{{ upcoming_event.time }}</p>
-
-                                <div class="title-and-img">
-                                    <div class="title-container">
-                                        <h6>{{ upcoming_event.title }}</h6>
-                                        <div class="location">
-                                            <img src="{% static 'images/location_grey.png' %}" alt="locations">
-                                            <p>{{ upcoming_event.location }}, {{ upcoming_event.city }}</p>
-                                        </div>
-                                    </div>
-                                    <img src="{% static 'images/environment_category.jpg' %}" alt="category-img">
-                                </div>
-
-                                <p class="details">{{ upcoming_event.details }}</p>
-                            </a>
-                        {% empty %}
-                            <p class="no-events">No upcoming events yet</p>
-                        {% endfor %}
-
-                    </div>
-                </div>
-
-                <div class="past-events">
-                    <div class="events-title-container">
-                        <h4>Past events ({{ count_past_events }})</h4>
-                        <a href="#">See all</a>
-                    </div>
-
-                    <div class="all-events">
-
-                        {% for past_event in past_events %}
-                            <a href="{% url 'event-page' categoryId=category.id pk=past_event.id %}" class="event-container">
-                                <p>{{ past_event.time }}</p>
-
-                                <div class="title-and-img">
-                                    <div class="title-container">
-                                        <h6>{{ past_event.title }}</h6>
-                                        <div class="location">
-                                            <img src="{% static 'images/location_grey.png' %}" alt="locations">
-                                            <p>{{ past_event.location }}</p>
-                                        </div>
-                                    </div>
-                                    <img src="{% static 'images/environment_category.jpg' %}" alt="category-img">
-                                </div>
-
-                                <p class="details">{{ past_event.details }}</p>
-                            </a>
-                        {% empty %}
-                            <p class="no-events">No past events yet</p>
-                        {% endfor %}
-
-                    </div>
-                </div>
-            </div>
-
-            <div class="right">
-                <div class="title-and-see-all">
-                    <h4>Active members</h4>
-                    <a href="#">See all</a>
-                </div>
-
-                <div class="members">
-                    <img src="{% static 'images/person_img.jpg' %}" alt="profile-img">
-                    <img src="{% static 'images/person_img.jpg' %}" alt="profile-img">
-                    <img src="{% static 'images/person_img.jpg' %}" alt="profile-img">
-                    <img src="{% static 'images/person_img.jpg' %}" alt="profile-img">
-                    <img src="{% static 'images/person_img.jpg' %}" alt="profile-img">
-                    <img src="{% static 'images/person_img.jpg' %}" alt="profile-img">
-                    <img src="{% static 'images/person_img.jpg' %}" alt="profile-img">
-                    <img src="{% static 'images/person_img.jpg' %}" alt="profile-img">
-                </div>
-            </div>
-        </section>
+            <button type="submit" id="submitAddEventBtn">Add event</button>
+        </form>
     </div>
-
-    {% include 'base/footer.html' %}
 
 </body>
 
@@ -185,9 +189,12 @@
 
         const addEventBtn = document.getElementsByClassName('add-event-btn')[0]
         const addEventContainer = document.getElementsByClassName('add-event-container')[0]
+        const mainElement = document.getElementsByTagName('main')[0]
 
         addEventBtn.addEventListener('click', () => {
             addEventContainer.style.display = 'block'
+            mainElement.style.opacity = '0.4'
+            mainElement.style.filter = 'alpha(opacity=20)'
         })
     </script>
 </html>
