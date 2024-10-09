@@ -52,7 +52,7 @@ class Event(models.Model):
         null=False,
         blank=False,
         validators=[
-            validators.MinLengthValidator(2, message="Title needs to be at lest 2 characters long.")
+            validators.MinLengthValidator(2, message="Title needs to be at least 2 characters long.")
         ]
     )
 
