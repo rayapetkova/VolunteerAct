@@ -196,15 +196,25 @@
         const addEventContainer = document.getElementsByClassName('add-event-container')[0]
         const mainElement = document.getElementsByTagName('main')[0]
         const cancelBtn = document.getElementsByClassName('cancel-btn')[0]
+        const errorListUlElements = document.getElementsByClassName('errorlist')
+        const formInputFields = document.querySelectorAll('form input')
+        const formTextareaField = document.getElementsByTagName('textarea')[0]
 
         addEventBtn.addEventListener('click', () => {
+            for (const errorMessage of errorListUlElements) {
+                errorMessage.style.display = 'none'
+            }
+            for (const inputField of formInputFields) {
+                inputField.value = ''
+            }
+            formTextareaField.value = ''
+
             addEventContainer.style.display = 'block'
             mainElement.style.opacity = '0.4'
             mainElement.style.filter = 'alpha(opacity=20)'
         })
 
         cancelBtn.addEventListener('click', () => {
-            location.reload()
 
             addEventContainer.style.display = 'none'
             addEventContainer.className += ' not-displaying'
