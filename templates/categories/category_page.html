@@ -157,6 +157,8 @@
         <form method="POST" action="{% url 'category-page' pk=category.pk %}">
             {% csrf_token %}
 
+            <h1>Add event</h1>
+
             {% for field in event_form %}
                 <p>
                     {{ field.label }}
@@ -165,7 +167,10 @@
                 </p>
             {% endfor %}
 
-            <button type="submit" id="submitAddEventBtn">Add event</button>
+            <div class="buttons-container">
+                <button type="submit" id="submitAddEventBtn">Add event</button>
+                <button type="button" class="cancel-btn">Cancel</button>
+            </div>
         </form>
     </div>
 
@@ -190,11 +195,21 @@
         const addEventBtn = document.getElementsByClassName('add-event-btn')[0]
         const addEventContainer = document.getElementsByClassName('add-event-container')[0]
         const mainElement = document.getElementsByTagName('main')[0]
+        const cancelBtn = document.getElementsByClassName('cancel-btn')[0]
 
         addEventBtn.addEventListener('click', () => {
             addEventContainer.style.display = 'block'
             mainElement.style.opacity = '0.4'
             mainElement.style.filter = 'alpha(opacity=20)'
+        })
+
+        cancelBtn.addEventListener('click', () => {
+            location.reload()
+
+            addEventContainer.style.display = 'none'
+            addEventContainer.className += ' not-displaying'
+            mainElement.style.opacity = '1'
+            mainElement.style.filter = 'alpha(opacity=100)'
         })
     </script>
 </html>

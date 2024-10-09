@@ -7,6 +7,10 @@ body {
     font-family: "Poppins", sans-serif;
 }
 
+header ul.last-links li a {
+    color: #203069;
+}
+
 
 
 

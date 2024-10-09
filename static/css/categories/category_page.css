@@ -15,6 +15,11 @@ body {
 }
 
 
+header ul.last-links li a {
+    color: #203069;
+}
+
+
 
 
 
@@ -96,17 +101,123 @@ body {
 
 
 .add-event-container {
-    background-color: red;
     position: fixed;
     z-index: 100;
-    width: 35%;
-    top: 15%;
-    height: 60%;
+    width: 50%;
+    top: 2%;
     margin: auto;
 }
 
 .not-displaying {
     display: none;
+}
+
+
+
+form {
+    width: 90%;
+    background-color: rgba(79, 79, 91, 0.96);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    border: solid 1px rgb(214, 213, 213);
+    border-radius: 4px;
+    padding: 2% 8%;
+}
+
+form h1 {
+    color: #ffffff;
+    font-size: 2em;
+    margin: 0;
+    margin-bottom: 0.3em;
+}
+
+form > p {
+    display: flex;
+    flex-direction: column;
+    margin: 0;
+    margin-top: 1em;
+    color: #ffffff;
+    width: 100%;
+}
+
+form p input, form p textarea {
+    padding: 0.6em 0.8em;
+    border: solid 1px rgb(156, 156, 156);
+    border-radius: 4px;
+    font-size: 1em;
+    outline: none;
+    font-family: inherit;
+}
+
+form .login-container {
+    display: flex;
+    align-items: flex-end;
+}
+
+form .log-in-p {
+    margin: 0;
+    margin-top: 1.3em;
+    color: #ffffff;
+}
+
+form .login-container a {
+    color: #418adc;
+    margin-left: 0.6em;
+}
+
+form .login-container a:hover {
+    color: #6dacf8;
+}
+
+form .buttons-container {
+    display: flex;
+    align-self: start;
+    width: 40%;
+    justify-content: space-between;
+    gap: 1em;
+}
+
+form .buttons-container button {
+    width: 50%;
+    border-radius: 7px;
+    padding: 0.6em 0;
+    font-size: 1.3em;
+    border: none;
+    color: rgb(29, 20, 103);
+    background-color: rgba(196, 212, 255, 0.87);
+    font-weight: 600;
+    margin-top: 1em;
+}
+
+form button:hover {
+    cursor: pointer;
+    background-color: rgba(196, 212, 255, 0.68);
+}
+
+form .buttons-container button.cancel-btn {
+    background-color: rgba(255, 255, 255, 0.3);
+    color: #f1f1f1;
+}
+
+form .buttons-container button.cancel-btn:hover {
+    background-color: rgba(255, 255, 255, 0.44);
+}
+
+form ul.errorlist {
+    margin: 0;
+    padding: 0;
+    width: 60%;
+    margin-top: 0.3em;
+    align-self: start;
+}
+
+form ul.errorlist li {
+    list-style: none;
+    color: #e54343;
+    margin-bottom: -1.3em;
+    padding: 0;
+    font-size: 0.85em;
 }
 
 
