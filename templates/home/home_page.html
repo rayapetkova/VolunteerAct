@@ -50,6 +50,8 @@
                             <p>{{ upcoming_event.time }}</p>
                         </div>
                     </div>
+                {% empty %}
+                    <h2>No upcoming events yet</h2>
                 {% endfor %}
             </div>
         </section>

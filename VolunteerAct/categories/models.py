@@ -1,6 +1,7 @@
 from django.contrib.auth import get_user_model
 from django.core import validators
 from django.db import models
+from django.db.models import ImageField
 
 from VolunteerAct.app_users.models import AppUser
 from cloudinary.models import CloudinaryField
@@ -47,6 +48,8 @@ class Category(models.Model):
 
 
 class Event(models.Model):
+    poster_image = CloudinaryField('image')
+
     title = models.CharField(
         max_length=70,
         null=False,

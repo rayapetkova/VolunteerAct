@@ -118,6 +118,14 @@ video {
     gap: 1.4em;
 }
 
+.upcoming-events .events h2 {
+    align-self: center;
+    font-size: 1.1em;
+    margin: auto;
+    margin-top: 1em;
+    color: #5f5f5f;
+}
+
 .upcoming-events .events .event-container {
     display: flex;
     flex-direction: column;
