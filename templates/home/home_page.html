@@ -38,49 +38,19 @@
             </div>
 
             <div class="events">
-                <div class="event-container">
-                    <div class="img-container">
-                        <img src="https://cdn.pixabay.com/photo/2017/02/10/12/12/volunteer-2055043_640.png" alt="event-img">
-                    </div>
+                {% for upcoming_event in upcoming_events %}
+                    <div class="event-container">
+                        <div class="img-container">
+                            <img src="https://cdn.pixabay.com/photo/2017/02/10/12/12/volunteer-2055043_640.png" alt="event-img">
+                        </div>
 
-                    <div class="info">
-                        <h6>This is a random volunteer event - Online Free And Guided - Beginners</h6>
-                        <p>Hosted by: Raya Petkova</p>
+                        <div class="info">
+                            <h6>{{ upcoming_event.title }}</h6>
+                            <p>Hosted by: {{ upcoming_event.host_name }}</p>
+                            <p>{{ upcoming_event.time }}</p>
+                        </div>
                     </div>
-                </div>
-
-                <div class="event-container">
-                    <div class="img-container">
-                        <img src="https://cdn.pixabay.com/photo/2017/02/10/12/12/volunteer-2055043_640.png" alt="event-img">
-                    </div>
-
-                    <div class="info">
-                        <h6>This is a random volunteer event - Online Free And Guided - Beginners</h6>
-                        <p>Hosted by: Raya Petkova</p>
-                    </div>
-                </div>
-
-                <div class="event-container">
-                    <div class="img-container">
-                        <img src="https://cdn.pixabay.com/photo/2017/02/10/12/12/volunteer-2055043_640.png" alt="event-img">
-                    </div>
-
-                    <div class="info">
-                        <h6>This is a random volunteer event - Online Free And Guided - Beginners</h6>
-                        <p>Hosted by: Raya Petkova</p>
-                    </div>
-                </div>
-
-                <div class="event-container">
-                    <div class="img-container">
-                        <img src="https://cdn.pixabay.com/photo/2017/02/10/12/12/volunteer-2055043_640.png" alt="event-img">
-                    </div>
-
-                    <div class="info">
-                        <h6>This is a random volunteer event - Online Free And Guided - Beginners</h6>
-                        <p>Hosted by: Raya Petkova</p>
-                    </div>
-                </div>
+                {% endfor %}
             </div>
         </section>
 

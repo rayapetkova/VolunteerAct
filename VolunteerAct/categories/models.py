@@ -104,3 +104,6 @@ class Event(models.Model):
         to=AppUser,
         related_name='events'
     )
+
+    def host_name(self):
+        return f"{self.host.profile.first_name} {self.host.profile.last_name}"

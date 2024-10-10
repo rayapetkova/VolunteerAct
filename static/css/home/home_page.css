@@ -115,7 +115,7 @@ video {
 
 .upcoming-events .events {
     display: flex;
-    justify-content: space-between;
+    gap: 1.4em;
 }
 
 .upcoming-events .events .event-container {
@@ -143,6 +143,9 @@ video {
     font-size: 1.4em;
     margin: 0;
     margin-top: 1em;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
 }
 
 .upcoming-events .events .event-container .info p {
