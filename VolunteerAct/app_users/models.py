@@ -1,3 +1,4 @@
+from cloudinary.models import CloudinaryField
 from django.contrib.auth.models import AbstractUser, PermissionsMixin
 from django.contrib.auth.base_user import AbstractBaseUser
 from django.core import validators
@@ -25,13 +26,19 @@ class AppUser(AbstractBaseUser, PermissionsMixin):
 
 
 class Profile(models.Model):
+    profile_image = CloudinaryField(
+        'image',
+        null=True,
+        blank=True
+    )
+
     first_name = models.CharField(
         max_length=150,
         null=False,
         blank=False,
         validators=[
             validators.MinLengthValidator(2, message="First name needs to be at least 2 characters long.")
-        ]
+        ],
     )
 
     last_name = models.CharField(
