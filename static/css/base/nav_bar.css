@@ -53,6 +53,22 @@ header ul.last-links li {
     list-style: none;
 }
 
+header ul.last-links li.profile-img-container {
+    width: 2em;
+    display: flex;
+    align-items: center;
+    margin-right: 1em;
+}
+
+header ul.last-links li.profile-img-container a {
+    display: flex;
+    align-items: center;
+}
+
+header ul.last-links li.profile-img-container img {
+    width: 100%;
+}
+
 header ul.last-links li a {
     text-decoration: none;
     color: rgb(255, 255, 255);
