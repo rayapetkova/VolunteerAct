@@ -6,7 +6,7 @@ from VolunteerAct.categories.models import Event
 class EventForm(ModelForm):
     class Meta:
         model = Event
-        fields = ('title', 'details', 'city', 'location', 'time', )
+        fields = ('poster_image', 'title', 'details', 'city', 'location', 'time', )
 
         widgets = {
             'details': widgets.Textarea(

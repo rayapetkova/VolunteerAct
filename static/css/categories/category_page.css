@@ -336,6 +336,7 @@ form ul.errorlist li {
     height: 20em;
     text-decoration: none;
     color: #000000;
+    max-width: 50em;
 }
 
 .event-container > p:nth-child(1) {
@@ -361,7 +362,7 @@ form ul.errorlist li {
 }
 
 .title-and-img img {
-    width: 38%;
+    max-width: 38%;
     border-radius: 7px;
 }
 
@@ -383,6 +384,7 @@ form ul.errorlist li {
 
 .event-container .details {
     overflow: hidden;
+    max-width: 100%;
 }
 
 .event-container .details:after {

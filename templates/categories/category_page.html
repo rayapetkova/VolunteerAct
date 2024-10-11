@@ -84,7 +84,7 @@
                                                 <p>{{ upcoming_event.location }}, {{ upcoming_event.city }}</p>
                                             </div>
                                         </div>
-                                        <img src="{% static 'images/environment_category.jpg' %}" alt="category-img">
+                                        <img src="{{ upcoming_event.poster_image.url }}" alt="category-img">
                                     </div>
 
                                     <p class="details">{{ upcoming_event.details }}</p>
@@ -116,7 +116,7 @@
                                                 <p>{{ past_event.location }}</p>
                                             </div>
                                         </div>
-                                        <img src="{% static 'images/environment_category.jpg' %}" alt="category-img">
+                                        <img src="{{ past_event.poster_image.url }}" alt="category-img">
                                     </div>
 
                                     <p class="details">{{ past_event.details }}</p>
@@ -197,7 +197,7 @@
         const mainElement = document.getElementsByTagName('main')[0]
         const cancelBtn = document.getElementsByClassName('cancel-btn')[0]
         const errorListUlElements = document.getElementsByClassName('errorlist')
-        const formInputFields = document.querySelectorAll('form input')
+        const formInputFields = document.querySelectorAll('form input:not(:first-child)')
         const formTextareaField = document.getElementsByTagName('textarea')[0]
 
         addEventBtn.addEventListener('click', () => {
