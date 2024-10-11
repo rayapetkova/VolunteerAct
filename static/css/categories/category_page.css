@@ -361,8 +361,15 @@ form ul.errorlist li {
     margin-top: 0.3em;
 }
 
+.title-and-img .container-event-img {
+    width: 38%;
+    height: 7em;
+}
+
 .title-and-img img {
-    max-width: 38%;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
     border-radius: 7px;
 }
 
