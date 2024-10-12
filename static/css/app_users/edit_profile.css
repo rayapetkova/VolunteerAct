@@ -10,16 +10,33 @@ body {
 
 
 
+main {
+    display: flex;
+}
+
+main video {
+    width: 100%;
+    height: 100vh;
+    object-fit: cover;
+    filter: brightness(30%);
+}
 
 
+
+.content-edit {
+    display: flex;
+    justify-content: center;
+    position: absolute;
+    top: 17%;
+    width: 100%;
+}
 
 .info-section {
     display: flex;
-    margin: 5em 20%;
     padding: 2% 1%;
     border-radius: 4px;
     border: solid 1px rgb(214, 213, 213);
-    background-color: rgb(250, 250, 250);
+    background-color: rgba(255, 255, 255, 0.53);
 }
 
 .left {
@@ -75,6 +92,8 @@ body {
     display: flex;
     flex-direction: column;
     width: 47%;
+    font-weight: 600;
+    color: rgb(22, 36, 89);
 }
 
 .field:last-child {
@@ -89,11 +108,6 @@ body {
     color: rgb(107, 107, 107);
     font-size: 1.1em;
     background-color: rgba(240, 248, 255, 0.849);
-}
-
-.field label {
-    font-size: 1.2em;
-    color: rgb(97, 97, 97);
 }
 
 .field input {
@@ -112,12 +126,14 @@ body {
 }
 
 .right form .update-button {
-    width: 15%;
-    padding: 1.5%;
+    width: 13%;
+    padding: 1.3%;
     background-color: #08376b;
     border: none;
     border-radius: 4px;
+    font-family: inherit;
     font-weight: 700;
+    font-size: 0.9em;
     color: rgb(255, 255, 255);
     margin-top: 1em;
 }

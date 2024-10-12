@@ -13,39 +13,48 @@
 
     {% include 'base/nav_bar.html' %}
 
-    <section class="info-section">
-        <div class="left">
-            <div class="img-container">
-                <img src="{% static 'images/person_img.jpg' %}" alt="user-profile-picture">
-            </div>
+    <main>
 
-            <div class="user-info">
-                <p class="name">{{ request.user.profile.first_name }} {{ request.user.profile.last_name }}</p>
-            </div>
+        <video src="{% static 'images/volunteer_act_video.mp4' %}" muted autoplay loop></video>
+
+        <div class="content-edit">
+            <section class="info-section">
+                <div class="left">
+                    <div class="img-container">
+                        <img src="{% static 'images/person_img.jpg' %}" alt="user-profile-picture">
+                    </div>
+
+                    <div class="user-info">
+                        <p class="name">{{ request.user.profile.first_name }} {{ request.user.profile.last_name }}</p>
+                    </div>
+                </div>
+
+                <div class="right">
+                    <h3>Account Settings</h3>
+
+                    <form action="{% url 'edit-profile' %}" method="POST">
+                        {% csrf_token %}
+
+                        <section class="all-fields">
+                            {% for field in form %}
+                                <div class="field">
+                                    {{ field.label }}
+                                    {{ field }}
+                                    {{ field.errors }}
+                                </div>
+                            {% endfor %}
+                        </section>
+
+
+                        <button class="update-button">Update</button>
+
+                    </form>
+                </div>
+            </section>
         </div>
 
-        <div class="right">
-            <h3>Account Settings</h3>
 
-            <form action="{% url 'edit-profile' %}" method="POST">
-                {% csrf_token %}
-
-                <section class="all-fields">
-                    {% for field in form %}
-                        <div class="field">
-                            {{ field.label }}
-                            {{ field }}
-                            {{ field.errors }}
-                        </div>
-                    {% endfor %}
-                </section>
-
-
-                <button class="update-button">Update</button>
-
-            </form>
-        </div>
-    </section>
+    </main>
 
     {% include 'base/footer.html' %}
 
