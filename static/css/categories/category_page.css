@@ -150,6 +150,23 @@ form p input, form p textarea {
     font-family: inherit;
 }
 
+form p input[type='file']::file-selector-button {
+    border: none;
+    border-radius: 3px;
+    padding: 0.4em 0.9em;
+    background-color: rgba(196, 212, 255, 0.87);
+}
+
+form p input[type='file']:hover {
+    cursor: pointer;
+    background-color: rgba(173, 173, 173, 0.18);
+}
+
+form p input[type='file']::file-selector-button:hover {
+    cursor: pointer;
+    background-color: rgba(196, 212, 255, 0.68);
+}
+
 form .login-container {
     display: flex;
     align-items: flex-end;
@@ -159,15 +176,6 @@ form .log-in-p {
     margin: 0;
     margin-top: 1.3em;
     color: #ffffff;
-}
-
-form .login-container a {
-    color: #418adc;
-    margin-left: 0.6em;
-}
-
-form .login-container a:hover {
-    color: #6dacf8;
 }
 
 form .buttons-container {

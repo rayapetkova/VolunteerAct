@@ -48,8 +48,8 @@ main video {
 }
 
 .left .img-container {
-    width: 15em;
-    height: 15em;
+    width: 16em;
+    height: 16em;
 }
 
 .left .img-container img {
@@ -63,7 +63,7 @@ main video {
     font-size: 1.5em;
     font-weight: 800;
     color: #08376b;
-    margin-top: 0.8em;
+    margin-top: 0.1em;
 }
 
 

@@ -11,7 +11,7 @@
 </head>
 <body>
 
-    {% include 'base/nav_bar.html' %}
+    {% include 'base/nav_bar.html' with logo_color='light' %}
 
     <main>
 
@@ -24,7 +24,7 @@
                         {% if request.user.profile.profile_image %}
                             <img src="{{ request.user.profile.profile_image.url }}" alt="user-profile-picture">
                         {% else %}
-                            <img src="{% static 'images/person_img.jpg' %}" alt="user-profile-picture">
+                            <img src="{% static 'images/profile_page.png' %}" alt="user-profile-picture">
                         {% endif %}
                     </div>
 
