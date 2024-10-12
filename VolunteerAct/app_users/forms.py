@@ -48,12 +48,16 @@ class EditAppUserForm(forms.ModelForm):
 
     class Meta:
         model = Profile
-        fields = ('first_name', 'last_name', 'phone_number', 'email', 'bio')
+        fields = ('first_name', 'last_name', 'phone_number', 'email', 'bio', 'profile_image')
 
         widgets = {
             'bio': forms.Textarea(attrs={
                 'rows': 10
             })
+        }
+
+        labels = {
+            'profile_image': 'Change image'
         }
 
     def save(self, commit=True):

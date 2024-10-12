@@ -21,7 +21,11 @@
             <section class="info-section">
                 <div class="left">
                     <div class="img-container">
-                        <img src="{% static 'images/person_img.jpg' %}" alt="user-profile-picture">
+                        {% if request.user.profile.profile_image %}
+                            <img src="{{ request.user.profile.profile_image.url }}" alt="user-profile-picture">
+                        {% else %}
+                            <img src="{% static 'images/person_img.jpg' %}" alt="user-profile-picture">
+                        {% endif %}
                     </div>
 
                     <div class="user-info">
@@ -32,7 +36,7 @@
                 <div class="right">
                     <h3>Account Settings</h3>
 
-                    <form action="{% url 'edit-profile' %}" method="POST">
+                    <form action="{% url 'edit-profile' %}" method="POST" enctype="multipart/form-data">
                         {% csrf_token %}
 
                         <section class="all-fields">
@@ -46,7 +50,7 @@
                         </section>
 
 
-                        <button class="update-button">Update</button>
+                        <button class="update-button" id="updateBtn">Update</button>
 
                     </form>
                 </div>
@@ -59,4 +63,26 @@
     {% include 'base/footer.html' %}
 
 </body>
+
+    <script>
+
+        const allFieldsElements = document.getElementsByClassName('field')
+        const fieldLastElement = allFieldsElements[allFieldsElements.length - 1]
+
+        const allElementsInLastFieldCount = fieldLastElement.childElementCount
+        const fieldLastInputElement = fieldLastElement.children[allElementsInLastFieldCount - 1]
+
+        fieldLastElement.textContent = 'Change image'
+        fieldLastElement.appendChild(fieldLastInputElement)
+
+        const updateFormBtn = document.getElementById('updateBtn')
+        const form = document.getElementsByTagName('form')[0]
+        updateFormBtn.addEventListener('click', () => {
+            updateFormBtn.textContent = 'Updating...'
+            updateFormBtn.disabled = true
+            updateFormBtn.style.backgroundColor = '#0f4e94'
+
+            form.submit()
+        })
+    </script>
 </html>
