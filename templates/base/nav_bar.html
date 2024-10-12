@@ -15,7 +15,7 @@
         </ul>
     {% else %}
         <ul class="last-links logout-ul">
-            <li class="profile-img-container"><a href="#"><img src="{% static 'images/profile_page.png' %}"></a></li>
+            <li class="profile-img-container"><a href="{% url 'edit-profile' %}"><img src="{% static 'images/profile_page.png' %}" alt="profile-icon"></a></li>
             <li class="logout-btn"><a href="{% url 'logout-user' %}">Log Out</a></li>
         </ul>
     {% endif %}

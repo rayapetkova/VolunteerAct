@@ -27,42 +27,19 @@
         <div class="right">
             <h3>Account Settings</h3>
 
-            <form action="{% url 'edit-profile' pk=request.user.profile.id %}" method="POST">
+            <form action="{% url 'edit-profile' %}" method="POST">
                 {% csrf_token %}
 
-                <div class="row">
-                    <div class="field">
-                        {{ form.first_name.label }}
-                        {{ form.first_name }}
-                        {{ form.first_name.errors }}
-                    </div>
+                <section class="all-fields">
+                    {% for field in form %}
+                        <div class="field">
+                            {{ field.label }}
+                            {{ field }}
+                            {{ field.errors }}
+                        </div>
+                    {% endfor %}
+                </section>
 
-                    <div class="field">
-                        {{ form.last_name.label }}
-                        {{ form.last_name }}
-                        {{ form.last_name.errors }}
-                    </div>
-                </div>
-
-                <div class="row">
-                    <div class="field">
-                        {{ form.phone_number.label }}
-                        {{ form.phone_number }}
-                        {{ form.phone_number.errors }}
-                    </div>
-
-{#                    TODO: add email changing#}
-{#                    <div class="field">#}
-{#                        <label for="email">Email</label>#}
-{#                        <input type="text" id="email" name="email">#}
-{#                    </div>#}
-                </div>
-
-                <div class="bio-row">
-                    {{ form.bio.label }}
-                    {{ form.bio }}
-                    {{ form.bio.errors }}
-                </div>
 
                 <button class="update-button">Update</button>
 
