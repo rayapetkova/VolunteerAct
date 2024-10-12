@@ -54,7 +54,7 @@ header ul.last-links li {
 }
 
 header ul.last-links li.profile-img-container {
-    width: 2em;
+    width: 2.2em;
     display: flex;
     align-items: center;
     margin-right: 1em;
@@ -67,6 +67,8 @@ header ul.last-links li.profile-img-container a {
 
 header ul.last-links li.profile-img-container img {
     width: 100%;
+    border-radius: 50%;
+    object-fit: contain;
 }
 
 header ul.last-links li a {
@@ -78,7 +80,7 @@ header ul.last-links li a {
 
 header ul.last-links li:nth-child(2) a, header ul.last-links .logout-btn a {
     background-color: #08376b;
-    padding: 0.7em;
+    padding: 0.4em 0.7em;
     color: rgb(255, 255, 255);
     border-radius: 5px;
 }

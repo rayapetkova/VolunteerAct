@@ -1,7 +1,11 @@
 {% load static %}
 <header>
     <a href="{% url 'home-page' %}" class="img-logo">
-        <img src="{% static "images/volunteer_act_logo.png" %}" alt="logo-img">
+        {% if logo_color == 'light' %}
+            <img src="{% static "images/volunteer_act_logo_light.png" %}" alt="logo-img">
+        {% else %}
+            <img src="{% static "images/volunteer_act_logo_dark.png" %}" alt="logo-img">
+        {% endif %}
     </a>
 
     <section class="search-bar-section">
