@@ -1,11 +1,13 @@
-from django.contrib.auth import login, logout
+from django.contrib.auth import login, logout, get_user_model
 from django.contrib.auth.views import LoginView
 from django.shortcuts import render, redirect
 from django.urls import reverse_lazy, reverse
 from django.views.generic import CreateView, UpdateView
 
-from VolunteerAct.app_users.forms import AppUserForm
-from VolunteerAct.app_users.models import Profile
+from VolunteerAct.app_users.forms import AppUserForm, EditAppUserForm
+from VolunteerAct.app_users.models import Profile, AppUser
+
+AppUserModel = get_user_model()
 
 
 class RegisterUserView(CreateView):
@@ -27,14 +29,23 @@ class LoginUserView(LoginView):
 
 
 class ProfileUpdateView(UpdateView):
-    model = Profile
+    form_class = EditAppUserForm
     template_name = 'app_users/edit_profile.html'
-    fields = ('first_name', 'last_name', 'phone_number', 'bio')
+
+    def get_object(self, queryset=None):
+        user = self.request.user
+        profile = Profile.objects.filter(user=user).first()
+        return profile
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+
+        context['form'].fields['email'].initial = self.request.user.email
+
+        return context
 
     def get_success_url(self):
-        return reverse('edit-profile', kwargs={
-            "pk": self.request.user.profile.id
-        })
+        return reverse('edit-profile')
 
 
 def logout_view(request):

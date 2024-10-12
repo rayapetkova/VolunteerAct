@@ -41,3 +41,30 @@ class AppUserForm(auth_forms.UserCreationForm):
             profile.save()
 
         return user
+
+
+class EditAppUserForm(forms.ModelForm):
+    email = forms.EmailField(required=False)
+
+    class Meta:
+        model = Profile
+        fields = ('first_name', 'last_name', 'phone_number', 'email', 'bio')
+
+        widgets = {
+            'bio': forms.Textarea(attrs={
+                'rows': 10
+            })
+        }
+
+    def save(self, commit=True):
+        profile = super().save(commit=commit)
+
+        user = profile.user
+        email = self.cleaned_data['email']
+        user.email = email
+
+        if commit:
+            user.save()
+
+        return profile
+
