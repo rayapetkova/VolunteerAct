@@ -26,7 +26,7 @@ header ul.last-links li a {
 .category-info {
     display: flex;
     justify-content: space-between;
-    margin: 8% 15%;
+    margin: 4% 15%;
 }
 
 .category-info .left {
@@ -299,7 +299,7 @@ form ul.errorlist li {
 .info-section .left .text-info.fading-at-bottom::after {
     content: "";
     position: absolute;
-    bottom: 0;
+    bottom: 4em;
     height: 15%;
     width: 40%;
     background: linear-gradient(to bottom, rgba(255, 255, 255, 0) 0%, rgb(249 249 249) 80%);

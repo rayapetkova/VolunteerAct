@@ -1,10 +1,11 @@
 header {
     display: flex;
     padding: 0.1% 10%;
-    position: absolute;
+    position: sticky;
     top: 0;
     z-index: 10;
     border-bottom: solid 1px rgb(190, 190, 190);
+    transition: background-color 0.5s ease-in-out;
 }
 
 header .img-logo {
@@ -34,6 +35,10 @@ header section.search-bar-section input {
     margin-left: 7%;
     background-color: transparent;
     color: #f1f1f1;
+}
+
+.white-placeholder::placeholder {
+    color: #ffffff;
 }
 
 header ul.last-links {

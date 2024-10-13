@@ -234,5 +234,20 @@
 
             formAddEvent.submit()
         })
+
+
+
+        const headerElement = document.getElementsByTagName('header')[0]
+        const searchInput = document.getElementsByTagName('input')[0]
+
+        document.addEventListener('scroll', () => {
+            if (window.scrollY > 10) {
+                headerElement.style.backgroundColor = 'rgba(67, 79, 98, 0.76)'
+                searchInput.className += ' white-placeholder'
+            } else {
+                headerElement.style.backgroundColor = 'transparent'
+                searchInput.className = 'search-bar'
+            }
+        })
     </script>
 </html>
