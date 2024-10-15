@@ -99,7 +99,7 @@ main video {
 
 .field:last-child {
     position: absolute;
-    left: 10%;
+    left: 5%;
     top: 47%;
     width: 13%;
     font-size: 0.8em;
@@ -142,6 +142,7 @@ main video {
     color: rgb(107, 107, 107);
     font-size: 1.1em;
     background-color: rgba(240, 248, 255, 0.849);
+    outline: none;
 }
 
 .field input {
@@ -153,7 +154,7 @@ main video {
     background-color: rgba(240, 248, 255, 0.849);
 }
 
-.field input:focus, .field:last-child textarea:focus {
+.field input:focus, .field:nth-child(5) textarea:focus {
     background-color: rgb(240, 248, 255);
     outline: none;
     color: black;

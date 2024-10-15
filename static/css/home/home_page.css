@@ -132,6 +132,14 @@ video {
     width: 24%;
     justify-content: center;
     align-items: center;
+    text-decoration: none;
+    padding: 1em 0.5em;
+    border-radius: 7px;
+    transition: background-color 0.4s ease-in-out;
+}
+
+.upcoming-events .events .event-container:hover {
+    background-color: #f3f4ff;
 }
 
 .upcoming-events .events .event-container .img-container {
@@ -154,6 +162,7 @@ video {
     overflow: hidden;
     text-overflow: ellipsis;
     white-space: nowrap;
+    color: #000000;
 }
 
 .upcoming-events .events .event-container .info p {

@@ -68,12 +68,15 @@ header ul.last-links li.profile-img-container {
 header ul.last-links li.profile-img-container a {
     display: flex;
     align-items: center;
+    width: 2em;
+    height: 2em;
 }
 
 header ul.last-links li.profile-img-container img {
     width: 100%;
+    height: 100%;
     border-radius: 50%;
-    object-fit: contain;
+    object-fit: cover;
 }
 
 header ul.last-links li a {
