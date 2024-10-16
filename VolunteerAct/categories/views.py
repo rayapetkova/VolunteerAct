@@ -45,8 +45,15 @@ def all_events_view(request):
     if request.method == "GET":
         filter_values_dict = request.GET
 
-        if filter_values_dict.getlist('category'):
-            all_events = all_events.filter(category__name__in=filter_values_dict.getlist('category'))
+        categories_filter = filter_values_dict.getlist('category')
+        date_filter = filter_values_dict.getlist('date')
+        cities_filter = filter_values_dict.getlist('city')
+
+        if categories_filter:
+            all_events = all_events.filter(category__name__in=categories_filter)
+
+        if cities_filter:
+            all_events = all_events.filter(city__in=cities_filter)
 
     context = {
         'all_events': all_events,
