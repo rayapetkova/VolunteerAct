@@ -24,98 +24,57 @@
         <aside>
             <h2>Filters</h2>
 
-            <section class="category">
-                <h6>Category</h6>
+            <form action="{% url 'all-events-page' %}" method="GET">
+                <section class="category">
+                    <h6>Category</h6>
 
-                <ul>
-                    <li>
-                        <input type="checkbox" id="food" name="food" value="food" />
-                        <label for="food">Food</label>
-                    </li>
+                    <ul>
+                        {% for category in categories %}
+                            <li>
+                                <input type="checkbox" id="{{ category.name }}" name="category" value="{{ category.name }}" />
+                                <label for="{{ category.name }}">{{ category.name }}</label>
+                            </li>
+                        {% endfor %}
+                    </ul>
 
-                    <li>
-                        <input type="checkbox" id="books" name="books" value="books" />
-                        <label for="books">Books</label>
-                    </li>
+                </section>
 
-                    <li>
-                        <input type="checkbox" id="animals" name="animals" value="animals" />
-                        <label for="animals">Animals</label>
-                    </li>
+                <section class="date">
+                    <h6>Date</h6>
 
-                    <li>
-                        <input type="checkbox" id="animals" name="animals" value="animals" />
-                        <label for="animals">Animals</label>
-                    </li>
+                    <ul>
+                        <li>
+                            <input type="checkbox" id="today" name="date" value="today" />
+                            <label for="today">Today</label>
+                        </li>
 
-                    <li>
-                        <input type="checkbox" id="animals" name="animals" value="animals" />
-                        <label for="animals">Animals</label>
-                    </li>
+                        <li>
+                            <input type="checkbox" id="this_month" name="date" value="this_month" />
+                            <label for="this_month">This month</label>
+                        </li>
 
-                    <li>
-                        <input type="checkbox" id="animals" name="animals" value="animals" />
-                        <label for="animals">Animals</label>
-                    </li>
+                        <li>
+                            <input type="checkbox" id="this_year" name="date" value="this_year" />
+                            <label for="this_year">This year</label>
+                        </li>
+                    </ul>
+                </section>
 
-                    <li>
-                        <input type="checkbox" id="animals" name="animals" value="animals" />
-                        <label for="animals">Animals</label>
-                    </li>
+                <section class="city">
+                    <h6>City</h6>
 
-                    <li>
-                        <input type="checkbox" id="animals" name="animals" value="animals" />
-                        <label for="animals">Animals</label>
-                    </li>
-                </ul>
-            </section>
+                    <ul>
+                        {% for city_dict in cities %}
+                            <li>
+                                <input type="checkbox" id="{{ city_dict.city }}" name="city" value="{{ city_dict.city }}" />
+                                <label for="{{ city_dict.city }}">{{ city_dict.city }} ({{ city_dict.cities_count }})</label>
+                            </li>
+                        {% endfor %}
+                    </ul>
+                </section>
 
-            <section class="date">
-                <h6>Date</h6>
-
-                <ul>
-                    <li>
-                        <input type="checkbox" id="today" name="today" value="today" />
-                        <label for="today">Today</label>
-                    </li>
-
-                    <li>
-                        <input type="checkbox" id="this_month" name="this_month" value="this_month" />
-                        <label for="this_month">This month</label>
-                    </li>
-
-                    <li>
-                        <input type="checkbox" id="this_year" name="this_year" value="this_year" />
-                        <label for="this_year">This year</label>
-                    </li>
-                </ul>
-            </section>
-
-            <section class="city">
-                <h6>City</h6>
-
-                <ul>
-                    <li>
-                        <input type="checkbox" id="online" name="online" value="online" />
-                        <label for="online">Online</label>
-                    </li>
-
-                    <li>
-                        <input type="checkbox" id="haskovo" name="haskovo" value="haskovo" />
-                        <label for="haskovo">Haskovo</label>
-                    </li>
-
-                    <li>
-                        <input type="checkbox" id="sofia" name="sofia" value="sofia" />
-                        <label for="sofia">Sofia</label>
-                    </li>
-
-                    <li>
-                        <input type="checkbox" id="burgas" name="burgas" value="burgas" />
-                        <label for="burgas">Burgas</label>
-                    </li>
-                </ul>
-            </section>
+                <button>Filter</button>
+            </form>
         </aside>
 
         <div class="right">
@@ -142,6 +101,8 @@
 
                         <p class="details">{{ event.details }}</p>
                     </a>
+                {% empty %}
+                    <h3>No events yet</h3>
                 {% endfor %}
             </div>
         </div>

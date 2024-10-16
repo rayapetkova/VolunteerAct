@@ -1,3 +1,4 @@
+from django.db.models import Count
 from django.shortcuts import render, redirect
 from django.utils import timezone
 from django.views.generic import DetailView
@@ -40,6 +41,12 @@ def all_events_view(request):
     categories = Category.objects.all()
 
     cities = Event.objects.values('city').annotate(cities_count=Count('city')).order_by('-cities_count')
+
+    if request.method == "GET":
+        filter_values_dict = request.GET
+
+        if filter_values_dict.getlist('category'):
+            all_events = all_events.filter(category__name__in=filter_values_dict.getlist('category'))
 
     context = {
         'all_events': all_events,
