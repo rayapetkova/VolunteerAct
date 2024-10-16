@@ -144,10 +144,13 @@ video {
 
 .upcoming-events .events .event-container .img-container {
     width: 95%;
+    height: 11em;
 }
 
 .upcoming-events .events .event-container .img-container img {
     width: 100%;
+    height: 100%;
+    object-fit: cover;
     border-radius: 15px;
 }
 
