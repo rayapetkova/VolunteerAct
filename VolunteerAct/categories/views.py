@@ -37,9 +37,14 @@ def category_details(request, pk):
 
 def all_events_view(request):
     all_events = Event.objects.all()
+    categories = Category.objects.all()
+
+    cities = Event.objects.values('city').annotate(cities_count=Count('city')).order_by('-cities_count')
 
     context = {
-        'all_events': all_events
+        'all_events': all_events,
+        'categories': categories,
+        'cities': cities
     }
 
     return render(request, 'categories/all_events_page.html', context=context)
