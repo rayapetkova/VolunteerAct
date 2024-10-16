@@ -69,6 +69,31 @@
         </div>
     </section>
 
+    {% if see_more_events %}
+        <section class="upcoming-events" id="explore">
+            <div class="title-container">
+                <h3>See more</h3>
+                <a href="{% url 'all-events-page' %}">See all events</a>
+            </div>
+
+            <div class="events">
+                {% for event in see_more_events %}
+                    <a href="{% url 'event-page' categoryId=event.category.id pk=event.id %}" class="event-container">
+                        <div class="img-container">
+                            <img src="{{ event.poster_image.url }}" alt="event-img">
+                        </div>
+
+                        <div class="info">
+                            <h6>{{ event.title }}</h6>
+                            <p>Hosted by: {{ event.host.profile.full_name }}</p>
+                            <p>{{ event.time }}</p>
+                        </div>
+                    </a>
+                {% endfor %}
+            </div>
+        </section>
+    {% endif %}
+
     {% include 'base/footer.html' %}
 
 </body>

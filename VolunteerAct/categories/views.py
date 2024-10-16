@@ -67,3 +67,12 @@ def all_events_view(request):
 class EventDetailsView(DetailView):
     model = Event
     template_name = 'categories/event_page.html'
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+
+        see_more_events = Event.objects.all().filter(category__id=self.object.category.id)
+        context['see_more_events'] = see_more_events
+        print(see_more_events)
+
+        return context
