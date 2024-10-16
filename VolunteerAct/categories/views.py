@@ -9,7 +9,7 @@ from VolunteerAct.categories.utils import count_events
 
 def category_details(request, pk):
     event_form = EventForm(request.POST or None, request.FILES or None)
-    print(request.FILES)
+
     category = Category.objects.get(pk=pk)
     upcoming_events = category.category_events.filter(time__gte=timezone.now()).order_by('time')
     past_events = category.category_events.filter(time__lt=timezone.now()).order_by('time')
@@ -33,6 +33,16 @@ def category_details(request, pk):
     }
 
     return render(request, 'categories/category_page.html', context=context)
+
+
+def all_events_view(request):
+    all_events = Event.objects.all()
+
+    context = {
+        'all_events': all_events
+    }
+
+    return render(request, 'categories/all_events_page.html', context=context)
 
 
 class EventDetailsView(DetailView):

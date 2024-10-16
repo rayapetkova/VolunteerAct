@@ -1,0 +1,169 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Category Page</title>
+    <link rel="stylesheet" href="{% static 'css/base/nav_bar.css' %}">
+    <link rel="stylesheet" href="{% static 'css/base/footer.css' %}">
+    <link rel="stylesheet" href="{% static 'css/categories/all_events_page.css' %}">
+</head>
+<body>
+    {% include 'base/nav_bar.html' %}
+
+    <section class="upper-section">
+        <h2>Explore Events</h2>
+
+        <div class="more-info">
+            <p>Explore who’s hosting local and online events for all the things you love. Find out about passionate individuals and organizations creating opportunities for you to get involved.</p>
+        </div>
+    </section>
+
+    <main>
+        <aside>
+            <h2>Filters</h2>
+
+            <section class="category">
+                <h6>Category</h6>
+
+                <ul>
+                    <li>
+                        <input type="checkbox" id="food" name="food" value="food" />
+                        <label for="food">Food</label>
+                    </li>
+
+                    <li>
+                        <input type="checkbox" id="books" name="books" value="books" />
+                        <label for="books">Books</label>
+                    </li>
+
+                    <li>
+                        <input type="checkbox" id="animals" name="animals" value="animals" />
+                        <label for="animals">Animals</label>
+                    </li>
+
+                    <li>
+                        <input type="checkbox" id="animals" name="animals" value="animals" />
+                        <label for="animals">Animals</label>
+                    </li>
+
+                    <li>
+                        <input type="checkbox" id="animals" name="animals" value="animals" />
+                        <label for="animals">Animals</label>
+                    </li>
+
+                    <li>
+                        <input type="checkbox" id="animals" name="animals" value="animals" />
+                        <label for="animals">Animals</label>
+                    </li>
+
+                    <li>
+                        <input type="checkbox" id="animals" name="animals" value="animals" />
+                        <label for="animals">Animals</label>
+                    </li>
+
+                    <li>
+                        <input type="checkbox" id="animals" name="animals" value="animals" />
+                        <label for="animals">Animals</label>
+                    </li>
+                </ul>
+            </section>
+
+            <section class="date">
+                <h6>Date</h6>
+
+                <ul>
+                    <li>
+                        <input type="checkbox" id="today" name="today" value="today" />
+                        <label for="today">Today</label>
+                    </li>
+
+                    <li>
+                        <input type="checkbox" id="this_month" name="this_month" value="this_month" />
+                        <label for="this_month">This month</label>
+                    </li>
+
+                    <li>
+                        <input type="checkbox" id="this_year" name="this_year" value="this_year" />
+                        <label for="this_year">This year</label>
+                    </li>
+                </ul>
+            </section>
+
+            <section class="city">
+                <h6>City</h6>
+
+                <ul>
+                    <li>
+                        <input type="checkbox" id="online" name="online" value="online" />
+                        <label for="online">Online</label>
+                    </li>
+
+                    <li>
+                        <input type="checkbox" id="haskovo" name="haskovo" value="haskovo" />
+                        <label for="haskovo">Haskovo</label>
+                    </li>
+
+                    <li>
+                        <input type="checkbox" id="sofia" name="sofia" value="sofia" />
+                        <label for="sofia">Sofia</label>
+                    </li>
+
+                    <li>
+                        <input type="checkbox" id="burgas" name="burgas" value="burgas" />
+                        <label for="burgas">Burgas</label>
+                    </li>
+                </ul>
+            </section>
+        </aside>
+
+        <div class="right">
+            <h2>Events</h2>
+
+            <div class="all-events">
+                {% for event in all_events %}
+                    <a href="{% url 'event-page' categoryId=event.category.id pk=event.id %}" class="event-container">
+                        <p>{{ event.time }}</p>
+
+                        <div class="title-and-img">
+                            <div class="title-container">
+                                <h6>{{ event.title }}</h6>
+                                <div class="location">
+                                    <img src="{% static 'images/location_grey.png' %}" alt="locations">
+                                    <p>{{ event.exact_location }}</p>
+                                </div>
+                            </div>
+
+                            <div class="container-event-img">
+                                <img src="{{ event.poster_image.url }}" alt="category-img">
+                            </div>
+                        </div>
+
+                        <p class="details">{{ event.details }}</p>
+                    </a>
+                {% endfor %}
+            </div>
+        </div>
+    </main>
+
+    {% include 'base/footer.html' %}
+
+</body>
+
+    <script>
+        const headerElement = document.getElementsByTagName('header')[0]
+        const searchInput = document.getElementsByTagName('input')[0]
+
+        document.addEventListener('scroll', () => {
+            if (window.scrollY > 10) {
+                headerElement.style.backgroundColor = 'rgba(67, 79, 98, 0.76)'
+                searchInput.className += ' white-placeholder'
+            } else {
+                headerElement.style.backgroundColor = 'transparent'
+                searchInput.className = 'search-bar'
+            }
+        })
+    </script>
+
+</html>
