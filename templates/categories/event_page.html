@@ -62,9 +62,9 @@
 
                 <section class="box">
                     <img src="{% static 'images/location_grey.png' %}" alt="location_grey_icon">
-                    <p>{{ object.location }}, {{ object.city }}</p>
+                    <p>{{ object.exact_location }}</p>
                 </section>
-                <iframe src="https://www.google.com/maps?q={{ object.location }}, {{ object.city }}&output=embed&maptype=satellite"></iframe>
+                <iframe src="https://www.google.com/maps?q={{ object.exact_location }}&output=embed&maptype=satellite"></iframe>
             </div>
         </div>
     </section>

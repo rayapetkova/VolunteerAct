@@ -81,7 +81,7 @@
                                             <h6>{{ upcoming_event.title }}</h6>
                                             <div class="location">
                                                 <img src="{% static 'images/location_grey.png' %}" alt="locations">
-                                                <p>{{ upcoming_event.location }}, {{ upcoming_event.city }}</p>
+                                                <p>{{ upcoming_event.exact_location }}</p>
                                             </div>
                                         </div>
 
@@ -116,7 +116,7 @@
                                             <h6>{{ past_event.title }}</h6>
                                             <div class="location">
                                                 <img src="{% static 'images/location_grey.png' %}" alt="locations">
-                                                <p>{{ past_event.location }}</p>
+                                                <p>{{ past_event.exact_location }}</p>
                                             </div>
                                         </div>
                                         <img src="{{ past_event.poster_image.url }}" alt="category-img">

@@ -107,3 +107,6 @@ class Event(models.Model):
         to=AppUser,
         related_name='events'
     )
+
+    def exact_location(self):
+        return f"{self.location}, {self.city}"
