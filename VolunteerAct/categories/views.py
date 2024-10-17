@@ -2,6 +2,7 @@ from django.db.models import Count
 from django.shortcuts import render, redirect
 from django.utils import timezone
 from django.views.generic import DetailView
+from django.utils import timezone
 
 from VolunteerAct.categories.forms import EventForm
 from VolunteerAct.categories.models import Category, Event
@@ -29,8 +30,8 @@ def category_details(request, pk):
         'event_form': event_form,
         'upcoming_events': upcoming_events[:2],
         'past_events': past_events[:2],
-        'count_upcoming_events': count_events(len(upcoming_events)),
-        'count_past_events': count_events(len(past_events))
+        'count_upcoming_events': count_events(len(upcoming_events), 2),
+        'count_past_events': count_events(len(past_events), 2)
     }
 
     return render(request, 'categories/category_page.html', context=context)
@@ -71,8 +72,8 @@ class EventDetailsView(DetailView):
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
 
-        see_more_events = Event.objects.all().filter(category__id=self.object.category.id)
+        see_more_events = Event.objects.all().filter(category__id=self.object.category.id, time__gte=timezone.now())[:4]
         context['see_more_events'] = see_more_events
-        print(see_more_events)
+        context['count_more_events'] = count_events(len(see_more_events), 4)
 
         return context

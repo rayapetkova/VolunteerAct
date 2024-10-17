@@ -129,6 +129,12 @@ header ul.last-links li a {
 
 .info-section .right {
     width: 27%;
+    display: flex;
+    flex-direction: column;
+    gap: 2em;
+    position: sticky;
+    top: 20%;
+    height: 50%;
 }
 
 .info-section .right .title-and-see-all {
@@ -142,18 +148,34 @@ header ul.last-links li a {
     margin: 0;
 }
 
-.info-section .right .location-container {
+.info-section .right .location-container, .info-section .right .event-category {
     background-color: rgb(255, 255, 255);
     padding: 1.4em;
     border-radius: 15px;
     width: 90%;
-    position: sticky;
-    top: 7em;
 }
 
 .info-section .right .location-container img {
     width: 1.2em;
     height: 1.2em;
+}
+
+.info-section .right .event-category a {
+    text-decoration: none;
+    display: flex;
+    align-self: center;
+    gap: 0.5em;
+    margin-top: 0.8em;
+    color: #0f4e94;
+}
+
+.info-section .right .event-category a:hover {
+    text-decoration: underline;
+}
+
+.info-section .right .event-category a img {
+    width: 1.5em;
+    height: 1.5em;
 }
 
 .info-section .right .location-container .box {

@@ -50,6 +50,14 @@
         </div>
 
         <div class="right">
+            <div class="event-category">
+                <div class="title-and-see-all">
+                    <h4>Category</h4>
+                </div>
+
+                <a href="#"><img src="{{ object.category.image.url }}" alt="category-img">{{ object.category.name }}</a>
+            </div>
+
             <div class="location-container">
                 <div class="title-and-see-all">
                     <h4>More info</h4>
@@ -72,7 +80,7 @@
     {% if see_more_events %}
         <section class="upcoming-events" id="explore">
             <div class="title-container">
-                <h3>See more</h3>
+                <h3>See more ({{ count_more_events }})</h3>
                 <a href="{% url 'all-events-page' %}">See all events</a>
             </div>
 
