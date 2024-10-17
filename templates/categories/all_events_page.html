@@ -25,53 +25,20 @@
             <h2>Filters</h2>
 
             <form action="{% url 'all-events-page' %}" method="GET">
-                <section class="category">
-                    <h6>Category</h6>
-
-                    <ul>
-                        {% for category in categories %}
-                            <li>
-                                <input type="checkbox" id="{{ category.name }}" name="category" value="{{ category.name }}" />
-                                <label for="{{ category.name }}">{{ category.name }}</label>
-                            </li>
-                        {% endfor %}
-                    </ul>
-
-                </section>
-
-                <section class="date">
-                    <h6>Date</h6>
-
-                    <ul>
-                        <li>
-                            <input type="checkbox" id="today" name="date" value="today" />
-                            <label for="today">Today</label>
-                        </li>
-
-                        <li>
-                            <input type="checkbox" id="this_month" name="date" value="this_month" />
-                            <label for="this_month">This month</label>
-                        </li>
-
-                        <li>
-                            <input type="checkbox" id="this_year" name="date" value="this_year" />
-                            <label for="this_year">This year</label>
-                        </li>
-                    </ul>
-                </section>
-
-                <section class="city">
-                    <h6>City</h6>
-
-                    <ul>
-                        {% for city_dict in cities %}
-                            <li>
-                                <input type="checkbox" id="{{ city_dict.city }}" name="city" value="{{ city_dict.city }}" />
-                                <label for="{{ city_dict.city }}">{{ city_dict.city }} ({{ city_dict.cities_count }})</label>
-                            </li>
-                        {% endfor %}
-                    </ul>
-                </section>
+                {{ filter_form }}
+{##}
+{#                <section class="city">#}
+{#                    <h6>City</h6>#}
+{##}
+{#                    <ul>#}
+{#                        {% for city_dict in cities %}#}
+{#                            <li>#}
+{#                                <input type="checkbox" id="{{ city_dict.city }}" name="city" value="{{ city_dict.city }}" />#}
+{#                                <label for="{{ city_dict.city }}">{{ city_dict.city }} ({{ city_dict.cities_count }})</label>#}
+{#                            </li>#}
+{#                        {% endfor %}#}
+{#                    </ul>#}
+{#                </section>#}
 
                 <button>Filter</button>
             </form>

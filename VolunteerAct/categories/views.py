@@ -4,7 +4,7 @@ from django.utils import timezone
 from django.views.generic import DetailView
 from django.utils import timezone
 
-from VolunteerAct.categories.forms import EventForm
+from VolunteerAct.categories.forms import EventForm, FilterForm
 from VolunteerAct.categories.models import Category, Event
 from VolunteerAct.categories.utils import count_events
 
@@ -38,28 +38,24 @@ def category_details(request, pk):
 
 
 def all_events_view(request):
-    all_events = Event.objects.all()
-    categories = Category.objects.all()
+    filter_form = FilterForm(request.GET or None)
 
-    cities = Event.objects.values('city').annotate(cities_count=Count('city')).order_by('-cities_count')
+    all_events = Event.objects.all()
 
     if request.method == "GET":
-        filter_values_dict = request.GET
+        if filter_form.is_valid():
+            categories_filter = request.GET.getlist('category')
+            cities_filter = request.GET.getlist('city')
 
-        categories_filter = filter_values_dict.getlist('category')
-        date_filter = filter_values_dict.getlist('date')
-        cities_filter = filter_values_dict.getlist('city')
+            if categories_filter:
+                all_events = all_events.filter(category__name__in=categories_filter)
 
-        if categories_filter:
-            all_events = all_events.filter(category__name__in=categories_filter)
-
-        if cities_filter:
-            all_events = all_events.filter(city__in=cities_filter)
+            if cities_filter:
+                all_events = all_events.filter(city__in=cities_filter)
 
     context = {
-        'all_events': all_events,
-        'categories': categories,
-        'cities': cities
+        'filter_form': filter_form,
+        'all_events': all_events
     }
 
     return render(request, 'categories/all_events_page.html', context=context)
