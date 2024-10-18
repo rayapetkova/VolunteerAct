@@ -381,6 +381,39 @@ form ul.errorlist li {
     border-radius: 7px;
 }
 
+.title-and-img .buttons-cont {
+    display: flex;
+    gap: 0.8em;
+    margin-top: 0.7em;
+}
+
+.title-and-img .buttons-cont button {
+    padding: 0.5em 1em;
+    font-weight: 500;
+    border: none;
+    border-radius: 3px;
+    color: #ffffff;
+}
+
+.title-and-img .buttons-cont .edit-btn {
+    background-color: #08376b;
+}
+
+.title-and-img .buttons-cont .edit-btn:hover {
+    cursor: pointer;
+    background-color: #08366bce;
+}
+
+.title-and-img .buttons-cont .delete-btn {
+    background-color: #880000;
+
+}
+
+.title-and-img .buttons-cont .delete-btn:hover {
+    cursor: pointer;
+    background-color: rgba(136, 0, 0, 0.82);
+}
+
 .event-container .location {
     display: flex;
     margin-top: 0.3em;

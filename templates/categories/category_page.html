@@ -83,6 +83,13 @@
                                                 <img src="{% static 'images/location_grey.png' %}" alt="locations">
                                                 <p>{{ upcoming_event.exact_location }}</p>
                                             </div>
+
+                                            {% if upcoming_event.host.id == request.user.id %}
+                                                <div class="buttons-cont">
+                                                    <button class="edit-btn">Edit</button>
+                                                    <button class="delete-btn">Delete</button>
+                                                </div>
+                                            {% endif %}
                                         </div>
 
                                         <div class="container-event-img">
