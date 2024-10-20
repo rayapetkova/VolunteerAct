@@ -181,10 +181,11 @@ header ul.last-links li a {
     height: 1.5em;
 }
 
-.info-section .right .location-container .box {
+.box {
     display: flex;
     align-items: center;
     gap: 0.4em;
+    margin: 0.5em;
 }
 
 .info-section .right .location-container iframe {
@@ -192,6 +193,7 @@ header ul.last-links li a {
     border-radius: 5px;
     height: 200px;
     width: 100%;
+    margin-top: 1em;
 }
 
 .info-section .right .buttons-container-attend {
@@ -336,3 +338,116 @@ header ul.last-links li a {
     font-weight: 600;
     font-size: 0.8em;
 }
+
+
+
+
+
+.box p {
+    margin: 0
+}
+
+.attending-cont {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+
+.going-to-event-container {
+    background-color: #ffffff;
+    position: fixed;
+    top: 20%;
+    width: 50%;
+    height: 40%;
+    display: none;
+    flex-direction: column;
+    justify-content: center;
+    padding: 1.2em;
+    border: solid 1px #ababab;
+    box-shadow: 4px 4px 5px #ababab;
+    border-radius: 5px;
+}
+
+.going-to-event-container h3 {
+    font-size: 2em;
+    margin-top: 0;
+    margin-bottom: 0.5em;
+}
+
+.going-to-event-container section {
+    display: flex;
+    gap: 1em;
+}
+
+.going-to-event-container .left-img-container {
+    width: 50%;
+    object-fit: cover;
+}
+
+.going-to-event-container .left-img-container img {
+    width: 100%;
+    height: 100%;
+    border-radius: 2px;
+}
+
+.going-to-event-container .right {
+    display: flex;
+    flex-direction: column;
+    width: 50%;
+}
+
+.going-to-event-container .right h5 {
+    font-size: 1.2em;
+}
+
+.going-to-event-container .right .box img {
+    width: 1.5em;
+    height: 1.5em;
+}
+
+.going-to-event-container .right button {
+    display: flex;
+    justify-content: center;
+    gap: 0.5em;
+    text-align: center;
+    font-family: inherit;
+    font-weight: 600;
+    font-size: 1em;
+    border: solid 1px #ababab;
+    border-radius: 5px;
+    padding: 1.2em 0;
+    transition: background-color 0.3s ease-in-out;
+}
+
+.going-to-event-container .right button.cancel {
+    color: #08376b;
+    padding: 0.7em 0;
+    margin-bottom: 0.5em;
+    margin-top: auto;
+    background-color: #f1f1f1;
+}
+
+.going-to-event-container .right button.cancel:hover {
+    background-color: rgba(232, 234, 246, 0.81);
+    cursor: pointer;
+}
+
+.going-to-event-container .right button.share {
+    background-color: #08376b;
+    color: #ffffff;
+}
+
+.going-to-event-container .right button.share:hover {
+    cursor: pointer;
+    background-color: rgba(8, 55, 107, 0.89);
+}
+
+.going-to-event-container .right button img {
+    width: 1.2em;
+    height: 1.2em;
+}
+
+.going-to-event-container .right h5 {
+    margin: 0;
+}
+
