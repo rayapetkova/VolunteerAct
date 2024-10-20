@@ -18,7 +18,7 @@
 
         <div class="host">
             <a href="#" class="img-container">
-                <img src="{% static 'images/person_img.jpg' %}" alt="host-img">
+                <img src="{{ object.host.profile.profile_image.url }}" alt="host-img">
             </a>
 
             <div class="more-info">
@@ -31,7 +31,7 @@
     <section class="info-section">
         <div class="left">
             <div class="event-img-container">
-                <img src="{% static 'images/environment_category.jpg' %}" alt="event_image">
+                <img src="{{ object.poster_image.url }}" alt="event_image">
             </div>
 
             <h4>Details</h4>
@@ -71,6 +71,11 @@
                     <p>{{ object.exact_location }}</p>
                 </section>
                 <iframe src="https://www.google.com/maps?q={{ object.exact_location }}&output=embed&maptype=satellite"></iframe>
+            </div>
+
+            <div class="buttons-container-attend">
+                <button class="attend">Attend</button>
+                <button class="share">Share <img src="{% static 'images/share.png' %}" alt="share-icon"></button>
             </div>
         </div>
     </section>

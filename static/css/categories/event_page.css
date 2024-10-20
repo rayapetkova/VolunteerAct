@@ -101,11 +101,14 @@ header ul.last-links li a {
 
 .left .event-img-container {
     width: 100%;
+    height: 30em;
     margin-bottom: 2em;
 }
 
 .left .event-img-container img {
     width: 100%;
+    height: 100%;
+    object-fit: cover;
 }
 
 .left .keywords-container {
@@ -191,6 +194,49 @@ header ul.last-links li a {
     width: 100%;
 }
 
+.info-section .right .buttons-container-attend {
+    display: flex;
+    justify-content: center;
+    gap: 0.8em;
+}
+
+.info-section .right .buttons-container-attend button {
+    padding: 0.8em 1.3em;
+    border: none;
+    font-size: 1em;
+    border-radius: 5px;
+    font-weight: 600;
+    font-family: inherit;
+}
+
+.info-section .right .buttons-container-attend button.attend {
+    background-color: #08376b;
+    color: #ffffff;
+}
+
+.info-section .right .buttons-container-attend button.attend:hover {
+    cursor: pointer;
+    background-color: rgba(8, 55, 107, 0.88);
+}
+
+.info-section .right .buttons-container-attend button.share {
+    color: #08376b;
+    background-color: #e8e8e8;
+    display: flex;
+    align-items: center;
+}
+
+.info-section .right .buttons-container-attend button.share img {
+    width: 1.2em;
+    height: 1.2em;
+    margin-left: 0.3em;
+}
+
+.info-section .right .buttons-container-attend button.share:hover {
+    cursor: pointer;
+    background-color: rgba(232, 232, 232, 0.77);
+}
+
 
 
 
@@ -207,6 +253,7 @@ header ul.last-links li a {
     display: flex;
     align-items: center;
     justify-content: space-between;
+    margin-bottom: 0.8em;
 }
 
 .upcoming-events .title-container h3 {
