@@ -41,11 +41,9 @@
             </div>
 
             <div class="keywords-container">
-                <p>Travel</p>
-                <p>Walking</p>
-                <p>Social Networking</p>
-                <p>Hiking</p>
-                <p>Events in London</p>
+                {% for keyword in keywords %}
+                    <p>{{ keyword }}</p>
+                {% endfor %}
             </div>
         </div>
 

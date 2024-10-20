@@ -6,7 +6,7 @@ from django.utils import timezone
 
 from VolunteerAct.categories.forms import EventForm, FilterForm
 from VolunteerAct.categories.models import Category, Event
-from VolunteerAct.categories.utils import count_events
+from VolunteerAct.categories.utils import count_events, extract_keywords
 
 
 def category_details(request, pk):
@@ -71,5 +71,8 @@ class EventDetailsView(DetailView):
         see_more_events = Event.objects.all().filter(category__id=self.object.category.id, time__gte=timezone.now())[:4]
         context['see_more_events'] = see_more_events
         context['count_more_events'] = count_events(len(see_more_events), 4)
+
+        details_keywords = extract_keywords(self.object.details)
+        context['keywords'] = details_keywords
 
         return context
