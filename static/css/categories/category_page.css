@@ -463,6 +463,10 @@ form ul.errorlist li {
 
 .info-section .right {
     width: 35%;
+    position: sticky;
+    top: 20%;
+    height: 50%;
+    background-color: red;
 }
 
 .info-section .right .title-and-see-all {
