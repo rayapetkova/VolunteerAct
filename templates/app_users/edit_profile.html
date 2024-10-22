@@ -36,7 +36,7 @@
                 <div class="right">
                     <h3>Account Settings</h3>
 
-                    <form action="{% url 'edit-profile' %}" method="POST" enctype="multipart/form-data">
+                    <form action="{% url 'profile-details-update' pk=request.user.profile.id %}" method="POST" enctype="multipart/form-data">
                         {% csrf_token %}
 
                         <section class="all-fields">
