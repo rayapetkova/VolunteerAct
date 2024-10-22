@@ -388,7 +388,6 @@ video {
 
 .how-volunteeract-works .containers .box:hover {
     background-color: rgba(238, 243, 243, 0.959);
-    cursor: pointer;
     opacity: 1;
 }
 

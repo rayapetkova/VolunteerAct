@@ -381,13 +381,14 @@ header ul.last-links li a {
 
 .going-to-event-container .left-img-container {
     width: 50%;
-    object-fit: cover;
+    height: 20em;
 }
 
 .going-to-event-container .left-img-container img {
     width: 100%;
     height: 100%;
     border-radius: 2px;
+    object-fit: cover;
 }
 
 .going-to-event-container .right {
