@@ -1,0 +1,96 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static 'css/base/nav_bar.css' %}">
+    <link rel="stylesheet" href="{% static 'css/base/footer.css' %}">
+    <link rel="stylesheet" href="{% static 'css/app_users/profile_page.css' %}">
+    <title>Profile Details Page</title>
+</head>
+<body>
+
+    {% include 'base/nav_bar.html' with logo_color='light' %}
+
+    <main>
+
+        <video src="{% static 'images/volunteer_act_video.mp4' %}" muted autoplay loop></video>
+
+        <div class="content-edit">
+            <section class="info-section">
+                <div class="left">
+                    {% if object.profile_image %}
+                        <div class="img-container">
+                            <img src="{{ object.profile_image.url }}" alt="user-profile-picture">
+                        </div>
+                    {% else %}
+                        <div class="img-container">
+                            <img src="{% static 'images/person_img.jpg' %}" alt="user-profile-picture">
+                        </div>
+                    {% endif %}
+
+                    <div class="user-info">
+                        <p class="name">{{ object.full_name }}</p>
+                    </div>
+                </div>
+
+                <div class="right">
+                    <h3>Account Settings</h3>
+
+                    <section class="profile-info">
+
+                        <section class="all-fields">
+                            <div class="field">
+                                <label>First Name</label>
+                                <p>{{ object.first_name }}</p>
+                            </div>
+
+                            <div class="field">
+                                <label>Last Name</label>
+                                <p>{{ object.last_name }}</p>
+                            </div>
+
+                            <div class="field">
+                                <label>Phone Number</label>
+                                <p>{{ object.phone_number }}</p>
+                            </div>
+
+                            <div class="field">
+                                <label>Email</label>
+                                <p>{{ object.user.email }}</p>
+                            </div>
+
+                            <div class="field">
+                                <label>Bio</label>
+                                <textarea rows="10">{{ object.bio }}</textarea>
+                            </div>
+                        </section>
+
+                    </section>
+                </div>
+            </section>
+        </div>
+
+
+    </main>
+
+    {% include 'base/footer.html' %}
+
+</body>
+
+    <script>
+        const headerElement = document.getElementsByTagName('header')[0]
+        const searchInput = document.getElementsByTagName('input')[0]
+
+        document.addEventListener('scroll', () => {
+        if (window.scrollY >= 5) {
+            headerElement.style.backgroundColor = 'rgba(67, 79, 98, 0.76)'
+            searchInput.className += ' white-placeholder'
+        } else {
+            headerElement.style.backgroundColor = 'transparent'
+            searchInput.className = 'search-bar'
+        }
+    })
+    </script>
+</html>
