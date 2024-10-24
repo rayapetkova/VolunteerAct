@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>{% load static %}
+        <!DOCTYPE html>
+        <html lang="en">
+        <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Event Page</title>
+    <link rel="stylesheet" href="{% static 'css/base/nav_bar.css' %}">
+    <link rel="stylesheet" href="{% static 'css/base/footer.css' %}">
+    <link rel="stylesheet" href="{% static 'css/categories/event_page.css' %}">
+</head>
+<body>
+
+{% include 'base/nav_bar.html' %}
+
+<main>
+    <form method="POST">
+        {% csrf_token %}
+
+        <section class="upper-section">
+            <h2>
+                {{ form.title.label }}
+                {{ form.title }}
+                {{ form.title.errors }}
+            </h2>
+
+{#            {{ form }}#}
+
+            <div class="host">
+                <a href="#" class="img-container">
+                    <img src="{{ object.host.profile.profile_image.url }}" alt="host-img">
+                </a>
+
+                <div class="more-info">
+                    <p>Hosted By</p>
+                    {% if request.user.profile.id == object.host.profile.id %}
+                        <a href="{% url 'profile-details-update' pk=object.host.profile.id %}" class="host-name">You</a>
+                    {% else %}
+                        <a href="{% url 'profile-details-update' pk=object.host.profile.id %}"
+                           class="host-name">{{ object.host.profile.full_name }}</a>
+                    {% endif %}
+
+                </div>
+            </div>
+        </section>
+
+        <section class="info-section">
+            <div class="left">
+                <div class="event-img-container">
+                    <img src="{{ object.poster_image.url }}" alt="event_image">
+
+                    {{ form.poster_image.label }}
+                    {{ form.poster_image }}
+                    {{ form.poster_image.errors }}
+                </div>
+
+                <h4>Details</h4>
+
+                <div class="text-info">
+                    <p>
+                        {{ form.details.label }}
+                        {{ form.details }}
+                        {{ form.details.errors }}
+                    </p>
+                </div>
+
+                <div class="keywords-container">
+                    {% for keyword in keywords %}
+                        <p>{{ keyword }}</p>
+                    {% endfor %}
+                </div>
+            </div>
+
+            <div class="right">
+                <div class="event-category">
+                    <div class="title-and-see-all">
+                        <h4>Category</h4>
+                    </div>
+
+                    <a href="{% url 'category-page' pk=object.category.id %}"><img src="{{ object.category.image.url }}"
+                                                                                   alt="category-img">{{ object.category.name }}
+                    </a>
+                </div>
+
+                <div class="location-container">
+                    <div class="title-and-see-all">
+                        <h4>More info</h4>
+                    </div>
+
+                    <section class="box">
+                        <img src="{% static 'images/clock.png' %}" alt="clock_icon">
+                        <p>
+                            {{ form.time.label }}
+                            {{ form.time }}
+                            {{ form.time.errors }}
+                        </p>
+                    </section>
+
+                    <section class="box">
+                        <img src="{% static 'images/location_grey.png' %}" alt="location_grey_icon">
+                        <p>
+                            {{ form.city.label }}
+                            {{ form.city }}
+                            {{ form.city.errors }}
+                        </p>
+
+                        <p>
+                            {{ form.location.label }}
+                            {{ form.location }}
+                            {{ form.location.errors }}
+                        </p>
+                    </section>
+                    <iframe src="https://www.google.com/maps?q={{ object.exact_location }}&output=embed&maptype=satellite"></iframe>
+                </div>
+
+                <div class="buttons-container-attend">
+                    <button class="attend">Attend</button>
+                    <button class="share">Share <img src="{% static 'images/share.png' %}" alt="share-icon"></button>
+                </div>
+
+                <button type="submit">Save</button>
+            </div>
+        </section>
+
+        {% if see_more_events %}
+            <section class="upcoming-events" id="explore">
+                <div class="title-container">
+                    <h3>See more ({{ count_more_events }})</h3>
+                    <a href="{% url 'all-events-page' %}">See all events</a>
+                </div>
+
+                <div class="events">
+                    {% for event in see_more_events %}
+                        <a href="{% url 'event-page' categoryId=event.category.id pk=event.id %}"
+                           class="event-container">
+                            <div class="img-container">
+                                <img src="{{ event.poster_image.url }}" alt="event-img">
+                            </div>
+
+                            <div class="info">
+                                <h6>{{ event.title }}</h6>
+                                <p>Hosted by: {{ event.host.profile.full_name }}</p>
+                                <p>{{ event.time }}</p>
+                            </div>
+                        </a>
+                    {% endfor %}
+                </div>
+            </section>
+        {% endif %}
+    </form>
+
+</main>
+
+<div class="attending-cont">
+    <div class="going-to-event-container">
+        <h3>You are going!</h3>
+
+        <section>
+            <div class="left-img-container">
+                <img src="{{ object.poster_image.url }}" alt="event-img">
+            </div>
+
+            <div class="right">
+                <h5>{{ object.title }}</h5>
+
+                <section class="box">
+                    <img src="{% static 'images/clock.png' %}" alt="clock_icon">
+                    <p>{{ object.time }}</p>
+                </section>
+
+                <section class="box">
+                    <img src="{% static 'images/location_grey.png' %}" alt="location_grey_icon">
+                    <p>{{ object.exact_location }}</p>
+                </section>
+
+                <button class="cancel">Cancel attending</button>
+                <button class="share">Share <img src="{% static 'images/share_white.png' %}" alt="share-img"></button>
+            </div>
+        </section>
+    </div>
+</div>
+
+{% include 'base/footer.html' %}
+
+</body>
+<script>
+    const headerElement = document.getElementsByTagName('header')[0]
+    const searchInput = document.getElementsByTagName('input')[0]
+
+    document.addEventListener('scroll', () => {
+        if (window.scrollY > 10) {
+            headerElement.style.backgroundColor = 'rgba(67, 79, 98, 0.76)'
+            searchInput.className += ' white-placeholder'
+        } else {
+            headerElement.style.backgroundColor = 'transparent'
+            searchInput.className = 'search-bar'
+        }
+    })
+
+
+    const attendEventBtn = document.getElementsByClassName('attend')[0]
+    const attendingEventContainer = document.getElementsByClassName('going-to-event-container')[0]
+    const mainElement = document.getElementsByTagName('main')[0]
+
+    attendEventBtn.addEventListener('click', () => {
+        attendingEventContainer.style.display = 'flex'
+        mainElement.style.opacity = '0.4'
+        mainElement.style.filter = 'alpha(opacity=20)'
+    })
+
+
+</script>
+</html></title>
+</head>
+<body>
+
+</body>
+</html>
