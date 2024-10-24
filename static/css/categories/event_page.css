@@ -99,6 +99,47 @@ header ul.last-links li a {
 
 
 
+
+.info-section .left .buttons-container-edit-delete {
+    display: flex;
+    gap: 0.8em;
+    margin-bottom: 1em;
+}
+
+.info-section .left .buttons-container-edit-delete button {
+    padding: 0.5em 1em;
+    font-weight: 500;
+    border: none;
+    border-radius: 3px;
+    color: #ffffff;
+    font-family: inherit;
+}
+
+.info-section .left .buttons-container-edit-delete .edit-btn {
+    background-color: #08376b;
+}
+
+.info-section .left .buttons-container-edit-delete .edit-btn:hover {
+    cursor: pointer;
+    background-color: #08366bce;
+}
+
+.info-section .left .buttons-container-edit-delete .delete-btn {
+    background-color: #880000;
+
+}
+
+.info-section .left .buttons-container-edit-delete .delete-btn:hover {
+    cursor: pointer;
+    background-color: rgba(136, 0, 0, 0.82);
+}
+
+
+
+
+
+
+
 .left .event-img-container {
     width: 100%;
     height: 30em;

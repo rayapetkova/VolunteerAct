@@ -36,34 +36,54 @@
                 </div>
 
                 <div class="right">
-                    <h3>Account Settings</h3>
+                    <h3>{{ object.full_name }}'s Account</h3>
 
                     <section class="profile-info">
 
                         <section class="all-fields">
                             <div class="field">
                                 <label>First Name</label>
-                                <p>{{ object.first_name }}</p>
+                                {% if object.first_name %}
+                                    <p>{{ object.first_name }}</p>
+                                {% else %}
+                                    <p>No first name yet</p>
+                                {% endif %}
                             </div>
 
                             <div class="field">
                                 <label>Last Name</label>
-                                <p>{{ object.last_name }}</p>
+                                {% if object.last_name %}
+                                    <p>{{ object.last_name }}</p>
+                                {% else %}
+                                    <p>No last name yet</p>
+                                {% endif %}
                             </div>
 
                             <div class="field">
                                 <label>Phone Number</label>
-                                <p>{{ object.phone_number }}</p>
+                                {% if object.phone_number %}
+                                    <p>{{ object.phone_number }}</p>
+                                {% else %}
+                                    <p>No phone number yet</p>
+                                {% endif %}
                             </div>
 
                             <div class="field">
                                 <label>Email</label>
-                                <p>{{ object.user.email }}</p>
+                                {% if object.user.email %}
+                                    <p>{{ object.user.email }}</p>
+                                {% else %}
+                                    <p>No email yet</p>
+                                {% endif %}
                             </div>
 
                             <div class="field">
                                 <label>Bio</label>
-                                <textarea rows="10">{{ object.bio }}</textarea>
+                                {% if object.bio %}
+                                    <textarea rows="10">{{ object.bio }}</textarea>
+                                {% else %}
+                                    <p>No bio yet</p>
+                                {% endif %}
                             </div>
                         </section>
 
