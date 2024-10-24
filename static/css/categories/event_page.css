@@ -106,13 +106,14 @@ header ul.last-links li a {
     margin-bottom: 1em;
 }
 
-.info-section .left .buttons-container-edit-delete button {
+.info-section .left .buttons-container-edit-delete a {
     padding: 0.5em 1em;
     font-weight: 500;
     border: none;
     border-radius: 3px;
     color: #ffffff;
     font-family: inherit;
+    text-decoration: none;
 }
 
 .info-section .left .buttons-container-edit-delete .edit-btn {

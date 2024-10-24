@@ -18,7 +18,7 @@
         <h2>{{ object.title }}</h2>
 
         <div class="host">
-            <a href="#" class="img-container">
+            <a href="{% url 'profile-details-update' pk=object.host.profile.id %}" class="img-container">
                 <img src="{{ object.host.profile.profile_image.url }}" alt="host-img">
             </a>
 
@@ -40,8 +40,8 @@
             {% if object.host.id == request.user.id %}
                 <div>
                     <div class="buttons-container-edit-delete">
-                        <button class="edit-btn">Edit Event</button>
-                        <button class="delete-btn">Delete Event</button>
+                        <a href="{% url 'edit-event' categoryId=object.category.id pk=object.id %}" class="edit-btn">Edit Event</a>
+                        <a href="#" class="delete-btn">Delete Event</a>
                     </div>
                 </div>
             {% endif %}
