@@ -1,10 +1,11 @@
 from django.db.models import Count
 from django.shortcuts import render, redirect
+from django.urls import reverse_lazy
 from django.utils import timezone
-from django.views.generic import DetailView
+from django.views.generic import DetailView, UpdateView
 from django.utils import timezone
 
-from VolunteerAct.categories.forms import EventForm, FilterForm
+from VolunteerAct.categories.forms import EventForm, FilterForm, EventEditForm
 from VolunteerAct.categories.models import Category, Event
 from VolunteerAct.categories.utils import count_events, extract_keywords
 
@@ -76,3 +77,15 @@ class EventDetailsView(DetailView):
         context['keywords'] = details_keywords
 
         return context
+
+
+class EventUpdateView(UpdateView):
+    model = Event
+    form_class = EventEditForm
+    template_name = 'categories/edit_event_page.html'
+
+    def get_success_url(self):
+        return reverse_lazy('event-page', kwargs={
+            'categoryId': self.object.category.id,
+            'pk': self.object.id
+        })
