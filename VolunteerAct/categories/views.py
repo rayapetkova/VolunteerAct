@@ -2,10 +2,10 @@ from django.db.models import Count
 from django.shortcuts import render, redirect
 from django.urls import reverse_lazy
 from django.utils import timezone
-from django.views.generic import DetailView, UpdateView
+from django.views.generic import DetailView, UpdateView, DeleteView
 from django.utils import timezone
 
-from VolunteerAct.categories.forms import EventForm, FilterForm, EventEditForm
+from VolunteerAct.categories.forms import EventForm, FilterForm, EventEditForm, EventDeleteForm
 from VolunteerAct.categories.models import Category, Event
 from VolunteerAct.categories.utils import count_events, extract_keywords
 
@@ -62,9 +62,11 @@ def all_events_view(request):
     return render(request, 'categories/all_events_page.html', context=context)
 
 
-class EventDetailsView(DetailView):
+class EventDetailsView(DetailView, DeleteView):
     model = Event
     template_name = 'categories/event_page.html'
+    form_class = EventDeleteForm
+    success_url = reverse_lazy('home-page')
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
@@ -77,6 +79,17 @@ class EventDetailsView(DetailView):
         context['keywords'] = details_keywords
 
         return context
+
+    # Override form_invalid method because when performing POST, Django checks if the form is valid and calls
+    # the form_valid method. But our form is not valid and we call form_valid in form_invalid method
+    def form_invalid(self, form):
+        return self.form_valid(form)
+
+    # This is another way
+    # def post(self, request, *args, **kwargs):
+    #     self.object = self.get_object()
+    #     form = self.get_form()
+    #     return self.form_valid(form=form)
 
 
 class EventUpdateView(UpdateView):

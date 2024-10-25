@@ -389,13 +389,13 @@ header ul.last-links li a {
     margin: 0
 }
 
-.attending-cont {
+.attending-cont, .delete-event-cont {
     width: 100%;
     display: flex;
     justify-content: center;
 }
 
-.going-to-event-container {
+.going-to-event-container, .delete-event-cont form {
     background-color: #ffffff;
     position: fixed;
     top: 20%;
@@ -410,45 +410,49 @@ header ul.last-links li a {
     border-radius: 5px;
 }
 
-.going-to-event-container h3 {
+.delete-event-cont form {
+    height: 50%;
+}
+
+.going-to-event-container h3, .delete-event-cont form h3 {
     font-size: 2em;
     margin-top: 0;
     margin-bottom: 0.5em;
 }
 
-.going-to-event-container section {
+.going-to-event-container section, .delete-event-cont form section {
     display: flex;
     gap: 1em;
 }
 
-.going-to-event-container .left-img-container {
+.going-to-event-container .left-img-container, .delete-event-cont form section .left-img-container {
     width: 50%;
     height: 20em;
 }
 
-.going-to-event-container .left-img-container img {
+.going-to-event-container .left-img-container img, .delete-event-cont form section .left-img-container img {
     width: 100%;
     height: 100%;
     border-radius: 2px;
     object-fit: cover;
 }
 
-.going-to-event-container .right {
+.going-to-event-container .right, .delete-event-cont form section .right {
     display: flex;
     flex-direction: column;
     width: 50%;
 }
 
-.going-to-event-container .right h5 {
+.going-to-event-container .right h5, .delete-event-cont form section .right h5 {
     font-size: 1.2em;
 }
 
-.going-to-event-container .right .box img {
+.going-to-event-container .right .box img, .delete-event-cont form section .right .box img {
     width: 1.5em;
     height: 1.5em;
 }
 
-.going-to-event-container .right button {
+.going-to-event-container .right button, .delete-event-cont form button {
     display: flex;
     justify-content: center;
     gap: 0.5em;
@@ -462,7 +466,7 @@ header ul.last-links li a {
     transition: background-color 0.3s ease-in-out;
 }
 
-.going-to-event-container .right button.cancel {
+.going-to-event-container .right button.cancel, .delete-event-cont form button.cancel {
     color: #08376b;
     padding: 0.7em 0;
     margin-bottom: 0.5em;
@@ -470,7 +474,17 @@ header ul.last-links li a {
     background-color: #f1f1f1;
 }
 
-.going-to-event-container .right button.cancel:hover {
+.delete-event-cont form button.delete-event-btn {
+    margin-top: auto;
+    background-color: #08376b;
+    color: #ffffff;
+}
+
+.delete-event-cont form button.cancel {
+    margin-top: 1em;
+}
+
+.going-to-event-container .right button.cancel:hover, .delete-event-cont form button.cancel:hover {
     background-color: rgba(232, 234, 246, 0.81);
     cursor: pointer;
 }
@@ -480,7 +494,7 @@ header ul.last-links li a {
     color: #ffffff;
 }
 
-.going-to-event-container .right button.share:hover {
+.going-to-event-container .right button.share:hover, .delete-event-cont form button.delete-event-btn:hover {
     cursor: pointer;
     background-color: rgba(8, 55, 107, 0.89);
 }
@@ -490,7 +504,7 @@ header ul.last-links li a {
     height: 1.2em;
 }
 
-.going-to-event-container .right h5 {
+.going-to-event-container .right h5, .delete-event-cont form .right h5 {
     margin: 0;
 }
 

@@ -151,6 +151,37 @@
     </div>
 </div>
 
+<div class="delete-event-cont">
+    <form method="POST">
+        {% csrf_token %}
+
+        <h3>Are you sure you want to delete this event?</h3>
+
+        <section>
+            <div class="left-img-container">
+                <img src="{{ object.poster_image.url }}" alt="event-img">
+            </div>
+
+            <div class="right">
+                <h5>{{ object.title }}</h5>
+
+                <section class="box">
+                    <img src="{% static 'images/clock.png' %}" alt="clock_icon">
+                    <p>{{ object.time }}</p>
+                </section>
+
+                <section class="box">
+                    <img src="{% static 'images/location_grey.png' %}" alt="location_grey_icon">
+                    <p>{{ object.exact_location }}</p>
+                </section>
+
+                <button type="submit" class="delete-event-btn">Confirm</button>
+                <button class="cancel">Cancel attending</button>
+            </div>
+        </section>
+    </form>
+</div>
+
 {% include 'base/footer.html' %}
 
 </body>
@@ -175,6 +206,18 @@
 
     attendEventBtn.addEventListener('click', () => {
         attendingEventContainer.style.display = 'flex'
+        mainElement.style.opacity = '0.4'
+        mainElement.style.filter = 'alpha(opacity=20)'
+    })
+
+
+
+
+    const deleteEventBtn = document.getElementsByClassName('delete-btn')[0]
+    const deleteEventContainerForm = document.querySelectorAll('.delete-event-cont form')[0]
+
+    deleteEventBtn.addEventListener('click', () => {
+        deleteEventContainerForm.style.display = 'flex'
         mainElement.style.opacity = '0.4'
         mainElement.style.filter = 'alpha(opacity=20)'
     })

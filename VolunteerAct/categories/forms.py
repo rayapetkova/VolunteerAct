@@ -43,6 +43,10 @@ class EventEditForm(EventForm):
     pass
 
 
+class EventDeleteForm(EventForm):
+    pass
+
+
 class FilterForm(Form):
     CATEGORY_CHOICES = get_categories()
     CITY_CHOICES = get_cities()
