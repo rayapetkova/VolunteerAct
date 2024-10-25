@@ -24,6 +24,24 @@ header ul.last-links li a {
 
 .upper-section h2 {
     font-size: 2em;
+    margin-bottom: 0;
+}
+
+input {
+    margin: 1em 0;
+    border: solid 1px rgb(160, 159, 161);
+    border-radius: 3px;
+    padding: 1em;
+    color: rgb(107, 107, 107);
+    font-size: 1.1em;
+    background-color: rgba(240, 248, 255, 0.849);
+    width: 30%;
+}
+
+input:focus {
+    background-color: rgb(240, 248, 255);
+    outline: none;
+    color: black;
 }
 
 .upper-section .host {
@@ -84,6 +102,7 @@ header ul.last-links li a {
 .info-section .left h4 {
     margin: 0;
     font-size: 1.3em;
+    margin-top: 6em;
 }
 
 .info-section .left p {
@@ -93,6 +112,26 @@ header ul.last-links li a {
 
 .info-section .left .text-info {
     overflow: hidden;
+}
+
+.info-section .left .text-info p textarea {
+    width: 48em;
+    max-width: 48em;
+    height: 50vh;
+    font-family: inherit;
+    outline: none;
+    border: solid 1px rgb(160, 159, 161);
+    border-radius: 3px;
+    padding: 1% 1%;
+    color: rgb(107, 107, 107);
+    font-size: 1.1em;
+    background-color: rgba(240, 248, 255, 0.849);
+}
+
+.info-section .left .text-info p textarea:focus {
+    background-color: rgb(240, 248, 255);
+    outline: none;
+    color: black;
 }
 
 
@@ -227,6 +266,29 @@ header ul.last-links li a {
     align-items: center;
     gap: 0.4em;
     margin: 0.5em;
+}
+
+.box input {
+    font-family: inherit;
+    padding: 0.5em;
+    font-size: 0.8em;
+}
+
+.box:nth-child(3) {
+    display: flex;
+    flex-direction: column;
+    align-items: start;
+    gap: 1em;
+}
+
+.box:nth-child(3) p {
+    display: flex;
+    align-items: center;
+    gap: 0.5em;
+}
+
+.box:nth-child(3) p input {
+    margin: 0;
 }
 
 .info-section .right .location-container iframe {

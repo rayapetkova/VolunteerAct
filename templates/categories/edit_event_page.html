@@ -1,17 +1,13 @@
+{% load static %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>{% load static %}
-        <!DOCTYPE html>
-        <html lang="en">
-        <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>Event Page</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Edit Event Page</title>
     <link rel="stylesheet" href="{% static 'css/base/nav_bar.css' %}">
     <link rel="stylesheet" href="{% static 'css/base/footer.css' %}">
-    <link rel="stylesheet" href="{% static 'css/categories/event_page.css' %}">
+    <link rel="stylesheet" href="{% static 'css/categories/edit_event_page.css' %}">
 </head>
 <body>
 
@@ -22,13 +18,9 @@
         {% csrf_token %}
 
         <section class="upper-section">
-            <h2>
-                {{ form.title.label }}
-                {{ form.title }}
-                {{ form.title.errors }}
-            </h2>
-
-{#            {{ form }}#}
+            <h2>{{ form.title.label }}</h2>
+            {{ form.title }}
+            {{ form.title.errors }}
 
             <div class="host">
                 <a href="#" class="img-container">
@@ -53,16 +45,17 @@
                 <div class="event-img-container">
                     <img src="{{ object.poster_image.url }}" alt="event_image">
 
-                    {{ form.poster_image.label }}
-                    {{ form.poster_image }}
-                    {{ form.poster_image.errors }}
+                    <div>
+                        {{ form.poster_image.label }}
+                        {{ form.poster_image }}
+                        {{ form.poster_image.errors }}
+                    </div>
                 </div>
 
-                <h4>Details</h4>
+                <h4>{{ form.details.label }}</h4>
 
                 <div class="text-info">
                     <p>
-                        {{ form.details.label }}
                         {{ form.details }}
                         {{ form.details.errors }}
                     </p>
@@ -101,14 +94,16 @@
                     </section>
 
                     <section class="box">
-                        <img src="{% static 'images/location_grey.png' %}" alt="location_grey_icon">
                         <p>
+                            <img src="{% static 'images/location_grey.png' %}" alt="location_grey_icon">
                             {{ form.city.label }}
                             {{ form.city }}
                             {{ form.city.errors }}
                         </p>
 
                         <p>
+                            <img src="{% static 'images/city_icon.png' %}" alt="location_grey_icon">
+
                             {{ form.location.label }}
                             {{ form.location }}
                             {{ form.location.errors }}
@@ -211,6 +206,15 @@
         mainElement.style.opacity = '0.4'
         mainElement.style.filter = 'alpha(opacity=20)'
     })
+
+
+
+
+    const eventImgContainerInputDiv = document.querySelectorAll('.event-img-container div')[0]
+    const eventImgInput = eventImgContainerInputDiv.getElementsByTagName('input')[0]
+
+    eventImgContainerInputDiv.textContent = ''
+    eventImgContainerInputDiv.appendChild(eventImgInput)
 
 
 </script>
