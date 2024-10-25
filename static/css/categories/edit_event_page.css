@@ -35,6 +35,9 @@ input {
     color: rgb(107, 107, 107);
     font-size: 1.1em;
     background-color: rgba(240, 248, 255, 0.849);
+}
+
+.upper-section input {
     width: 30%;
 }
 
@@ -340,6 +343,23 @@ input:focus {
 .info-section .right .buttons-container-attend button.share:hover {
     cursor: pointer;
     background-color: rgba(232, 232, 232, 0.77);
+}
+
+form .form-submit-button {
+    padding: 0.8em 1.3em;
+    border: none;
+    font-size: 1em;
+    border-radius: 5px;
+    font-weight: 600;
+    font-family: inherit;
+    background-color: #08376b;
+    color: #ffffff;
+    width: 25%;
+}
+
+form .form-submit-button:hover {
+    cursor: pointer;
+    background-color: rgba(8, 55, 107, 0.88);
 }
 
 
