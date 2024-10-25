@@ -64,7 +64,7 @@ class Event(models.Model):
         null=False,
         blank=False,
         validators=[
-            validators.MinLengthValidator(150, message="Details about the event need to be at least 150 characters long.")
+            validators.MinLengthValidator(1000, message="Details about the event need to be at least 150 characters long.")
         ]
     )
 
