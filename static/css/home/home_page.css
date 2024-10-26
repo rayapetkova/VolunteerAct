@@ -84,7 +84,7 @@ video {
 
 
 main {
-    padding-top: 4em;
+    padding-top: 8em;
 }
 
 .upcoming-events {
@@ -242,7 +242,6 @@ main {
 
 
 .explore-categories {
-    margin-top: 7em;
     display: flex;
     flex-direction: column;
 }

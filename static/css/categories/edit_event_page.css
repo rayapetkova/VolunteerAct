@@ -155,6 +155,7 @@ input:focus {
     border-radius: 3px;
     color: #ffffff;
     font-family: inherit;
+    transition: background-color 0.2s ease-in-out;
 }
 
 .info-section .left .buttons-container-edit-delete .edit-btn {
@@ -315,6 +316,7 @@ input:focus {
     border-radius: 5px;
     font-weight: 600;
     font-family: inherit;
+    transition: background-color 0.2s ease-in-out;
 }
 
 .info-section .right .buttons-container-attend button.attend {
@@ -342,7 +344,7 @@ input:focus {
 
 .info-section .right .buttons-container-attend button.share:hover {
     cursor: pointer;
-    background-color: rgba(232, 232, 232, 0.77);
+    background-color: rgba(236, 236, 236, 0.77);
 }
 
 form .form-submit-button {
@@ -355,6 +357,20 @@ form .form-submit-button {
     background-color: #08376b;
     color: #ffffff;
     width: 25%;
+    transition: background-color 0.2s ease-in-out;
+}
+
+form input[type='file']::file-selector-button {
+    border: none;
+    border-radius: 3px;
+    padding: 0.5em 0.9em;
+    background-color: rgba(104, 171, 208, 0.75);
+    transition: background-color 0.2s ease-in-out;
+}
+
+form input[type='file']::file-selector-button:hover {
+    cursor: pointer;
+    background-color: rgba(104, 171, 208, 0.59);
 }
 
 form .form-submit-button:hover {

@@ -123,6 +123,7 @@ main video {
     border-radius: 3px;
     padding: 0.5em 0.9em;
     background-color: rgba(104, 171, 208, 0.75);
+    transition: background-color 0.2s ease-in-out;
 }
 
 .field:last-child input::file-selector-button:hover {

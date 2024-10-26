@@ -48,7 +48,9 @@ class ProfileView(UpdateView, DetailView):
         return context
 
     def get_success_url(self):
-        return reverse_lazy('edit-profile')
+        return reverse_lazy('profile-details-update', kwargs={
+            'pk': self.object.id
+        })
 
 
 def logout_view(request):
