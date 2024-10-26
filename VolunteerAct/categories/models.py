@@ -13,6 +13,8 @@ AppUserModel = get_user_model()
 class Category(models.Model):
     image = CloudinaryField('image')
 
+    poster_img = CloudinaryField('image')
+
     name = models.CharField(
         max_length=30,
         unique=True,
@@ -39,11 +41,6 @@ class Category(models.Model):
         validators=[
             validators.MinLengthValidator(450, message="Category's long description needs to be at least 70 characters long.")
         ]
-    )
-
-    active_members = models.ManyToManyField(
-        to=AppUserModel,
-        related_name='categories'
     )
 
 
