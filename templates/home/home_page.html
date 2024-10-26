@@ -31,115 +31,116 @@
             </div>
         </section>
 
-        <section class="upcoming-events" id="explore">
-            <div class="title-container">
-                <h2>Upcoming events</h2>
-                <a href="{% url 'all-events-page' %}">See all events</a>
-            </div>
+        <main id="explore">
+            {% if upcoming_events %}
+                <section class="upcoming-events">
+                    <div class="title-container">
+                        <h2>Upcoming events</h2>
+                        <a href="{% url 'all-events-page' %}">See all events</a>
+                    </div>
 
-            <div class="events">
-                {% for upcoming_event in upcoming_events %}
-                    <a href="{% url 'event-page' categoryId=upcoming_event.category.id pk=upcoming_event.id %}" class="event-container">
-                        <div class="img-container">
-                            <img src="{{ upcoming_event.poster_image.url }}" alt="event-img">
-                        </div>
+                    <div class="events">
+                        {% for upcoming_event in upcoming_events %}
+                            <a href="{% url 'event-page' categoryId=upcoming_event.category.id pk=upcoming_event.id %}" class="event-container">
+                                <div class="img-container">
+                                    <img src="{{ upcoming_event.poster_image.url }}" alt="event-img">
+                                </div>
 
-                        <div class="info">
-                            <h6>{{ upcoming_event.title }}</h6>
-                            <p>Hosted by: {{ upcoming_event.host.profile.full_name }}</p>
-                            <p>{{ upcoming_event.time }}</p>
-                        </div>
-                    </a>
-                {% empty %}
-                    <h2>No upcoming events yet</h2>
-                {% endfor %}
-            </div>
-        </section>
+                                <div class="info">
+                                    <h6>{{ upcoming_event.title }}</h6>
+                                    <p>Hosted by: {{ upcoming_event.host.profile.full_name }}</p>
+                                    <p>{{ upcoming_event.time }}</p>
+                                </div>
+                            </a>
+                        {% endfor %}
+                    </div>
+                </section>
+            {% endif %}
 
-        {% if not request.user.is_authenticated %}
-            <section class="join-section">
-                <div class="left">
-                    <h2>Join VolunteerAct</h2>
+            {% if not request.user.is_authenticated %}
+                <section class="join-section">
+                    <div class="left">
+                        <h2>Join VolunteerAct</h2>
 
-                    <p>People use VolunteerAct to connect with others, support meaningful causes, and turn their passion for helping into action.</p>
+                        <p>People use VolunteerAct to connect with others, support meaningful causes, and turn their passion for helping into action.</p>
 
-                    <a href="{% url 'register-user' %}">Sign Up</a>
-                </div>
+                        <a href="{% url 'register-user' %}">Sign Up</a>
+                    </div>
 
-                <div class="right">
-                    <img src="{% static "images/join_hands_img.webp" %}" alt="join-hands-img">
+                    <div class="right">
+                        <img src="{% static "images/join_hands_img.webp" %}" alt="join-hands-img">
+                    </div>
+                </section>
+            {% endif %}
+
+            <section class="explore-categories">
+                <h2>Explore categories</h2>
+
+                <div class="categories">
+                    {% for category in categories %}
+                        <a href="{% url 'category-page' pk=category.id %}" class="category-container">
+                            <img src="{{ category.image.url }}" alt="category-img">
+                            <p>{{ category.name }}</p>
+                        </a>
+                    {% endfor %}
                 </div>
             </section>
-        {% endif %}
 
-        <section class="explore-categories">
-            <h2>Explore categories</h2>
+            <section class="popular-cities-section">
+                <h2>Popular cities on VolunteerAct</h2>
 
-            <div class="categories">
-                {% for category in categories %}
-                    <a href="{% url 'category-page' pk=category.id %}" class="category-container">
-                        <img src="{{ category.image.url }}" alt="category-img">
-                        <p>{{ category.name }}</p>
-                    </a>
-                {% endfor %}
-            </div>
-        </section>
+                <div class="cities">
+                    <div class="city-container">
+                        <button>
+                            <img src="https://upload.wikimedia.org/wikipedia/commons/2/27/%D0%98%D0%B7%D0%B3%D0%BB%D0%B5%D0%B4_%D0%BE%D1%82_%D0%9A%D0%B0%D0%BC%D0%B1%D0%B0%D0%BD%D0%B0%D1%80%D0%B8%D1%8F%D1%82%D0%B0_%D0%B2_%D0%A5%D0%B0%D1%81%D0%BA%D0%BE%D0%B2%D0%BE.JPG" alt="city-img">
+                        </button>
 
-        <section class="popular-cities-section">
-            <h2>Popular cities on VolunteerAct</h2>
+                        <a>Haskovo</a>
+                    </div>
 
-            <div class="cities">
-                <div class="city-container">
-                    <button>
-                        <img src="https://upload.wikimedia.org/wikipedia/commons/2/27/%D0%98%D0%B7%D0%B3%D0%BB%D0%B5%D0%B4_%D0%BE%D1%82_%D0%9A%D0%B0%D0%BC%D0%B1%D0%B0%D0%BD%D0%B0%D1%80%D0%B8%D1%8F%D1%82%D0%B0_%D0%B2_%D0%A5%D0%B0%D1%81%D0%BA%D0%BE%D0%B2%D0%BE.JPG" alt="city-img">
-                    </button>
+                    <div class="city-container">
+                        <button>
+                            <img src="https://upload.wikimedia.org/wikipedia/commons/2/27/%D0%98%D0%B7%D0%B3%D0%BB%D0%B5%D0%B4_%D0%BE%D1%82_%D0%9A%D0%B0%D0%BC%D0%B1%D0%B0%D0%BD%D0%B0%D1%80%D0%B8%D1%8F%D1%82%D0%B0_%D0%B2_%D0%A5%D0%B0%D1%81%D0%BA%D0%BE%D0%B2%D0%BE.JPG" alt="city-img">
+                        </button>
 
-                    <a>Haskovo</a>
+                        <a>Haskovo</a>
+                    </div>
+
+                    <div class="city-container">
+                        <button>
+                            <img src="https://upload.wikimedia.org/wikipedia/commons/2/27/%D0%98%D0%B7%D0%B3%D0%BB%D0%B5%D0%B4_%D0%BE%D1%82_%D0%9A%D0%B0%D0%BC%D0%B1%D0%B0%D0%BD%D0%B0%D1%80%D0%B8%D1%8F%D1%82%D0%B0_%D0%B2_%D0%A5%D0%B0%D1%81%D0%BA%D0%BE%D0%B2%D0%BE.JPG" alt="city-img">
+                        </button>
+
+                        <a>Haskovo</a>
+                    </div>
+
+                    <div class="city-container">
+                        <button>
+                            <img src="https://upload.wikimedia.org/wikipedia/commons/2/27/%D0%98%D0%B7%D0%B3%D0%BB%D0%B5%D0%B4_%D0%BE%D1%82_%D0%9A%D0%B0%D0%BC%D0%B1%D0%B0%D0%BD%D0%B0%D1%80%D0%B8%D1%8F%D1%82%D0%B0_%D0%B2_%D0%A5%D0%B0%D1%81%D0%BA%D0%BE%D0%B2%D0%BE.JPG" alt="city-img">
+                        </button>
+
+                        <a>Haskovo</a>
+                    </div>
+
+                    <div class="city-container">
+                        <button>
+                            <img src="https://upload.wikimedia.org/wikipedia/commons/2/27/%D0%98%D0%B7%D0%B3%D0%BB%D0%B5%D0%B4_%D0%BE%D1%82_%D0%9A%D0%B0%D0%BC%D0%B1%D0%B0%D0%BD%D0%B0%D1%80%D0%B8%D1%8F%D1%82%D0%B0_%D0%B2_%D0%A5%D0%B0%D1%81%D0%BA%D0%BE%D0%B2%D0%BE.JPG" alt="city-img">
+                        </button>
+
+                        <a>Haskovo</a>
+                    </div>
+
+                    <div class="city-container">
+                        <button>
+                            <img src="https://upload.wikimedia.org/wikipedia/commons/2/27/%D0%98%D0%B7%D0%B3%D0%BB%D0%B5%D0%B4_%D0%BE%D1%82_%D0%9A%D0%B0%D0%BC%D0%B1%D0%B0%D0%BD%D0%B0%D1%80%D0%B8%D1%8F%D1%82%D0%B0_%D0%B2_%D0%A5%D0%B0%D1%81%D0%BA%D0%BE%D0%B2%D0%BE.JPG" alt="city-img">
+                        </button>
+
+                        <a>Haskovo</a>
+                    </div>
                 </div>
+            </section>
 
-                <div class="city-container">
-                    <button>
-                        <img src="https://upload.wikimedia.org/wikipedia/commons/2/27/%D0%98%D0%B7%D0%B3%D0%BB%D0%B5%D0%B4_%D0%BE%D1%82_%D0%9A%D0%B0%D0%BC%D0%B1%D0%B0%D0%BD%D0%B0%D1%80%D0%B8%D1%8F%D1%82%D0%B0_%D0%B2_%D0%A5%D0%B0%D1%81%D0%BA%D0%BE%D0%B2%D0%BE.JPG" alt="city-img">
-                    </button>
-
-                    <a>Haskovo</a>
-                </div>
-
-                <div class="city-container">
-                    <button>
-                        <img src="https://upload.wikimedia.org/wikipedia/commons/2/27/%D0%98%D0%B7%D0%B3%D0%BB%D0%B5%D0%B4_%D0%BE%D1%82_%D0%9A%D0%B0%D0%BC%D0%B1%D0%B0%D0%BD%D0%B0%D1%80%D0%B8%D1%8F%D1%82%D0%B0_%D0%B2_%D0%A5%D0%B0%D1%81%D0%BA%D0%BE%D0%B2%D0%BE.JPG" alt="city-img">
-                    </button>
-
-                    <a>Haskovo</a>
-                </div>
-
-                <div class="city-container">
-                    <button>
-                        <img src="https://upload.wikimedia.org/wikipedia/commons/2/27/%D0%98%D0%B7%D0%B3%D0%BB%D0%B5%D0%B4_%D0%BE%D1%82_%D0%9A%D0%B0%D0%BC%D0%B1%D0%B0%D0%BD%D0%B0%D1%80%D0%B8%D1%8F%D1%82%D0%B0_%D0%B2_%D0%A5%D0%B0%D1%81%D0%BA%D0%BE%D0%B2%D0%BE.JPG" alt="city-img">
-                    </button>
-
-                    <a>Haskovo</a>
-                </div>
-
-                <div class="city-container">
-                    <button>
-                        <img src="https://upload.wikimedia.org/wikipedia/commons/2/27/%D0%98%D0%B7%D0%B3%D0%BB%D0%B5%D0%B4_%D0%BE%D1%82_%D0%9A%D0%B0%D0%BC%D0%B1%D0%B0%D0%BD%D0%B0%D1%80%D0%B8%D1%8F%D1%82%D0%B0_%D0%B2_%D0%A5%D0%B0%D1%81%D0%BA%D0%BE%D0%B2%D0%BE.JPG" alt="city-img">
-                    </button>
-
-                    <a>Haskovo</a>
-                </div>
-
-                <div class="city-container">
-                    <button>
-                        <img src="https://upload.wikimedia.org/wikipedia/commons/2/27/%D0%98%D0%B7%D0%B3%D0%BB%D0%B5%D0%B4_%D0%BE%D1%82_%D0%9A%D0%B0%D0%BC%D0%B1%D0%B0%D0%BD%D0%B0%D1%80%D0%B8%D1%8F%D1%82%D0%B0_%D0%B2_%D0%A5%D0%B0%D1%81%D0%BA%D0%BE%D0%B2%D0%BE.JPG" alt="city-img">
-                    </button>
-
-                    <a>Haskovo</a>
-                </div>
-            </div>
-        </section>
-
-        <section class="how-volunteeract-works">
+            <section class="how-volunteeract-works">
             <h2>How VolunteerAct works</h2>
 
             <div class="containers">
@@ -172,6 +173,7 @@
                 </div>
             </div>
         </section>
+        </main>
     </div>
 
     {% include 'base/footer.html' %}

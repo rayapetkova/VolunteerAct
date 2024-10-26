@@ -83,10 +83,13 @@ video {
 
 
 
+main {
+    padding-top: 4em;
+}
+
 .upcoming-events {
     display: flex;
     flex-direction: column;
-    padding-top: 12em;
 }
 
 .upcoming-events .title-container {
