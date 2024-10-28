@@ -90,6 +90,7 @@ main {
 .upcoming-events {
     display: flex;
     flex-direction: column;
+    margin-bottom: 7em;
 }
 
 .upcoming-events .title-container {
@@ -157,6 +158,24 @@ main {
     border-radius: 15px;
 }
 
+.upcoming-events .events .event-container .your-event-container {
+    display: flex;
+    margin-top: 0.5em;
+    width: 95%;
+}
+
+.upcoming-events .events .event-container .your-event-container p {
+    color: #EE6161;
+    margin: 0;
+    font-weight: 600;
+}
+
+.upcoming-events .events .event-container .your-event-container img {
+    width: 1.2em;
+    height: 1.2em;
+    margin-left: 0.5em;
+}
+
 .upcoming-events .events .event-container .info {
     width: 95%;
 }
@@ -164,7 +183,6 @@ main {
 .upcoming-events .events .event-container .info h6 {
     font-size: 1.4em;
     margin: 0;
-    margin-top: 1em;
     overflow: hidden;
     text-overflow: ellipsis;
     white-space: nowrap;

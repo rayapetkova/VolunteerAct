@@ -20,15 +20,9 @@
         <div class="content-edit">
             <section class="info-section">
                 <div class="left">
-                    {% if object.profile_image %}
-                        <div class="img-container">
-                            <img src="{{ object.profile_image.url }}" alt="user-profile-picture">
-                        </div>
-                    {% else %}
-                        <div class="img-container">
-                            <img src="{% static 'images/person_img.jpg' %}" alt="user-profile-picture">
-                        </div>
-                    {% endif %}
+                    <div class="img-container">
+                        <img src="{{ object.profile_image.url }}" alt="user-profile-picture">
+                    </div>
 
                     <div class="user-info">
                         <p class="name">{{ object.full_name }}</p>

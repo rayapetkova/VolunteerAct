@@ -19,12 +19,8 @@
         </ul>
     {% else %}
         <ul class="last-links logout-ul">
-            {% if request.user.profile.profile_image %}
-                <li class="profile-img-container"><a href="{% url 'profile-details-update' pk=request.user.profile.id %}"><img src="{{ request.user.profile.profile_image.url }}" alt="profile-icon"></a></li>
-            {% else %}
-                <li class="profile-img-container"><a href="{% url 'profile-details-update' pk=request.user.profile.id %}"><img src="{% static 'images/profile_page.png' %}" alt="profile-icon"></a></li>
-            {% endif %}
-                <li class="logout-btn"><a href="{% url 'logout-user' %}">Log Out</a></li>
+            <li class="profile-img-container"><a href="{% url 'profile-details-update' pk=request.user.profile.id %}"><img src="{{ request.user.profile.profile_image.url }}" alt="profile-icon"></a></li>
+            <li class="logout-btn"><a href="{% url 'logout-user' %}">Log Out</a></li>
         </ul>
     {% endif %}
 </header>

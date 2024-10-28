@@ -60,7 +60,18 @@ aside {
     border-right: solid 1px rgb(172, 172, 172);
 }
 
-aside h2 {
+aside .filters-title-box {
+    display: flex;
+    align-items: center;
+}
+
+aside .filters-title-box img {
+    width: 1.5em;
+    height: 1.5em;
+    margin-right: 0.5em;
+}
+
+aside .filters-title-box h2 {
     margin: 0;
 }
 
@@ -90,6 +101,10 @@ aside form fieldset label {
     font-size: 1em;
     color: #252525;
     font-weight: 500;
+}
+
+aside form legend {
+    padding: 0;
 }
 
 aside form button {
@@ -182,6 +197,24 @@ main .right .all-events h3 {
     height: 100%;
     object-fit: cover;
     border-radius: 7px;
+}
+
+.title-and-img .your-event-container {
+    display: flex;
+    align-items: center;
+    margin-top: 0.5em;
+}
+
+.title-and-img .your-event-container p {
+    color: #EE6161;
+    margin: 0;
+    font-weight: 600;
+}
+
+.title-and-img .your-event-container img {
+    width: 1.2em;
+    height: 1.2em;
+    margin-left: 0.5em;
 }
 
 .event-container .location {

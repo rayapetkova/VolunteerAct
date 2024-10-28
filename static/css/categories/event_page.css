@@ -466,7 +466,7 @@ header ul.last-links li a {
     transition: background-color 0.3s ease-in-out;
 }
 
-.going-to-event-container .right button.cancel, .delete-event-cont form button.cancel {
+.going-to-event-container .right button.cancel, .delete-event-cont form button.cancel-deleting-btn {
     color: #08376b;
     padding: 0.7em 0;
     margin-bottom: 0.5em;
@@ -480,11 +480,11 @@ header ul.last-links li a {
     color: #ffffff;
 }
 
-.delete-event-cont form button.cancel {
+.delete-event-cont form button.cancel-deleting-btn {
     margin-top: 1em;
 }
 
-.going-to-event-container .right button.cancel:hover, .delete-event-cont form button.cancel:hover {
+.going-to-event-container .right button.cancel:hover, .delete-event-cont form button.cancel-deleting-btn:hover {
     background-color: rgba(232, 234, 246, 0.81);
     cursor: pointer;
 }

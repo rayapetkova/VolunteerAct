@@ -180,7 +180,7 @@
                 </section>
 
                 <button type="submit" class="delete-event-btn">Confirm</button>
-                <button class="cancel">Cancel attending</button>
+                <button type="button" class="cancel-deleting-btn">Cancel</button>
             </div>
         </section>
     </form>
@@ -224,6 +224,14 @@
         deleteEventContainerForm.style.display = 'flex'
         mainElement.style.opacity = '0.4'
         mainElement.style.filter = 'alpha(opacity=20)'
+    })
+
+    const cancelDeletingBtn = document.getElementsByClassName('cancel-deleting-btn')[0]
+
+    cancelDeletingBtn.addEventListener('click', () => {
+        deleteEventContainerForm.style.display = 'none'
+        mainElement.style.opacity = '1'
+        mainElement.style.filter = 'alpha(opacity=100)'
     })
 
 
