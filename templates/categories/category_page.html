@@ -85,9 +85,9 @@
                                             </div>
 
                                             {% if upcoming_event.host.id == request.user.id %}
-                                                <div class="buttons-cont">
-                                                    <button class="edit-btn">Edit</button>
-                                                    <button class="delete-btn">Delete</button>
+                                                <div class="your-event-container">
+                                                    <p>Your event</p>
+                                                    <img src="{% static 'images/your_event_icon.png' %}" alt="your-event-icon" >
                                                 </div>
                                             {% endif %}
                                         </div>
@@ -149,42 +149,15 @@
                     </div>
 
                     <div class="members">
-                        <img src="{% static 'images/person_img.jpg' %}" alt="profile-img">
-                        <img src="{% static 'images/person_img.jpg' %}" alt="profile-img">
-                        <img src="{% static 'images/person_img.jpg' %}" alt="profile-img">
-                        <img src="{% static 'images/person_img.jpg' %}" alt="profile-img">
-                        <img src="{% static 'images/person_img.jpg' %}" alt="profile-img">
-                        <img src="{% static 'images/person_img.jpg' %}" alt="profile-img">
-                        <img src="{% static 'images/person_img.jpg' %}" alt="profile-img">
-                        <img src="{% static 'images/person_img.jpg' %}" alt="profile-img">
-                        <img src="{% static 'images/person_img.jpg' %}" alt="profile-img">
-                        <img src="{% static 'images/person_img.jpg' %}" alt="profile-img">
-                        <img src="{% static 'images/person_img.jpg' %}" alt="profile-img">
-                        <img src="{% static 'images/person_img.jpg' %}" alt="profile-img">
-                        <img src="{% static 'images/person_img.jpg' %}" alt="profile-img">
-                        <img src="{% static 'images/person_img.jpg' %}" alt="profile-img">
-                        <img src="{% static 'images/person_img.jpg' %}" alt="profile-img">
-                        <img src="{% static 'images/person_img.jpg' %}" alt="profile-img">
-                        <img src="{% static 'images/person_img.jpg' %}" alt="profile-img">
-                        <img src="{% static 'images/person_img.jpg' %}" alt="profile-img">
-                        <img src="{% static 'images/person_img.jpg' %}" alt="profile-img">
-                        <img src="{% static 'images/person_img.jpg' %}" alt="profile-img">
-                        <img src="{% static 'images/person_img.jpg' %}" alt="profile-img">
-                        <img src="{% static 'images/person_img.jpg' %}" alt="profile-img">
-                        <img src="{% static 'images/person_img.jpg' %}" alt="profile-img">
-                        <img src="{% static 'images/person_img.jpg' %}" alt="profile-img">
-                        <img src="{% static 'images/person_img.jpg' %}" alt="profile-img">
-                        <img src="{% static 'images/person_img.jpg' %}" alt="profile-img">
-                        <img src="{% static 'images/person_img.jpg' %}" alt="profile-img">
-                        <img src="{% static 'images/person_img.jpg' %}" alt="profile-img">
-                        <img src="{% static 'images/person_img.jpg' %}" alt="profile-img">
-                        <img src="{% static 'images/person_img.jpg' %}" alt="profile-img">
-                        <img src="{% static 'images/person_img.jpg' %}" alt="profile-img">
-                        <img src="{% static 'images/person_img.jpg' %}" alt="profile-img">
-                        <img src="{% static 'images/person_img.jpg' %}" alt="profile-img">
-                        <img src="{% static 'images/person_img.jpg' %}" alt="profile-img">
-                        <img src="{% static 'images/person_img.jpg' %}" alt="profile-img">
-                        <img src="{% static 'images/person_img.jpg' %}" alt="profile-img">
+
+                        {% for active_member in active_members %}
+                            <a href="{% url 'profile-details-update' pk=active_member.profile.id %}">
+                                <img src="{{ active_member.profile.profile_image.url }}" alt="profile-img">
+                            </a>
+                        {% empty %}
+                            <p>Be the first one to attend an event in the {{ category.name }} category!</p>
+                        {% endfor %}
+
                     </div>
                 </div>
             </section>

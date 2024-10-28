@@ -1,4 +1,4 @@
-from django.db.models import Count
+from django.db.models import Count, QuerySet
 from django.shortcuts import render, redirect
 from django.urls import reverse_lazy
 from django.utils import timezone
@@ -17,6 +17,16 @@ def category_details(request, pk):
     upcoming_events = category.category_events.filter(time__gte=timezone.now()).order_by('time')
     past_events = category.category_events.filter(time__lt=timezone.now()).order_by('time')
 
+    members_upcoming_events = [event.attendees.all() for event in upcoming_events]
+    if members_upcoming_events:
+        members_upcoming_events = list(members_upcoming_events[0])  # get the queryset inside a list
+
+    members_past_events = [event.attendees.all() for event in past_events]
+    if members_past_events:
+        members_past_events = list(members_past_events[0])
+
+    active_members = members_upcoming_events + members_past_events
+
     if request.method == "POST":
         if event_form.is_valid():
             event = event_form.save(commit=False)
@@ -32,7 +42,8 @@ def category_details(request, pk):
         'upcoming_events': upcoming_events[:2],
         'past_events': past_events[:2],
         'count_upcoming_events': count_events(len(upcoming_events), 2),
-        'count_past_events': count_events(len(past_events), 2)
+        'count_past_events': count_events(len(past_events), 2),
+        'active_members': active_members[:36]
     }
 
     return render(request, 'categories/category_page.html', context=context)

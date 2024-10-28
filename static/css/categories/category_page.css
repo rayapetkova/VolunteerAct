@@ -389,31 +389,21 @@ form ul.errorlist li {
     margin-top: 0.7em;
 }
 
-.title-and-img .buttons-cont button {
-    padding: 0.5em 1em;
-    font-weight: 500;
-    border: none;
-    border-radius: 3px;
-    color: #ffffff;
+.title-and-img .your-event-container {
+    display: flex;
+    margin-top: 0.5em;
 }
 
-.title-and-img .buttons-cont .edit-btn {
-    background-color: #08376b;
+.title-and-img .your-event-container p {
+    color: #EE6161;
+    margin: 0;
+    font-weight: 600;
 }
 
-.title-and-img .buttons-cont .edit-btn:hover {
-    cursor: pointer;
-    background-color: #08366bce;
-}
-
-.title-and-img .buttons-cont .delete-btn {
-    background-color: #880000;
-
-}
-
-.title-and-img .buttons-cont .delete-btn:hover {
-    cursor: pointer;
-    background-color: rgba(136, 0, 0, 0.82);
+.title-and-img .your-event-container img {
+    width: 1.2em;
+    height: 1.2em;
+    margin-left: 0.5em;
 }
 
 .event-container .location {
@@ -492,9 +482,13 @@ form ul.errorlist li {
     margin-top: 1em;
 }
 
-.info-section .right .members img {
+.info-section .right .members a {
     width: 4em;
     height: 4em;
-    object-fit: cover;
+}
+
+.info-section .right .members img {
+    width: 100%;
+    height: 100%;
     border-radius: 50%;
 }
