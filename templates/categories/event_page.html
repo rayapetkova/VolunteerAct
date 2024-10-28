@@ -19,11 +19,7 @@
 
         <div class="host">
             <a href="{% url 'profile-details-update' pk=object.host.profile.id %}" class="img-container">
-                {% if object.host.profile.profile_image %}
-                    <img src="{{ object.host.profile.profile_image.url }}" alt="host-img">
-                {% else %}
-                    <img src="{% static 'images/profile_page.png' %}" alt="host-img">
-                {% endif %}
+                <img src="{{ object.host.profile.profile_image.url }}" alt="host-img">
             </a>
 
             <div class="more-info">

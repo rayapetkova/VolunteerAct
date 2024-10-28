@@ -7,6 +7,8 @@ from django.db import models
 from VolunteerAct.app_users.managers import AppUserManager
 from django.utils.translation import gettext_lazy as _
 
+from decouple import config
+
 
 class AppUser(AbstractBaseUser, PermissionsMixin):
     email = models.EmailField(
@@ -28,6 +30,7 @@ class AppUser(AbstractBaseUser, PermissionsMixin):
 class Profile(models.Model):
     profile_image = CloudinaryField(
         'image',
+        default=config('DEFAULT_PROFILE_IMAGE'),
         null=True,
         blank=True
     )

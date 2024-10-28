@@ -492,3 +492,8 @@ form ul.errorlist li {
     height: 100%;
     border-radius: 50%;
 }
+
+.info-section .right .members p {
+    text-align: center;
+    color: #5f5f5f;
+}
