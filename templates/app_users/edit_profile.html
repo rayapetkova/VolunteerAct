@@ -45,8 +45,10 @@
                             {% endfor %}
                         </section>
 
-
-                        <button class="update-button" id="updateBtn">Update</button>
+                        <div class="update-delete-buttons-cont">
+                            <button type="submit" class="update-button" id="updateBtn">Update</button>
+                            <a href="{% url 'delete-profile' %}" class="delete-button">Delete</a>
+                        </div>
 
                     </form>
                 </div>
