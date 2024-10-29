@@ -4,7 +4,7 @@ from django.shortcuts import render, redirect
 from django.urls import reverse_lazy
 from django.views.generic import CreateView, UpdateView, DetailView
 
-from VolunteerAct.app_users.forms import AppUserForm, EditAppUserForm
+from VolunteerAct.app_users.forms import AppUserForm, EditAppUserForm, DeleteAppUserForm
 from VolunteerAct.app_users.models import Profile
 
 AppUserModel = get_user_model()
@@ -51,6 +51,22 @@ class ProfileView(UpdateView, DetailView):
         return reverse_lazy('profile-details-update', kwargs={
             'pk': self.object.id
         })
+
+
+def delete_profile_view(request):
+    user_profile = request.user.profile
+    form = DeleteAppUserForm(instance=user_profile)
+    form.fields['email'].initial = user_profile.user.email
+
+    if request.method == "POST":
+        request.user.delete()
+        return redirect('home-page')
+
+    context = {
+        'form': form
+    }
+
+    return render(request, 'app_users/delete_profile.html', context=context)
 
 
 def logout_view(request):

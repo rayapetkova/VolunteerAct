@@ -72,3 +72,19 @@ class EditAppUserForm(forms.ModelForm):
 
         return profile
 
+
+class DeleteAppUserForm(forms.ModelForm):
+
+    email = forms.EmailField()
+
+    class Meta:
+        model = Profile
+        fields = ('first_name', 'last_name', 'phone_number', 'email', 'bio')
+    
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+
+        for field in self.fields:
+            self.fields[field].widget.attrs['readonly'] = 'readonly'
+            self.fields[field].disabled = 'disabled'
+        
