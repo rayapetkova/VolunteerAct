@@ -24,5 +24,6 @@ class Comment(models.Model):
 
     event = models.ForeignKey(
         to=Event,
-        on_delete=models.CASCADE
+        on_delete=models.CASCADE,
+        related_name='comments'
     )
