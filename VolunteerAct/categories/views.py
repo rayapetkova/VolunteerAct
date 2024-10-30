@@ -89,6 +89,9 @@ class EventDetailsView(DetailView, DeleteView):
         details_keywords = extract_keywords(self.object.details)
         context['keywords'] = details_keywords
 
+        comments = self.object.comments.all()
+        context['event_comments'] = comments
+
         return context
 
     # Override form_invalid method because when performing POST, Django checks if the form is valid and calls
