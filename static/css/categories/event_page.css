@@ -26,40 +26,40 @@ header ul.last-links li a {
     font-size: 2em;
 }
 
-.upper-section .host {
+.upper-section .host, .all-comments .comment-container .author {
     display: flex;
     align-items: center;
 }
 
-.upper-section .host .img-container {
+.upper-section .host .img-container,.all-comments .comment-container .author .img-container {
     width: 4em;
     height: 4em;
 }
 
-.upper-section .host .img-container img {
+.upper-section .host .img-container img, .all-comments .comment-container .author .img-container img {
     width: 100%;
     height: 100%;
     border-radius: 50%;
     object-fit: cover;
 }
 
-.upper-section .host .more-info {
+.upper-section .host .more-info, .all-comments .comment-container .author .more-info {
     display: flex;
     flex-direction: column;
     margin-left: 0.8em;
 }
 
-.upper-section .host .more-info p {
+.upper-section .host .more-info p, .all-comments .comment-container .author .more-info p {
     margin: 0;
 }
 
-.upper-section .host .more-info a.host-name {
+.upper-section .host .more-info a.host-name, .all-comments .comment-container .author .more-info a.host-name {
     font-weight: 600;
     text-decoration: none;
     color: rgb(0, 0, 0);
 }
 
-.upper-section .host .more-info a.host-name:hover {
+.upper-section .host .more-info a.host-name:hover, .all-comments .comment-container .author .more-info a.host:hover {
     text-decoration: underline;
 }
 
@@ -164,6 +164,32 @@ header ul.last-links li a {
     border-radius: 5px;
     font-size: 0.85em;
     font-weight: 600;
+}
+
+
+
+.left .comments-container {
+    margin-top: 3em;
+}
+
+.left .all-comments {
+    display: flex;
+    flex-direction: column;
+    gap: 2em;
+}
+
+.left .all-comments .comment-container {
+    background-color: rgba(53, 191, 237, 0.18);
+    padding: 1.5em 2em;
+}
+
+.left .all-comments .comment-container > p {
+    margin-bottom: 0;
+}
+
+.left .all-comments .comment-container .author .img-container {
+    width: 2.5em;
+    height: 2.5em;
 }
 
 
@@ -293,20 +319,19 @@ header ul.last-links li a {
     border-top: solid 0.15em rgb(209, 209, 209);
 }
 
-.upcoming-events .title-container {
+.title-container {
     display: flex;
     align-items: center;
     justify-content: space-between;
     margin-bottom: 0.8em;
 }
 
-.upcoming-events .title-container h3 {
-    color: #08376b;
-    font-size: 1.4em;
+.title-container h3 {
+    font-size: 1.3em;
     margin: 0;
 }
 
-.upcoming-events .title-container a {
+.title-container a {
     font-weight: 600;
     color: #08458b;
     font-family: inherit;
@@ -314,7 +339,7 @@ header ul.last-links li a {
     font-size: 1.1em;
 }
 
-.upcoming-events .title-container a:hover {
+.title-container a:hover {
     text-decoration: underline;
 }
 

@@ -61,6 +61,55 @@
                     <p>{{ keyword }}</p>
                 {% endfor %}
             </div>
+
+            <div class="comments-container">
+                <div class="title-container">
+                    <h3>Comments (3)</h3>
+                    <a href="{% url 'all-events-page' %}">See all comments</a>
+                </div>
+
+                <div class="all-comments">
+                    <div class="comment-container">
+                        <div class="author">
+                            <a href="{% url 'profile-details-update' pk=object.host.profile.id %}" class="img-container">
+                                <img src="{{ object.host.profile.profile_image.url }}" alt="host-img">
+                            </a>
+
+                            <div class="more-info">
+                                {% if request.user.profile.id == object.host.profile.id %}
+                                    <a href="{% url 'profile-details-update' pk=object.host.profile.id %}" class="host-name">You</a>
+                                {% else %}
+                                    <a href="{% url 'profile-details-update' pk=object.host.profile.id %}"
+                                       class="host-name">{{ object.host.profile.full_name }}</a>
+                                {% endif %}
+
+                            </div>
+                        </div>
+
+                        <p>This talk explores the concept of Clean Architecture, its importance in software development, and how it addresses common challenges. We'll discuss the purpose of software architecture, examine traditional development pitfalls, and introduce Clean Architecture principles. Through a real-world case study with audience participation, we'll demonstrate the practical application and benefits of this approach. </p>
+                    </div>
+
+                    <div class="comment-container">
+                            <div class="author">
+                                <a href="{% url 'profile-details-update' pk=object.host.profile.id %}" class="img-container">
+                                    <img src="{{ object.host.profile.profile_image.url }}" alt="host-img">
+                                </a>
+
+                                <div class="more-info">
+                                    {% if request.user.profile.id == object.host.profile.id %}
+                                        <a href="{% url 'profile-details-update' pk=object.host.profile.id %}" class="host-name">You</a>
+                                    {% else %}
+                                        <a href="{% url 'profile-details-update' pk=object.host.profile.id %}"
+                                           class="host-name">{{ object.host.profile.full_name }}</a>
+                                    {% endif %}
+
+                                </div>
+                            </div>
+
+                            <p>This talk explores the concept of Clean Architecture, its importance in software development, and how it addresses common challenges. We'll discuss the purpose of software architecture, examine traditional development pitfalls, and introduce Clean Architecture principles. Through a real-world case study with audience participation, we'll demonstrate the practical application and benefits of this approach. </p>
+                        </div>
+                    </div>
+            </div>
         </div>
 
         <div class="right">
