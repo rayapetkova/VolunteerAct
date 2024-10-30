@@ -35,7 +35,8 @@ INSTALLED_APPS = [
 
     'VolunteerAct.app_users',
     'VolunteerAct.home',
-    'VolunteerAct.categories'
+    'VolunteerAct.categories',
+    'VolunteerAct.comments'
 ]
 
 MIDDLEWARE = [
