@@ -59,7 +59,7 @@ header ul.last-links li a {
     color: rgb(0, 0, 0);
 }
 
-.upper-section .host .more-info a.host-name:hover, .all-comments .comment-container .author .more-info a.host:hover {
+.upper-section .host .more-info a.host-name:hover, .all-comments .comment-container .author .more-info a.host-name:hover {
     text-decoration: underline;
 }
 
@@ -170,6 +170,42 @@ header ul.last-links li a {
 
 .left .comments-container {
     margin-top: 3em;
+}
+
+.left .comments-container .send-comment-container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.left .comments-container .send-comment-container input#add-new-comment {
+    outline: none;
+    border: solid 1px rgb(160, 159, 161);
+    border-radius: 3em;
+    padding: 1em;
+    display: flex;
+    color: rgb(107, 107, 107);
+    background-color: #f5f5f5;
+    width: 93%;
+}
+
+.left .comments-container .send-comment-container input#add-new-comment:focus {
+    background-color: rgb(240, 248, 255);
+    outline: none;
+    color: black;
+}
+
+.left .comments-container .send-comment-container img {
+    width: 1.2em;
+    height: 1.2em;
+}
+
+.left .comments-container .send-comment-container img:hover {
+    cursor: pointer;
+}
+
+.left .comments-container .title-container a {
+    font-size: 1em;
 }
 
 .left .all-comments {

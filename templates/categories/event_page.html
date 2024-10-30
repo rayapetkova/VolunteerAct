@@ -64,7 +64,7 @@
 
             <div class="comments-container">
                 <div class="title-container">
-                    <h3>Comments (3)</h3>
+                    <h3>Comments ({{ count_comments }})</h3>
                     <a href="{% url 'all-events-page' %}">See all comments</a>
                 </div>
 
@@ -91,6 +91,11 @@
                             <p>{{ comment.body }}</p>
                         </div>
                     {% endfor %}
+
+                    <div class="send-comment-container">
+                        <input type="text" id="add-new-comment" name="add-new-comment" placeholder="Add new comment..." >
+                        <img src="{% static 'images/send_icon.png' %}" alt="send-icon">
+                    </div>
 
                 </div>
             </div>

@@ -91,6 +91,7 @@ class EventDetailsView(DetailView, DeleteView):
 
         comments = self.object.comments.all()
         context['event_comments'] = comments
+        context['count_comments'] = count_events(len(comments), 3)
 
         return context
 
