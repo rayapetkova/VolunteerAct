@@ -1,6 +1,8 @@
 from django.core import validators
 from django.db import models
 
+from VolunteerAct.categories.models import Event
+
 
 class Comment(models.Model):
     body = models.TextField(
@@ -18,4 +20,9 @@ class Comment(models.Model):
 
     updated_at = models.DateTimeField(
         auto_now=True
+    )
+
+    event = models.ForeignKey(
+        to=Event,
+        on_delete=models.CASCADE
     )
