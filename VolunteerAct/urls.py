@@ -21,5 +21,6 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('auth/', include('VolunteerAct.app_users.urls')),
     path('', include('VolunteerAct.home.urls')),
-    path('categories/', include('VolunteerAct.categories.urls'))
+    path('categories/', include('VolunteerAct.categories.urls')),
+    path('comments/', include('VolunteerAct.comments.urls'))
 ]
