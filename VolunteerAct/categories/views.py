@@ -89,8 +89,8 @@ class EventDetailsView(DetailView, DeleteView):
         details_keywords = extract_keywords(self.object.details)
         context['keywords'] = details_keywords
 
-        comments = self.object.comments.all()
-        context['event_comments'] = comments
+        comments = self.object.comments.all().order_by('-created_at')
+        context['event_comments'] = comments[:3]
         context['count_comments'] = count_events(len(comments), 3)
 
         return context

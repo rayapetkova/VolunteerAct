@@ -64,7 +64,7 @@
 
             <div class="comments-container">
                 <div class="title-container">
-                    <h3>Comments ({{ count_comments }})</h3>
+                    <h3 id="comments-count">Comments ({{ count_comments }})</h3>
                     <a href="{% url 'all-events-page' %}">See all comments</a>
                 </div>
 
@@ -272,20 +272,74 @@
 
 
 
+
+
+
+
+
+
+
+
+
     const sendCommentElement = document.getElementsByClassName('send-comment')[0]
     const addNewCommentInput = document.getElementById('add-new-comment')
+    const commentsContainer = document.getElementsByClassName('all-comments')[0]
+    const commentsCountElement = document.getElementById('comments-count')
+    const allCommentContainers = document.getElementsByClassName('comment-container')
 
     sendCommentElement.addEventListener('click', () => {
 
         const addNewCommentRequest = async() => {
-            const result = await fetch('{% url 'list-create-comments-api' %}', {
+            const response = fetch('{% url 'list-create-comments-api' %}', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
                     'X-CSRFToken': `{{ csrf_token }}`
                 },
-                body: JSON.stringify({body: addNewCommentInput.value, event: `{{ object.id }}`})
+                body: JSON.stringify({
+                    body: addNewCommentInput.value,
+                    event: `{{ object.id }}`,
+                    user: `{{ request.user.id }}`
+                })
             })
+                .then((response) => response.json())
+                .then((result) => {
+                    addNewCommentInput.value = ''
+
+                    const newCommentContainer = document.createElement('div')
+                    newCommentContainer.className = 'comment-container'
+
+                    const profileURL = `{% url 'profile-details-update' pk='0' %}`.replace('0', result.user)
+
+                    newCommentContainer.innerHTML = `
+                        <div class="author">
+                            <a href="${profileURL}" class="img-container">
+                                <img src="{{ object.host.profile.profile_image.url }}" alt="host-img">
+                            </a>
+
+                            <div class="more-info">
+                                {% if request.user.profile.id == object.host.profile.id %}
+                                    <a href="${profileURL}" class="host-name">You</a>
+                                {% else %}
+                                    <a href="${profileURL}" class="host-name">{{ object.host.profile.full_name }}</a>
+                                {% endif %}
+                            </div>
+                        </div>
+
+                        <p>${result.body}</p>
+                    `
+
+                    commentsContainer.prepend(newCommentContainer)
+
+                    if (commentsCountElement.textContent.includes('2')) {
+                        commentsCountElement.textContent = 'Comments (3)'
+                    } else if (commentsCountElement.textContent.includes('3')) {
+                        commentsCountElement.textContent = 'Comments (3+)'
+                        commentsContainer.removeChild(allCommentContainers[allCommentContainers.length - 1])
+                    }
+
+
+                })
         }
 
         addNewCommentRequest()
