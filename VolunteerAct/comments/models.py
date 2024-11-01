@@ -1,7 +1,11 @@
+from django.contrib.auth import get_user_model
 from django.core import validators
 from django.db import models
 
 from VolunteerAct.categories.models import Event
+
+
+AppUserModel = get_user_model()
 
 
 class Comment(models.Model):
@@ -26,4 +30,10 @@ class Comment(models.Model):
         to=Event,
         on_delete=models.CASCADE,
         related_name='comments'
+    )
+
+    user = models.ForeignKey(
+        to=AppUserModel,
+        on_delete=models.CASCADE,
+        related_name='user_comments'
     )
