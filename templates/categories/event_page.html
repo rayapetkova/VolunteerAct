@@ -94,7 +94,7 @@
 
                     <div class="send-comment-container">
                         <input type="text" id="add-new-comment" name="add-new-comment" placeholder="Add new comment..." >
-                        <img src="{% static 'images/send_icon.png' %}" alt="send-icon">
+                        <img src="{% static 'images/send_icon.png' %}" class="send-comment" alt="send-icon">
                     </div>
 
                 </div>
@@ -267,6 +267,31 @@
         mainElement.style.opacity = '1'
         mainElement.style.filter = 'alpha(opacity=100)'
     })
+
+
+
+
+
+    const sendCommentElement = document.getElementsByClassName('send-comment')[0]
+    const addNewCommentInput = document.getElementById('add-new-comment')
+
+    sendCommentElement.addEventListener('click', () => {
+
+        const addNewCommentRequest = async() => {
+            const result = await fetch('{% url 'list-create-comments-api' %}', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'X-CSRFToken': `{{ csrf_token }}`
+                },
+                body: JSON.stringify({body: addNewCommentInput.value, event: `{{ object.id }}`})
+            })
+        }
+
+        addNewCommentRequest()
+
+    })
+
 
 
 </script>
