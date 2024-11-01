@@ -32,6 +32,7 @@ INSTALLED_APPS = [
 
     'cloudinary',
     'cloudinary_storage',
+    'rest_framework',
 
     'VolunteerAct.app_users',
     'VolunteerAct.home',
