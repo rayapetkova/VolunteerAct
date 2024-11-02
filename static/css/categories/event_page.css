@@ -135,6 +135,25 @@ header ul.last-links li a {
     background-color: rgba(136, 0, 0, 0.82);
 }
 
+.info-section .left a.save-to-favs-btn {
+    background-color: rgba(53, 191, 237, 0.18);
+    display: flex;
+    align-items: center;
+    color: #000000;
+    transition: background-color 0.2s ease-in-out;
+}
+
+.info-section .left a.save-to-favs-btn:hover {
+    background-color: rgba(53, 191, 237, 0.38);
+}
+
+.info-section .left .save-to-favs-btn img {
+    width: 1.1em;
+    height: 1.1em;
+    margin-left: 0.4em;
+}
+
+
 
 
 

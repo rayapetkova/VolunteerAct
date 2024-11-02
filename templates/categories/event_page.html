@@ -44,6 +44,12 @@
                         <a href="#" class="delete-btn">Delete Event</a>
                     </div>
                 </div>
+            {% else %}
+                <div>
+                    <div class="buttons-container-edit-delete">
+                        <a href="" class="save-to-favs-btn">Save Event to Favourites<img src="{% static 'images/star_icon.png' %}" alt="star-icon"></a>
+                    </div>
+                </div>
             {% endif %}
 
             <div class="event-img-container">
