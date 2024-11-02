@@ -18,5 +18,9 @@ class Favourites(models.Model):
         on_delete=models.CASCADE
     )
 
+    added_on = models.DateTimeField(
+        auto_now_add=True
+    )
+
     class Meta:
         unique_together = ('user', 'event')
