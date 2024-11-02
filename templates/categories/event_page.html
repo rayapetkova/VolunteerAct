@@ -47,7 +47,7 @@
             {% else %}
                 <div>
                     <div class="buttons-container-edit-delete">
-                        <a href="" class="save-to-favs-btn">Save Event to Favourites<img src="{% static 'images/star_icon.png' %}" alt="star-icon"></a>
+                        <a class="save-to-favs-btn">Save Event to Favourites<img src="{% static 'images/star_icon.png' %}" alt="star-icon"></a>
                     </div>
                 </div>
             {% endif %}
@@ -260,24 +260,64 @@
     const deleteEventBtn = document.getElementsByClassName('delete-btn')[0]
     const deleteEventContainerForm = document.querySelectorAll('.delete-event-cont form')[0]
 
-    deleteEventBtn.addEventListener('click', () => {
-        deleteEventContainerForm.style.display = 'flex'
-        mainElement.style.opacity = '0.4'
-        mainElement.style.filter = 'alpha(opacity=20)'
-    })
+    if (deleteEventBtn) {
+        deleteEventBtn.addEventListener('click', () => {
+            deleteEventContainerForm.style.display = 'flex'
+            mainElement.style.opacity = '0.4'
+            mainElement.style.filter = 'alpha(opacity=20)'
+        })
 
-    const cancelDeletingBtn = document.getElementsByClassName('cancel-deleting-btn')[0]
+        const cancelDeletingBtn = document.getElementsByClassName('cancel-deleting-btn')[0]
 
-    cancelDeletingBtn.addEventListener('click', () => {
-        deleteEventContainerForm.style.display = 'none'
-        mainElement.style.opacity = '1'
-        mainElement.style.filter = 'alpha(opacity=100)'
-    })
-
-
-
+        cancelDeletingBtn.addEventListener('click', () => {
+            deleteEventContainerForm.style.display = 'none'
+            mainElement.style.opacity = '1'
+            mainElement.style.filter = 'alpha(opacity=100)'
+        })
+    }
 
 
+
+
+
+
+
+
+    const saveToFavsEventBtn = document.getElementsByClassName('save-to-favs-btn')[0]
+
+    if (saveToFavsEventBtn) {
+        saveToFavsEventBtn.addEventListener('click', () => {
+
+            const saveToFavsRequest = async() => {
+                const response = fetch('{% url 'list-create-favourites-record-api' %}', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'X-CSRFToken': `{{ csrf_token }}`
+                    },
+                    body: JSON.stringify({
+                        user: `{{ request.user.id }}`,
+                        event: `{{ object.id }}`
+                    })
+                })
+                    .then((response) => response.json())
+                    .then((result) => {
+                        const imgElement = document.createElement('img')
+                        imgElement.src = `{% static 'images/done_icon.png' %}`
+
+                        saveToFavsEventBtn.textContent = 'Saved Event to Favourites'
+                        saveToFavsEventBtn.appendChild(imgElement)
+
+                        saveToFavsEventBtn.addEventListener('mouseover', () => {
+                            saveToFavsEventBtn.style.backgroundColor = 'rgba(53, 191, 237, 0.18)'
+                            saveToFavsEventBtn.style.cursor = 'auto'
+                        })
+                    })
+            }
+
+            saveToFavsRequest()
+        })
+    }
 
 
 

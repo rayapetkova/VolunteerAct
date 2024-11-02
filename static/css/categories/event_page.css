@@ -145,6 +145,7 @@ header ul.last-links li a {
 
 .info-section .left a.save-to-favs-btn:hover {
     background-color: rgba(53, 191, 237, 0.38);
+    cursor: pointer;
 }
 
 .info-section .left .save-to-favs-btn img {
