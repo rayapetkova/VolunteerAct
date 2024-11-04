@@ -333,64 +333,67 @@
     const commentsCountElement = document.getElementById('comments-count')
     const allCommentContainers = document.getElementsByClassName('comment-container')
 
-    sendCommentElement.addEventListener('click', () => {
+    if (sendCommentElement) {
+        sendCommentElement.addEventListener('click', () => {
 
-        const addNewCommentRequest = async() => {
-            const response = fetch('{% url 'list-create-comments-api' %}', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                    'X-CSRFToken': `{{ csrf_token }}`
-                },
-                body: JSON.stringify({
-                    body: addNewCommentInput.value,
-                    event: `{{ object.id }}`,
-                    user: `{{ request.user.id }}`
+            const addNewCommentRequest = async() => {
+                const response = fetch('{% url 'list-create-comments-api' %}', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'X-CSRFToken': `{{ csrf_token }}`
+                    },
+                    body: JSON.stringify({
+                        body: addNewCommentInput.value,
+                        event: `{{ object.id }}`,
+                        user: `{{ request.user.id }}`,
+                    })
                 })
-            })
-                .then((response) => response.json())
-                .then((result) => {
-                    addNewCommentInput.value = ''
+                    .then((response) => response.json())
+                    .then((result) => {
+                        addNewCommentInput.value = ''
 
-                    const newCommentContainer = document.createElement('div')
-                    newCommentContainer.className = 'comment-container'
+                        const newCommentContainer = document.createElement('div')
+                        newCommentContainer.className = 'comment-container'
 
-                    const profileURL = `{% url 'profile-details-update' pk='0' %}`.replace('0', result.user)
+                        const profileURL = `{% url 'profile-details-update' pk='0' %}`.replace('0', result.user)
 
-                    newCommentContainer.innerHTML = `
-                        <div class="author">
-                            <a href="${profileURL}" class="img-container">
-                                <img src="{{ object.host.profile.profile_image.url }}" alt="host-img">
-                            </a>
+                        newCommentContainer.innerHTML = `
+                            <div class="author">
+                                <a href="${profileURL}" class="img-container">
+                                    <img src="{{ object.host.profile.profile_image.url }}" alt="host-img">
+                                </a>
 
-                            <div class="more-info">
-                                {% if request.user.profile.id == object.host.profile.id %}
-                                    <a href="${profileURL}" class="host-name">You</a>
-                                {% else %}
-                                    <a href="${profileURL}" class="host-name">{{ object.host.profile.full_name }}</a>
-                                {% endif %}
+                                <div class="more-info">
+                                    {% if request.user.profile.id == object.host.profile.id %}
+                                        <a href="${profileURL}" class="host-name">You</a>
+                                    {% else %}
+                                        <a href="${profileURL}" class="host-name">{{ object.host.profile.full_name }}</a>
+                                    {% endif %}
+                                </div>
                             </div>
-                        </div>
 
-                        <p>${result.body}</p>
-                    `
+                            <p>${result.body}</p>
+                        `
 
-                    commentsContainer.prepend(newCommentContainer)
+                        commentsContainer.prepend(newCommentContainer)
 
-                    if (commentsCountElement.textContent.includes('2')) {
-                        commentsCountElement.textContent = 'Comments (3)'
-                    } else if (commentsCountElement.textContent.includes('3')) {
-                        commentsCountElement.textContent = 'Comments (3+)'
-                        commentsContainer.removeChild(allCommentContainers[allCommentContainers.length - 1])
-                    }
+                        if (commentsCountElement.textContent.includes('2')) {
+                            commentsCountElement.textContent = 'Comments (3)'
+                        } else if (commentsCountElement.textContent.includes('3')) {
+                            commentsCountElement.textContent = 'Comments (3+)'
+                            commentsContainer.removeChild(allCommentContainers[allCommentContainers.length - 1])
+                        }
 
 
-                })
-        }
+                    })
+            }
 
-        addNewCommentRequest()
+            addNewCommentRequest()
 
-    })
+        })
+    }
+
 
 
 

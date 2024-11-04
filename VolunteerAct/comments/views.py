@@ -4,7 +4,7 @@ from rest_framework.response import Response
 from rest_framework.views import APIView
 
 from VolunteerAct.comments.models import Comment
-from VolunteerAct.comments.serializers import CommentSerializer
+from VolunteerAct.comments.serializers import CommentSerializer, CommentCreateSerializer
 
 
 class CommentListApiView(APIView):
@@ -17,7 +17,7 @@ class CommentListApiView(APIView):
         return Response(data=json_data)
 
     def post(self, request):
-        serializer = CommentSerializer(data=request.data)
+        serializer = CommentCreateSerializer(data=request.data)
 
         if serializer.is_valid():
             serializer.save()
