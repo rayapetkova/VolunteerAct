@@ -79,16 +79,16 @@
                     {% for comment in event_comments %}
                         <div class="comment-container">
                             <div class="author">
-                                <a href="{% url 'profile-details-update' pk=object.host.profile.id %}" class="img-container">
-                                    <img src="{{ object.host.profile.profile_image.url }}" alt="host-img">
+                                <a href="{% url 'profile-details-update' pk=comment.user.profile.id %}" class="img-container">
+                                    <img src="{{ comment.user.profile.profile_image.url }}" alt="host-img">
                                 </a>
 
                                 <div class="more-info">
-                                    {% if request.user.profile.id == object.host.profile.id %}
-                                        <a href="{% url 'profile-details-update' pk=object.host.profile.id %}" class="host-name">You</a>
+                                    {% if request.user.id == comment.user.id %}
+                                        <a href="{% url 'profile-details-update' pk=comment.user.profile.id %}" class="host-name">You</a>
                                     {% else %}
                                         <a href="{% url 'profile-details-update' pk=object.host.profile.id %}"
-                                           class="host-name">{{ object.host.profile.full_name }}</a>
+                                           class="host-name">{{ comment.user.profile.full_name }}</a>
                                     {% endif %}
 
                                 </div>
@@ -353,38 +353,59 @@
                     .then((result) => {
                         addNewCommentInput.value = ''
 
-                        const newCommentContainer = document.createElement('div')
-                        newCommentContainer.className = 'comment-container'
+                        const createdCommentUrl = `{% url 'details-comment-api' pk='0' %}`.replace('0', result.id)
 
-                        const profileURL = `{% url 'profile-details-update' pk='0' %}`.replace('0', result.user)
+                        const createdCommentWholeDetails = fetch(createdCommentUrl)
+                            .then((response2) => response2.json())
+                            .then((commentResult) => {
 
-                        newCommentContainer.innerHTML = `
-                            <div class="author">
-                                <a href="${profileURL}" class="img-container">
-                                    <img src="{{ object.host.profile.profile_image.url }}" alt="host-img">
-                                </a>
+                                const newCommentContainer = document.createElement('div')
+                                newCommentContainer.className = 'comment-container'
 
-                                <div class="more-info">
-                                    {% if request.user.profile.id == object.host.profile.id %}
-                                        <a href="${profileURL}" class="host-name">You</a>
-                                    {% else %}
-                                        <a href="${profileURL}" class="host-name">{{ object.host.profile.full_name }}</a>
-                                    {% endif %}
-                                </div>
-                            </div>
+                                const profileURL = `{% url 'profile-details-update' pk='0' %}`.replace('0', commentResult.user.profile.id)
+                                const requestUserId = `{{ request.user.id }}`
 
-                            <p>${result.body}</p>
-                        `
+                                console.log(commentResult.user.profile)
+                                if (requestUserId == `${commentResult.user.id}`) {
+                                    newCommentContainer.innerHTML = `
+                                        <div class="author">
+                                            <a href="${profileURL}" class="img-container">
+                                                <img src="${commentResult.profile_image_full_url}" alt="host-img">
+                                            </a>
 
-                        commentsContainer.prepend(newCommentContainer)
+                                            <div class="more-info">
+                                                <a href="${profileURL}" class="host-name">You</a>
+                                            </div>
+                                        </div>
 
-                        if (commentsCountElement.textContent.includes('2')) {
-                            commentsCountElement.textContent = 'Comments (3)'
-                        } else if (commentsCountElement.textContent.includes('3')) {
-                            commentsCountElement.textContent = 'Comments (3+)'
-                            commentsContainer.removeChild(allCommentContainers[allCommentContainers.length - 1])
-                        }
+                                        <p>${commentResult.body}</p>
+                                    `
+                                } else {
+                                    newCommentContainer.innerHTML = `
+                                        <div class="author">
+                                            <a href="${profileURL}" class="img-container">
+                                                <img src="${commentResult.profile_image_full_url}" alt="host-img">
+                                            </a>
 
+                                            <div class="more-info">
+                                                <a href="${profileURL}" class="host-name">${commentResult.user.profile.full_name}</a>
+                                            </div>
+                                        </div>
+
+                                        <p>${commentResult.body}</p>
+                                    `
+                                }
+
+
+                                commentsContainer.prepend(newCommentContainer)
+
+                                if (commentsCountElement.textContent.includes('2')) {
+                                    commentsCountElement.textContent = 'Comments (3)'
+                                } else if (commentsCountElement.textContent.includes('3')) {
+                                    commentsCountElement.textContent = 'Comments (3+)'
+                                    commentsContainer.removeChild(allCommentContainers[allCommentContainers.length - 1])
+                                }
+                            })
 
                     })
             }
