@@ -4,9 +4,11 @@ from django.urls import reverse_lazy
 from django.utils import timezone
 from django.views.generic import DetailView, UpdateView, DeleteView
 from django.utils import timezone
+from rest_framework.views import APIView
 
 from VolunteerAct.categories.forms import EventForm, FilterForm, EventEditForm, EventDeleteForm
 from VolunteerAct.categories.models import Category, Event
+from VolunteerAct.categories.serializers import EventSerializer
 from VolunteerAct.categories.utils import count_events, extract_keywords
 from VolunteerAct.favourites.models import Favourites
 
@@ -121,3 +123,13 @@ class EventUpdateView(UpdateView):
             'categoryId': self.object.category.id,
             'pk': self.object.id
         })
+
+
+class EventListAPIView(APIView):
+
+    def get(self, request):
+        events = Event.objects.all()
+        serializer = EventSerializer(events, many=True)
+        json_data = serializer.data
+
+        return json_data
