@@ -8,6 +8,7 @@ from django.utils import timezone
 from VolunteerAct.categories.forms import EventForm, FilterForm, EventEditForm, EventDeleteForm
 from VolunteerAct.categories.models import Category, Event
 from VolunteerAct.categories.utils import count_events, extract_keywords
+from VolunteerAct.favourites.models import Favourites
 
 
 def category_details(request, pk):
@@ -92,6 +93,9 @@ class EventDetailsView(DetailView, DeleteView):
         comments = self.object.comments.all().order_by('-created_at')
         context['event_comments'] = comments[:3]
         context['count_comments'] = count_events(len(comments), 3)
+
+        user_favourite_event = Favourites.objects.filter(user=self.request.user, event=self.object)
+        context['user_favourite_event'] = user_favourite_event
 
         return context
 

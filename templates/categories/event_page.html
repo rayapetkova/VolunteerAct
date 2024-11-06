@@ -47,7 +47,11 @@
             {% else %}
                 <div>
                     <div class="buttons-container-edit-delete">
-                        <a class="save-to-favs-btn">Save Event to Favourites<img src="{% static 'images/star_icon.png' %}" alt="star-icon"></a>
+                        {% if not user_favourite_event %}
+                            <a class="save-to-favs-btn">Save Event to Favourites<img src="{% static 'images/star_icon.png' %}" alt="star-icon"></a>
+                        {% else %}
+                            <a class="save-to-favs-btn saved-to-favs">Saved Event to Favourites<img src="{% static 'images/done_icon.png' %}" alt="star-icon"></a>
+                        {% endif %}
                     </div>
                 </div>
             {% endif %}
@@ -257,6 +261,7 @@
 
 
 
+    const deleteEventBtn = document.getElementsByClassName('delete-btn')[0]
     const deleteEventBtn = document.getElementsByClassName('delete-btn')[0]
     const deleteEventContainerForm = document.querySelectorAll('.delete-event-cont form')[0]
 

@@ -154,6 +154,11 @@ header ul.last-links li a {
     margin-left: 0.4em;
 }
 
+.info-section .left a.saved-to-favs:hover {
+    background-color: rgba(53, 191, 237, 0.18);
+    cursor: auto;
+}
+
 
 
 
