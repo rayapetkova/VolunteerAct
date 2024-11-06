@@ -20,69 +20,75 @@
         </div>
     </section>
 
+
     <main>
-        <aside>
-            <div class="filters-title-box">
-                <img src="{% static 'images/filters_icon.png' %}" alt="filters-icon">
-                <h2>Filters</h2>
-            </div>
+        <input type="text" placeholder="Search events by title..." class="search-events-input">
 
-            <form action="{% url 'all-events-page' %}" method="GET">
-                {{ filter_form }}
-{##}
-{#                <section class="city">#}
-{#                    <h6>City</h6>#}
-{##}
-{#                    <ul>#}
-{#                        {% for city_dict in cities %}#}
-{#                            <li>#}
-{#                                <input type="checkbox" id="{{ city_dict.city }}" name="city" value="{{ city_dict.city }}" />#}
-{#                                <label for="{{ city_dict.city }}">{{ city_dict.city }} ({{ city_dict.cities_count }})</label>#}
-{#                            </li>#}
-{#                        {% endfor %}#}
-{#                    </ul>#}
-{#                </section>#}
+        <section class="aside-and-right-content">
+            <aside>
+                <div class="filters-title-box">
+                    <img src="{% static 'images/filters_icon.png' %}" alt="filters-icon">
+                    <h2>Filters</h2>
+                </div>
 
-                <button>Filter</button>
-            </form>
-        </aside>
+                <form action="{% url 'all-events-page' %}" method="GET">
+                    {{ filter_form }}
+    {##}
+    {#                <section class="city">#}
+    {#                    <h6>City</h6>#}
+    {##}
+    {#                    <ul>#}
+    {#                        {% for city_dict in cities %}#}
+    {#                            <li>#}
+    {#                                <input type="checkbox" id="{{ city_dict.city }}" name="city" value="{{ city_dict.city }}" />#}
+    {#                                <label for="{{ city_dict.city }}">{{ city_dict.city }} ({{ city_dict.cities_count }})</label>#}
+    {#                            </li>#}
+    {#                        {% endfor %}#}
+    {#                    </ul>#}
+    {#                </section>#}
 
-        <div class="right">
-            <h2>Events</h2>
+                    <button>Filter</button>
+                </form>
+            </aside>
 
-            <div class="all-events">
-                {% for event in all_events %}
-                    <a href="{% url 'event-page' categoryId=event.category.id pk=event.id %}" class="event-container">
-                        <p>{{ event.time }}</p>
+            <div class="right">
+                <h2>Events</h2>
 
-                        <div class="title-and-img">
-                            <div class="title-container">
-                                <h6>{{ event.title }}</h6>
-                                <div class="location">
-                                    <img src="{% static 'images/location_grey.png' %}" alt="locations">
-                                    <p>{{ event.exact_location }}</p>
+                <div class="all-events">
+                    {% for event in all_events %}
+                        <a href="{% url 'event-page' categoryId=event.category.id pk=event.id %}" class="event-container">
+                            <p>{{ event.time }}</p>
+
+                            <div class="title-and-img">
+                                <div class="title-container">
+                                    <h6>{{ event.title }}</h6>
+                                    <div class="location">
+                                        <img src="{% static 'images/location_grey.png' %}" alt="locations">
+                                        <p>{{ event.exact_location }}</p>
+                                    </div>
+
+                                    {% if event.host.id == request.user.id %}
+                                        <div class="your-event-container">
+                                            <p>Your event</p>
+                                            <img src="{% static 'images/your_event_icon.png' %}" alt="your-event-icon" >
+                                        </div>
+                                    {% endif %}
                                 </div>
 
-                                {% if event.host.id == request.user.id %}
-                                    <div class="your-event-container">
-                                        <p>Your event</p>
-                                        <img src="{% static 'images/your_event_icon.png' %}" alt="your-event-icon" >
-                                    </div>
-                                {% endif %}
+                                <div class="container-event-img">
+                                    <img src="{{ event.poster_image.url }}" alt="category-img">
+                                </div>
                             </div>
 
-                            <div class="container-event-img">
-                                <img src="{{ event.poster_image.url }}" alt="category-img">
-                            </div>
-                        </div>
-
-                        <p class="details">{{ event.details }}</p>
-                    </a>
-                {% empty %}
-                    <h3>No events yet</h3>
-                {% endfor %}
+                            <p class="details">{{ event.details }}</p>
+                        </a>
+                    {% empty %}
+                        <h3>No events yet</h3>
+                    {% endfor %}
+                </div>
             </div>
-        </div>
+        </section>
+
     </main>
 
     {% include 'base/footer.html' %}
@@ -101,6 +107,16 @@
                 headerElement.style.backgroundColor = 'transparent'
                 searchInput.className = 'search-bar'
             }
+        })
+
+
+
+
+
+
+        const searchEventsInput = document.getElementsByClassName('search-events-input')[0]
+        searchEventsInput.addEventListener('input', () => {
+            console.log('da veeeee')
         })
     </script>
 

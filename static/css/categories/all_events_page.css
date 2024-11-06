@@ -42,9 +42,12 @@ body {
 main {
     padding: 4% 15%;
     padding-bottom: 2%;
+    background-color: rgb(249, 249, 249);
+}
+
+main .aside-and-right-content {
     display: flex;
     gap: 6em;
-    background-color: rgb(249, 249, 249);
 }
 
 
