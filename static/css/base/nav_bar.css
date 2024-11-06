@@ -34,7 +34,13 @@ header section.search-bar-section input {
     font-size: 1.1em;
     margin-left: 7%;
     background-color: transparent;
-    color: #f1f1f1;
+    color: rgb(107, 107, 107);
+    outline: none;
+}
+
+header section.search-bar-section input:focus {
+    color: #252525;
+    background-color: rgb(240, 248, 255);
 }
 
 .white-placeholder::placeholder {

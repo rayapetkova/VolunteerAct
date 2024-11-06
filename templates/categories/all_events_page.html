@@ -22,7 +22,10 @@
 
 
     <main>
-        <input type="text" placeholder="Search events by title..." class="search-events-input">
+
+        <section class="search-events-bar-section">
+            <input type="text" placeholder="Search events by title..." class="search-events-input">
+        </section>
 
         <section class="aside-and-right-content">
             <aside>
@@ -125,6 +128,13 @@
                 .then((resultEvents) => {
 
                     allEventsElement.innerHTML = ''
+
+                    if (resultEvents.length == 0) {
+                        allEventsElement.innerHTML = `
+                            <h3>No events matched</h3>
+                        `
+                    }
+
                     for (let event of resultEvents) {
                         const aEventElement = document.createElement('a')
                         aEventElement.href = `{% url 'event-page' categoryId='00' pk='000' %}`.replace('00', event.category).replace('000', event.id)
