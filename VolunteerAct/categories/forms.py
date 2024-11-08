@@ -1,23 +1,8 @@
 from django import forms
-from django.db.models import Count
 from django.forms import ModelForm, widgets, Form
-from django.utils import timezone
 
-from VolunteerAct.categories.models import Event, Category
-
-
-def get_categories():
-    categories = Category.objects.all()
-    categories_names_tuple = [(category.name, category.name) for category in categories]
-
-    return categories_names_tuple
-
-
-def get_cities():
-    cities = Event.objects.values('city').annotate(cities_count=Count('city')).order_by('-cities_count')
-    cities_tuple = [(cityDict['city'], f"{cityDict['city']} ({cityDict['cities_count']})") for cityDict in cities]
-
-    return cities_tuple
+from VolunteerAct.categories.models import Event
+from VolunteerAct.categories.utils import get_categories, get_cities
 
 
 class EventForm(ModelForm):

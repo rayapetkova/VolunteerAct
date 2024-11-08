@@ -1,4 +1,7 @@
 from yake import KeywordExtractor
+from VolunteerAct.categories.models import Event, Category
+from django.utils import timezone
+from django.db.models import Count
 
 
 extractor = KeywordExtractor()
@@ -20,3 +23,17 @@ def extract_keywords(text):
             keywords.add(kw[0])
 
     return list(keywords)[:8]
+
+
+def get_categories():
+    categories = Category.objects.all()
+    categories_names_tuple = [(category.name, category.name) for category in categories]
+
+    return categories_names_tuple
+
+
+def get_cities():
+    cities = Event.objects.values('city').annotate(cities_count=Count('city')).order_by('-cities_count')
+    cities_tuple = [(cityDict['city'], f"{cityDict['city']} ({cityDict['cities_count']})") for cityDict in cities]
+
+    return cities_tuple
