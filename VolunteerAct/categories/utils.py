@@ -1,6 +1,5 @@
 from yake import KeywordExtractor
 from VolunteerAct.categories.models import Event, Category
-from django.utils import timezone
 from django.db.models import Count
 
 
