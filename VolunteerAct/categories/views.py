@@ -94,7 +94,10 @@ class EventDetailsView(DetailView, DeleteView):
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
 
-        see_more_events = Event.objects.all().filter(category__id=self.object.category.id, time__gte=timezone.now())[:4]
+        see_more_events = Event.objects.all().filter(
+            category__id=self.object.category.id,
+            time__gte=timezone.now(),
+        ).exclude(id=self.object.id)[:4]
         context['see_more_events'] = see_more_events
         context['count_more_events'] = count_events(len(see_more_events), 4)
 
@@ -107,6 +110,8 @@ class EventDetailsView(DetailView, DeleteView):
 
         user_favourite_event = Favourites.objects.filter(user=self.request.user, event=self.object)
         context['user_favourite_event'] = user_favourite_event
+
+        self.object.passed_event = True if self.object.time < timezone.now() else False
 
         return context
 

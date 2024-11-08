@@ -125,6 +125,13 @@
                                                 <img src="{% static 'images/location_grey.png' %}" alt="locations">
                                                 <p>{{ past_event.exact_location }}</p>
                                             </div>
+
+                                            {% if past_event.host.id == request.user.id %}
+                                                <div class="your-event-container">
+                                                    <p>Your event</p>
+                                                    <img src="{% static 'images/your_event_icon.png' %}" alt="your-event-icon" >
+                                                </div>
+                                            {% endif %}
                                         </div>
 
                                         <div class="container-event-img">

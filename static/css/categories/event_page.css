@@ -1,5 +1,9 @@
 @import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
 
+html {
+    scroll-behavior: smooth;
+}
+
 body {
     background-color: rgb(255, 255, 255);
     margin: 0;
@@ -157,6 +161,12 @@ header ul.last-links li a {
 .info-section .left a.saved-to-favs:hover {
     background-color: rgba(53, 191, 237, 0.18);
     cursor: auto;
+}
+
+
+
+.info-section .left .already-passed-event {
+    color: red;
 }
 
 
@@ -376,7 +386,7 @@ header ul.last-links li a {
 .upcoming-events {
     display: flex;
     flex-direction: column;
-    padding: 4% 15%;
+    padding: 5% 15%;
     border-top: solid 0.15em rgb(209, 209, 209);
 }
 
@@ -465,6 +475,23 @@ header ul.last-links li a {
     color: rgb(112 112 112);
     font-weight: 600;
     font-size: 0.8em;
+}
+
+.upcoming-events .events .event-container .info .your-event-container {
+    display: flex;
+    margin-top: 0.5em;
+}
+
+.upcoming-events .events .event-container .info .your-event-container p {
+    color: #EE6161;
+    margin: 0;
+    font-weight: 600;
+}
+
+.upcoming-events .events .event-container .info .your-event-container img {
+    width: 1.2em;
+    height: 1.2em;
+    margin-left: 0.5em;
 }
 
 

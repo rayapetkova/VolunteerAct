@@ -37,14 +37,14 @@
 
     <section class="info-section">
         <div class="left">
-            {% if object.host.id == request.user.id %}
+            {% if object.host.id == request.user.id and not object.passed_event %}
                 <div>
                     <div class="buttons-container-edit-delete">
                         <a href="{% url 'edit-event' categoryId=object.category.id pk=object.id %}" class="edit-btn">Edit Event</a>
                         <a href="#" class="delete-btn">Delete Event</a>
                     </div>
                 </div>
-            {% else %}
+            {% elif object.host.id != request.user.id and not object.passed_event %}
                 <div>
                     <div class="buttons-container-edit-delete">
                         {% if not user_favourite_event %}
@@ -54,6 +54,8 @@
                         {% endif %}
                     </div>
                 </div>
+            {% else %}
+                <p class="already-passed-event">This event has passed! Click here to see more: <a href="#explore">See more</a></p>
             {% endif %}
 
             <div class="event-img-container">
@@ -160,6 +162,14 @@
 
                         <div class="info">
                             <h6>{{ event.title }}</h6>
+
+                            {% if event.host.id == request.user.id %}
+                                <div class="your-event-container">
+                                    <p>Your event</p>
+                                    <img src="{% static 'images/your_event_icon.png' %}" alt="your-event-icon" >
+                                </div>
+                            {% endif %}
+
                             <p>Hosted by: {{ event.host.profile.full_name }}</p>
                             <p>{{ event.time }}</p>
                         </div>

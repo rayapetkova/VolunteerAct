@@ -443,6 +443,10 @@ form ul.errorlist li {
     color: #707070;
 }
 
+.past-events .your-event-container p {
+    color: #EE6161;
+}
+
 .no-events {
     text-align: center;
 }
