@@ -62,12 +62,20 @@ def all_events_view(request):
         if filter_form.is_valid():
             categories_filter = request.GET.getlist('category')
             cities_filter = request.GET.getlist('city')
+            time_filter = request.GET.getlist('time')
 
             if categories_filter:
                 all_events = all_events.filter(category__name__in=categories_filter)
 
             if cities_filter:
                 all_events = all_events.filter(city__in=cities_filter)
+
+            if len(time_filter) == 1:
+                if 'Past' in time_filter:
+                    all_events = all_events.filter(time__lt=timezone.now())
+
+                if 'Upcoming' in time_filter:
+                    all_events = all_events.filter(time__gte=timezone.now())
 
     context = {
         'filter_form': filter_form,

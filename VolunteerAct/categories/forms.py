@@ -51,6 +51,11 @@ class FilterForm(Form):
     CATEGORY_CHOICES = get_categories()
     CITY_CHOICES = get_cities()
 
+    TIME_CHOICES = (
+        ('Upcoming', 'Upcoming'),
+        ('Past', 'Past')
+    )
+
     category = forms.MultipleChoiceField(
         widget=forms.CheckboxSelectMultiple,
         required=False,
@@ -61,4 +66,10 @@ class FilterForm(Form):
         widget=forms.CheckboxSelectMultiple,
         required=False,
         choices=CITY_CHOICES
+    )
+
+    time = forms.MultipleChoiceField(
+        widget=forms.CheckboxSelectMultiple,
+        required=False,
+        choices=TIME_CHOICES
     )
