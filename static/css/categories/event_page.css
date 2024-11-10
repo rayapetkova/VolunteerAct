@@ -279,6 +279,10 @@ header ul.last-links li a {
     height: 50%;
 }
 
+.info-section .attending {
+    gap: 0;
+}
+
 .info-section .right .title-and-see-all {
     display: flex;
     justify-content: space-between;
@@ -333,6 +337,13 @@ header ul.last-links li a {
     height: 200px;
     width: 100%;
     margin-top: 1em;
+}
+
+.info-section .right p.you-are-attending-message {
+    color: #c0b70e;
+    font-weight: 600;
+    text-align: center;
+    margin-top: 2em;
 }
 
 .info-section .right .buttons-container-attend {
@@ -531,6 +542,7 @@ header ul.last-links li a {
     font-size: 2em;
     margin-top: 0;
     margin-bottom: 0.5em;
+    color: #08376b;
 }
 
 .going-to-event-container section, .delete-event-cont form section {
@@ -563,6 +575,11 @@ header ul.last-links li a {
 .going-to-event-container .right .box img, .delete-event-cont form section .right .box img {
     width: 1.5em;
     height: 1.5em;
+}
+
+.going-to-event-container .right .box p.reminder-message {
+    color: #c0b70e;
+    font-weight: 600;
 }
 
 .going-to-event-container .right button, .delete-event-cont form button {

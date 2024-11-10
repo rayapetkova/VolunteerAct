@@ -47,10 +47,12 @@
             {% elif object.host.id != request.user.id and not object.passed_event %}
                 <div>
                     <div class="buttons-container-edit-delete">
-                        {% if not user_favourite_event %}
-                            <a class="save-to-favs-btn">Save Event to Favourites<img src="{% static 'images/star_icon.png' %}" alt="star-icon"></a>
-                        {% else %}
-                            <a class="save-to-favs-btn saved-to-favs">Saved Event to Favourites<img src="{% static 'images/done_icon.png' %}" alt="star-icon"></a>
+                        {% if request.user.is_authenticated %}
+                            {% if not user_favourite_event %}
+                                <a class="save-to-favs-btn">Save Event to Favourites<img src="{% static 'images/star_icon.png' %}" alt="star-icon"></a>
+                            {% else %}
+                                <a class="save-to-favs-btn saved-to-favs">Saved Event to Favourites<img src="{% static 'images/done_icon.png' %}" alt="star-icon"></a>
+                            {% endif %}
                         {% endif %}
                     </div>
                 </div>
@@ -113,7 +115,7 @@
             </div>
         </div>
 
-        <div class="right">
+        <div class="right {% if request.user in object.attendees.all %}attending{% endif %}">
             <div class="event-category">
                 <div class="title-and-see-all">
                     <h4>Category</h4>
@@ -139,8 +141,17 @@
                 <iframe src="https://www.google.com/maps?q={{ object.exact_location }}&output=embed&maptype=satellite"></iframe>
             </div>
 
+            {% if request.user in object.attendees.all %}
+                <p class="you-are-attending-message">You are attending this event!</p>
+            {% endif %}
+
             <div class="buttons-container-attend">
-                <button class="attend">Attend</button>
+                {% if request.user in object.attendees.all %}
+                    <button class="attend">Cancel attendance</button>
+                {% else %}
+                    <button class="attend">Attend</button>
+                {% endif %}
+
                 <button class="share">Share <img src="{% static 'images/share.png' %}" alt="share-icon"></button>
             </div>
         </div>
@@ -200,6 +211,10 @@
                 <section class="box">
                     <img src="{% static 'images/location_grey.png' %}" alt="location_grey_icon">
                     <p>{{ object.exact_location }}</p>
+                </section>
+
+                <section class="box">
+                    <p class="reminder-message">You will receive a reminder email 1 day before the event!</p>
                 </section>
 
                 <button class="cancel">Cancel attending</button>

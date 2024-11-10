@@ -109,8 +109,9 @@ class EventDetailsView(DetailView, DeleteView):
         context['event_comments'] = comments[:3]
         context['count_comments'] = count_events(len(comments), 3)
 
-        user_favourite_event = Favourites.objects.filter(user=self.request.user, event=self.object)
-        context['user_favourite_event'] = user_favourite_event
+        if self.request.user.is_authenticated:
+            user_favourite_event = Favourites.objects.filter(user=self.request.user, event=self.object)
+            context['user_favourite_event'] = user_favourite_event
 
         self.object.passed_event = True if self.object.time < timezone.now() else False
 
