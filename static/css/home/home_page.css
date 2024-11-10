@@ -208,7 +208,7 @@ main {
     justify-content: space-between;
     padding: 1em 6em;
     border-radius: 10px;
-    margin-top: 8em;
+    margin-bottom: 8em;
 }
 
 .join-section .left {
@@ -328,7 +328,7 @@ main {
 
 .popular-cities-section .cities {
     display: flex;
-    justify-content: space-between;
+    gap: 2em;
 }
 
 .popular-cities-section .cities .city-container {

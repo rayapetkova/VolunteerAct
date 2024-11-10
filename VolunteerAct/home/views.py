@@ -15,7 +15,7 @@ def home_page(request):
     context = {
         'categories': Category.objects.order_by('id').all(),
         'upcoming_events': Event.objects.filter(time__gte=timezone.now()).order_by('time')[:4],
-        'popular_cities': popular_cities,
+        'popular_cities': popular_cities[:6],
         'pixabay_api_url': pixabay_api_url
     }
 
