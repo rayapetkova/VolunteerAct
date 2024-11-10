@@ -432,5 +432,42 @@
 
 
 
+
+    const attendBtn = document.getElementsByClassName('attend')[0]
+    const eventUpdateURL = `{% url 'update-event-api' pk='0' %}`.replace('0', {{ object.id }})
+
+    if (attendBtn) {
+
+        attendBtn.addEventListener('click', () => {
+            let currentAttendees = []
+
+            const response = fetch(eventUpdateURL)
+                .then((response) => response.json())
+                .then((resultEvent) => {
+                    currentAttendees = resultEvent.attendees
+                    currentAttendees.push({{ request.user.id }})
+
+                    const updateResponse = fetch(eventUpdateURL, {
+                        method: 'PUT',
+                        headers: {
+                            'Content-Type': 'application/json',
+                            'X-CSRFToken': `{{ csrf_token }}`
+                        },
+                        body: JSON.stringify({
+                            ...resultEvent,
+                            attendees: currentAttendees
+                        })
+
+                    })
+                })
+
+
+        })
+
+    }
+
+
+
+
 </script>
 </html>

@@ -4,6 +4,7 @@ from django.urls import reverse_lazy
 from django.utils import timezone
 from django.views.generic import DetailView, UpdateView, DeleteView
 from django.utils import timezone
+from rest_framework.generics import UpdateAPIView, RetrieveUpdateAPIView
 from rest_framework.response import Response
 from rest_framework.views import APIView
 
@@ -148,3 +149,8 @@ class EventListAPIView(APIView):
         json_data = serializer.data
 
         return Response(data=json_data)
+
+
+class EventUpdateAPIView(RetrieveUpdateAPIView):
+    queryset = Event.objects.all()
+    serializer_class = EventSerializer

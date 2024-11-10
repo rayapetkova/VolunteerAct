@@ -166,7 +166,6 @@
         const response = fetch(`${pixabayApiUrl}&q=${city}`)
             .then((response) => response.json())
             .then((result) => {
-                console.log(result)
                 const cityContainerDiv = document.createElement('div')
                 cityContainerDiv.className = 'city-container'
 
