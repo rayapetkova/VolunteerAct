@@ -35,6 +35,33 @@ header ul.last-links li a {
     align-items: center;
 }
 
+.all-comments .first-one p.first-to-comment-message {
+    text-align: center;
+    color: #5f5f5f;
+    margin: 0;
+}
+
+.all-comments .first-one {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.all-comments .first-one a.login-btn {
+    background-color: #08376b;
+    padding: 0.4em 0.7em;
+    color: rgb(255, 255, 255);
+    border-radius: 5px;
+    transition: background-color 0.2s ease-in-out;
+    text-decoration: none;
+    margin-top: 1em;
+}
+
+.all-comments .first-one a.login-btn:hover {
+    cursor: pointer;
+    background-color: rgba(8, 55, 107, 0.89);
+}
+
 .upper-section .host .img-container,.all-comments .comment-container .author .img-container {
     width: 4em;
     height: 4em;

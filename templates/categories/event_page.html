@@ -79,7 +79,10 @@
             <div class="comments-container">
                 <div class="title-container">
                     <h3 id="comments-count">Comments ({{ count_comments }})</h3>
-                    <a href="{% url 'all-events-page' %}">See all comments</a>
+
+                    {% if event_comments %}
+                        <a href="{% url 'all-events-page' %}">See all comments</a>
+                    {% endif %}
                 </div>
 
                 <div class="all-comments">
@@ -104,12 +107,23 @@
 
                             <p>{{ comment.body }}</p>
                         </div>
+                    {% empty %}
+                        <div class="first-one">
+                            <p class="first-to-comment-message">Be the first one to comment!</p>
+
+                            {% if not request.user.is_authenticated %}
+                                <a href="{% url 'login-user' %}" class="login-btn">Log In</a>
+                            {% endif %}
+                        </div>
+
                     {% endfor %}
 
-                    <div class="send-comment-container">
-                        <input type="text" id="add-new-comment" name="add-new-comment" placeholder="Add new comment..." >
-                        <img src="{% static 'images/send_icon.png' %}" class="send-comment" alt="send-icon">
-                    </div>
+                    {% if request.user.is_authenticated %}
+                        <div class="send-comment-container">
+                            <input type="text" id="add-new-comment" name="add-new-comment" placeholder="Add new comment..." >
+                            <img src="{% static 'images/send_icon.png' %}" class="send-comment" alt="send-icon">
+                        </div>
+                    {% endif %}
 
                 </div>
             </div>
@@ -146,10 +160,12 @@
             {% endif %}
 
             <div class="buttons-container-attend">
-                {% if request.user in object.attendees.all %}
-                    <button class="attend">Cancel attendance</button>
-                {% else %}
-                    <button class="attend">Attend</button>
+                {% if request.user.is_authenticated %}
+                    {% if request.user in object.attendees.all %}
+                        <button class="attend">Cancel attendance</button>
+                    {% else %}
+                        <button class="attend">Attend</button>
+                    {% endif %}
                 {% endif %}
 
                 <button class="share">Share <img src="{% static 'images/share.png' %}" alt="share-icon"></button>
@@ -277,11 +293,14 @@
     const attendingEventContainer = document.getElementsByClassName('going-to-event-container')[0]
     const mainElement = document.getElementsByTagName('main')[0]
 
-    attendEventBtn.addEventListener('click', () => {
-        attendingEventContainer.style.display = 'flex'
-        mainElement.style.opacity = '0.4'
-        mainElement.style.filter = 'alpha(opacity=20)'
-    })
+    if (attendEventBtn) {
+        attendEventBtn.addEventListener('click', () => {
+            attendingEventContainer.style.display = 'flex'
+            mainElement.style.opacity = '0.4'
+            mainElement.style.filter = 'alpha(opacity=20)'
+        })
+    }
+
 
 
 
