@@ -388,12 +388,12 @@ header ul.last-links li a {
     font-family: inherit;
 }
 
-.info-section .right .buttons-container-attend button.attend {
+.info-section .right .buttons-container-attend button.attend, button.cancel-attendance {
     background-color: #08376b;
     color: #ffffff;
 }
 
-.info-section .right .buttons-container-attend button.attend:hover {
+.info-section .right .buttons-container-attend button.attend:hover, button.cancel-attendance:hover {
     cursor: pointer;
     background-color: rgba(8, 55, 107, 0.88);
 }
@@ -540,7 +540,7 @@ header ul.last-links li a {
     margin: 0
 }
 
-.attending-cont, .delete-event-cont {
+.attending-cont, .delete-event-cont, .cancel-attendance-cont {
     width: 100%;
     display: flex;
     justify-content: center;

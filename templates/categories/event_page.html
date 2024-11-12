@@ -162,7 +162,7 @@
             <div class="buttons-container-attend">
                 {% if request.user.is_authenticated %}
                     {% if request.user in object.attendees.all %}
-                        <button class="attend">Cancel attendance</button>
+                        <button class="cancel-attendance">Cancel attendance</button>
                     {% else %}
                         <button class="attend">Attend</button>
                     {% endif %}
@@ -240,6 +240,35 @@
     </div>
 </div>
 
+<div class="cancel-attendance-cont">
+    <div class="going-to-event-container">
+        <h3>Are you sure you want to cancel your attendance?</h3>
+
+        <section>
+            <div class="left-img-container">
+                <img src="{{ object.poster_image.url }}" alt="event-img">
+            </div>
+
+            <div class="right">
+                <h5>{{ object.title }}</h5>
+
+                <section class="box">
+                    <img src="{% static 'images/clock.png' %}" alt="clock_icon">
+                    <p>{{ object.time }}</p>
+                </section>
+
+                <section class="box">
+                    <img src="{% static 'images/location_grey.png' %}" alt="location_grey_icon">
+                    <p>{{ object.exact_location }}</p>
+                </section>
+
+                <button class="cancel">Yes, cancel my attendance!</button>
+                <button class="share">Share <img src="{% static 'images/share_white.png' %}" alt="share-img"></button>
+            </div>
+        </section>
+    </div>
+</div>
+
 <div class="delete-event-cont">
     <form method="POST">
         {% csrf_token %}
@@ -290,7 +319,7 @@
 
 
     const attendEventBtn = document.getElementsByClassName('attend')[0]
-    const attendingEventContainer = document.getElementsByClassName('going-to-event-container')[0]
+    const attendingEventContainer = document.querySelectorAll('.attending-cont .going-to-event-container')[0]
     const mainElement = document.getElementsByTagName('main')[0]
 
     if (attendEventBtn) {
@@ -299,6 +328,55 @@
             mainElement.style.opacity = '0.4'
             mainElement.style.filter = 'alpha(opacity=20)'
         })
+    }
+
+
+
+
+
+    const cancelAttendanceBtn = document.getElementsByClassName('cancel-attendance')[0]
+    const cancelAttendanceContainer = document.querySelectorAll('.cancel-attendance-cont .going-to-event-container')[0]
+
+    if (cancelAttendanceBtn) {
+        cancelAttendanceBtn.addEventListener('click', () => {
+            cancelAttendanceContainer.style.display = 'flex'
+            mainElement.style.opacity = '0.4'
+            mainElement.style.filter = 'alpha(opacity=20)'
+        })
+    }
+
+
+    const cancelAttendance = document.querySelector('.cancel-attendance-cont .cancel')
+    const eventUpdateURL = `{% url 'update-event-api' pk='0' %}`.replace('0', {{ object.id }})
+    const currentLoggedInUserId = `{{ request.user.id }}`
+
+    if (cancelAttendance) {
+
+        cancelAttendance.addEventListener('click', () => {
+            let attendees = []
+
+            const response = fetch(eventUpdateURL)
+                .then((response) => response.json())
+                .then((resultEvent) => {
+                    attendees = resultEvent.attendees.filter(attendee => `${attendee}` !== currentLoggedInUserId)
+
+                    const updateResponse = fetch(eventUpdateURL, {
+                        method: 'PUT',
+                        headers: {
+                            'Content-Type': 'application/json',
+                            'X-CSRFToken': `{{ csrf_token }}`
+                        },
+                        body: JSON.stringify({
+                            ...resultEvent,
+                            attendees
+                        })
+                    })
+
+                })
+
+            location.reload()
+        })
+
     }
 
 
@@ -468,7 +546,6 @@
 
 
     const attendBtn = document.getElementsByClassName('attend')[0]
-    const eventUpdateURL = `{% url 'update-event-api' pk='0' %}`.replace('0', {{ object.id }})
 
     if (attendBtn) {
 
