@@ -39,6 +39,8 @@ def category_details(request, pk):
             event.category = category
 
             event.save()
+
+            event.attendees.add(request.user)
             return redirect('category-page', pk=pk)
 
     context = {

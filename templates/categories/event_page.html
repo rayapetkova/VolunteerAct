@@ -160,7 +160,7 @@
             {% endif %}
 
             <div class="buttons-container-attend">
-                {% if request.user.is_authenticated %}
+                {% if request.user.is_authenticated and not event.host == request.user %}
                     {% if request.user in object.attendees.all %}
                         <button class="cancel-attendance">Cancel attendance</button>
                     {% else %}

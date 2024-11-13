@@ -351,6 +351,10 @@ header ul.last-links li a {
     height: 1.5em;
 }
 
+.info-section .attending div.event-category {
+    margin-bottom: 1em;
+}
+
 .box {
     display: flex;
     align-items: center;
@@ -370,7 +374,7 @@ header ul.last-links li a {
     color: #c0b70e;
     font-weight: 600;
     text-align: center;
-    margin-top: 2em;
+    margin-top: 1em;
 }
 
 .info-section .right .buttons-container-attend {
@@ -403,6 +407,7 @@ header ul.last-links li a {
     background-color: #e8e8e8;
     display: flex;
     align-items: center;
+    transition: background-color 0.2s ease-in-out;
 }
 
 .info-section .right .buttons-container-attend button.share img {
@@ -413,7 +418,7 @@ header ul.last-links li a {
 
 .info-section .right .buttons-container-attend button.share:hover {
     cursor: pointer;
-    background-color: rgba(232, 232, 232, 0.77);
+    background-color: rgba(236, 236, 236, 0.77);
 }
 
 
