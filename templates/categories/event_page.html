@@ -123,6 +123,10 @@
                             <input type="text" id="add-new-comment" name="add-new-comment" placeholder="Add new comment..." >
                             <img src="{% static 'images/send_icon.png' %}" class="send-comment" alt="send-icon">
                         </div>
+
+                        <ul class="errors-new-comment">
+
+                        </ul>
                     {% endif %}
 
                 </div>
@@ -458,6 +462,7 @@
     const commentsContainer = document.getElementsByClassName('all-comments')[0]
     const commentsCountElement = document.getElementById('comments-count')
     const allCommentContainers = document.getElementsByClassName('comment-container')
+    const beTheFirstOneToCommentMessage = document.getElementsByClassName('first-to-comment-message')[0]
 
     if (sendCommentElement) {
         sendCommentElement.addEventListener('click', () => {
@@ -477,61 +482,85 @@
                 })
                     .then((response) => response.json())
                     .then((result) => {
-                        addNewCommentInput.value = ''
+                        const ulErrorsNewComment = document.getElementsByClassName('errors-new-comment')[0]
 
-                        const createdCommentUrl = `{% url 'details-comment-api' pk='0' %}`.replace('0', result.id)
+                        if (typeof result.body !== "string") {
+                            for (let error of result.body) {
 
-                        const createdCommentWholeDetails = fetch(createdCommentUrl)
-                            .then((response2) => response2.json())
-                            .then((commentResult) => {
+                                if (!ulErrorsNewComment.textContent.includes(error)) {
+                                    const liErrorEl = document.createElement('li')
+                                    liErrorEl.textContent = error
 
-                                const newCommentContainer = document.createElement('div')
-                                newCommentContainer.className = 'comment-container'
-
-                                const profileURL = `{% url 'profile-details-update' pk='0' %}`.replace('0', commentResult.user.profile.id)
-                                const requestUserId = `{{ request.user.id }}`
-
-                                console.log(commentResult.user.profile)
-                                if (requestUserId == `${commentResult.user.id}`) {
-                                    newCommentContainer.innerHTML = `
-                                        <div class="author">
-                                            <a href="${profileURL}" class="img-container">
-                                                <img src="${commentResult.profile_image_full_url}" alt="host-img">
-                                            </a>
-
-                                            <div class="more-info">
-                                                <a href="${profileURL}" class="host-name">You</a>
-                                            </div>
-                                        </div>
-
-                                        <p>${commentResult.body}</p>
-                                    `
-                                } else {
-                                    newCommentContainer.innerHTML = `
-                                        <div class="author">
-                                            <a href="${profileURL}" class="img-container">
-                                                <img src="${commentResult.profile_image_full_url}" alt="host-img">
-                                            </a>
-
-                                            <div class="more-info">
-                                                <a href="${profileURL}" class="host-name">${commentResult.user.profile.full_name}</a>
-                                            </div>
-                                        </div>
-
-                                        <p>${commentResult.body}</p>
-                                    `
+                                    ulErrorsNewComment.appendChild(liErrorEl)
                                 }
 
+                            }
+                        } else {
+                            addNewCommentInput.value = ''
 
-                                commentsContainer.prepend(newCommentContainer)
+                            const createdCommentUrl = `{% url 'details-comment-api' pk='0' %}`.replace('0', result.id)
 
-                                if (commentsCountElement.textContent.includes('2')) {
-                                    commentsCountElement.textContent = 'Comments (3)'
-                                } else if (commentsCountElement.textContent.includes('3')) {
-                                    commentsCountElement.textContent = 'Comments (3+)'
-                                    commentsContainer.removeChild(allCommentContainers[allCommentContainers.length - 1])
-                                }
-                            })
+                            const createdCommentWholeDetails = fetch(createdCommentUrl)
+                                .then((response2) => response2.json())
+                                .then((commentResult) => {
+                                    ulErrorsNewComment.innerHTML = ''
+
+                                    const newCommentContainer = document.createElement('div')
+                                    newCommentContainer.className = 'comment-container'
+
+                                    const profileURL = `{% url 'profile-details-update' pk='0' %}`.replace('0', commentResult.user.profile.id)
+                                    const requestUserId = `{{ request.user.id }}`
+
+                                    if (requestUserId == `${commentResult.user.id}`) {
+                                        newCommentContainer.innerHTML = `
+                                            <div class="author">
+                                                <a href="${profileURL}" class="img-container">
+                                                    <img src="${commentResult.profile_image_full_url}" alt="host-img">
+                                                </a>
+
+                                                <div class="more-info">
+                                                    <a href="${profileURL}" class="host-name">You</a>
+                                                </div>
+                                            </div>
+
+                                            <p>${commentResult.body}</p>
+                                        `
+                                    } else {
+                                        newCommentContainer.innerHTML = `
+                                            <div class="author">
+                                                <a href="${profileURL}" class="img-container">
+                                                    <img src="${commentResult.profile_image_full_url}" alt="host-img">
+                                                </a>
+
+                                                <div class="more-info">
+                                                    <a href="${profileURL}" class="host-name">${commentResult.user.profile.full_name}</a>
+                                                </div>
+                                            </div>
+
+                                            <p>${commentResult.body}</p>
+                                        `
+                                    }
+
+                                    console.log(allCommentContainers[allCommentContainers.length - 1])
+                                    commentsContainer.prepend(newCommentContainer)
+
+                                    if (beTheFirstOneToCommentMessage) {
+                                        beTheFirstOneToCommentMessage.style.display = 'none'
+                                    }
+
+                                    if (commentsCountElement.textContent.includes('0')) {
+                                        commentsCountElement.textContent = 'Comments (1)'
+                                    } else if (commentsCountElement.textContent.includes('1')) {
+                                        commentsCountElement.textContent = 'Comments (2)'
+                                    } else if (commentsCountElement.textContent.includes('2')) {
+                                        commentsCountElement.textContent = 'Comments (3)'
+                                    } else {
+                                        commentsCountElement.textContent = 'Comments (3+)'
+                                        commentsContainer.removeChild(allCommentContainers[allCommentContainers.length - 1])
+                                    }
+                                })
+
+                            }
 
                     })
             }

@@ -266,6 +266,20 @@ header ul.last-links li a {
     cursor: pointer;
 }
 
+.left .comments-container ul.errors-new-comment {
+    padding: 0;
+    margin: 0;
+    margin-top: -1.5em;
+}
+
+.left .comments-container ul.errors-new-comment li {
+    list-style: none;
+    color: #d70000;
+    margin: 0;
+    padding: 0;
+    font-size: 1em;
+}
+
 .left .comments-container .title-container a {
     font-size: 1em;
 }
