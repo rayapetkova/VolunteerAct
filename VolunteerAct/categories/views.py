@@ -57,7 +57,10 @@ def category_details(request, pk):
 def all_events_view(request):
     filter_form = FilterForm(request.GET or None)
 
-    all_events = Event.objects.all()
+    all_events = Event.objects.all().order_by('-time')
+
+    for event in all_events:
+        event.already_passed = True if event.time < timezone.now() else False
 
     if request.method == "GET":
         if filter_form.is_valid():

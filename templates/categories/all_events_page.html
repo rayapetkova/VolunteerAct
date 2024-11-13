@@ -59,7 +59,7 @@
 
                 <div class="all-events">
                     {% for event in all_events %}
-                        <a href="{% url 'event-page' categoryId=event.category.id pk=event.id %}" class="event-container">
+                        <a href="{% url 'event-page' categoryId=event.category.id pk=event.id %}" class="event-container {% if event.already_passed %}passed-event-container{% endif %}">
                             <p>{{ event.time }}</p>
 
                             <div class="title-and-img">
@@ -74,6 +74,12 @@
                                         <div class="your-event-container">
                                             <p>Your event</p>
                                             <img src="{% static 'images/your_event_icon.png' %}" alt="your-event-icon" >
+                                        </div>
+                                    {% endif %}
+
+                                    {% if event.already_passed %}
+                                        <div class="passed-event-message-cont">
+                                            <p>Already passed event</p>
                                         </div>
                                     {% endif %}
                                 </div>

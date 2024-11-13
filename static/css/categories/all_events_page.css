@@ -229,13 +229,15 @@ main .right .all-events h3 {
     border-radius: 7px;
 }
 
-.title-and-img .your-event-container {
+.title-and-img .your-event-container,
+.title-and-img .passed-event-message-cont {
     display: flex;
     align-items: center;
     margin-top: 0.5em;
 }
 
-.title-and-img .your-event-container p {
+.title-and-img .your-event-container p,
+.title-and-img .passed-event-message-cont p{
     color: #EE6161;
     margin: 0;
     font-weight: 600;
@@ -276,4 +278,10 @@ main .right .all-events h3 {
     height: 45%;
     width: 100%;
     background: linear-gradient(to bottom, rgba(255, 255, 255, 0) 0%, rgb(255 255 255) 80%);
+}
+
+.passed-event-container p,
+.passed-event-container h6,
+.passed-event-container > p:nth-child(1){
+    color: #707070;
 }
