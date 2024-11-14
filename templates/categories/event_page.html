@@ -670,6 +670,17 @@
                     commentContainer.appendChild(pCommentBody)
                 })
         })
+
+        cancelEditBtn.addEventListener('click', () => {
+            const pCommentBody = document.createElement('p')
+            pCommentBody.className = 'comment-body'
+            pCommentBody.textContent = commentBody.textContent
+
+            commentContainer.removeChild(inputEditComment)
+            commentContainer.removeChild(buttonsContainer)
+
+            commentContainer.appendChild(pCommentBody)
+        })
     }
 
 
