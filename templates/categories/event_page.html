@@ -558,12 +558,8 @@
                                     commentsContainer.prepend(newCommentContainer)
                                     const lastCommentContainerNumber = commentsContainer.getElementsByClassName('comment-container').length - 1
 
-                                    console.log(lastCommentContainerNumber)
-                                    console.log(commentsContainer.getElementsByClassName('comment-container'))
                                     if (lastCommentContainerNumber > 2) {
-                                        console.log(commentsContainer.getElementsByClassName('comment-container')[lastCommentContainerNumber])
                                         commentsContainer.getElementsByClassName('comment-container')[lastCommentContainerNumber].remove()
-                                        console.log(commentsContainer.getElementsByClassName('comment-container'))
                                     }
 
                                     editingComments()
@@ -581,7 +577,6 @@
                                         commentsCountElement.textContent = 'Comments (3)'
                                     } else {
                                         commentsCountElement.textContent = 'Comments (3+)'
-                                        commentsContainer.removeChild(allCommentContainers[allCommentContainers.length - 1])
                                     }
                                 })
 
@@ -660,6 +655,7 @@
             buttonsContainer.appendChild(cancelEditBtn)
 
             editIcon.addEventListener('click', () => {
+                console.log(editIcon.parentElement.parentElement.parentElement)
                 const commentBody = editIcon.parentElement.parentElement.parentElement.getElementsByClassName('comment-body')[0]
                 inputEditComment.value = commentBody.textContent
 
@@ -700,6 +696,9 @@
                         } else {
                             commentContainer.removeChild(inputEditComment)
                             commentContainer.removeChild(buttonsContainer)
+
+                            const ulErrors = commentContainer.getElementsByClassName('errors-edited-comment')[0]
+                            ulErrors.remove()
 
                             const pCommentBody = document.createElement('p')
                             pCommentBody.className = 'comment-body'
