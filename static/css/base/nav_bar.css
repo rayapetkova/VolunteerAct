@@ -18,31 +18,6 @@ header .img-logo img {
     width: 100%
 }
 
-header section.search-bar-section {
-    display: flex;
-    align-items: center;
-    width: 30%;
-}
-
-header section.search-bar-section input {
-    width: 100%;
-    height: 60%;
-    border: solid 1px rgb(156, 156, 156);
-    border-radius: 10px;
-    padding: 1em;
-    font-family: inherit;
-    font-size: 1.1em;
-    margin-left: 7%;
-    background-color: transparent;
-    color: rgb(107, 107, 107);
-    outline: none;
-}
-
-header section.search-bar-section input:focus {
-    color: #252525;
-    background-color: rgb(240, 248, 255);
-}
-
 .white-placeholder::placeholder {
     color: #ffffff;
 }
@@ -57,18 +32,27 @@ header ul.last-links {
 }
 
 header ul.logout-ul {
-    justify-content: end;
+    width: 22%;
 }
 
 header ul.last-links li {
     list-style: none;
 }
 
+header ul.last-links li.favourite-events a,
+header ul.last-links li.tickets-events a {
+    transition: color 0.2s ease-in-out;
+}
+
+header ul.last-links li.favourite-events a:hover,
+header ul.last-links li.tickets-events a:hover {
+    color: rgba(84, 165, 255, 0.89);
+}
+
 header ul.last-links li.profile-img-container {
     width: 2.2em;
     display: flex;
     align-items: center;
-    margin-right: 1em;
 }
 
 header ul.last-links li.profile-img-container a {
@@ -92,7 +76,7 @@ header ul.last-links li a {
     font-weight: 600;
 }
 
-header ul.last-links li:nth-child(2) a, header ul.last-links .logout-btn a {
+header ul.sign-in-ul li:nth-child(2) a, header ul.last-links .logout-btn a {
     background-color: #08376b;
     padding: 0.4em 0.7em;
     color: rgb(255, 255, 255);
@@ -102,5 +86,5 @@ header ul.last-links li:nth-child(2) a, header ul.last-links .logout-btn a {
 
 header ul.last-links .logout-btn a:hover {
     cursor: pointer;
-    background-color: rgba(8, 55, 107, 0.89);
+    background-color: rgba(13, 74, 141, 0.89);
 }
