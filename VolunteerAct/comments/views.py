@@ -11,7 +11,7 @@ from VolunteerAct.comments.serializers import CommentSerializer, CommentCreateSe
 class CommentListApiView(APIView):
 
     def get(self, request):
-        comments = Comment.objects.all()
+        comments = Comment.objects.all().order_by('-created_at')
         serializer = CommentSerializer(comments, many=True)
         json_data = serializer.data
 
@@ -45,3 +45,12 @@ class CommentEditAndDeleteApiView(APIView):
             return Response(serializer.data, status=status.HTTP_201_CREATED)
 
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+    def delete(self, request, pk):
+        comment = Comment.objects.all().filter(id=pk).first()
+
+        if comment:
+            comment.delete()
+            return Response(status=status.HTTP_201_CREATED)
+
+        return Response(status=status.HTTP_400_BAD_REQUEST)
