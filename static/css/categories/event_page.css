@@ -386,6 +386,11 @@ header ul.last-links li a {
     font-size: 0.9em;
 }
 
+.left .all-comments .comment-container p.confirm-deleting-comment {
+    color: #EE6161;
+    font-weight: 600;
+}
+
 
 
 

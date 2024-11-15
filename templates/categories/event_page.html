@@ -759,8 +759,74 @@
                     'X-CSRFToken': `{{ csrf_token }}`
                 }
             })
+                .then((response) => response.json())
+                .then((result) => {
+                    const firstThreeComments = fetch(`{% url 'list-create-comments-api' %}`)
+                        .then((response) => response.json())
+                        .then((resultComments) => {
+                            const firstThreeComments = resultComments.slice(0, 3)
+                            const allCommentsContainer = document.getElementsByClassName('all-comments')[0]
+                            allCommentsContainer.innerHTML = ''
+
+                            for (let comment of firstThreeComments) {
+                                const newCommentContainer = document.createElement('div')
+                                newCommentContainer.className = 'comment-container'
+
+                                const profileURL = `{% url 'profile-details-update' pk='0' %}`.replace('0', comment.user.profile.id)
+                                const requestUserId = `{{ request.user.id }}`
+
+                                if (requestUserId == `${comment.user.id}`) {
+                                    newCommentContainer.innerHTML = `
+                                        <div class="author">
+                                            <a href="${profileURL}" class="img-container">
+                                                <img src="${comment.profile_image_full_url}" alt="host-img">
+                                            </a>
+
+                                            <div class="more-info">
+                                                <a href="${profileURL}" class="host-name">You</a>
+                                            </div>
+
+                                            <div class="editing-icons">
+                                                <img src="{% static 'images/edit_icon.png' %}" alt="edit-icon" class="edit-comment-icon {{ comment.id }}">
+                                                <img src="{% static 'images/delete_icon.png' %}" alt="delete-icon" class="delete-comment-icon {{ comment.id }}">
+                                            </div>
+                                        </div>
+
+                                        <p>${comment.body}</p>
+                                    `
+
+                                    {#editingComments()#}
+                                } else {
+                                    newCommentContainer.innerHTML = `
+                                        <div class="author">
+                                            <a href="${profileURL}" class="img-container">
+                                                <img src="${commentResult.profile_image_full_url}" alt="host-img">
+                                            </a>
+
+                                            <div class="more-info">
+                                                <a href="${profileURL}" class="host-name">${commentResult.user.profile.full_name}</a>
+                                            </div>
+                                        </div>
+
+                                        <p>${commentResult.body}</p>
+                                    `
+                                }
+
+                                console.log(newCommentContainer)
+                                allCommentsContainer.appendChild(newCommentContainer)
+                            }
+
+                        })
+                })
 
             commentContainer.remove()
+
+
+        })
+
+        cancelDeletingCommentBtn.addEventListener('click', () => {
+            commentContainer.removeChild(pConfirmingElement)
+            commentContainer.removeChild(buttonsContainer)
         })
     }
 

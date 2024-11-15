@@ -48,9 +48,10 @@ class CommentEditAndDeleteApiView(APIView):
 
     def delete(self, request, pk):
         comment = Comment.objects.all().filter(id=pk).first()
+        serializer = CommentSerializer(comment)
 
         if comment:
             comment.delete()
-            return Response(status=status.HTTP_201_CREATED)
+            return Response(serializer.data, status=status.HTTP_201_CREATED)
 
         return Response(status=status.HTTP_400_BAD_REQUEST)
