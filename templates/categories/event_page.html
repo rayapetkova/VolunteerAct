@@ -655,7 +655,6 @@
             buttonsContainer.appendChild(cancelEditBtn)
 
             editIcon.addEventListener('click', () => {
-                console.log(editIcon.parentElement.parentElement.parentElement)
                 const commentBody = editIcon.parentElement.parentElement.parentElement.getElementsByClassName('comment-body')[0]
                 inputEditComment.value = commentBody.textContent
 
@@ -698,7 +697,10 @@
                             commentContainer.removeChild(buttonsContainer)
 
                             const ulErrors = commentContainer.getElementsByClassName('errors-edited-comment')[0]
-                            ulErrors.remove()
+
+                            if (ulErrors) {
+                                ulErrors.remove()
+                            }
 
                             const pCommentBody = document.createElement('p')
                             pCommentBody.className = 'comment-body'
