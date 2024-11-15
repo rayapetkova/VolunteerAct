@@ -11,7 +11,7 @@ class CommentSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Comment
-        fields = ('profile_image_full_url', 'body', 'created_at', 'updated_at', 'event', 'user')
+        fields = ('id', 'profile_image_full_url', 'body', 'created_at', 'updated_at', 'event', 'user')
 
     def get_profile_image_full_url(self, obj):
         if obj.user.profile.profile_image:
