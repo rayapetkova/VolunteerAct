@@ -499,9 +499,9 @@
 
                                     ulErrorsNewComment.appendChild(liErrorEl)
                                 }
-
                             }
                         } else {
+
                             addNewCommentInput.value = ''
 
                             const createdCommentUrl = `{% url 'details-comment-api' pk='0' %}`.replace('0', result.id)
@@ -527,10 +527,17 @@
                                                 <div class="more-info">
                                                     <a href="${profileURL}" class="host-name">You</a>
                                                 </div>
+
+                                                <div class="editing-icons">
+                                                    <img src="{% static 'images/edit_icon.png' %}" alt="edit-icon" class="edit-comment-icon {{ comment.id }}">
+                                                    <img src="{% static 'images/delete_icon.png' %}" alt="delete-icon" class="delete-comment-icon {{ comment.id }}">
+                                                </div>
                                             </div>
 
                                             <p>${commentResult.body}</p>
                                         `
+
+                                        editingComments()
                                     } else {
                                         newCommentContainer.innerHTML = `
                                             <div class="author">
@@ -547,7 +554,6 @@
                                         `
                                     }
 
-                                    console.log(allCommentContainers[allCommentContainers.length - 1])
                                     commentsContainer.prepend(newCommentContainer)
 
                                     if (beTheFirstOneToCommentMessage) {
@@ -617,69 +623,144 @@
 
 
 
-    const editIconBtns = document.getElementsByClassName('edit-comment-icon')
 
-    for (let editIcon of editIconBtns) {
-        const commentId = editIcon.classList[1]
-        const commentContainer = editIcon.parentElement.parentElement.parentElement
-        const commentBody = editIcon.parentElement.parentElement.parentElement.getElementsByClassName('comment-body')[0]
-        const inputEditComment = document.createElement('input')
-        inputEditComment.value = commentBody.textContent
-        inputEditComment.className = 'edit-comment-input'
-        const saveEditedCommentBtn = document.createElement('button')
-        saveEditedCommentBtn.textContent = 'Save'
-        saveEditedCommentBtn.className = 'save-edited-btn'
-        const cancelEditBtn = document.createElement('button')
-        cancelEditBtn.textContent = 'Cancel'
-        cancelEditBtn.className = 'cancel-edit-btn'
+    function editingComments() {
+        const editIconBtns = document.getElementsByClassName('edit-comment-icon')
+
+        for (let editIcon of editIconBtns) {
+            const commentId = editIcon.classList[1]
+            const commentContainer = editIcon.parentElement.parentElement.parentElement
+            const commentBody = editIcon.parentElement.parentElement.parentElement.getElementsByClassName('comment-body')[0]
+            const inputEditComment = document.createElement('input')
+            inputEditComment.value = commentBody.textContent
+            inputEditComment.className = 'edit-comment-input'
+            const saveEditedCommentBtn = document.createElement('button')
+            saveEditedCommentBtn.textContent = 'Save'
+            saveEditedCommentBtn.className = 'save-edited-btn'
+            const cancelEditBtn = document.createElement('button')
+            cancelEditBtn.textContent = 'Cancel'
+            cancelEditBtn.className = 'cancel-edit-btn'
+
+            const buttonsContainer = document.createElement('div')
+            buttonsContainer.className = 'comment-buttons-container'
+            buttonsContainer.appendChild(saveEditedCommentBtn)
+            buttonsContainer.appendChild(cancelEditBtn)
+
+            editIcon.addEventListener('click', () => {
+                const commentBody = editIcon.parentElement.parentElement.parentElement.getElementsByClassName('comment-body')[0]
+                inputEditComment.value = commentBody.textContent
+
+                commentContainer.removeChild(commentBody)
+                commentContainer.appendChild(inputEditComment)
+                commentContainer.appendChild(buttonsContainer)
+            })
+
+            saveEditedCommentBtn.addEventListener('click', () => {
+                const newEditedComment = inputEditComment.value
+                const editCommentUrl = `{% url 'edit-delete-comment-api' pk='0' %}`.replace('0', commentId)
+
+                fetch(editCommentUrl, {
+                    method: 'PATCH',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'X-CSRFToken': '{{ csrf_token }}'
+                    },
+                    body: JSON.stringify({
+                        body: newEditedComment
+                    })
+                })
+                    .then((response) => response.json())
+                    .then((resultEditedComment) => {
+                        if (typeof resultEditedComment.body !== 'string') {
+                            const ulErrorsEditedComment = document.createElement('ul')
+                            ulErrorsEditedComment.className = 'errors-edited-comment'
+                            inputEditComment.after(ulErrorsEditedComment)
+
+                            for (let error of resultEditedComment.body) {
+                                if (!ulErrorsEditedComment.textContent.includes(error)) {
+                                    const liErrorEl = document.createElement('li')
+                                    liErrorEl.textContent = error
+
+                                    ulErrorsEditedComment.appendChild(liErrorEl)
+                                }
+                            }
+                        } else {
+                            commentContainer.removeChild(inputEditComment)
+                            commentContainer.removeChild(buttonsContainer)
+
+                            const pCommentBody = document.createElement('p')
+                            pCommentBody.className = 'comment-body'
+                            pCommentBody.textContent = resultEditedComment.body
+
+                            commentContainer.appendChild(pCommentBody)
+                        }
+
+                    })
+            })
+
+            cancelEditBtn.addEventListener('click', () => {
+                const pCommentBody = document.createElement('p')
+                pCommentBody.className = 'comment-body'
+                pCommentBody.textContent = commentBody.textContent
+
+                const ulErrorsEditedComment = commentContainer.getElementsByClassName('errors-edited-comment')[0]
+                if (ulErrorsEditedComment) {
+                    ulErrorsEditedComment.remove()
+                }
+
+                commentContainer.removeChild(inputEditComment)
+                commentContainer.removeChild(buttonsContainer)
+
+                commentContainer.appendChild(pCommentBody)
+            })
+        }
+    }
+
+    editingComments()
+
+
+
+
+
+
+
+    const deleteCommentBtns = document.getElementsByClassName('delete-comment-icon')
+
+    for (let deleteIcon of deleteCommentBtns) {
+        const commentId = deleteIcon.classList[1]
+        const commentContainer = deleteIcon.parentElement.parentElement.parentElement
+        const pConfirmingElement = document.createElement('p')
+        pConfirmingElement.className = 'confirm-deleting-comment'
+        pConfirmingElement.textContent = 'Are you sure you want to delete this comment?'
+        const confirmDeletingCommentBtn = document.createElement('button')
+        confirmDeletingCommentBtn.textContent = 'Confirm'
+        confirmDeletingCommentBtn.className = 'save-edited-btn'
+        const cancelDeletingCommentBtn = document.createElement('button')
+        cancelDeletingCommentBtn.textContent = 'Cancel'
+        cancelDeletingCommentBtn.className = 'cancel-edit-btn'
 
         const buttonsContainer = document.createElement('div')
         buttonsContainer.className = 'comment-buttons-container'
-        buttonsContainer.appendChild(saveEditedCommentBtn)
-        buttonsContainer.appendChild(cancelEditBtn)
+        buttonsContainer.appendChild(confirmDeletingCommentBtn)
+        buttonsContainer.appendChild(cancelDeletingCommentBtn)
 
-        editIcon.addEventListener('click', () => {
-            commentContainer.removeChild(commentBody)
-            commentContainer.appendChild(inputEditComment)
+        deleteIcon.addEventListener('click', () => {
+            commentContainer.appendChild(pConfirmingElement)
             commentContainer.appendChild(buttonsContainer)
         })
 
-        saveEditedCommentBtn.addEventListener('click', () => {
-            const newEditedComment = inputEditComment.value
-            const editCommentUrl = `{% url 'edit-delete-comment-api' pk='0' %}`.replace('0', commentId)
+        confirmDeletingCommentBtn.addEventListener('click', () => {
+            const deleteCommentUrl = `{% url 'edit-delete-comment-api' pk='0' %}`.replace('0', commentId)
 
-            fetch(editCommentUrl, {
-                method: 'PATCH',
+            fetch(deleteCommentUrl, {
+                method: 'DELETE',
                 headers: {
                     'Content-Type': 'application/json',
-                    'X-CSRFToken': '{{ csrf_token }}'
-                },
-                body: JSON.stringify({
-                    body: newEditedComment
-                })
+                    'X-CSRFToken': `{{ csrf_token }}`
+                }
             })
-                .then((response) => response.json())
-                .then((resultEditedComment) => {
-                    commentContainer.removeChild(inputEditComment)
-                    commentContainer.removeChild(buttonsContainer)
 
-                    const pCommentBody = document.createElement('p')
-                    pCommentBody.className = 'comment-body'
-                    pCommentBody.textContent = resultEditedComment.body
-
-                    commentContainer.appendChild(pCommentBody)
-                })
-        })
-
-        cancelEditBtn.addEventListener('click', () => {
-            const pCommentBody = document.createElement('p')
-            pCommentBody.className = 'comment-body'
-            pCommentBody.textContent = commentBody.textContent
-
-            commentContainer.removeChild(inputEditComment)
-            commentContainer.removeChild(buttonsContainer)
-
-            commentContainer.appendChild(pCommentBody)
+            commentContainer.remove()
         })
     }
 

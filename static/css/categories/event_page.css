@@ -372,6 +372,20 @@ header ul.last-links li a {
     height: 2.5em;
 }
 
+.left .all-comments .comment-container ul.errors-edited-comment {
+    margin: 0;
+    padding: 0;
+    margin-top: 0.3em;
+}
+
+.left .all-comments .comment-container ul.errors-edited-comment li {
+    list-style: none;
+    color: #d70000;
+    margin: 0;
+    padding: 0;
+    font-size: 0.9em;
+}
+
 
 
 
