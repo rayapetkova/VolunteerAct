@@ -1,0 +1,306 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+
+body {
+    background-color: rgb(255, 255, 255);
+    margin: 0;
+    padding: 0;
+    font-family: "Poppins", sans-serif;
+}
+
+
+
+
+
+.upper-section {
+    padding: 0 15%;
+    padding-bottom: 1.5%;
+    display: flex;
+    flex-direction: column;
+    border-bottom: solid 0.15em rgb(209, 209, 209);
+}
+
+.upper-section h2 {
+    font-size: 2em;
+    margin-bottom: 0.3em;
+}
+
+.upper-section .more-info {
+    display: flex;
+    flex-direction: column;
+}
+
+.upper-section .more-info p {
+    margin: 0;
+}
+
+
+
+
+
+
+
+main {
+    padding: 4% 15%;
+    padding-bottom: 2%;
+    background-color: rgb(249, 249, 249);
+}
+
+main .aside-and-right-content {
+    display: flex;
+    gap: 6em;
+}
+
+
+
+main section.search-events-bar-section {
+    display: flex;
+    align-items: center;
+    width: 30%;
+}
+
+main section.search-events-bar-section input {
+    width: 100%;
+    height: 60%;
+    border: solid 1px rgb(156, 156, 156);
+    border-radius: 10px;
+    padding: 0.7em;
+    font-family: inherit;
+    font-size: 1em;
+    background-color: transparent;
+    color: rgb(107, 107, 107);
+    margin-bottom: 2em;
+    outline: none;
+}
+
+main section.search-events-bar-section input:focus {
+    color: #252525;
+    background-color: rgb(240, 248, 255);
+}
+
+
+
+aside {
+    display: flex;
+    flex-direction: column;
+    gap: 1em;
+    width: 20%;
+    position: sticky;
+    top: 20%;
+    height: 55vh;
+    border-right: solid 1px rgb(172, 172, 172);
+}
+
+aside .filters-title-box {
+    display: flex;
+    align-items: center;
+}
+
+aside .filters-title-box img {
+    width: 1.5em;
+    height: 1.5em;
+    margin-right: 0.5em;
+}
+
+aside .filters-title-box h2 {
+    margin: 0;
+}
+
+aside form {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5em;
+}
+
+aside form fieldset {
+    border: none;
+    padding: 0;
+}
+
+aside form fieldset input {
+    margin-left: 0;
+}
+
+aside form fieldset legend {
+    margin: 0;
+    color: #555555;
+    font-weight: 600;
+    font-size: 0.9em;
+}
+
+aside form fieldset label {
+    font-size: 1em;
+    color: #252525;
+    font-weight: 500;
+}
+
+aside form legend {
+    padding: 0;
+}
+
+aside form button {
+    width: 50%;
+    padding: 0.5em 0;
+    border-radius: 2px;
+    border: none;
+    background-color: #08376b;
+    color: #ffffff;
+    align-self: start;
+    transition: background-color 0.2s ease-in-out;
+}
+
+aside form button:hover {
+    cursor: pointer;
+    background-color: rgba(8, 55, 107, 0.89);
+}
+
+
+
+
+
+
+
+main .right {
+    width: 75%;
+}
+
+main .right h2 {
+    margin-top: 0;
+}
+
+main .right .all-events {
+    display: flex;
+    flex-direction: column;
+    gap: 1em;
+
+}
+
+main .right .all-events h3 {
+    text-align: center;
+    color: #5f5f5f;
+    margin-bottom: 0;
+}
+
+main .right .all-events .explore-events-btn {
+    background-color: #08376b;
+    padding: 0.4em 0.7em;
+    color: rgb(255, 255, 255);
+    border-radius: 5px;
+    width: 20%;
+    margin: auto;
+    text-align: center;
+    font-weight: 600;
+    font-family: inherit;
+    text-decoration: none;
+    transition: background-color 0.2s ease-in-out;
+}
+
+main .right .all-events .explore-events-btn:hover {
+    cursor: pointer;
+    background-color: rgba(13, 74, 141, 0.89);
+}
+
+.event-container {
+    background-color: rgb(255, 255, 255);
+    display: flex;
+    flex-direction: column;
+    padding: 1.5em;
+    border-radius: 10px;
+    margin-bottom: 1.5em;
+    position: relative;
+    height: 15em;
+    text-decoration: none;
+    color: #000000;
+    max-width: 50em;
+    box-shadow: 10px 10px 5px rgb(249, 249, 249);
+}
+
+.event-container > p:nth-child(1) {
+    color: #35c0ed;
+    font-weight: 700;
+    margin: 0;
+    font-size: 0.85em;
+}
+
+.title-and-img {
+    display: flex;
+    justify-content: space-between;
+}
+
+.event-container .title-and-img .title-container {
+    width: 60%;
+}
+
+.event-container .title-and-img h6 {
+    font-size: 1.3em;
+    margin: 0;
+    margin-top: 0.3em;
+}
+
+.title-and-img .container-event-img {
+    width: 38%;
+    height: 7em;
+}
+
+.title-and-img img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 7px;
+}
+
+.title-and-img .your-event-container,
+.title-and-img .passed-event-message-cont {
+    display: flex;
+    align-items: center;
+    margin-top: 0.5em;
+}
+
+.title-and-img .your-event-container p,
+.title-and-img .passed-event-message-cont p{
+    color: #EE6161;
+    margin: 0;
+    font-weight: 600;
+}
+
+.title-and-img .your-event-container img {
+    width: 1.2em;
+    height: 1.2em;
+    margin-left: 0.5em;
+}
+
+.event-container .location {
+    display: flex;
+    margin-top: 0.3em;
+    align-items: center;
+}
+
+.event-container .location img {
+    width: 1em;
+    height: 1em;
+    margin-right: 0.4em;
+}
+
+.event-container .location p {
+    margin: 0;
+}
+
+.event-container .details {
+    overflow: hidden;
+    max-width: 100%;
+}
+
+.event-container .details:after {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    height: 45%;
+    width: 100%;
+    background: linear-gradient(to bottom, rgba(255, 255, 255, 0) 0%, rgb(255 255 255) 80%);
+}
+
+.passed-event-container p,
+.passed-event-container h6,
+.passed-event-container > p:nth-child(1){
+    color: #707070;
+}

@@ -1,0 +1,190 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Favourite Events</title>
+    <link rel="stylesheet" href="{% static 'css/base/nav_bar.css' %}">
+    <link rel="stylesheet" href="{% static 'css/base/footer.css' %}">
+    <link rel="stylesheet" href="{% static 'css/favourites/favourite_events.css' %}">
+</head>
+<body>
+    {% include 'base/nav_bar.html' %}
+
+    <section class="upper-section">
+        <h2>Favourite Events</h2>
+
+        <div class="more-info">
+            <p>Discover your personalized "Favourite Events" section, where all the events you have liked are gathered in one place. Don't miss out on opportunities to attend them and engage with your favourite activities!</p>
+        </div>
+    </section>
+
+
+    <main>
+
+        <section class="search-events-bar-section">
+            <input type="text" placeholder="Search events by title..." class="search-events-input">
+        </section>
+
+        <section class="aside-and-right-content">
+            <aside>
+                <div class="filters-title-box">
+                    <img src="{% static 'images/filters_icon.png' %}" alt="filters-icon">
+                    <h2>Filters</h2>
+                </div>
+
+                <form action="{% url 'user-favourite-events-page' %}" method="GET">
+                    {{ filter_form }}
+
+                    <button>Filter</button>
+                </form>
+            </aside>
+
+            <div class="right">
+                <h2>Your Favourite Events</h2>
+
+                <div class="all-events">
+                    {% for favourite in user_favourite_events %}
+                        <a href="{% url 'event-page' categoryId=favourite.event.category.id pk=favourite.event.id %}" class="event-container {% if favourite.already_passed %}passed-event-container{% endif %}">
+                            <p>{{ favourite.event.time }}</p>
+
+                            <div class="title-and-img">
+                                <div class="title-container">
+                                    <h6>{{ favourite.event.title }}</h6>
+                                    <div class="location">
+                                        <img src="{% static 'images/location_grey.png' %}" alt="locations">
+                                        <p>{{ favourite.event.exact_location }}</p>
+                                    </div>
+
+                                    {% if favourite.event.host.id == request.user.id %}
+                                        <div class="your-event-container">
+                                            <p>Your event</p>
+                                            <img src="{% static 'images/your_event_icon.png' %}" alt="your-event-icon" >
+                                        </div>
+                                    {% endif %}
+
+                                    {% if favourite.already_passed %}
+                                        <div class="passed-event-message-cont">
+                                            <p>Already passed event</p>
+                                        </div>
+                                    {% endif %}
+                                </div>
+
+                                <div class="container-event-img">
+                                    <img src="{{ favourite.event.poster_image.url }}" alt="category-img">
+                                </div>
+                            </div>
+
+                            <p class="details">{{ favourite.event.details }}</p>
+                        </a>
+                    {% empty %}
+                        <h3>No events yet</h3>
+                        <a href="{% url 'all-events-page' %}" class="explore-events-btn">Explore events</a>
+                    {% endfor %}
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    {% include 'base/footer.html' %}
+
+</body>
+
+    <script>
+        const headerElement = document.getElementsByTagName('header')[0]
+
+        document.addEventListener('scroll', () => {
+            if (window.scrollY > 10) {
+                headerElement.style.backgroundColor = 'rgba(67, 79, 98, 0.76)'
+            } else {
+                headerElement.style.backgroundColor = 'transparent'
+            }
+        })
+
+
+
+
+
+
+        const searchEventsInput = document.getElementsByClassName('search-events-input')[0]
+
+        searchEventsInput.addEventListener('input', () => {
+            const eventsUrl = `{% url 'list-events-api' %}?searchedTitle=${searchEventsInput.value}`
+            const allEventsElement = document.getElementsByClassName('all-events')[0]
+
+            const response = fetch(eventsUrl)
+                .then((response) => response.json())
+                .then((resultEvents) => {
+
+                    allEventsElement.innerHTML = ''
+
+                    if (resultEvents.length == 0) {
+                        allEventsElement.innerHTML = `
+                            <h3>No events matched</h3>
+                        `
+                    }
+
+                    for (let event of resultEvents) {
+                        const aEventElement = document.createElement('a')
+                        aEventElement.href = `{% url 'event-page' categoryId='00' pk='000' %}`.replace('00', event.category).replace('000', event.id)
+                        aEventElement.className = 'event-container'
+                        const requestUserId = '{{ request.user.id }}'
+
+                        if (requestUserId == `${event.host}`) {
+                            aEventElement.innerHTML = `
+                                <p>${event.event_time_formatted}</p>
+
+                                <div class="title-and-img">
+                                    <div class="title-container">
+                                        <h6>${event.title}</h6>
+                                        <div class="location">
+                                            <img src="{% static 'images/location_grey.png' %}" alt="locations">
+                                            <p>${event.exact_location}</p>
+                                        </div>
+
+                                        <div class="your-event-container">
+                                            <p>Your event</p>
+                                            <img src="{% static 'images/your_event_icon.png' %}" alt="your-event-icon" >
+                                        </div>
+                                    </div>
+
+                                    <div class="container-event-img">
+                                        <img src="${event.poster_image_full_url}" alt="category-img">
+                                    </div>
+                                </div>
+
+                                <p class="details">${event.details}</p>
+                            `
+                        } else {
+                            aEventElement.innerHTML = `
+                                <p>${event.event_time_formatted}</p>
+
+                                <div class="title-and-img">
+                                    <div class="title-container">
+                                        <h6>${event.title}</h6>
+                                        <div class="location">
+                                            <img src="{% static 'images/location_grey.png' %}" alt="locations">
+                                            <p>${event.exact_location}</p>
+                                        </div>
+                                    </div>
+
+                                    <div class="container-event-img">
+                                        <img src="${event.poster_image_full_url}" alt="category-img">
+                                    </div>
+                                </div>
+
+                                <p class="details">${event.details}</p>
+                            `
+                        }
+
+
+                        allEventsElement.appendChild(aEventElement)
+                    }
+
+                })
+        })
+    </script>
+
+</html>
