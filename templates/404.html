@@ -5,10 +5,13 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>404 Page</title>
+    <link rel="stylesheet" href="{% static 'css/404.css' %}">
 </head>
 <body>
 
     <img src="{% static 'images/404_image.png' %}" alt="404-image">
+
+    <a href="{% url 'home-page' %}">Back to home page</a>
 
 </body>
 </html>
