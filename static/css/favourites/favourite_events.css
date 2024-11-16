@@ -207,14 +207,35 @@ main .right .all-events .explore-events-btn:hover {
     border-radius: 10px;
     margin-bottom: 1.5em;
     position: relative;
-    height: 15em;
+    height: 17em;
     text-decoration: none;
     color: #000000;
     max-width: 50em;
     box-shadow: 10px 10px 5px rgb(249, 249, 249);
 }
 
-.event-container > p:nth-child(1) {
+.event-container .date-and-delete {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1em;
+}
+
+.event-container .date-and-delete img {
+    width: 1.2em;
+    height: 1.2em;
+    padding: 0.7em;
+    transition: background-color 0.2s ease-in-out;
+    border-radius: 50%;
+    z-index: 1111;
+}
+
+.event-container .date-and-delete img:hover {
+    cursor: pointer;
+    background-color: #08376b;
+}
+
+.event-container .date-and-delete p {
     color: #35c0ed;
     font-weight: 700;
     margin: 0;

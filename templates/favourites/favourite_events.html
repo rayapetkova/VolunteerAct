@@ -47,7 +47,10 @@
                 <div class="all-events">
                     {% for favourite in user_favourite_events %}
                         <a href="{% url 'event-page' categoryId=favourite.event.category.id pk=favourite.event.id %}" class="event-container {% if favourite.already_passed %}passed-event-container{% endif %}">
-                            <p>{{ favourite.event.time }}</p>
+                            <div class="date-and-delete">
+                                <p>{{ favourite.event.time }}</p>
+                                <img src="{% static 'images/delete_favourite_record_icon.png' %}" class="delete-favourite-btn {{ favourite.id }}" alt="delete-icon">
+                            </div>
 
                             <div class="title-and-img">
                                 <div class="title-container">
@@ -185,6 +188,44 @@
 
                 })
         })
+
+
+
+
+
+        const deleteFavouriteBtns = document.getElementsByClassName('delete-favourite-btn')
+
+        for (let deleteBtn of deleteFavouriteBtns) {
+            const favouriteRecordId = deleteBtn.classList[1]
+            const eventContainer = deleteBtn.parentElement.parentElement
+            const deleteFavouriteRecordUrl = `{% url 'delete-favourite-record-api' pk='0' %}`.replace('0', favouriteRecordId)
+
+            deleteBtn.addEventListener('click', () => {
+                eventContainer.href = ''
+                eventContainer.remove()
+
+                fetch(deleteFavouriteRecordUrl, {
+                    method: 'DELETE',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'X-CSRFToken': `{{ csrf_token }}`
+                    }
+                })
+                .then((response) => response.json())
+                .then((result) => {
+                    const eventContainers = document.getElementsByClassName('event-container')
+                    const allEvents = document.getElementsByClassName('all-events')[0]
+
+                    if (eventContainers.length === 0) {
+                        allEvents.innerHTML = `
+                            <h3>No events yet</h3>
+                            <a href="{% url 'all-events-page' %}" class="explore-events-btn">Explore events</a>
+                        `
+                    }
+                })
+            })
+
+        }
     </script>
 
 </html>
