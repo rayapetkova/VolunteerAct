@@ -55,8 +55,14 @@
 
                                 <div class="info">
                                     <h6>{{ upcoming_event.title }}</h6>
-                                    <p>Hosted by: {{ upcoming_event.host.profile.full_name }}</p>
-                                    <p>{{ upcoming_event.time }}</p>
+                                    <div class="event-more-info">
+                                        <div class="host-and-time">
+                                            <p>Hosted by: {{ upcoming_event.host.profile.full_name }}</p>
+                                            <p>{{ upcoming_event.time }}</p>
+                                        </div>
+
+                                        <img src="{% static 'images/save_event_icon.png' %}" alt="save-event-icon" class="save-event-icon {{ upcoming_event.id }}">
+                                    </div>
                                 </div>
                             </a>
                         {% endfor %}
@@ -142,15 +148,12 @@
 </body>
 <script>
     const headerElement = document.getElementsByTagName('header')[0]
-    const searchInput = document.getElementsByTagName('input')[0]
 
     document.addEventListener('scroll', () => {
         if (window.scrollY > 900) {
             headerElement.style.backgroundColor = 'rgba(67, 79, 98, 0.76)'
-            searchInput.className += ' white-placeholder'
         } else {
             headerElement.style.backgroundColor = 'transparent'
-            searchInput.className = 'search-bar'
         }
     })
 
@@ -169,18 +172,51 @@
                 const cityContainerDiv = document.createElement('div')
                 cityContainerDiv.className = 'city-container'
 
-                cityContainerDiv.innerHTML = `
-                    <div class="city-container">
-                        <button>
-                            <img src="${result.hits[0].webformatURL}" alt="city-img">
-                        </button>
+                if (result.hits[0]) {
+                    cityContainerDiv.innerHTML = `
+                        <div class="city-container">
+                            <button>
+                                <img src="${result.hits[0].webformatURL}" alt="city-img">
+                            </button>
 
-                        <a>${city}</a>
-                    </div>
-                `
+                            <a>${city}</a>
+                        </div>
+                    `
 
-                citiesDivElement.appendChild(cityContainerDiv)
+                    citiesDivElement.appendChild(cityContainerDiv)
+                }
+
             })
     }
+
+
+
+
+
+    const saveToFavsBtns = document.getElementsByClassName('save-event-icon')
+
+    for (let saveBtn of saveToFavsBtns) {
+        const eventId = saveBtn.classList[1]
+        const eventContainer = saveBtn.parentElement.parentElement.parentElement
+
+        saveBtn.addEventListener('click', () => {
+            eventContainer.href = ''
+
+            fetch(`{% url 'list-create-favourites-record-api' %}`, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'X-CSRFToken': `{{ csrf_token }}`
+                },
+                body: JSON.stringify({
+                    user: `{{ request.user.id }}`,
+                    event: eventId
+                })
+            })
+                .then((response) => response.json())
+                .then((result) => console.log(result))
+        })
+    }
+
 </script>
 </html>

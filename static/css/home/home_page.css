@@ -189,9 +189,31 @@ main {
     color: #000000;
 }
 
-.upcoming-events .events .event-container .info p {
+.upcoming-events .events .event-container .info .event-more-info {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.upcoming-events .events .event-container .info .event-more-info img {
+    width: 1em;
+    height: 1em;
+    padding: 0.5em;
+    border-radius: 45%;
+}
+
+.upcoming-events .events .event-container .info .event-more-info img:hover {
+    background-color: #9cc9ff;
+}
+
+.upcoming-events .events .event-container .info .event-more-info .host-and-time {
+    display: flex;
+    flex-direction: column;
+    gap: 0.6em;
+}
+
+.upcoming-events .events .event-container .info .event-more-info .host-and-time p {
     margin: 0;
-    margin-top: 0.6em;
     color: rgb(112 112 112);
     font-weight: 600;
     font-size: 0.8em;
