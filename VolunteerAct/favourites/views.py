@@ -56,6 +56,19 @@ class FavouritesCreateApiView(APIView):
         return Response(serializer.data, status=status.HTTP_400_BAD_REQUEST)
 
 
+class FavouritesDeleteByEventAndUserIdsApiView(APIView):
+
+    def delete(self, request, event_id):
+        favourite_event = Favourites.objects.all().filter(event__id=event_id, user=request.user).first()
+        serializer = FavouritesSerializer(favourite_event)
+
+        if favourite_event:
+            favourite_event.delete()
+            return Response(serializer.data, status=status.HTTP_201_CREATED)
+
+        return Response(status=status.HTTP_400_BAD_REQUEST)
+
+
 class FavouritesDeleteApiView(APIView):
 
     def delete(self, request, pk):

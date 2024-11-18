@@ -61,7 +61,13 @@
                                             <p>{{ upcoming_event.time }}</p>
                                         </div>
 
-                                        <img src="{% static 'images/save_event_icon.png' %}" alt="save-event-icon" class="save-event-icon {{ upcoming_event.id }}">
+                                        {% if upcoming_event.saved_to_favourites_by_logged_in_user %}
+                                            <img src="{% static 'images/already_saved_event_icon.png' %}"
+                                                 alt="save-event-icon"
+                                                 class="save-event-icon {{ upcoming_event.id }} already-saved">
+                                        {% else %}
+                                            <img src="{% static 'images/save_event_icon.png' %}" alt="save-event-icon" class="save-event-icon {{ upcoming_event.id }}">
+                                        {% endif %}
                                     </div>
                                 </div>
                             </a>
@@ -200,18 +206,17 @@
         const eventContainer = saveBtn.parentElement.parentElement.parentElement
 
         saveBtn.addEventListener('click', () => {
-            eventContainer.href = ''
-
-            fetch(`{% url 'list-create-favourites-record-api' %}`, {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                    'X-CSRFToken': `{{ csrf_token }}`
-                },
-                body: JSON.stringify({
-                    user: `{{ request.user.id }}`,
-                    event: eventId
             eventContainer.href = '#explore'
+
+            if (saveBtn.classList.contains('already-saved')) {
+                const deleteFavouriteRecordUrl = `{% url 'delete-favourite-record-by-event-and-user-api' event_id='0' %}`.replace('0', eventId)
+
+                fetch(deleteFavouriteRecordUrl, {
+                    method: 'DELETE',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'X-CSRFToken': `{{ csrf_token }}`
+                    }
                 })
                     .then((response) => response.json())
                     .then((result) => {
