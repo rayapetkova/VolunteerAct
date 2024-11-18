@@ -225,6 +225,11 @@
 
 </body>
 
+    <script src="{% static 'js/nav_bar.js' %}"
+            lightLogo="{% static 'images/volunteer_act_logo_light.png' %}"
+            darkLogo="{% static 'images/volunteer_act_logo_dark.png' %}"
+    ></script>
+
     <script>
         const readMoreBtn = document.getElementById('read_more_desc')
         const longDescElement = document.getElementsByClassName('text-info')[0]
@@ -280,22 +285,6 @@
 
             formAddEvent.submit()
         })
-
-
-
-        const headerElement = document.getElementsByTagName('header')[0]
-        const searchInput = document.getElementsByTagName('input')[0]
-
-        document.addEventListener('scroll', () => {
-            if (window.scrollY > 10) {
-                headerElement.style.backgroundColor = 'rgba(67, 79, 98, 0.76)'
-                searchInput.className += ' white-placeholder'
-            } else {
-                headerElement.style.backgroundColor = 'transparent'
-                searchInput.className = 'search-bar'
-            }
-        })
-
 
 
 
