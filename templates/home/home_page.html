@@ -211,10 +211,32 @@
                 body: JSON.stringify({
                     user: `{{ request.user.id }}`,
                     event: eventId
+            eventContainer.href = '#explore'
                 })
-            })
-                .then((response) => response.json())
-                .then((result) => console.log(result))
+                    .then((response) => response.json())
+                    .then((result) => {
+                        saveBtn.src = `{% static 'images/save_event_icon.png' %}`
+                        saveBtn.classList.remove('already-saved')
+                    })
+            } else {
+                fetch(`{% url 'list-create-favourites-record-api' %}`, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'X-CSRFToken': `{{ csrf_token }}`
+                    },
+                    body: JSON.stringify({
+                        user: `{{ request.user.id }}`,
+                        event: eventId
+                    })
+                })
+                    .then((response) => response.json())
+                    .then((result) => {
+                        saveBtn.src = `{% static 'images/already_saved_event_icon.png' %}`
+                        saveBtn.classList.add('already-saved')
+                    })
+            }
+
         })
     }
 
