@@ -42,6 +42,7 @@ header ul.last-links li {
 header ul.last-links li.favourite-events a,
 header ul.last-links li.tickets-events a {
     transition: color 0.2s ease-in-out;
+    color: #203069;
 }
 
 header ul.last-links li.favourite-events a:hover,
