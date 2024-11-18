@@ -49,7 +49,11 @@
                         <a href="{% url 'event-page' categoryId=favourite.event.category.id pk=favourite.event.id %}" class="event-container {% if favourite.already_passed %}passed-event-container{% endif %}">
                             <div class="date-and-delete">
                                 <p>{{ favourite.event.time }}</p>
-                                <img src="{% static 'images/delete_favourite_record_icon.png' %}" class="delete-favourite-btn {{ favourite.id }}" alt="delete-icon">
+                                <div class="delete-from-favs-image-container">
+                                    <img src="{% static 'images/delete_favourite_record_icon.png' %}"
+                                         class="delete-favourite-btn {{ favourite.id }}"
+                                         alt="delete-icon">
+                                </div>
                             </div>
 
                             <div class="title-and-img">
@@ -197,11 +201,11 @@
 
         for (let deleteBtn of deleteFavouriteBtns) {
             const favouriteRecordId = deleteBtn.classList[1]
-            const eventContainer = deleteBtn.parentElement.parentElement
+            const eventContainer = deleteBtn.parentElement.parentElement.parentElement
             const deleteFavouriteRecordUrl = `{% url 'delete-favourite-record-api' pk='0' %}`.replace('0', favouriteRecordId)
 
             deleteBtn.addEventListener('click', () => {
-                eventContainer.href = ''
+                eventContainer.href = '#remove-event'
                 eventContainer.remove()
 
                 fetch(deleteFavouriteRecordUrl, {

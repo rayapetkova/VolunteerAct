@@ -311,9 +311,10 @@
             const eventHrefUrl = eventContainer.href
 
             saveBtn.addEventListener('click', () => {
-                eventContainer.href = '#add-to-favs'
 
                 if (saveBtn.classList.contains('already-saved')) {
+                    eventContainer.href = '#remove-from-favs'
+
                     const deleteFavouriteRecordUrl = `{% url 'delete-favourite-record-by-event-and-user-api' event_id='0' %}`.replace('0', eventId)
 
                     fetch(deleteFavouriteRecordUrl, {
@@ -331,6 +332,8 @@
                             eventContainer.href = eventHrefUrl
                         })
                 } else {
+                    eventContainer.href = '#add-to-favs'
+
                     fetch(`{% url 'list-create-favourites-record-api' %}`, {
                         method: 'POST',
                         headers: {
