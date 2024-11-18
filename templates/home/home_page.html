@@ -67,7 +67,9 @@
                                                      alt="save-event-icon"
                                                      class="save-event-icon {{ upcoming_event.id }} already-saved">
                                             {% else %}
-                                                <img src="{% static 'images/save_event_icon.png' %}" alt="save-event-icon" class="save-event-icon {{ upcoming_event.id }}">
+                                                <img src="{% static 'images/save_event_icon.png' %}"
+                                                     alt="save-event-icon"
+                                                     class="save-event-icon {{ upcoming_event.id }}">
                                             {% endif %}
                                         </div>
                                     </div>
@@ -209,7 +211,7 @@
         const eventHrefUrl = eventContainer.href
 
         saveBtn.addEventListener('click', () => {
-            eventContainer.href = '#explore'
+            eventContainer.href = '#section'
 
             if (saveBtn.classList.contains('already-saved')) {
                 const deleteFavouriteRecordUrl = `{% url 'delete-favourite-record-by-event-and-user-api' event_id='0' %}`.replace('0', eventId)
@@ -245,7 +247,7 @@
                         saveBtn.src = `{% static 'images/already_saved_event_icon.png' %}`
                         saveBtn.classList.add('already-saved')
 
-                        eventContainer.hred = eventHrefUrl
+                        eventContainer.href = eventHrefUrl
                     })
             }
 

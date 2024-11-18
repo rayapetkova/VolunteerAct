@@ -64,6 +64,13 @@ def all_events_view(request):
     for event in all_events:
         event.already_passed = True if event.time < timezone.now() else False
 
+        saved_to_favourites_by_logged_in_user = Favourites.objects.all().filter(user=request.user, event=event).first()
+
+        if saved_to_favourites_by_logged_in_user:
+            event.saved_to_favourites_by_logged_in_user = True
+        else:
+            event.saved_to_favourites_by_logged_in_user = False
+
     if request.method == "GET":
         if filter_form.is_valid():
             categories_filter = request.GET.getlist('category')
