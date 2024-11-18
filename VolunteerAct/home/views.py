@@ -15,13 +15,14 @@ def home_page(request):
     pixabay_api_url = config('PIXABAY_API_URL')
     upcoming_events = Event.objects.filter(time__gte=timezone.now()).order_by('time')[:4]
 
-    for event in upcoming_events:
-        saved_to_favourites_by_logged_in_user = Favourites.objects.all().filter(user=request.user, event=event).first()
+    if request.user.is_authenticated:
+        for event in upcoming_events:
+            saved_to_favourites_by_logged_in_user = Favourites.objects.all().filter(user=request.user, event=event).first()
 
-        if saved_to_favourites_by_logged_in_user:
-            event.saved_to_favourites_by_logged_in_user = True
-        else:
-            event.saved_to_favourites_by_logged_in_user = False
+            if saved_to_favourites_by_logged_in_user:
+                event.saved_to_favourites_by_logged_in_user = True
+            else:
+                event.saved_to_favourites_by_logged_in_user = False
 
     context = {
         'categories': Category.objects.order_by('id').all(),
