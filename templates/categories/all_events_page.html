@@ -60,7 +60,13 @@
                 <div class="all-events">
                     {% for event in all_events %}
                         <a href="{% url 'event-page' categoryId=event.category.id pk=event.id %}" class="event-container {% if event.already_passed %}passed-event-container{% endif %}">
-                            <p>{{ event.time }}</p>
+
+                            <div class="date-and-save-to-favs">
+                                <p>{{ event.time }}</p>
+                                <div class="image-container">
+                                    <img src="{% static 'images/save_event_icon.png' %}" class="save-to-favourites-btn {{ favourite.id }}" alt="delete-icon">
+                                </div>
+                            </div>
 
                             <div class="title-and-img">
                                 <div class="title-container">
