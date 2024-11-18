@@ -204,6 +204,7 @@
     for (let saveBtn of saveToFavsBtns) {
         const eventId = saveBtn.classList[1]
         const eventContainer = saveBtn.parentElement.parentElement.parentElement
+        const eventHrefUrl = eventContainer.href
 
         saveBtn.addEventListener('click', () => {
             eventContainer.href = '#explore'
@@ -222,6 +223,8 @@
                     .then((result) => {
                         saveBtn.src = `{% static 'images/save_event_icon.png' %}`
                         saveBtn.classList.remove('already-saved')
+
+                        eventContainer.href = eventHrefUrl
                     })
             } else {
                 fetch(`{% url 'list-create-favourites-record-api' %}`, {
@@ -239,6 +242,8 @@
                     .then((result) => {
                         saveBtn.src = `{% static 'images/already_saved_event_icon.png' %}`
                         saveBtn.classList.add('already-saved')
+
+                        eventContainer.hred = eventHrefUrl
                     })
             }
 
