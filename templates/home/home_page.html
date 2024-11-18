@@ -61,13 +61,15 @@
                                             <p>{{ upcoming_event.time }}</p>
                                         </div>
 
-                                        {% if upcoming_event.saved_to_favourites_by_logged_in_user %}
-                                            <img src="{% static 'images/already_saved_event_icon.png' %}"
-                                                 alt="save-event-icon"
-                                                 class="save-event-icon {{ upcoming_event.id }} already-saved">
-                                        {% else %}
-                                            <img src="{% static 'images/save_event_icon.png' %}" alt="save-event-icon" class="save-event-icon {{ upcoming_event.id }}">
-                                        {% endif %}
+                                        <div class="save-image-container">
+                                            {% if upcoming_event.saved_to_favourites_by_logged_in_user %}
+                                                <img src="{% static 'images/already_saved_event_icon.png' %}"
+                                                     alt="save-event-icon"
+                                                     class="save-event-icon {{ upcoming_event.id }} already-saved">
+                                            {% else %}
+                                                <img src="{% static 'images/save_event_icon.png' %}" alt="save-event-icon" class="save-event-icon {{ upcoming_event.id }}">
+                                            {% endif %}
+                                        </div>
                                     </div>
                                 </div>
                             </a>
@@ -203,7 +205,7 @@
 
     for (let saveBtn of saveToFavsBtns) {
         const eventId = saveBtn.classList[1]
-        const eventContainer = saveBtn.parentElement.parentElement.parentElement
+        const eventContainer = saveBtn.parentElement.parentElement.parentElement.parentElement
         const eventHrefUrl = eventContainer.href
 
         saveBtn.addEventListener('click', () => {
