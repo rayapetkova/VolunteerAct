@@ -22,6 +22,9 @@ def category_details(request, pk):
     event_form = EventForm(request.POST or None, request.FILES or None)
 
     category = Category.objects.get(pk=pk)
+    category_name_for_url = category.name.replace('&', '%26')
+    category.category_name_for_url = category_name_for_url
+
     upcoming_events = category.category_events.filter(time__gte=timezone.now()).order_by('time')
     past_events = category.category_events.filter(time__lt=timezone.now()).order_by('time')
 
