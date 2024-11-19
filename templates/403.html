@@ -1,0 +1,17 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>403 Page</title>
+    <link rel="stylesheet" href="{% static 'css/403.css' %}">
+</head>
+<body>
+
+    <img src="{% static 'images/403_image.png' %}" alt="403-image">
+
+    <a href="{% url 'home-page' %}">Back to home page</a>
+
+</body>
+</html>
