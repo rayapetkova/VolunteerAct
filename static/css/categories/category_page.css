@@ -327,8 +327,15 @@ form ul.errorlist li {
 }
 
 .left .events-title-container a {
-    color: #2e5c91;
-    margin: 0;
+    font-weight: 600;
+    color: #08458b;
+    font-family: inherit;
+    font-size: 1em;
+    transition: color 0.2s ease-in-out;
+}
+
+.left .events-title-container a:hover {
+    color: #1272de;
 }
 
 .left .upcoming-events, .left .past-events {

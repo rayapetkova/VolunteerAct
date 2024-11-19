@@ -546,12 +546,12 @@ body {
     font-weight: 600;
     color: #08458b;
     font-family: inherit;
-    text-decoration: none;
     font-size: 1.1em;
+    transition: color 0.2s ease-in-out;
 }
 
 .title-container a:hover {
-    text-decoration: underline;
+    color: #1272de;
 }
 
 .upcoming-events .events {
