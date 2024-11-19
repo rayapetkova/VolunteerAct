@@ -24,21 +24,23 @@ def category_details(request, pk):
     upcoming_events = category.category_events.filter(time__gte=timezone.now()).order_by('time')
     past_events = category.category_events.filter(time__lt=timezone.now()).order_by('time')
 
-    for u_event in upcoming_events:
-        saved_to_favourites_by_logged_in_user = Favourites.objects.all().filter(user=request.user, event=u_event).first()
+    if request.user.is_authenticated:
+        for u_event in upcoming_events:
+            saved_to_favourites_by_logged_in_user = Favourites.objects.all().filter(user=request.user, event=u_event).first()
 
-        if saved_to_favourites_by_logged_in_user:
-            u_event.saved_to_favourites_by_logged_in_user = True
-        else:
-            u_event.saved_to_favourites_by_logged_in_user = False
+            if saved_to_favourites_by_logged_in_user:
+                u_event.saved_to_favourites_by_logged_in_user = True
+            else:
+                u_event.saved_to_favourites_by_logged_in_user = False
 
-    for p_event in past_events:
-        saved_to_favourites_by_logged_in_user = Favourites.objects.all().filter(user=request.user, event=p_event).first()
+    if request.user.is_authenticated:
+        for p_event in past_events:
+            saved_to_favourites_by_logged_in_user = Favourites.objects.all().filter(user=request.user, event=p_event).first()
 
-        if saved_to_favourites_by_logged_in_user:
-            p_event.saved_to_favourites_by_logged_in_user = True
-        else:
-            p_event.saved_to_favourites_by_logged_in_user = False
+            if saved_to_favourites_by_logged_in_user:
+                p_event.saved_to_favourites_by_logged_in_user = True
+            else:
+                p_event.saved_to_favourites_by_logged_in_user = False
 
     members_upcoming_events = [event.attendees.all() for event in upcoming_events]
     if members_upcoming_events:
