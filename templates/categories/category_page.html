@@ -77,17 +77,21 @@
 
                                     <div class="date-and-save-to-favs">
                                         <p>{{ upcoming_event.time }}</p>
-                                        <div class="image-container">
-                                            {% if upcoming_event.saved_to_favourites_by_logged_in_user %}
-                                                <img src="{% static 'images/already_saved_event_icon.png' %}"
-                                                     class="save-to-favourites-btn {{ upcoming_event.id }} already-saved"
-                                                     alt="delete-icon">
-                                            {% else %}
-                                                <img src="{% static 'images/save_event_icon.png' %}"
-                                                     class="save-to-favourites-btn {{ upcoming_event.id }}"
-                                                     alt="delete-icon">
-                                            {% endif %}
-                                        </div>
+
+                                        {% if request.user.is_authenticated %}
+                                            <div class="image-container">
+                                                {% if upcoming_event.saved_to_favourites_by_logged_in_user %}
+                                                    <img src="{% static 'images/already_saved_event_icon.png' %}"
+                                                         class="save-to-favourites-btn {{ upcoming_event.id }} already-saved"
+                                                         alt="delete-icon">
+                                                {% else %}
+                                                    <img src="{% static 'images/save_event_icon.png' %}"
+                                                         class="save-to-favourites-btn {{ upcoming_event.id }}"
+                                                         alt="delete-icon">
+                                                {% endif %}
+                                            </div>
+                                        {% endif %}
+
                                     </div>
 
                                     <div class="title-and-img">
@@ -133,17 +137,21 @@
 
                                     <div class="date-and-save-to-favs">
                                         <p>{{ past_event.time }}</p>
-                                        <div class="image-container">
-                                            {% if past_event.saved_to_favourites_by_logged_in_user %}
-                                                <img src="{% static 'images/already_saved_event_icon.png' %}"
-                                                     class="save-to-favourites-btn {{ past_event.id }} already-saved"
-                                                     alt="delete-icon">
-                                            {% else %}
-                                                <img src="{% static 'images/save_event_icon.png' %}"
-                                                     class="save-to-favourites-btn {{ past_event.id }}"
-                                                     alt="delete-icon">
-                                            {% endif %}
-                                        </div>
+
+                                        {% if request.user.is_authenticated %}
+                                            <div class="image-container">
+                                                {% if past_event.saved_to_favourites_by_logged_in_user %}
+                                                    <img src="{% static 'images/already_saved_event_icon.png' %}"
+                                                         class="save-to-favourites-btn {{ past_event.id }} already-saved"
+                                                         alt="delete-icon">
+                                                {% else %}
+                                                    <img src="{% static 'images/save_event_icon.png' %}"
+                                                         class="save-to-favourites-btn {{ past_event.id }}"
+                                                         alt="delete-icon">
+                                                {% endif %}
+                                            </div>
+                                        {% endif %}
+
                                     </div>
 
                                     <div class="title-and-img">

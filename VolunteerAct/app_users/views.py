@@ -1,4 +1,5 @@
 from django.contrib.auth import login, logout, get_user_model
+from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.auth.views import LoginView
 from django.shortcuts import render, redirect
 from django.urls import reverse_lazy
@@ -28,7 +29,7 @@ class LoginUserView(LoginView):
     success_url = reverse_lazy('home-page')
 
 
-class ProfileView(UpdateView, DetailView):
+class ProfileView(LoginRequiredMixin, UpdateView, DetailView):
     model = Profile
     form_class = EditAppUserForm
 
