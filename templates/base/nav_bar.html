@@ -10,7 +10,7 @@
 
     {% if not request.user.is_authenticated %}
         <ul class="last-links sign-in-ul">
-            <li><a href="{% url 'login-user' %}">Log In</a></li>
+            <li class="sign-in-li"><a href="{% url 'login-user' %}" {% if dark_login_color == "dark" %}class="dark-login-a"{% endif %}>Log In</a></li>
             <li><a href="{% url 'register-user' %}">Sign Up</a></li>
         </ul>
     {% else %}

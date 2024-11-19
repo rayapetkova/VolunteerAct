@@ -77,6 +77,10 @@ header ul.last-links li a {
     font-weight: 600;
 }
 
+header ul.last-links li .dark-login-a {
+    color: #203069;
+}
+
 header ul.sign-in-ul li:nth-child(2) a, header ul.last-links .logout-btn a {
     background-color: #08376b;
     padding: 0.4em 0.7em;
