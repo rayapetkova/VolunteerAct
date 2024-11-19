@@ -1,3 +1,4 @@
+from django.contrib.auth.decorators import login_required
 from django.contrib.auth.mixins import UserPassesTestMixin
 from django.core.exceptions import PermissionDenied
 from django.db.models import Count, QuerySet
@@ -75,7 +76,7 @@ def category_details(request, pk):
 
     return render(request, 'categories/category_page.html', context=context)
 
-
+@login_required
 def all_events_view(request):
     filter_form = FilterForm(request.GET or None)
 

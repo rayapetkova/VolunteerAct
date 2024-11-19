@@ -40,9 +40,12 @@
                             <p>Online, Haskovo, Sofia, New York and others</p>
                         </div>
 
-                        <div class="one">
-                            <a href="#" class="add-event-btn">Add Event</a>
-                        </div>
+                        {% if request.user.is_authenticated %}
+                            <div class="one">
+                                <a href="#" class="add-event-btn">Add Event</a>
+                            </div>
+                        {% endif %}
+
                     </div>
                 </div>
             </section>

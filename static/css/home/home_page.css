@@ -191,6 +191,7 @@ main {
 .upcoming-events .events .event-container .info h6 {
     font-size: 1.4em;
     margin: 0;
+    margin-top: 0.5em;
     overflow: hidden;
     text-overflow: ellipsis;
     white-space: nowrap;
