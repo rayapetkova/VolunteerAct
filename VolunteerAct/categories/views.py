@@ -1,3 +1,5 @@
+from django.contrib.auth.mixins import UserPassesTestMixin
+from django.core.exceptions import PermissionDenied
 from django.db.models import Count, QuerySet
 from django.shortcuts import render, redirect
 from django.urls import reverse_lazy
@@ -157,10 +159,19 @@ class EventDetailsView(DetailView, DeleteView):
     #     return self.form_valid(form=form)
 
 
-class EventUpdateView(UpdateView):
+class EventUpdateView(UserPassesTestMixin, UpdateView):
     model = Event
     form_class = EventEditForm
     template_name = 'categories/edit_event_page.html'
+
+    def test_func(self):
+        if self.get_object().host != self.request.user:
+            return False
+
+        return True
+
+    def handle_no_permission(self):
+        raise PermissionDenied()
 
     def get_success_url(self):
         return reverse_lazy('event-page', kwargs={
