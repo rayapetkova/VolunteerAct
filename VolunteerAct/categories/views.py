@@ -172,10 +172,10 @@ class EventUpdateView(UserPassesTestMixin, UpdateView):
     template_name = 'categories/edit_event_page.html'
 
     def test_func(self):
-        if self.get_object().host != self.request.user:
-            return False
+        if self.get_object().host == self.request.user or self.request.user.is_staff:
+            return True
 
-        return True
+        return False
 
     def handle_no_permission(self):
         raise PermissionDenied()
