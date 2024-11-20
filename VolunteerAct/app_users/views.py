@@ -1,6 +1,7 @@
 from django.contrib.auth import login, logout, get_user_model
-from django.contrib.auth.mixins import LoginRequiredMixin
+from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
 from django.contrib.auth.views import LoginView
+from django.http import Http404
 from django.shortcuts import render, redirect
 from django.urls import reverse_lazy
 from django.views.generic import CreateView, UpdateView, DetailView
@@ -11,10 +12,16 @@ from VolunteerAct.app_users.models import Profile
 AppUserModel = get_user_model()
 
 
-class RegisterUserView(CreateView):
+class RegisterUserView(UserPassesTestMixin,CreateView):
     template_name = 'app_users/register_page.html'
     form_class = AppUserForm
     success_url = reverse_lazy('home-page')
+
+    def test_func(self):
+        return not self.request.user.is_authenticated
+
+    def handle_no_permission(self):
+        return redirect('home-page')
 
     def form_valid(self, form):
         result = super().form_valid(form)
@@ -24,9 +31,15 @@ class RegisterUserView(CreateView):
         return result
 
 
-class LoginUserView(LoginView):
+class LoginUserView(UserPassesTestMixin, LoginView):
     template_name = 'app_users/login_page.html'
     success_url = reverse_lazy('home-page')
+
+    def test_func(self):
+        return not self.request.user.is_authenticated
+
+    def handle_no_permission(self):
+        return redirect('home-page')
 
 
 class ProfileView(LoginRequiredMixin, UpdateView, DetailView):
@@ -55,6 +68,9 @@ class ProfileView(LoginRequiredMixin, UpdateView, DetailView):
 
 
 def delete_profile_view(request):
+    if not request.user.is_authenticated:
+        raise Http404()
+
     user_profile = request.user.profile
     form = DeleteAppUserForm(instance=user_profile)
     form.fields['email'].initial = user_profile.user.email
