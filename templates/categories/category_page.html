@@ -196,13 +196,21 @@
 
                     <div class="members">
 
-                        {% for active_member in active_members %}
-                            <a href="{% url 'profile-details-update' pk=active_member.profile.id %}">
-                                <img src="{{ active_member.profile.profile_image.url }}" alt="profile-img">
-                            </a>
-                        {% empty %}
-                            <p>Be the first one to attend an event in the {{ category.name }} category!</p>
-                        {% endfor %}
+                        {% if request.user.is_authenticated %}
+                            {% for active_member in active_members %}
+                                <a href="{% url 'profile-details-update' pk=active_member.profile.id %}" class="active-member-img-cont">
+                                    <img src="{{ active_member.profile.profile_image.url }}" alt="profile-img">
+                                </a>
+                            {% empty %}
+                                <p>Be the first one to attend an event in the {{ category.name }} category!</p>
+                            {% endfor %}
+                        {% else %}
+                            <div class="not-allowed-to-see">
+                                <p>You are not allowed to see the active members in this category! You need to log in first!</p>
+                                <a>Log In</a>
+                            </div>
+                        {% endif %}
+
 
                     </div>
                 </div>
