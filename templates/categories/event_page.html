@@ -37,7 +37,7 @@
 
     <section class="info-section">
         <div class="left">
-            {% if object.host.id == request.user.id and not object.passed_event %}
+            {% if object.host.id == request.user.id or request.user.is_staff and not object.passed_event %}
                 <div>
                     <div class="buttons-container-edit-delete">
                         <a href="{% url 'edit-event' categoryId=object.category.id pk=object.id %}" class="edit-btn">Edit Event</a>
@@ -58,6 +58,20 @@
                 </div>
             {% else %}
                 <p class="already-passed-event">This event has passed! Click here to see more: <a href="#explore">See more</a></p>
+            {% endif %}
+
+            {% if request.user.is_staff and not object.passed_event %}
+                <div>
+                    <div class="buttons-container-edit-delete">
+                        {% if request.user.is_authenticated %}
+                            {% if not user_favourite_event %}
+                                <a class="save-to-favs-btn">Save Event to Favourites<img src="{% static 'images/star_icon.png' %}" alt="star-icon"></a>
+                            {% else %}
+                                <a class="save-to-favs-btn saved-to-favs">Saved Event to Favourites<img src="{% static 'images/done_icon.png' %}" alt="star-icon"></a>
+                            {% endif %}
+                        {% endif %}
+                    </div>
+                </div>
             {% endif %}
 
             <div class="event-img-container">
@@ -103,7 +117,7 @@
                                     {% endif %}
                                 </div>
 
-                                {% if request.user.id == comment.user.id %}
+                                {% if request.user.id == comment.user.id or request.user.is_staff %}
                                     <div class="editing-icons">
                                         <img src="{% static 'images/edit_icon.png' %}" alt="edit-icon" class="edit-comment-icon {{ comment.id }}">
                                         <img src="{% static 'images/delete_icon.png' %}" alt="delete-icon" class="delete-comment-icon {{ comment.id }}">
@@ -509,11 +523,12 @@
 
                                     const profileURL = `{% url 'profile-details-update' pk='0' %}`.replace('0', commentResult.user.profile.id)
                                     const requestUserId = `{{ request.user.id }}`
+                                    const requestUserIsStaff = `{{ request.user.is_staff }}`
 
                                     const editCommentIconClass = `edit-comment-icon ${commentResult.id}`
                                     const deleteCommentIconClass = `delete-comment-icon ${commentResult.id}`
 
-                                    if (requestUserId == `${commentResult.user.id}`) {
+                                    if (requestUserId == `${commentResult.user.id}` || requestUserIsStaff === 'True') {
                                         newCommentContainer.innerHTML = `
                                             <div class="author">
                                                 <a href="${profileURL}" class="img-container">
@@ -751,10 +766,23 @@
             buttonsContainer.appendChild(confirmDeletingCommentBtn)
             buttonsContainer.appendChild(cancelDeletingCommentBtn)
 
-            deleteIcon.addEventListener('click', () => {
+            function handleDeleteIconClick() {
+                console.log('cukam siiiiiiiiiiiii')
+                const confirmDeletingMessages = commentContainer.getElementsByClassName('confirm-deleting-comment')
+                for (let message of confirmDeletingMessages) {
+                    message.remove()
+                }
+
+                const confirmDeletingBtns = commentContainer.getElementsByClassName('comment-buttons-container')
+                for (let cont of confirmDeletingBtns) {
+                    cont.remove()
+                }
+
                 commentContainer.appendChild(pConfirmingElement)
                 commentContainer.appendChild(buttonsContainer)
-            })
+            }
+
+            deleteIcon.addEventListener('click', handleDeleteIconClick)
 
             confirmDeletingCommentBtn.addEventListener('click', () => {
                 const deleteCommentUrl = `{% url 'edit-delete-comment-api' pk='0' %}`.replace('0', commentId)
@@ -773,6 +801,8 @@
                             .then((resultComments) => {
                                 const firstThreeComments = resultComments.slice(0, 3)
                                 const allCommentsContainer = document.getElementsByClassName('all-comments')[0]
+                                const sendNewCommentInputContainer = allCommentsContainer.getElementsByClassName('send-comment-container')[0]
+                                const newCommentErrorsUl = allCommentsContainer.getElementsByClassName('errors-new-comment')[0]
                                 allCommentsContainer.innerHTML = ''
 
                                 for (let comment of firstThreeComments) {
@@ -781,8 +811,9 @@
 
                                     const profileURL = `{% url 'profile-details-update' pk='0' %}`.replace('0', comment.user.profile.id)
                                     const requestUserId = `{{ request.user.id }}`
+                                    const requestUserIsStaff = `{{ request.user.is_staff }}`
 
-                                    if (requestUserId == `${comment.user.id}`) {
+                                    if (requestUserId == `${comment.user.id}` || requestUserIsStaff === 'True') {
                                         newCommentContainer.innerHTML = `
                                             <div class="author">
                                                 <a href="${profileURL}" class="img-container">
@@ -794,32 +825,35 @@
                                                 </div>
 
                                                 <div class="editing-icons">
-                                                    <img src="{% static 'images/edit_icon.png' %}" alt="edit-icon" class="edit-comment-icon {{ comment.id }}">
-                                                    <img src="{% static 'images/delete_icon.png' %}" alt="delete-icon" class="delete-comment-icon {{ comment.id }}">
+                                                    <img src="{% static 'images/edit_icon.png' %}" alt="edit-icon" class="edit-comment-icon ${comment.id}">
+                                                    <img src="{% static 'images/delete_icon.png' %}" alt="delete-icon" class="delete-comment-icon ${comment.id}">
                                                 </div>
                                             </div>
 
-                                            <p>${comment.body}</p>
+                                            <p class="comment-body">${comment.body}</p>
                                         `
-
-                                        {#editingComments()#}
                                     } else {
                                         newCommentContainer.innerHTML = `
                                             <div class="author">
                                                 <a href="${profileURL}" class="img-container">
-                                                    <img src="${commentResult.profile_image_full_url}" alt="host-img">
+                                                    <img src="${comment.profile_image_full_url}" alt="host-img">
                                                 </a>
 
                                                 <div class="more-info">
-                                                    <a href="${profileURL}" class="host-name">${commentResult.user.profile.full_name}</a>
+                                                    <a href="${profileURL}" class="host-name">${comment.user.profile.full_name}</a>
                                                 </div>
                                             </div>
 
-                                            <p>${commentResult.body}</p>
+                                            <p class="comment-body">${comment.body}</p>
                                         `
                                     }
 
                                     allCommentsContainer.appendChild(newCommentContainer)
+
+                                    editingComments()
+                                    deletingComments()
+                                    allCommentsContainer.appendChild(sendNewCommentInputContainer)
+                                    allCommentsContainer.appendChild(newCommentErrorsUl)
                                 }
 
                             })

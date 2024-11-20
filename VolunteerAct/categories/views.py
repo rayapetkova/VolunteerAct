@@ -79,6 +79,7 @@ def category_details(request, pk):
 
     return render(request, 'categories/category_page.html', context=context)
 
+
 @login_required
 def all_events_view(request):
     filter_form = FilterForm(request.GET or None)

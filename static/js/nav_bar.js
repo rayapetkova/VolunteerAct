@@ -30,7 +30,9 @@ document.addEventListener('scroll', () => {
         if (ticketsAElement) {
             ticketsAElement.style.color = '#FFFFFFFF'
         }
-        signInAElement.style.color = '#FFFFFFFF'
+        if (signInAElement) {
+            signInAElement.style.color = '#FFFFFFFF'
+        }
     } else {
         headerElement.style.backgroundColor = 'transparent'
         imageLogo.src = darkLogo
@@ -41,6 +43,8 @@ document.addEventListener('scroll', () => {
         if (ticketsAElement) {
             ticketsAElement.style.color = '#203069'
         }
-        signInAElement.style.color = '#203069'
+        if (signInAElement) {
+            signInAElement.style.color = '#203069'
+        }
     }
 })
