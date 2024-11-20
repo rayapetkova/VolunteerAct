@@ -1,3 +1,4 @@
+from django.contrib.auth.decorators import login_required
 from django.shortcuts import render
 from django.utils import timezone
 from rest_framework import status
@@ -9,6 +10,7 @@ from VolunteerAct.favourites.models import Favourites
 from VolunteerAct.favourites.serializers import FavouritesSerializer
 
 
+@login_required
 def favourite_events_view(request):
     filter_form = FilterForm(request.GET or None)
 
