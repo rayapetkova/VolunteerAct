@@ -1,12 +1,21 @@
+from django.contrib.auth import get_user_model
 from rest_framework import serializers
 
 from VolunteerAct.categories.models import Event
+
+
+AppUserModel = get_user_model()
 
 
 class EventSerializer(serializers.ModelSerializer):
     exact_location = serializers.SerializerMethodField()
     poster_image_full_url = serializers.SerializerMethodField()
     event_time_formatted = serializers.SerializerMethodField()
+    attendees = serializers.PrimaryKeyRelatedField(
+        many=True,
+        queryset=AppUserModel.objects.all(),
+        allow_empty=True
+    )
 
     class Meta:
         model = Event

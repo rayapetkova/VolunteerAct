@@ -257,7 +257,7 @@
                     <p class="reminder-message">You will receive a reminder email 1 day before the event!</p>
                 </section>
 
-                <button class="cancel">Cancel attending</button>
+                <button class="cancel close-attending-container">Close</button>
                 <button class="share">Share <img src="{% static 'images/share_white.png' %}" alt="share-img"></button>
             </div>
         </section>
@@ -387,14 +387,28 @@
                             ...resultEvent,
                             attendees
                         })
-                    })
+                    }).then((response) => response.json())
+                        .then((result) => {
+                            location.reload()
+                        })
+
+
 
                 })
-
-            location.reload()
         })
 
     }
+
+
+
+    const closeAttendingContainerBtn = document.getElementsByClassName('close-attending-container')[0]
+
+    if (closeAttendingContainerBtn) {
+        closeAttendingContainerBtn.addEventListener('click', () => {
+            location.reload()
+        })
+    }
+
 
 
 
