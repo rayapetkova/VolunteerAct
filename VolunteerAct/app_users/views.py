@@ -1,10 +1,14 @@
 from django.contrib.auth import login, logout, get_user_model
 from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
 from django.contrib.auth.views import LoginView
+from django.core.mail import send_mail
 from django.http import Http404
 from django.shortcuts import render, redirect
+from django.template.loader import render_to_string
 from django.urls import reverse_lazy
+from django.utils.html import strip_tags
 from django.views.generic import CreateView, UpdateView, DetailView
+from django.conf import settings
 
 from VolunteerAct.app_users.forms import AppUserForm, EditAppUserForm, DeleteAppUserForm
 from VolunteerAct.app_users.models import Profile
@@ -27,6 +31,29 @@ class RegisterUserView(UserPassesTestMixin,CreateView):
         result = super().form_valid(form)
 
         login(self.request, self.object)
+
+        email_context = {
+            'first_name': form.cleaned_data['first_name'],
+        }
+
+        subject = 'Welcome to VolunteerAct!'
+        to_email = form.cleaned_data['email']
+        recipient_list = [to_email]
+        template_name = 'emails/welcome_to_volunteeract.html'
+        convert_to_html_content = render_to_string(
+            template_name=template_name,
+            context=email_context
+        )
+        plain_message = strip_tags(convert_to_html_content)
+
+        send_mail(
+            subject=subject,
+            message=plain_message,
+            from_email=settings.EMAIL_HOST_USER,
+            recipient_list=recipient_list,
+            html_message=convert_to_html_content,
+            fail_silently=True
+        )
 
         return result
 
