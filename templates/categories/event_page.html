@@ -625,8 +625,19 @@
                             ...resultEvent,
                             attendees: currentAttendees
                         })
+                    }).then((response) => response.json())
+                        .then((result) => {
+                            const sendEmailUrl = `{% url 'send-email-attend-event-api' event_id='0' %}`.replace('0', `{{ object.id }}`)
 
-                    })
+                            fetch(sendEmailUrl, {
+                                method: 'POST',
+                                headers: {
+                                    'Content-Type': 'application/json',
+                                    'X-CSRFToken': `{{ csrf_token }}`
+                                }
+                            })
+                        })
+
                 })
 
 

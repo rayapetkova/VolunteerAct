@@ -1,12 +1,17 @@
+from django.conf import settings
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.mixins import UserPassesTestMixin
 from django.core.exceptions import PermissionDenied
+from django.core.mail import send_mail
 from django.db.models import Count, QuerySet
 from django.shortcuts import render, redirect
+from django.template.loader import render_to_string
 from django.urls import reverse_lazy
 from django.utils import timezone
+from django.utils.html import strip_tags
 from django.views.generic import DetailView, UpdateView, DeleteView
 from django.utils import timezone
+from rest_framework import status
 from rest_framework.generics import UpdateAPIView, RetrieveUpdateAPIView
 from rest_framework.response import Response
 from rest_framework.views import APIView
@@ -201,3 +206,39 @@ class EventListAPIView(APIView):
 class EventUpdateAPIView(RetrieveUpdateAPIView):
     queryset = Event.objects.all()
     serializer_class = EventSerializer
+
+
+class AttendEventSendEmailAPIView(APIView):
+
+    def post(self, request, event_id):
+        event = Event.objects.filter(id=event_id).first()
+
+        email_context = {
+            'user_first_name': request.user.profile.first_name,
+            'event_title': event.title,
+            'event_time': event.time,
+            'category_name': event.category.name,
+            'event_exact_location': event.exact_location()
+        }
+
+        subject = f"You're All Set for {event.title}!"
+        to_email = request.user.email
+        recipient_list = [to_email]
+        template_name = 'emails/attend_event.html'
+        convert_to_html_content = render_to_string(
+            template_name=template_name,
+            context=email_context
+        )
+        plain_message = strip_tags(convert_to_html_content)
+
+        send_mail(
+            subject=subject,
+            message=plain_message,
+            from_email=settings.EMAIL_HOST_USER,
+            recipient_list=recipient_list,
+            html_message=convert_to_html_content,
+            fail_silently=True
+        )
+
+        return Response(status=status.HTTP_201_CREATED)
+
