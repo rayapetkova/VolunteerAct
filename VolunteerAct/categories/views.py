@@ -218,7 +218,8 @@ class AttendEventSendEmailAPIView(APIView):
             'event_title': event.title,
             'event_time': event.time,
             'category_name': event.category.name,
-            'event_exact_location': event.exact_location()
+            'event_exact_location': event.exact_location(),
+            'host_email': event.host.email
         }
 
         subject = f"You're All Set for {event.title}!"

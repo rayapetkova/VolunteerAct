@@ -26,17 +26,21 @@
     </style>
 </head>
 <body>
-    <p>Hi, <span class="black">{{ user_first_name }}</span>!</p>
+    <p>Hi, <span class="black">{{ user_first_name }}</span>!🌟</p>
 
-    <p>Great news! 🎉 You’ve successfully signed up to attend {{ event_title }}. We're excited that you're taking the time to make a positive impact in the {{ category_name }} space.</p>
-
-    <p><span>Thank you</span> for joining us in creating a better world!. We hope you enjoy your time with us and we are excited for you to see what VolunteerAct has to offer!</p>
+    <p>Great news! 🎉 You’ve successfully signed up to attend the <span>{{ event_title }}</span> Event! We're excited that you're taking the time to make a positive impact in the <span>{{ category_name }}</span> space.</p>
 
     <p>Here are the event details:</p>
-    <p>Event: {{ event_title }}</p>
-    <p>Date & Time: {{ event_time }}</p>
-    <p>Location: {{ event_exact_location }}</p>
-    <p>Category: {{ category_name }}</p>
+    <p><span class="black">Event:</span> {{ event_title }}</p>
+    <p><span class="black">Date & Time:</span> {{ event_time }}</p>
+    <p><span class="black">Location:</span> {{ event_exact_location }}</p>
+    <p><span class="black">Category:</span> {{ category_name }}</p>
+
+    <p>Feel free to contact the event organizer at <span class="black">{{ host_email }}</span> if you have any questions or need further information.</p>
+
+    <p>See you there!</p>
+
+    <br>
 
     <div class="regards">
         <p>Best regards,</p>
