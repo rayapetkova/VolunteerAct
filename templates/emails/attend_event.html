@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Attend an event!</title>
+    <style>
+        html, body {
+            width: 100%;
+            height: 100%;
+            font-family: 'Trebuchet MS', sans-serif;
+        }
+
+        .text-box .regards p {
+            margin: 0;
+        }
+
+        span {
+            color: rgb(0, 55, 255);
+            font-weight: 600;
+        }
+
+        span.black {
+            color: rgb(0, 0, 0);
+        }
+    </style>
+</head>
+<body>
+    <p>Hi, <span class="black">{{ user_first_name }}</span>!</p>
+
+    <p>Great news! 🎉 You’ve successfully signed up to attend {{ event_title }}. We're excited that you're taking the time to make a positive impact in the {{ category_name }} space.</p>
+
+    <p><span>Thank you</span> for joining us in creating a better world!. We hope you enjoy your time with us and we are excited for you to see what VolunteerAct has to offer!</p>
+
+    <p>Here are the event details:</p>
+    <p>Event: {{ event_title }}</p>
+    <p>Date & Time: {{ event_time }}</p>
+    <p>Location: {{ event_exact_location }}</p>
+    <p>Category: {{ category_name }}</p>
+
+    <div class="regards">
+        <p>Best regards,</p>
+        <p><span class="black">Raya Petkova</span></p>
+    </div>
+</body>
+</html>
