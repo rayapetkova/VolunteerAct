@@ -162,59 +162,59 @@
 
     <script>
 
-        {#const saveToFavsBtns = document.getElementsByClassName('save-to-favourites-btn')#}
-        {##}
-        {#for (let saveBtn of saveToFavsBtns) {#}
-        {#    const eventId = saveBtn.classList[1]#}
-        {#    const eventContainer = saveBtn.parentElement.parentElement.parentElement#}
-        {#    const eventHrefUrl = eventContainer.href#}
-        {##}
-        {#    saveBtn.addEventListener('click', () => {#}
-        {##}
-        {#        if (saveBtn.classList.contains('already-saved')) {#}
-        {#            eventContainer.href = '#remove-from-favs'#}
-        {##}
-        {#            const deleteFavouriteRecordUrl = `{% url 'delete-favourite-record-by-event-and-user-api' event_id='0' %}`.replace('0', eventId)#}
-        {##}
-        {#            fetch(deleteFavouriteRecordUrl, {#}
-        {#                method: 'DELETE',#}
-        {#                headers: {#}
-        {#                    'Content-Type': 'application/json',#}
-        {#                    'X-CSRFToken': `{{ csrf_token }}`#}
-        {#                }#}
-        {#            })#}
-        {#                .then((response) => response.json())#}
-        {#                .then((result) => {#}
-        {#                    saveBtn.src = `{% static 'images/save_event_icon.png' %}`#}
-        {#                    saveBtn.classList.remove('already-saved')#}
-        {##}
-        {#                    eventContainer.href = eventHrefUrl#}
-        {#                })#}
-        {#        } else {#}
-        {#            eventContainer.href = '#add-to-favs'#}
-        {##}
-        {#            fetch(`{% url 'list-create-favourites-record-api' %}`, {#}
-        {#                method: 'POST',#}
-        {#                headers: {#}
-        {#                    'Content-Type': 'application/json',#}
-        {#                    'X-CSRFToken': `{{ csrf_token }}`#}
-        {#                },#}
-        {#                body: JSON.stringify({#}
-        {#                    user: `{{ request.user.id }}`,#}
-        {#                    event: eventId#}
-        {#                })#}
-        {#            })#}
-        {#                .then((response) => response.json())#}
-        {#                .then((result) => {#}
-        {#                    saveBtn.src = `{% static 'images/already_saved_event_icon.png' %}`#}
-        {#                    saveBtn.classList.add('already-saved')#}
-        {##}
-        {#                    eventContainer.href = eventHrefUrl#}
-        {#                })#}
-        {#        }#}
-        {##}
-        {#    })#}
-        {#}#}
+        const saveToFavsBtns = document.getElementsByClassName('save-to-favourites-btn')
+
+        for (let saveBtn of saveToFavsBtns) {
+            const eventId = saveBtn.classList[1]
+            const eventContainer = saveBtn.parentElement.parentElement.parentElement
+            const eventHrefUrl = eventContainer.href
+
+            saveBtn.addEventListener('click', () => {
+
+                if (saveBtn.classList.contains('already-saved')) {
+                    eventContainer.href = '#remove-from-favs'
+
+                    const deleteFavouriteRecordUrl = `{% url 'delete-favourite-record-by-event-and-user-api' event_id='0' %}`.replace('0', eventId)
+
+                    fetch(deleteFavouriteRecordUrl, {
+                        method: 'DELETE',
+                        headers: {
+                            'Content-Type': 'application/json',
+                            'X-CSRFToken': `{{ csrf_token }}`
+                        }
+                    })
+                        .then((response) => response.json())
+                        .then((result) => {
+                            saveBtn.src = `{% static 'images/save_event_icon.png' %}`
+                            saveBtn.classList.remove('already-saved')
+
+                            eventContainer.href = eventHrefUrl
+                        })
+                } else {
+                    eventContainer.href = '#add-to-favs'
+
+                    fetch(`{% url 'list-create-favourites-record-api' %}`, {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json',
+                            'X-CSRFToken': `{{ csrf_token }}`
+                        },
+                        body: JSON.stringify({
+                            user: `{{ request.user.id }}`,
+                            event: eventId
+                        })
+                    })
+                        .then((response) => response.json())
+                        .then((result) => {
+                            saveBtn.src = `{% static 'images/already_saved_event_icon.png' %}`
+                            saveBtn.classList.add('already-saved')
+
+                            eventContainer.href = eventHrefUrl
+                        })
+                }
+
+            })
+        }
 
     </script>
 </html>
