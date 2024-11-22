@@ -38,7 +38,8 @@ INSTALLED_APPS = [
     'VolunteerAct.home',
     'VolunteerAct.categories',
     'VolunteerAct.comments',
-    'VolunteerAct.favourites'
+    'VolunteerAct.favourites',
+    'VolunteerAct.cities'
 ]
 
 MIDDLEWARE = [
