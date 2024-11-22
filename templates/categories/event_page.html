@@ -192,7 +192,7 @@
                     {% endif %}
                 {% endif %}
 
-                <button class="share">Share <img src="{% static 'images/share.png' %}" alt="share-icon"></button>
+                <button class="share">Share <img src="{% static 'images/copy_icon.png' %}" alt="share-icon"></button>
             </div>
         </div>
     </section>
@@ -254,7 +254,7 @@
                 </section>
 
                 <section class="box">
-                    <p class="reminder-message">You will receive a reminder email 1 day before the event!</p>
+                    <p class="reminder-message">You have just received an email with the details of the event!</p>
                 </section>
 
                 <button class="cancel close-attending-container">Close</button>
@@ -659,6 +659,20 @@
 
     }
 
+
+
+
+
+
+    const shareBtn = document.getElementsByClassName('share')[0]
+    const shareCopyImg = shareBtn.querySelector('img')
+    console.log(shareCopyImg)
+
+    shareBtn.addEventListener('click', () => {
+        shareCopyImg.src = `{% static 'images/done_icon_blue.png' %}`
+        shareBtn.backgroundColor = 'rgba(236, 236, 236, 0.77)'
+        window.navigator.clipboard.writeText(window.location.href);
+    })
 
 
 
