@@ -196,7 +196,7 @@ header ul.last-links li a {
     border-radius: 10px;
     margin-bottom: 1.5em;
     position: relative;
-    height: 22em;
+    height: 25em;
     text-decoration: none;
     color: #000000;
     max-width: 100%;
@@ -253,7 +253,7 @@ header ul.last-links li a {
 
 .title-and-img .container-event-img {
     width: 38%;
-    height: 7em;
+    height: 10em;
 }
 
 .title-and-img img {
