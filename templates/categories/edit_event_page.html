@@ -71,7 +71,10 @@
                     {% endfor %}
                 </div>
 
-                <button type="submit" class="form-submit-button">Save Changes</button>
+                <div class="edit-cancel-buttons-cont">
+                    <button type="submit" class="form-submit-button">Save Changes</button>
+                    <a href="{% url 'event-page' categoryId=object.category.id pk=object.id %}" class="form-cancel-editing-button">Cancel</a>
+                </div>
             </div>
 
             <div class="right">
@@ -120,63 +123,9 @@
             </div>
         </section>
 
-        {% if see_more_events %}
-            <section class="upcoming-events" id="explore">
-                <div class="title-container">
-                    <h3>See more ({{ count_more_events }})</h3>
-                    <a href="{% url 'all-events-page' %}">See all events</a>
-                </div>
-
-                <div class="events">
-                    {% for event in see_more_events %}
-                        <a href="{% url 'event-page' categoryId=event.category.id pk=event.id %}"
-                           class="event-container">
-                            <div class="img-container">
-                                <img src="{{ event.poster_image.url }}" alt="event-img">
-                            </div>
-
-                            <div class="info">
-                                <h6>{{ event.title }}</h6>
-                                <p>Hosted by: {{ event.host.profile.full_name }}</p>
-                                <p>{{ event.time }}</p>
-                            </div>
-                        </a>
-                    {% endfor %}
-                </div>
-            </section>
-        {% endif %}
     </form>
 
 </main>
-
-<div class="attending-cont">
-    <div class="going-to-event-container">
-        <h3>You are going!</h3>
-
-        <section>
-            <div class="left-img-container">
-                <img src="{{ object.poster_image.url }}" alt="event-img">
-            </div>
-
-            <div class="right">
-                <h5>{{ object.title }}</h5>
-
-                <section class="box">
-                    <img src="{% static 'images/clock.png' %}" alt="clock_icon">
-                    <p>{{ object.time }}</p>
-                </section>
-
-                <section class="box">
-                    <img src="{% static 'images/location_grey.png' %}" alt="location_grey_icon">
-                    <p>{{ object.exact_location }}</p>
-                </section>
-
-                <button class="cancel">Cancel attending</button>
-                <button class="share">Share <img src="{% static 'images/share_white.png' %}" alt="share-img"></button>
-            </div>
-        </section>
-    </div>
-</div>
 
 {% include 'base/footer.html' %}
 
@@ -188,7 +137,7 @@
 ></script>
 
 <script>
-    
+
     const eventImgContainerInputDiv = document.querySelectorAll('.event-img-container div')[0]
     const eventImgInput = eventImgContainerInputDiv.getElementsByTagName('input')[0]
 

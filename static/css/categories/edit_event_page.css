@@ -347,7 +347,13 @@ input:focus {
     background-color: rgba(236, 236, 236, 0.77);
 }
 
-form .form-submit-button {
+form .edit-cancel-buttons-cont {
+    display: flex;
+    gap: 1em;
+    width: 45%;
+}
+
+form .form-submit-button, form .form-cancel-editing-button {
     padding: 0.8em 1.3em;
     border: none;
     font-size: 1em;
@@ -356,8 +362,20 @@ form .form-submit-button {
     font-family: inherit;
     background-color: #08376b;
     color: #ffffff;
-    width: 25%;
+    width: 45%;
     transition: background-color 0.2s ease-in-out;
+    text-decoration: none;
+    text-align: center;
+}
+
+form .form-cancel-editing-button {
+    background-color: #e0e0e0;
+    color: #08376b;
+}
+
+form .form-cancel-editing-button:hover {
+    background-color: #eaeaea;
+    cursor: pointer;
 }
 
 form input[type='file']::file-selector-button {
