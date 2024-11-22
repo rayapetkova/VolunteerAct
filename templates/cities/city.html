@@ -31,7 +31,7 @@
                 <div class="upcoming-events">
                     <div class="events-title-container">
                         <h4>Upcoming events ({{ count_upcoming_events }})</h4>
-                        <a href="{% url 'all-events-page' %}?category={{ upcoming_event.category.category_name_for_url }}&time=Upcoming">See all</a>
+                        <a href="{% url 'all-events-page' %}?city={{ city_name }}&time=Upcoming">See all</a>
                     </div>
 
                     <div class="all-events">
@@ -91,7 +91,7 @@
                 <div class="past-events">
                     <div class="events-title-container">
                         <h4>Past events ({{ count_past_events }})</h4>
-                        <a href="{% url 'all-events-page' %}?category={{ past_event.category.category_name_for_url }}&time=Past">See all</a>
+                        <a href="{% url 'all-events-page' %}?city={{ city_name }}&time=Past">See all</a>
                     </div>
 
                     <div class="all-events">

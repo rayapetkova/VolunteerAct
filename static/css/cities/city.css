@@ -19,7 +19,8 @@ header ul.last-links li a {
 .category-info {
     display: flex;
     justify-content: space-between;
-    margin: 4% 15%;
+    padding: 4% 15%;
+    background-color: rgb(249, 249, 249);
 }
 
 .category-info .left {
@@ -107,7 +108,6 @@ header ul.last-links li a {
 .info-section {
     display: flex;
     justify-content: space-between;
-    background-color: rgb(249, 249, 249);
     padding: 2% 15%;
 }
 
@@ -189,7 +189,7 @@ header ul.last-links li a {
 }
 
 .event-container {
-    background-color: rgb(255, 255, 255);
+    background-color: rgb(249, 249, 249);
     display: flex;
     flex-direction: column;
     padding: 1.5em;
@@ -314,7 +314,7 @@ header ul.last-links li a {
     left: 0;
     height: 45%;
     width: 100%;
-    background: linear-gradient(to bottom, rgba(255, 255, 255, 0) 0%, rgb(255 255 255) 80%);
+    background: linear-gradient(to bottom, rgba(255, 255, 255, 0) 0%, rgb(249, 249, 249) 80%);
 }
 
 .past-events p,
