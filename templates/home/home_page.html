@@ -197,6 +197,11 @@
                     `
 
                     citiesDivElement.appendChild(cityContainerDiv)
+
+                    cityContainerDiv.addEventListener('click', () => {
+                        const cityName = city
+                        window.location.href = `{% url 'city-details' city_name='0' %}`.replace('0', city)
+                    })
                 }
 
             })
