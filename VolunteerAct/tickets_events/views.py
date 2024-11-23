@@ -18,3 +18,13 @@ def all_tickets_events_view(request):
 
     return render(request, 'tickets_events/user_tickets_events.html', context=context)
 
+
+class AllTicketsUserApiView(APIView):
+
+    def get(self, request):
+        searched_title = request.GET['searchedTitle']
+        events = request.user.events.all().filter(title__icontains=searched_title)
+        serializer = EventSerializer(events, many=True)
+        json_data = serializer.data
+
+        return Response(data=json_data)
