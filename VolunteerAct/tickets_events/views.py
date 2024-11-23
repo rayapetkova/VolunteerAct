@@ -24,6 +24,9 @@ class AllTicketsUserApiView(APIView):
     def get(self, request):
         searched_title = request.GET['searchedTitle']
         events = request.user.events.all().filter(title__icontains=searched_title)
+        for ticket_event in events:
+            ticket_event.already_passed = True if ticket_event.time < timezone.now() else False
+
         serializer = EventSerializer(events, many=True)
         json_data = serializer.data
 

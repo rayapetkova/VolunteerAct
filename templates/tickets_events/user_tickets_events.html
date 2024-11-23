@@ -92,7 +92,7 @@
         const searchEventsInput = document.getElementsByClassName('search-events-input')[0]
 
         searchEventsInput.addEventListener('input', () => {
-            const eventsUrl = `{% url 'list-all-user-tickets-api-view' %}?searchedTitle=${searchEventsInput.value}`
+            const eventsUrl = `{% url 'list-all-user-tickets-api' %}?searchedTitle=${searchEventsInput.value}`
             const allEventsElement = document.getElementsByClassName('all-events')[0]
 
             const response = fetch(eventsUrl)
