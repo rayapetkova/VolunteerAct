@@ -109,72 +109,163 @@
         const searchEventsInput = document.getElementsByClassName('search-events-input')[0]
 
         searchEventsInput.addEventListener('input', () => {
-            const eventsUrl = `{% url 'list-events-api' %}?searchedTitle=${searchEventsInput.value}`
+            const eventsUrl = `{% url 'list-all-favourite-events-api' %}?searchedTitle=${searchEventsInput.value}`
             const allEventsElement = document.getElementsByClassName('all-events')[0]
 
             const response = fetch(eventsUrl)
                 .then((response) => response.json())
-                .then((resultEvents) => {
+                .then((resultFavourites) => {
 
                     allEventsElement.innerHTML = ''
 
-                    if (resultEvents.length == 0) {
+                    if (resultFavourites.length == 0) {
                         allEventsElement.innerHTML = `
                             <h3>No events matched</h3>
                         `
                     }
 
-                    for (let event of resultEvents) {
+                    for (let favouriteRecord of resultFavourites) {
                         const aEventElement = document.createElement('a')
-                        aEventElement.href = `{% url 'event-page' categoryId='00' pk='000' %}`.replace('00', event.category).replace('000', event.id)
-                        aEventElement.className = 'event-container'
+                        aEventElement.href = `{% url 'event-page' categoryId='00' pk='000' %}`.replace('00', favouriteRecord.event.category).replace('000', favouriteRecord.event.id)
+                        aEventElement.className = `event-container`
+                        if (favouriteRecord.event.already_passed) {
+                            aEventElement.classList.add('passed-event-container')
+                        }
                         const requestUserId = '{{ request.user.id }}'
 
-                        if (requestUserId == `${event.host}`) {
-                            aEventElement.innerHTML = `
-                                <p>${event.event_time_formatted}</p>
+                        if (requestUserId == `${favouriteRecord.event.host}`) {
 
-                                <div class="title-and-img">
-                                    <div class="title-container">
-                                        <h6>${event.title}</h6>
-                                        <div class="location">
-                                            <img src="{% static 'images/location_grey.png' %}" alt="locations">
-                                            <p>${event.exact_location}</p>
-                                        </div>
-
-                                        <div class="your-event-container">
-                                            <p>Your event</p>
-                                            <img src="{% static 'images/your_event_icon.png' %}" alt="your-event-icon" >
+                            if (favouriteRecord.event.already_passed) {
+                                aEventElement.innerHTML = `
+                                    <div class="date-and-delete">
+                                        <p>${favouriteRecord.event.event_time_formatted}</p>
+                                        <div class="delete-from-favs-image-container">
+                                            <img src="{% static 'images/delete_favourite_record_icon.png' %}"
+                                                 class="delete-favourite-btn ${favouriteRecord.id}"
+                                                 alt="delete-icon">
                                         </div>
                                     </div>
 
-                                    <div class="container-event-img">
-                                        <img src="${event.poster_image_full_url}" alt="category-img">
-                                    </div>
-                                </div>
+                                    <div class="title-and-img">
+                                        <div class="title-container">
+                                            <h6>${favouriteRecord.event.title}</h6>
+                                            <div class="location">
+                                                <img src="{% static 'images/location_grey.png' %}" alt="locations">
+                                                <p>${favouriteRecord.event.exact_location}</p>
+                                            </div>
 
-                                <p class="details">${event.details}</p>
-                            `
+                                            <div class="your-event-container">
+                                                <p>Your event</p>
+                                                <img src="{% static 'images/your_event_icon.png' %}" alt="your-event-icon" >
+                                            </div>
+
+                                            <div class="passed-event-message-cont">
+                                                <p>Already passed event</p>
+                                            </div>
+                                        </div>
+
+                                        <div class="container-event-img">
+                                            <img src="${favouriteRecord.event.poster_image_full_url}" alt="category-img">
+                                        </div>
+                                    </div>
+
+                                    <p class="details">${favouriteRecord.event.details}</p>
+                                `
+                            } else {
+                                aEventElement.innerHTML = `
+                                    <div class="date-and-delete">
+                                        <p>${favouriteRecord.event.event_time_formatted}</p>
+                                        <div class="delete-from-favs-image-container">
+                                            <img src="{% static 'images/delete_favourite_record_icon.png' %}"
+                                                 class="delete-favourite-btn ${favouriteRecord.id}"
+                                                 alt="delete-icon">
+                                        </div>
+                                    </div>
+
+                                    <div class="title-and-img">
+                                        <div class="title-container">
+                                            <h6>${favouriteRecord.event.title}</h6>
+                                            <div class="location">
+                                                <img src="{% static 'images/location_grey.png' %}" alt="locations">
+                                                <p>${favouriteRecord.event.exact_location}</p>
+                                            </div>
+
+                                            <div class="your-event-container">
+                                                <p>Your event</p>
+                                                <img src="{% static 'images/your_event_icon.png' %}" alt="your-event-icon" >
+                                            </div>
+                                        </div>
+
+                                        <div class="container-event-img">
+                                            <img src="${favouriteRecord.event.poster_image_full_url}" alt="category-img">
+                                        </div>
+                                    </div>
+
+                                    <p class="details">${favouriteRecord.event.details}</p>
+                                `
+                            }
+
                         } else {
-                            aEventElement.innerHTML = `
-                                <p>${event.event_time_formatted}</p>
 
-                                <div class="title-and-img">
-                                    <div class="title-container">
-                                        <h6>${event.title}</h6>
-                                        <div class="location">
-                                            <img src="{% static 'images/location_grey.png' %}" alt="locations">
-                                            <p>${event.exact_location}</p>
+                            if (favouriteRecord.event.already_passed) {
+                                aEventElement.innerHTML = `
+                                    <div class="date-and-delete">
+                                        <p>${favouriteRecord.event.event_time_formatted}</p>
+                                        <div class="delete-from-favs-image-container">
+                                            <img src="{% static 'images/delete_favourite_record_icon.png' %}"
+                                                 class="delete-favourite-btn ${favouriteRecord.id}"
+                                                 alt="delete-icon">
                                         </div>
                                     </div>
 
-                                    <div class="container-event-img">
-                                        <img src="${event.poster_image_full_url}" alt="category-img">
-                                    </div>
-                                </div>
+                                    <div class="title-and-img">
+                                        <div class="title-container">
+                                            <h6>${favouriteRecord.event.title}</h6>
+                                            <div class="location">
+                                                <img src="{% static 'images/location_grey.png' %}" alt="locations">
+                                                <p>${favouriteRecord.event.exact_location}</p>
+                                            </div>
 
-                                <p class="details">${event.details}</p>
-                            `
+                                            <div class="passed-event-message-cont">
+                                                <p>Already passed event</p>
+                                            </div>
+                                        </div>
+
+                                        <div class="container-event-img">
+                                            <img src="${favouriteRecord.event.poster_image_full_url}" alt="category-img">
+                                        </div>
+                                    </div>
+
+                                    <p class="details">${favouriteRecord.event.details}</p>
+                                `
+                            } else {
+                                aEventElement.innerHTML = `
+                                    <div class="date-and-delete">
+                                        <p>${favouriteRecord.event.event_time_formatted}</p>
+                                        <div class="delete-from-favs-image-container">
+                                            <img src="{% static 'images/delete_favourite_record_icon.png' %}"
+                                                 class="delete-favourite-btn ${favouriteRecord.id}"
+                                                 alt="delete-icon">
+                                        </div>
+                                    </div>
+
+                                    <div class="title-and-img">
+                                        <div class="title-container">
+                                            <h6>${favouriteRecord.event.title}</h6>
+                                            <div class="location">
+                                                <img src="{% static 'images/location_grey.png' %}" alt="locations">
+                                                <p>${favouriteRecord.event.exact_location}</p>
+                                            </div>
+                                        </div>
+
+                                        <div class="container-event-img">
+                                            <img src="${favouriteRecord.event.poster_image_full_url}" alt="category-img">
+                                        </div>
+                                    </div>
+
+                                    <p class="details">${favouriteRecord.event.details}</p>
+                                `
+                            }
                         }
 
 

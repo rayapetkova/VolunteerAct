@@ -6,8 +6,9 @@ from rest_framework.response import Response
 from rest_framework.views import APIView
 
 from VolunteerAct.categories.forms import FilterForm
+from VolunteerAct.categories.serializers import EventSerializer
 from VolunteerAct.favourites.models import Favourites
-from VolunteerAct.favourites.serializers import FavouritesSerializer
+from VolunteerAct.favourites.serializers import FavouritesSerializer, FavouritesSerializerWithEventInfo
 
 
 @login_required
@@ -44,6 +45,21 @@ def favourite_events_view(request):
     }
 
     return render(request, 'favourites/favourite_events.html', context=context)
+
+
+class AllFavouriteEventsApiView(APIView):
+
+    def get(self, request):
+        searched_title = request.GET['searchedTitle']
+        user_favourites = Favourites.objects.all().filter(user=request.user, event__title__icontains=searched_title).order_by('-added_on')
+
+        for favourite_record in user_favourites:
+            favourite_record.already_passed = True if favourite_record.event.time < timezone.now() else False
+
+        serializer = FavouritesSerializerWithEventInfo(user_favourites, many=True)
+        json_data = serializer.data
+
+        return Response(data=json_data)
 
 
 class FavouritesCreateApiView(APIView):
