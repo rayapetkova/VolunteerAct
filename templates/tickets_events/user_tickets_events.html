@@ -33,11 +33,9 @@
                         <a href="{% url 'event-page' categoryId=event.category.id pk=event.id %}" class="event-container {% if event.already_passed %}passed-event-container{% endif %}">
                             <div class="date-and-delete">
                                 <p>{{ event.time }}</p>
-                                <div class="delete-from-favs-image-container">
-                                    <img src="{% static 'images/delete_favourite_record_icon.png' %}"
-                                         class="delete-favourite-btn {{ event.id }}"
-                                         alt="delete-icon">
-                                </div>
+                                {% if event.host != request.user %}
+                                    <button class="cancel-attendance-btn {{ event.id }}">Cancel attendance</button>
+                                {% endif %}
                             </div>
 
                             <div class="title-and-img">
@@ -97,67 +95,140 @@
 
             const response = fetch(eventsUrl)
                 .then((response) => response.json())
-                .then((resultEvents) => {
+                .then((resultTickets) => {
 
                     allEventsElement.innerHTML = ''
 
-                    if (resultEvents.length == 0) {
+                    if (resultTickets.length == 0) {
                         allEventsElement.innerHTML = `
                             <h3>No events matched</h3>
                         `
                     }
 
-                    for (let event of resultEvents) {
+                    for (let event of resultTickets) {
                         const aEventElement = document.createElement('a')
                         aEventElement.href = `{% url 'event-page' categoryId='00' pk='000' %}`.replace('00', event.category).replace('000', event.id)
-                        aEventElement.className = 'event-container'
+                        aEventElement.className = `event-container`
+                        if (event.already_passed) {
+                            aEventElement.classList.add('passed-event-container')
+                        }
                         const requestUserId = '{{ request.user.id }}'
 
                         if (requestUserId == `${event.host}`) {
-                            aEventElement.innerHTML = `
-                                <p>${event.event_time_formatted}</p>
 
-                                <div class="title-and-img">
-                                    <div class="title-container">
-                                        <h6>${event.title}</h6>
-                                        <div class="location">
-                                            <img src="{% static 'images/location_grey.png' %}" alt="locations">
-                                            <p>${event.exact_location}</p>
+                            if (event.already_passed) {
+                                aEventElement.innerHTML = `
+                                    <div class="date-and-delete">
+                                        <p>${event.event_time_formatted}</p>
+                                    </div>
+
+                                    <div class="title-and-img">
+                                        <div class="title-container">
+                                            <h6>${event.title}</h6>
+                                            <div class="location">
+                                                <img src="{% static 'images/location_grey.png' %}" alt="locations">
+                                                <p>${event.exact_location}</p>
+                                            </div>
+
+                                            <div class="your-event-container">
+                                                <p>Your event</p>
+                                                <img src="{% static 'images/your_event_icon.png' %}" alt="your-event-icon" >
+                                            </div>
+
+                                            <div class="passed-event-message-cont">
+                                                <p>Already passed event</p>
+                                            </div>
                                         </div>
 
-                                        <div class="your-event-container">
-                                            <p>Your event</p>
-                                            <img src="{% static 'images/your_event_icon.png' %}" alt="your-event-icon" >
+                                        <div class="container-event-img">
+                                            <img src="${event.poster_image_full_url}" alt="category-img">
                                         </div>
                                     </div>
 
-                                    <div class="container-event-img">
-                                        <img src="${event.poster_image_full_url}" alt="category-img">
+                                    <p class="details">${event.details}</p>
+                                `
+                            } else {
+                                aEventElement.innerHTML = `
+                                    <div class="date-and-delete">
+                                        <p>${event.event_time_formatted}</p>
                                     </div>
-                                </div>
 
-                                <p class="details">${event.details}</p>
-                            `
+                                    <div class="title-and-img">
+                                        <div class="title-container">
+                                            <h6>${event.title}</h6>
+                                            <div class="location">
+                                                <img src="{% static 'images/location_grey.png' %}" alt="locations">
+                                                <p>${event.exact_location}</p>
+                                            </div>
+
+                                            <div class="your-event-container">
+                                                <p>Your event</p>
+                                                <img src="{% static 'images/your_event_icon.png' %}" alt="your-event-icon" >
+                                            </div>
+                                        </div>
+
+                                        <div class="container-event-img">
+                                            <img src="${event.poster_image_full_url}" alt="category-img">
+                                        </div>
+                                    </div>
+
+                                    <p class="details">${event.details}</p>
+                                `
+                            }
+
                         } else {
-                            aEventElement.innerHTML = `
-                                <p>${event.event_time_formatted}</p>
 
-                                <div class="title-and-img">
-                                    <div class="title-container">
-                                        <h6>${event.title}</h6>
-                                        <div class="location">
-                                            <img src="{% static 'images/location_grey.png' %}" alt="locations">
-                                            <p>${event.exact_location}</p>
+                            if (event.already_passed) {
+                                aEventElement.innerHTML = `
+                                    <div class="date-and-delete">
+                                        <p>${event.event_time_formatted}</p>
+                                        <button class="cancel-attendance-btn {{ event.id }}">Cancel attendance</button>
+                                    </div>
+
+                                    <div class="title-and-img">
+                                        <div class="title-container">
+                                            <h6>${event.title}</h6>
+                                            <div class="location">
+                                                <img src="{% static 'images/location_grey.png' %}" alt="locations">
+                                                <p>${event.exact_location}</p>
+                                            </div>
+
+                                            <div class="passed-event-message-cont">
+                                                <p>Already passed event</p>
+                                            </div>
+                                        </div>
+
+                                        <div class="container-event-img">
+                                            <img src="${event.poster_image_full_url}" alt="category-img">
                                         </div>
                                     </div>
 
-                                    <div class="container-event-img">
-                                        <img src="${event.poster_image_full_url}" alt="category-img">
+                                    <p class="details">${event.details}</p>
+                                `
+                            } else {
+                                aEventElement.innerHTML = `
+                                    <div class="date-and-delete">
+                                        <p>${event.event_time_formatted}</p>
+                                        <button class="cancel-attendance-btn {{ event.id }}">Cancel attendance</button>
                                     </div>
-                                </div>
 
-                                <p class="details">${event.details}</p>
-                            `
+                                    <div class="title-and-img">
+                                        <div class="title-container">
+                                            <h6>${event.title}</h6>
+                                            <div class="location">
+                                                <img src="{% static 'images/location_grey.png' %}" alt="locations">
+                                                <p>${event.exact_location}</p>
+                                            </div>
+                                        </div>
+
+                                        <div class="container-event-img">
+                                            <img src="${event.poster_image_full_url}" alt="category-img">
+                                        </div>
+                                    </div>
+
+                                    <p class="details">${event.details}</p>
+                                `
+                            }
                         }
 
 
@@ -170,40 +241,50 @@
 
 
 
+        const cancelAttendanceBtns = document.getElementsByClassName('cancel-attendance-btn')
+        const currentLoggedInUserId = `{{ request.user.id }}`
+        const allEventsContainer = document.getElementsByClassName('all-events')[0]
 
-        const deleteFavouriteBtns = document.getElementsByClassName('delete-favourite-btn')
+        for (let cancelBtn of cancelAttendanceBtns) {
+            const eventUpdateURL = `{% url 'update-event-api' pk='0' %}`.replace('0', cancelBtn.classList[1])
+            const eventContainer = cancelBtn.parentElement.parentElement
 
-        for (let deleteBtn of deleteFavouriteBtns) {
-            const favouriteRecordId = deleteBtn.classList[1]
-            const eventContainer = deleteBtn.parentElement.parentElement.parentElement
-            const deleteFavouriteRecordUrl = `{% url 'delete-favourite-record-api' pk='0' %}`.replace('0', favouriteRecordId)
-
-            deleteBtn.addEventListener('click', () => {
-                eventContainer.href = '#remove-event'
+            cancelBtn.addEventListener('click', () => {
+                eventContainer.href = '#cancel-attendance'
                 eventContainer.remove()
+                let attendees = []
 
-                fetch(deleteFavouriteRecordUrl, {
-                    method: 'DELETE',
-                    headers: {
-                        'Content-Type': 'application/json',
-                        'X-CSRFToken': `{{ csrf_token }}`
-                    }
-                })
-                .then((response) => response.json())
-                .then((result) => {
-                    const eventContainers = document.getElementsByClassName('event-container')
-                    const allEvents = document.getElementsByClassName('all-events')[0]
+                const response = fetch(eventUpdateURL)
+                    .then((response) => response.json())
+                    .then((resultEvent) => {
 
-                    if (eventContainers.length === 0) {
-                        allEvents.innerHTML = `
-                            <h3>No events yet</h3>
-                            <a href="{% url 'all-events-page' %}" class="explore-events-btn">Explore events</a>
-                        `
-                    }
-                })
+                        attendees = resultEvent.attendees.filter(attendee => `${attendee}` !== currentLoggedInUserId)
+
+                        const updateResponse = fetch(eventUpdateURL, {
+                            method: 'PUT',
+                            headers: {
+                                'Content-Type': 'application/json',
+                                'X-CSRFToken': `{{ csrf_token }}`
+                            },
+                            body: JSON.stringify({
+                                ...resultEvent,
+                                attendees
+                            })
+                        }).then((response) => response.json())
+                            .then((result) => {
+                                const eventContainers = document.getElementsByClassName('event-container')
+
+                                if (eventContainers.length === 0) {
+                                    allEventsContainer.innerHTML = `
+                                        <h3>No events yet</h3>
+                                        <a href="{% url 'all-events-page' %}" class="explore-events-btn">Explore events</a>
+                                    `
+                                }
+                            })
+                    })
             })
-
         }
+
     </script>
 
 </html>
