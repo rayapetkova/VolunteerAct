@@ -24,5 +24,6 @@ urlpatterns = [
     path('categories/', include('VolunteerAct.categories.urls')),
     path('comments/', include('VolunteerAct.comments.urls')),
     path('favourites/', include('VolunteerAct.favourites.urls')),
-    path('cities/', include('VolunteerAct.cities.urls'))
+    path('cities/', include('VolunteerAct.cities.urls')),
+    path('tickets/', include('VolunteerAct.tickets_events.urls'))
 ]

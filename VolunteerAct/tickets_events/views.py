@@ -1,3 +1,20 @@
 from django.shortcuts import render
+from django.utils import timezone
+from rest_framework.response import Response
+from rest_framework.views import APIView
 
-# Create your views here.
+from VolunteerAct.categories.serializers import EventSerializer
+
+
+def all_tickets_events_view(request):
+    user_tickets_events = request.user.events.all()
+
+    for ticket_event in user_tickets_events:
+        ticket_event.already_passed = True if ticket_event.time < timezone.now() else False
+
+    context = {
+        'user_tickets_events': user_tickets_events
+    }
+
+    return render(request, 'tickets_events/user_tickets_events.html', context=context)
+
