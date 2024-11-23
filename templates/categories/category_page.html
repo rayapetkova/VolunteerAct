@@ -51,10 +51,8 @@
             </section>
 
             <div class="navigate-category">
-                <a href="#">About</a>
-                <a href="#">Events</a>
-                <a href="#">Photos</a>
-                <a href="#">Discussions</a>
+                <a href="#about" class="about-btn">About</a>
+                <a href="#photos" class="photos-btn">Photos</a>
             </div>
 
             <section class="info-section">
@@ -215,6 +213,9 @@
                     </div>
                 </div>
             </section>
+            <section class="photos-section">
+                <h1>Hiiiiiii!</h1>
+            </section>
         </div>
 
         {% include 'base/footer.html' %}
@@ -250,6 +251,36 @@
     ></script>
 
     <script>
+        const aboutBtn = document.getElementsByClassName('about-btn')[0]
+        const photosBtn = document.getElementsByClassName('photos-btn')[0]
+        const aboutSection = document.getElementsByClassName('info-section')[0]
+        const photosSection = document.getElementsByClassName('photos-section')[0]
+
+        aboutBtn.addEventListener('click', () => {
+            photosSection.style.display = 'none'
+            aboutSection.style.display = 'flex'
+
+            aboutBtn.style.color = '#008ab4'
+            aboutBtn.style.fontWeight = '600'
+
+            photosBtn.style.color = '#5f5f5f'
+            photosBtn.style.fontWeight = '500'
+        })
+
+        photosBtn.addEventListener('click', () => {
+            aboutSection.style.display = 'none'
+            photosSection.style.display = 'flex'
+
+            photosBtn.style.color = '#008ab4'
+            photosBtn.style.fontWeight = '600'
+
+            aboutBtn.style.color = '#5f5f5f'
+            aboutBtn.style.fontWeight = '500'
+        })
+
+
+
+
         const readMoreBtn = document.getElementById('read_more_desc')
         const longDescElement = document.getElementsByClassName('text-info')[0]
 

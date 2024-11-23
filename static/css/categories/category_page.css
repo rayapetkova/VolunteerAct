@@ -9,9 +9,6 @@ body {
     margin: 0;
     padding: 0;
     font-family: "Poppins", sans-serif;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
 }
 
 
@@ -250,6 +247,11 @@ form ul.errorlist li {
     margin-right: 1.7em;
 }
 
+.navigate-category a:nth-child(1) {
+    color: #008ab4;
+    font-weight: 600;
+}
+
 .navigate-category a:hover {
     text-decoration: underline;
 }
@@ -258,7 +260,7 @@ form ul.errorlist li {
 
 
 
-.info-section {
+.info-section, .photos-section {
     display: flex;
     justify-content: space-between;
     background-color: rgb(249, 249, 249);
