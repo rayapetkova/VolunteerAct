@@ -44,7 +44,7 @@
                         <a href="#" class="delete-btn">Delete Event</a>
                     </div>
                 </div>
-            {% elif object.host.id != request.user.id and not object.passed_event %}
+
                 <div>
                     <div class="buttons-container-edit-delete">
                         {% if request.user.is_authenticated %}

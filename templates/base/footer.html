@@ -10,10 +10,9 @@
 
         <div>
             <h6>Discover</h6>
-            <a href="#">Events</a>
-            <a href="#">Cities</a>
-            <a href="#">Categories</a>
-            <a href="#">Upcoming events</a>
+            <a href="{% url 'all-events-page' %}">Events</a>
+            <a href="{% url 'all-events-page' %}?time=Upcoming">Upcoming Events</a>
+            <a href="{% url 'all-events-page' %}?time=Past">Past Events</a>
         </div>
 
         <div>
