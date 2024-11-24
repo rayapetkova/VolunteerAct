@@ -1,3 +1,4 @@
+from django.contrib.auth.decorators import login_required
 from django.shortcuts import render
 from django.utils import timezone
 from rest_framework.response import Response
@@ -5,7 +6,7 @@ from rest_framework.views import APIView
 
 from VolunteerAct.categories.serializers import EventSerializer
 
-
+@login_required
 def all_tickets_events_view(request):
     user_tickets_events = request.user.events.all()
 
