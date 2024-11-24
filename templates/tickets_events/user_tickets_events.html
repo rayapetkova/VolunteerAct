@@ -28,51 +28,51 @@
         </section>
 
         <div class="right">
-                <div class="all-events">
-                    {% for event in user_tickets_events %}
-                        <a href="{% url 'event-page' categoryId=event.category.id pk=event.id %}" class="event-container {% if event.already_passed %}passed-event-container{% endif %}">
-                            <div class="date-and-delete">
-                                <p>{{ event.time }}</p>
-                                {% if event.host != request.user %}
-                                    <button class="cancel-attendance-btn {{ event.id }}">Cancel attendance</button>
+            <div class="all-events">
+                {% for event in user_tickets_events %}
+                    <a href="{% url 'event-page' categoryId=event.category.id pk=event.id %}" class="event-container {% if event.already_passed %}passed-event-container{% endif %}">
+                        <div class="date-and-delete">
+                            <p>{{ event.time }}</p>
+                            {% if event.host != request.user %}
+                                <button class="cancel-attendance-btn {{ event.id }}">Cancel attendance</button>
+                            {% endif %}
+                        </div>
+
+                        <div class="title-and-img">
+                            <div class="title-container">
+                                <h6>{{ event.title }}</h6>
+                                <div class="location">
+                                    <img src="{% static 'images/location_grey.png' %}" alt="locations">
+                                    <p>{{ event.exact_location }}</p>
+                                </div>
+
+                                {% if event.host.id == request.user.id %}
+                                    <div class="your-event-container">
+                                        <p>Your event</p>
+                                        <img src="{% static 'images/your_event_icon.png' %}" alt="your-event-icon" >
+                                    </div>
+                                {% endif %}
+
+                                {% if event.already_passed %}
+                                    <div class="passed-event-message-cont">
+                                        <p>Already passed event</p>
+                                    </div>
                                 {% endif %}
                             </div>
 
-                            <div class="title-and-img">
-                                <div class="title-container">
-                                    <h6>{{ event.title }}</h6>
-                                    <div class="location">
-                                        <img src="{% static 'images/location_grey.png' %}" alt="locations">
-                                        <p>{{ event.exact_location }}</p>
-                                    </div>
-
-                                    {% if event.host.id == request.user.id %}
-                                        <div class="your-event-container">
-                                            <p>Your event</p>
-                                            <img src="{% static 'images/your_event_icon.png' %}" alt="your-event-icon" >
-                                        </div>
-                                    {% endif %}
-
-                                    {% if event.already_passed %}
-                                        <div class="passed-event-message-cont">
-                                            <p>Already passed event</p>
-                                        </div>
-                                    {% endif %}
-                                </div>
-
-                                <div class="container-event-img">
-                                    <img src="{{ event.poster_image.url }}" alt="category-img">
-                                </div>
+                            <div class="container-event-img">
+                                <img src="{{ event.poster_image.url }}" alt="category-img">
                             </div>
+                        </div>
 
-                            <p class="details">{{ event.details }}</p>
-                        </a>
-                    {% empty %}
-                        <h3>No events yet</h3>
-                        <a href="{% url 'all-events-page' %}" class="explore-events-btn">Explore events</a>
-                    {% endfor %}
-                </div>
+                        <p class="details">{{ event.details }}</p>
+                    </a>
+                {% empty %}
+                    <h3>No events yet</h3>
+                    <a href="{% url 'all-events-page' %}" class="explore-events-btn">Explore events</a>
+                {% endfor %}
             </div>
+        </div>
 
     </main>
 
