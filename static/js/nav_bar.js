@@ -19,6 +19,12 @@ if (ticketsLiElement) {
     ticketsAElement = ticketsLiElement.getElementsByTagName('a')[0]
 }
 
+const myEventsLiElement = document.getElementsByClassName('my-events')[0]
+let myEventsAElement = null
+if (myEventsLiElement) {
+    myEventsAElement = myEventsLiElement.getElementsByTagName('a')[0]
+}
+
 document.addEventListener('scroll', () => {
     if (window.scrollY > 10) {
         headerElement.style.backgroundColor = 'rgba(67, 79, 98, 0.76)'
@@ -29,6 +35,9 @@ document.addEventListener('scroll', () => {
         }
         if (ticketsAElement) {
             ticketsAElement.style.color = '#FFFFFFFF'
+        }
+        if (myEventsAElement) {
+            myEventsAElement.style.color = '#FFFFFFFF'
         }
         if (signInAElement) {
             signInAElement.style.color = '#FFFFFFFF'
@@ -42,6 +51,9 @@ document.addEventListener('scroll', () => {
         }
         if (ticketsAElement) {
             ticketsAElement.style.color = '#203069'
+        }
+        if (myEventsAElement) {
+            myEventsAElement.style.color = '#203069'
         }
         if (signInAElement) {
             signInAElement.style.color = '#203069'

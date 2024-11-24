@@ -16,7 +16,8 @@ body {
 
 
 header ul.last-links li.favourite-events a,
-header ul.last-links li.tickets-events a {
+header ul.last-links li.tickets-events a,
+header ul.last-links li.my-events a {
     color: #ffffff;
 }
 
