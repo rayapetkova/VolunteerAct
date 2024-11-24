@@ -128,6 +128,31 @@ def all_events_view(request):
     return render(request, 'categories/all_events_page.html', context=context)
 
 
+def my_events_view(request):
+    upcoming_host_events = request.user.host_events.filter(time__gte=timezone.now()).order_by('-time')
+    past_host_events = request.user.host_events.filter(time__lt=timezone.now()).order_by('time')
+
+    members_upcoming_events = [event.attendees.all() for event in upcoming_host_events]
+    if members_upcoming_events:
+        members_upcoming_events = list(members_upcoming_events[0])  # get the queryset inside a list
+
+    members_past_events = [event.attendees.all() for event in past_host_events]
+    if members_past_events:
+        members_past_events = list(members_past_events[0])
+
+    active_members = members_upcoming_events + members_past_events
+
+    context = {
+        'upcoming_host_events': upcoming_host_events,
+        'past_host_events': past_host_events,
+        'count_upcoming_events': count_events(len(upcoming_host_events), 2),
+        'count_past_events': count_events(len(past_host_events), 2),
+        'active_members': active_members[:36]
+    }
+
+    return render(request, 'categories/my_events_page.html', context=context)
+
+
 class EventDetailsView(DetailView, DeleteView):
     model = Event
     template_name = 'categories/event_page.html'
@@ -242,4 +267,3 @@ class AttendEventSendEmailAPIView(APIView):
         )
 
         return Response(status=status.HTTP_201_CREATED)
-

@@ -17,7 +17,7 @@
         <ul class="last-links logout-ul">
             <li class="favourite-events"><a href="{% url 'user-favourite-events-page' %}">Favourites</a></li>
             <li class="tickets-events"><a href="{% url 'all-user-tickets-events' %}">Tickets</a></li>
-            <li class="my-events"><a href="#">My events</a></li>
+            <li class="my-events"><a href="{% url 'my-events-page' %}">My events</a></li>
             <li class="profile-img-container"><a href="{% url 'profile-details-update' pk=request.user.profile.id %}"><img src="{{ request.user.profile.profile_image.url }}" alt="profile-icon"></a></li>
             <li class="logout-btn"><a href="{% url 'logout-user' %}">Log Out</a></li>
         </ul>
