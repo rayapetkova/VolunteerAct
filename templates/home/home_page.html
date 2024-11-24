@@ -175,6 +175,12 @@
 
 
     const popularCities = {{ popular_cities|safe }}
+
+    if (popularCities.length === 0) {
+        const popularCitiesSection = document.getElementsByClassName('popular-cities-section')[0]
+        popularCitiesSection.remove()
+    }
+
     const pixabayApiUrl = `{{ pixabay_api_url }}`
     const citiesDivElement = document.getElementsByClassName('cities')[0]
 

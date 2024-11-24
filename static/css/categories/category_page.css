@@ -105,6 +105,7 @@ header ul.last-links li a {
     width: 50%;
     top: 2%;
     margin: auto;
+    left: 25%;
 }
 
 .not-displaying {
@@ -265,6 +266,10 @@ form ul.errorlist li {
     justify-content: space-between;
     background-color: rgb(249, 249, 249);
     padding: 2% 15%;
+}
+
+.photos-section {
+    display: none;
 }
 
 .info-section .left {
