@@ -27,17 +27,17 @@
                     <div class="more-info">
                         <div class="one">
                             <img src="{% static 'images/events.png' %}" alt="events">
-                            <p>34 events</p>
+                            <p>{{ category.category_events.count }} events</p>
                         </div>
 
                         <div class="one">
                             <img src="{% static 'images/members.png' %}" alt="members">
-                            <p>23 active members</p>
+                            <p>{{ active_members|length }} active members</p>
                         </div>
 
                         <div class="one">
                             <img src="{% static 'images/location.png' %}" alt="locations">
-                            <p>Online, Haskovo, Sofia, New York and others</p>
+                            <p>{{ all_category_locations }} and others</p>
                         </div>
 
                         {% if request.user.is_authenticated %}

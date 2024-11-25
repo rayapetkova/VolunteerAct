@@ -61,6 +61,9 @@ def category_details(request, pk):
 
     active_members = members_upcoming_events + members_past_events
 
+    all_category_locations = set([event.city for event in category.category_events.all()[:3]])
+    all_category_locations = ', '.join(all_category_locations)
+
     if request.method == "POST":
         if event_form.is_valid():
             event = event_form.save(commit=False)
@@ -79,7 +82,8 @@ def category_details(request, pk):
         'past_events': past_events[:2],
         'count_upcoming_events': count_events(len(upcoming_events), 2),
         'count_past_events': count_events(len(past_events), 2),
-        'active_members': active_members[:36]
+        'active_members': active_members[:36],
+        'all_category_locations': all_category_locations
     }
 
     return render(request, 'categories/category_page.html', context=context)

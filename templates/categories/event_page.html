@@ -56,6 +56,18 @@
                         {% endif %}
                     </div>
                 </div>
+            {% elif not object.passed_event %}
+                <div>
+                    <div class="buttons-container-edit-delete">
+                        {% if request.user.is_authenticated %}
+                            {% if not user_favourite_event %}
+                                <a class="save-to-favs-btn">Save Event to Favourites<img src="{% static 'images/star_icon.png' %}" alt="star-icon"></a>
+                            {% else %}
+                                <a class="save-to-favs-btn saved-to-favs">Saved Event to Favourites<img src="{% static 'images/done_icon.png' %}" alt="star-icon"></a>
+                            {% endif %}
+                        {% endif %}
+                    </div>
+                </div>
             {% else %}
                 <p class="already-passed-event">This event has passed! Click here to see more: <a href="#explore">See more</a></p>
             {% endif %}
