@@ -83,6 +83,12 @@ class Event(models.Model):
         ]
     )
 
+    online_meeting_link = models.URLField(
+        max_length=200,
+        null=True,
+        blank=True
+    )
+
     time = models.DateTimeField(
         null=False,
         blank=False
@@ -106,4 +112,7 @@ class Event(models.Model):
     )
 
     def exact_location(self):
-        return f"{self.location}, {self.city}"
+        if self.city:
+            return f"{self.location}, {self.city}"
+
+        return self.location
