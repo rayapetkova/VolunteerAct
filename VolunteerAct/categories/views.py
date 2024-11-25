@@ -9,7 +9,7 @@ from django.template.loader import render_to_string
 from django.urls import reverse_lazy
 from django.utils import timezone
 from django.utils.html import strip_tags
-from django.views.generic import DetailView, UpdateView, DeleteView
+from django.views.generic import DetailView, UpdateView, DeleteView, CreateView
 from django.utils import timezone
 from rest_framework import status
 from rest_framework.generics import UpdateAPIView, RetrieveUpdateAPIView
@@ -155,6 +155,26 @@ def my_events_view(request):
     }
 
     return render(request, 'categories/my_events_page.html', context=context)
+
+
+def create_event_view(request):
+    form = EventForm(request.POST or None, request.FILES or None)
+
+    if request.method == 'POST':
+        if form.is_valid():
+            event = form.save(commit=False)
+            event.host = request.user
+
+            event.save()
+
+            event.attendees.add(request.user)
+            return redirect('event-page', categoryId=event.category, pk=event.id)
+
+    context = {
+        'form': form
+    }
+
+    return render(request, 'categories/add_new_event_page.html', context=context)
 
 
 class EventDetailsView(DetailView, DeleteView):

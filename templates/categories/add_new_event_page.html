@@ -1,0 +1,44 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static 'css/base/nav_bar.css' %}">
+    <link rel="stylesheet" href="{% static 'css/base/footer.css' %}">
+    <link rel="stylesheet" href="{% static 'css/categories/add_new_event_page.css' %}">
+    <title>Profile Details Page</title>
+</head>
+<body>
+
+    {% include 'base/nav_bar.html' with logo_color='dark' %}
+
+    <main>
+
+        <video src="{% static 'images/volunteer_act_video.mp4' %}" muted autoplay loop></video>
+
+        <div class="content-edit">
+            <section class="info-section">
+                <div class="left">
+                    <img src="{% static 'images/add_new_event_picture.png' %}">
+                </div>
+
+                <div class="right">
+                    {{ form }}
+                </div>
+            </section>
+        </div>
+
+
+    </main>
+
+    {% include 'base/footer.html' %}
+
+</body>
+
+    <script src="{% static 'js/nav_bar.js' %}"
+        lightLogo="{% static 'images/volunteer_act_logo_light.png' %}"
+        darkLogo="{% static 'images/volunteer_act_logo_dark.png' %}"
+    ></script>
+
+</html>
