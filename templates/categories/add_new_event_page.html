@@ -24,7 +24,12 @@
                 </div>
 
                 <div class="right">
-                    {{ form }}
+                    <form method="POST" enctype="multipart/form-data">
+                        {% csrf_token %}
+                        {{ form }}
+
+                        <button type="submit">Add event</button>
+                    </form>
                 </div>
             </section>
         </div>

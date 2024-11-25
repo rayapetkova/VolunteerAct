@@ -8,7 +8,7 @@ from VolunteerAct.categories.utils import get_categories, get_cities
 class EventForm(ModelForm):
     class Meta:
         model = Event
-        fields = ('category', 'poster_image', 'title', 'details', 'city', 'location', 'online_meeting_link', 'time', )
+        fields = ('category', 'poster_image', 'title', 'details', 'online', 'city', 'location', 'online_meeting_link', 'time', )
 
         widgets = {
             'details': widgets.Textarea(

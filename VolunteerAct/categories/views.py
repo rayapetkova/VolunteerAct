@@ -172,7 +172,7 @@ def create_event_view(request, categoryId=''):
             event.save()
 
             event.attendees.add(request.user)
-            return redirect('event-page', categoryId=event.category, pk=event.id)
+            return redirect('event-page', categoryId=event.category.id, pk=event.id)
 
     context = {
         'form': form

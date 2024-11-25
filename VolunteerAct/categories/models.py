@@ -65,6 +65,8 @@ class Event(models.Model):
         ]
     )
 
+    online = models.BooleanField()
+
     city = models.CharField(
         max_length=50,
         null=False,
