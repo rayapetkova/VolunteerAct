@@ -157,8 +157,12 @@ def my_events_view(request):
     return render(request, 'categories/my_events_page.html', context=context)
 
 
-def create_event_view(request):
+def create_event_view(request, categoryId=''):
     form = EventForm(request.POST or None, request.FILES or None)
+
+    if categoryId:
+        category = Category.objects.filter(id=categoryId).first()
+        form.fields['category'].initial = category
 
     if request.method == 'POST':
         if form.is_valid():
