@@ -15,18 +15,72 @@
 
     <main>
 
-        <video src="{% static 'images/volunteer_act_video.mp4' %}" muted autoplay loop></video>
+{#        <video src="{% static 'images/volunteer_act_video.mp4' %}" muted autoplay loop></video>#}
+        <img src="{% static 'images/add_event_page_background.png' %}" alt="background-img">
 
         <div class="content-edit">
             <section class="info-section">
-                <div class="left">
-                    <img src="{% static 'images/add_new_event_picture.png' %}">
-                </div>
-
                 <div class="right">
                     <form method="POST" enctype="multipart/form-data">
                         {% csrf_token %}
-                        {{ form }}
+
+                        <section class="all-fields">
+                            <div class="field">
+                                {{ form.category.label }}
+                                {{ form.category }}
+                                {{ form.category.errors }}
+                            </div>
+
+                            <div class="field">
+                                {{ form.poster_image.label }}
+                                {{ form.poster_image }}
+                                {{ form.poster_image.errors }}
+                            </div>
+
+                            <div class="field">
+                                {{ form.title.label }}
+                                {{ form.title }}
+                                {{ form.title.errors }}
+                            </div>
+
+                            <div class="field online-field">
+                                {{ form.online.label }}
+                                {{ form.online }}
+                                {{ form.online.errors }}
+                            </div>
+
+                            <div class="field city-field">
+                                {{ form.city.label }}
+                                {{ form.city }}
+                                {{ form.city.errors }}
+                            </div>
+
+                            <div class="field location-field">
+                                {{ form.location.label }}
+                                {{ form.location }}
+                                {{ form.location.errors }}
+                            </div>
+
+                            <div class="field online-meeting-link-field">
+                                {{ form.online_meeting_link.label }}
+                                {{ form.online_meeting_link }}
+                                {{ form.online_meeting_link.errors }}
+                            </div>
+
+                            <div class="field">
+                                {{ form.time.label }}
+                                {{ form.time }}
+                                {{ form.time.errors }}
+                            </div>
+
+                            <div class="break-line"></div>
+
+                            <div class="field">
+                                {{ form.details.label }}
+                                {{ form.details }}
+                                {{ form.details.errors }}
+                            </div>
+                        </section>
 
                         <button type="submit">Add event</button>
                     </form>
@@ -45,5 +99,26 @@
         lightLogo="{% static 'images/volunteer_act_logo_light.png' %}"
         darkLogo="{% static 'images/volunteer_act_logo_dark.png' %}"
     ></script>
+
+    <script>
+        const isOnlineFieldElement = document.querySelector('.online-field input')
+        const onlineMeetingLinkField = document.getElementsByClassName('online-meeting-link-field')[0]
+        const cityField = document.getElementsByClassName('city-field')[0]
+        const locationField = document.getElementsByClassName('location-field')[0]
+        const breakLineElement = document.getElementsByClassName('break-line')[0]
+        console.log(breakLineElement)
+
+        isOnlineFieldElement.addEventListener('change', () => {
+            if (isOnlineFieldElement.checked) {
+                onlineMeetingLinkField.style.display = 'flex'
+                cityField.style.display = 'none'
+                locationField.style.display = 'none'
+            } else {
+                onlineMeetingLinkField.style.display = 'none'
+                cityField.style.display = 'flex'
+                locationField.style.display = 'flex'
+            }
+        })
+    </script>
 
 </html>

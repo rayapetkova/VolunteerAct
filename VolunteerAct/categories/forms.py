@@ -14,12 +14,18 @@ class EventForm(ModelForm):
             'details': widgets.Textarea(
                 attrs={'rows': 10}
             ),
+            'city': widgets.TextInput(
+                attrs={'placeholder': 'E.g. Sofia'}
+            ),
             'location': widgets.TextInput(
                 attrs={'placeholder': 'E.g. ul. Rakovski'}
             ),
             'time': widgets.DateTimeInput(
                 format=('%Y-%m-%d %H:%M:%S'),
                 attrs={'type': 'datetime-local'}
+            ),
+            'online_meeting_link': widgets.URLInput(
+                attrs={'placeholder': 'https://'}
             )
         }
 
