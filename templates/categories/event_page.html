@@ -188,7 +188,17 @@
                     <img src="{% static 'images/location_grey.png' %}" alt="location_grey_icon">
                     <p>{{ object.exact_location }}</p>
                 </section>
-                <iframe src="https://www.google.com/maps?q={{ object.exact_location }}&output=embed&maptype=satellite"></iframe>
+
+                {% if object.exact_location == 'Online' %}
+                    <section class="box online-event-box">
+                        <img src="{% static 'images/meeting_link.png' %}" alt="meeting_link_icon">
+                        <p><a href="{{ object.online_meeting_link }}" target="_blank">{{ object.online_meeting_link }}</a></p>
+                    </section>
+                {% endif %}
+
+                {% if object.exact_location != 'Online' %}
+                    <iframe src="https://www.google.com/maps?q={{ object.exact_location }}&output=embed&maptype=satellite"></iframe>
+                {% endif %}
             </div>
 
             {% if request.user in object.attendees.all %}

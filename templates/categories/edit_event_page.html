@@ -105,7 +105,7 @@
                     </section>
 
                     <section class="box">
-                        <p class="{% if object.exact_location != 'Online' %}not-displaying{% endif %}">
+                        <div class="{% if object.exact_location != 'Online' %}not-displaying{% endif %}">
                             <img src="{% static 'images/location_grey.png' %}" alt="location_grey_icon">
                             {{ form.online_meeting_link.label }}
 
@@ -113,7 +113,7 @@
                                 {{ form.online_meeting_link }}
                                 {{ form.online_meeting_link.errors }}
                             </div>
-                        </p>
+                        </div>
 
                         <p class="city-field {% if object.exact_location == 'Online' %}not-displaying{% endif %}">
                             <img src="{% static 'images/location_grey.png' %}" alt="location_grey_icon">
