@@ -15,6 +15,7 @@
         </ul>
     {% else %}
         <ul class="last-links logout-ul">
+            <li class="all-events"><a href="{% url 'all-events-page' %}">All Events</a></li>
             <li class="favourite-events"><a href="{% url 'user-favourite-events-page' %}">Favourites</a></li>
             <li class="tickets-events"><a href="{% url 'all-user-tickets-events' %}">Tickets</a></li>
             <li class="my-events"><a href="{% url 'my-events-page' %}">My events</a></li>

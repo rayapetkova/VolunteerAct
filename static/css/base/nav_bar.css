@@ -32,7 +32,7 @@ header ul.last-links {
 }
 
 header ul.logout-ul {
-    width: 27%;
+    width: 33%;
 }
 
 header ul.last-links li {
@@ -42,6 +42,7 @@ header ul.last-links li {
 header ul.last-links li.favourite-events a,
 header ul.last-links li.tickets-events a,
 header ul.last-links li.my-events a,
+header ul.last-links li.all-events a,
 header ul.sign-in-ul li a {
     transition: color 0.2s ease-in-out;
     color: #203069;
@@ -50,8 +51,9 @@ header ul.sign-in-ul li a {
 header ul.last-links li.favourite-events a:hover,
 header ul.last-links li.tickets-events a:hover,
 header ul.last-links li.my-events a:hover,
+header ul.last-links li.all-events a:hover,
 header ul.sign-in-ul li a:hover {
-    color: rgba(84, 165, 255, 0.89);
+    color: rgba(84, 165, 255, 0.89)!important;
 }
 
 header ul.last-links li.profile-img-container {

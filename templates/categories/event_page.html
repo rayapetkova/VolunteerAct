@@ -688,7 +688,6 @@
 
     const shareBtn = document.getElementsByClassName('share')[0]
     const shareCopyImg = shareBtn.querySelector('img')
-    console.log(shareCopyImg)
 
     shareBtn.addEventListener('click', () => {
         shareCopyImg.src = `{% static 'images/done_icon_blue.png' %}`
@@ -828,7 +827,6 @@
             buttonsContainer.appendChild(cancelDeletingCommentBtn)
 
             function handleDeleteIconClick() {
-                console.log('cukam siiiiiiiiiiiii')
                 const confirmDeletingMessages = commentContainer.getElementsByClassName('confirm-deleting-comment')
                 for (let message of confirmDeletingMessages) {
                     message.remove()

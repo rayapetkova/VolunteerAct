@@ -7,6 +7,12 @@ const imageLogo = imgLogoAElement.getElementsByTagName('img')[0]
 
 const signInAElement = document.querySelector('.sign-in-li a')
 
+const allEventsLiElement = document.getElementsByClassName('all-events')[0]
+let allEventsAElement = null
+if (allEventsLiElement) {
+    allEventsAElement = allEventsLiElement.getElementsByTagName('a')[0]
+}
+
 const favouritesLiElement = document.getElementsByClassName('favourite-events')[0]
 let favouritesAElement = null
 if (favouritesLiElement) {
@@ -30,6 +36,9 @@ document.addEventListener('scroll', () => {
         headerElement.style.backgroundColor = 'rgba(67, 79, 98, 0.76)'
         imageLogo.src = lightLogo
 
+        if (allEventsAElement) {
+            allEventsAElement.style.color = '#FFFFFFFF'
+        }
         if (favouritesAElement) {
             favouritesAElement.style.color = '#FFFFFFFF'
         }
@@ -46,6 +55,9 @@ document.addEventListener('scroll', () => {
         headerElement.style.backgroundColor = 'transparent'
         imageLogo.src = darkLogo
 
+        if (allEventsAElement) {
+            allEventsAElement.style.color = '#203069'
+        }
         if (favouritesAElement) {
             favouritesAElement.style.color = '#203069'
         }
