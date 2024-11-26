@@ -552,7 +552,9 @@
                             const createdCommentWholeDetails = fetch(createdCommentUrl)
                                 .then((response2) => response2.json())
                                 .then((commentResult) => {
-                                    ulErrorsNewComment.innerHTML = ''
+                                    if (ulErrorsNewComment) {
+                                        ulErrorsNewComment.innerHTML = ''
+                                    }
 
                                     const newCommentContainer = document.createElement('div')
                                     newCommentContainer.className = 'comment-container'
@@ -803,7 +805,7 @@
 
 
 
-
+    const sendCommentContainer = document.querySelector('.all-comments .send-comment-container')
 
     function deletingComments() {
         const deleteCommentBtns = document.getElementsByClassName('delete-comment-icon')
@@ -915,6 +917,10 @@
                                     allCommentsContainer.appendChild(newCommentErrorsUl)
                                 }
 
+                                if (allCommentsContainer.innerHTML === '') {
+                                    allCommentsContainer.appendChild(sendCommentContainer)
+                                    commentsCountElement.textContent = 'Comments (0)'
+                                }
                             })
                     })
 
