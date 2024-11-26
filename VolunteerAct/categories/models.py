@@ -43,6 +43,9 @@ class Category(models.Model):
         ]
     )
 
+    def __str__(self):
+        return self.name
+
 
 class Event(models.Model):
     poster_image = CloudinaryField('image')
@@ -87,8 +90,8 @@ class Event(models.Model):
 
     online_meeting_link = models.URLField(
         max_length=200,
-        null=True,
-        blank=True
+        null=False,
+        blank=False
     )
 
     time = models.DateTimeField(
