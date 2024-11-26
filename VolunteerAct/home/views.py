@@ -11,7 +11,7 @@ from VolunteerAct.favourites.models import Favourites
 
 
 def home_page(request):
-    popular_cities = [city[0] for city in get_cities()]
+    popular_cities = [city[0] for city in get_cities() if city[0] != 'online_event']
     pixabay_api_url = config('PIXABAY_API_URL')
     upcoming_events = Event.objects.filter(time__gte=timezone.now()).order_by('time')[:4]
 

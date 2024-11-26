@@ -42,7 +42,7 @@
 
                         {% if request.user.is_authenticated %}
                             <div class="one">
-                                <a href="#" class="add-event-btn">Add Event</a>
+                                <a href="{% url 'create-new-event-page' %}" class="add-event-btn">Add Event</a>
                             </div>
                         {% endif %}
 
@@ -222,27 +222,6 @@
 
     </main>
 
-    <div class="add-event-container {% if not event_form.errors %}not-displaying{% endif %}">
-        <form method="POST" action="{% url 'category-page' pk=category.pk %}" enctype="multipart/form-data">
-            {% csrf_token %}
-
-            <h1>Add event</h1>
-
-            {% for field in event_form %}
-                <p>
-                    {{ field.label }}
-                    {{ field }}
-                    {{ field.errors }}
-                </p>
-            {% endfor %}
-
-            <div class="buttons-container">
-                <button type="submit" id="submitAddEventBtn">Add event</button>
-                <button type="button" class="cancel-btn">Cancel</button>
-            </div>
-        </form>
-    </div>
-
 </body>
 
     <script src="{% static 'js/nav_bar.js' %}"
@@ -294,46 +273,6 @@
                 longDescElement.style.height = '10em'
                 longDescElement.className = 'text-info fading-at-bottom'
             }
-        })
-
-        const addEventBtn = document.getElementsByClassName('add-event-btn')[0]
-        const addEventContainer = document.getElementsByClassName('add-event-container')[0]
-        const mainElement = document.getElementsByTagName('main')[0]
-        const cancelBtn = document.getElementsByClassName('cancel-btn')[0]
-        const errorListUlElements = document.getElementsByClassName('errorlist')
-        const formInputFields = document.querySelectorAll('form input:not(:first-child)')
-        const formTextareaField = document.getElementsByTagName('textarea')[0]
-
-        addEventBtn.addEventListener('click', () => {
-            for (const errorMessage of errorListUlElements) {
-                errorMessage.style.display = 'none'
-            }
-            for (const inputField of formInputFields) {
-                inputField.value = ''
-            }
-            formTextareaField.value = ''
-
-            addEventContainer.style.display = 'block'
-            mainElement.style.opacity = '0.4'
-            mainElement.style.filter = 'alpha(opacity=20)'
-        })
-
-        cancelBtn.addEventListener('click', () => {
-            addEventContainer.style.display = 'none'
-            addEventContainer.className += ' not-displaying'
-            mainElement.style.opacity = '1'
-            mainElement.style.filter = 'alpha(opacity=100)'
-        })
-
-        const submitFormEventElement = document.getElementById('submitAddEventBtn')
-        const formAddEvent = document.getElementsByTagName('form')[0]
-
-        submitFormEventElement.addEventListener('click', () => {
-            submitFormEventElement.disabled = true
-            submitFormEventElement.style.backgroundColor = 'rgba(196, 212, 255, 0.68)'
-            submitFormEventElement.textContent = 'Adding...'
-
-            formAddEvent.submit()
         })
 
 

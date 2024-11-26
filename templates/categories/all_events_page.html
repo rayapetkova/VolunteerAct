@@ -36,19 +36,6 @@
 
                 <form action="{% url 'all-events-page' %}" method="GET">
                     {{ filter_form }}
-    {##}
-    {#                <section class="city">#}
-    {#                    <h6>City</h6>#}
-    {##}
-    {#                    <ul>#}
-    {#                        {% for city_dict in cities %}#}
-    {#                            <li>#}
-    {#                                <input type="checkbox" id="{{ city_dict.city }}" name="city" value="{{ city_dict.city }}" />#}
-    {#                                <label for="{{ city_dict.city }}">{{ city_dict.city }} ({{ city_dict.cities_count }})</label>#}
-    {#                            </li>#}
-    {#                        {% endfor %}#}
-    {#                    </ul>#}
-    {#                </section>#}
 
                     <button>Filter</button>
                 </form>

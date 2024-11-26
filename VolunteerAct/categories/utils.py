@@ -33,6 +33,8 @@ def get_categories():
 
 def get_cities():
     cities = Event.objects.values('city').annotate(cities_count=Count('city')).order_by('-cities_count')
-    cities_tuple = [(cityDict['city'], f"{cityDict['city']} ({cityDict['cities_count']})") for cityDict in cities]
+    cities_tuple = [(cityDict['city'], f"{cityDict['city']} ({cityDict['cities_count']})") for cityDict in cities if cityDict['city'] != 'online_event']
+    online_events_tuples = [(cityDict['city'], f"Online ({cityDict['cities_count']})") for cityDict in cities if cityDict['city'] == 'online_event']
 
-    return cities_tuple
+    cities_and_online_tuple = cities_tuple + online_events_tuples
+    return cities_and_online_tuple
