@@ -17,6 +17,8 @@
     <form method="POST" enctype="multipart/form-data">
         {% csrf_token %}
 
+        <p class="category-field not-displaying">{{ form.category }}</p>
+
         <section class="upper-section">
             <h2>{{ form.title.label }}</h2>
             {{ form.title }}
@@ -103,14 +105,24 @@
                     </section>
 
                     <section class="box">
-                        <p>
+                        <p class="{% if object.exact_location != 'Online' %}not-displaying{% endif %}">
+                            <img src="{% static 'images/location_grey.png' %}" alt="location_grey_icon">
+                            {{ form.online_meeting_link.label }}
+
+                            <div class="online-meeting-link-input">
+                                {{ form.online_meeting_link }}
+                                {{ form.online_meeting_link.errors }}
+                            </div>
+                        </p>
+
+                        <p class="city-field {% if object.exact_location == 'Online' %}not-displaying{% endif %}">
                             <img src="{% static 'images/location_grey.png' %}" alt="location_grey_icon">
                             {{ form.city.label }}
                             {{ form.city }}
                             {{ form.city.errors }}
                         </p>
 
-                        <p>
+                        <p class="location-field {% if object.exact_location == 'Online' %}not-displaying{% endif %}">
                             <img src="{% static 'images/city_icon.png' %}" alt="location_grey_icon">
 
                             {{ form.location.label }}
@@ -118,7 +130,10 @@
                             {{ form.location.errors }}
                         </p>
                     </section>
-                    <iframe src="https://www.google.com/maps?q={{ object.exact_location }}&output=embed&maptype=satellite"></iframe>
+
+                    {% if object.exact_location != 'Online' %}
+                        <iframe src="https://www.google.com/maps?q={{ object.exact_location }}&output=embed&maptype=satellite"></iframe>
+                    {% endif %}
                 </div>
             </div>
         </section>
@@ -145,10 +160,18 @@
     eventImgContainerInputDiv.appendChild(eventImgInput)
 
 
-</script>
-</html></title>
-</head>
-<body>
 
-</body>
+    const eventObjectExactLocation = '{{ object.exact_location }}'
+    const cityFieldInput = document.querySelector('.city-field input')
+    const locationFieldInput = document.querySelector('.location-field input')
+    const categoryFieldInput = document.querySelector('.category-field input')
+
+    if (eventObjectExactLocation === 'Online') {
+        cityFieldInput.value = 'online_event'
+        locationFieldInput.value = 'online_event'
+        categoryFieldInput.value = `{{ object.category }}`
+    }
+
+
+</script>
 </html>

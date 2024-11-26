@@ -237,6 +237,10 @@ class EventUpdateView(UserPassesTestMixin, UpdateView):
 
     def handle_no_permission(self):
         raise PermissionDenied()
+    
+    def form_invalid(self, form):
+        print(form.fields['category'].initial)
+        return super().form_invalid(form)
 
     def get_success_url(self):
         return reverse_lazy('event-page', kwargs={

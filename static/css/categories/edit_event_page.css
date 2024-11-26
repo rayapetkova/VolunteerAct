@@ -278,6 +278,20 @@ input:focus {
     font-size: 0.8em;
 }
 
+.box .online-meeting-link-input {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+.box .online-meeting-link-input input {
+    margin: 0;
+}
+
+p.not-displaying {
+    display: none !important;
+}
+
 .box:nth-child(3) {
     display: flex;
     flex-direction: column;
