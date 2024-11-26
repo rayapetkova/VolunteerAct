@@ -117,7 +117,7 @@ class Event(models.Model):
     )
 
     def exact_location(self):
-        if self.city:
+        if self.city != 'online_event' and self.location != 'online_event':
             return f"{self.location}, {self.city}"
 
-        return self.location
+        return 'Online'

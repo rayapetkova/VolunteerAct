@@ -101,21 +101,48 @@
 
     <script>
         const isOnlineFieldElement = document.querySelector('.online-field input')
+
         const onlineMeetingLinkField = document.getElementsByClassName('online-meeting-link-field')[0]
+        const onlineMeetingLinkInput = onlineMeetingLinkField.querySelector('input')
+
         const cityField = document.getElementsByClassName('city-field')[0]
+        const cityInput = cityField.querySelector('input')
+
         const locationField = document.getElementsByClassName('location-field')[0]
+        const locationInput = locationField.querySelector('input')
+
         const breakLineElement = document.getElementsByClassName('break-line')[0]
-        console.log(breakLineElement)
+
+        if (!isOnlineFieldElement.checked) {
+            cityInput.value = ''
+            locationInput.value = ''
+
+            onlineMeetingLinkField.style.display = 'none'
+            cityField.style.display = 'flex'
+            locationField.style.display = 'flex'
+
+            onlineMeetingLinkInput.value = 'http://127.0.0.1:8000/'
+        }
 
         isOnlineFieldElement.addEventListener('change', () => {
             if (isOnlineFieldElement.checked) {
+                onlineMeetingLinkInput.value = ''
+
                 onlineMeetingLinkField.style.display = 'flex'
                 cityField.style.display = 'none'
                 locationField.style.display = 'none'
+
+                cityInput.value = 'online_event'
+                locationInput.value = 'online_event'
             } else {
+                cityInput.value = ''
+                locationInput.value = ''
+
                 onlineMeetingLinkField.style.display = 'none'
                 cityField.style.display = 'flex'
                 locationField.style.display = 'flex'
+
+                onlineMeetingLinkInput.value = 'http://127.0.0.1:8000/'
             }
         })
     </script>
