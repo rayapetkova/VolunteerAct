@@ -27,7 +27,7 @@ main > img {
     display: flex;
     justify-content: center;
     position: absolute;
-    top: 11%;
+    top: 10%;
     width: 100%;
 }
 
@@ -141,7 +141,7 @@ main > img {
 
 .right button {
     width: 10%;
-    padding: 1%;
+    padding: 0.8%;
     border: none;
     border-radius: 4px;
     font-family: inherit;
@@ -233,6 +233,13 @@ form input[type="checkbox"]::before {
 
 form input[type="checkbox"]:checked::before {
   transform: scale(1);
+}
+
+
+
+
+form input[type="datetime-local"] {
+    font-family: inherit;
 }
 
 
