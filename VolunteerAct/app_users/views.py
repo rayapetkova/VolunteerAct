@@ -30,7 +30,7 @@ class RegisterUserView(UserPassesTestMixin, CreateView):
     def form_valid(self, form):
         result = super().form_valid(form)
 
-        login(self.request, self.object)
+        login(self.request, self.object,  backend='django.contrib.auth.backends.ModelBackend')
 
         email_context = {
             'first_name': form.cleaned_data['first_name'],
