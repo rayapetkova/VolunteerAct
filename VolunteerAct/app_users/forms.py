@@ -31,14 +31,11 @@ class AppUserForm(auth_forms.UserCreationForm):
         first_name = self.cleaned_data['first_name']
         last_name = self.cleaned_data['last_name']
 
-        profile = Profile(
-            first_name=first_name,
-            last_name=last_name,
-            user=user
-        )
+        profile = user.profile
+        profile.first_name = first_name
+        profile.last_name = last_name
 
-        if commit:
-            profile.save()
+        profile.save()
 
         return user
 
