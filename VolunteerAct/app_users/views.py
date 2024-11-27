@@ -16,7 +16,7 @@ from VolunteerAct.app_users.models import Profile
 AppUserModel = get_user_model()
 
 
-class RegisterUserView(UserPassesTestMixin,CreateView):
+class RegisterUserView(UserPassesTestMixin, CreateView):
     template_name = 'app_users/register_page.html'
     form_class = AppUserForm
     success_url = reverse_lazy('home-page')
