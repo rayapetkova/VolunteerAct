@@ -40,7 +40,7 @@ class Profile(models.Model):
 
     first_name = models.CharField(
         max_length=150,
-        null=False,
+        null=True,
         blank=False,
         validators=[
             validators.MinLengthValidator(2, message="First name needs to be at least 2 characters long.")
@@ -49,7 +49,7 @@ class Profile(models.Model):
 
     last_name = models.CharField(
         max_length=150,
-        null=False,
+        null=True,
         blank=False,
         validators=[
             validators.MinLengthValidator(2, message="Last name needs to be at least 2 characters long.")
@@ -81,4 +81,11 @@ class Profile(models.Model):
     )
 
     def full_name(self):
-        return f"{self.first_name} {self.last_name}"
+        if self.first_name and self.last_name:
+            return f"{self.first_name} {self.last_name}"
+        elif self.first_name and not self.last_name:
+            return self.first_name
+        elif not self.first_name and self.last_name:
+            return self.last_name
+
+        return self.user.email
