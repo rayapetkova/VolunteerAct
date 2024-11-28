@@ -6,6 +6,7 @@ const imgLogoAElement = document.getElementsByClassName('img-logo')[0]
 const imageLogo = imgLogoAElement.getElementsByTagName('img')[0]
 
 const signInAElement = document.querySelector('.sign-in-li a')
+const contactUsAElement = document.querySelector('.contact-us a')
 
 const allEventsLiElement = document.getElementsByClassName('all-events')[0]
 let allEventsAElement = null
@@ -51,6 +52,9 @@ document.addEventListener('scroll', () => {
         if (signInAElement) {
             signInAElement.style.color = '#FFFFFFFF'
         }
+        if (contactUsAElement) {
+            contactUsAElement.style.color = '#FFFFFFFF'
+        }
     } else {
         headerElement.style.backgroundColor = 'transparent'
         imageLogo.src = darkLogo
@@ -69,6 +73,9 @@ document.addEventListener('scroll', () => {
         }
         if (signInAElement) {
             signInAElement.style.color = '#203069'
+        }
+        if (contactUsAElement) {
+            contactUsAElement.style.color = '#203069'
         }
     }
 })

@@ -10,11 +10,13 @@
 
     {% if not request.user.is_authenticated %}
         <ul class="last-links sign-in-ul">
+            <li class="contact-us"><a href="{% url 'contact-us' %}">Contact us</a></li>
             <li class="sign-in-li"><a href="{% url 'login-user' %}" {% if dark_login_color == "dark" %}class="dark-login-a"{% endif %}>Log In</a></li>
-            <li><a href="{% url 'register-user' %}">Sign Up</a></li>
+            <li class="log-in-li"><a href="{% url 'register-user' %}">Sign Up</a></li>
         </ul>
     {% else %}
         <ul class="last-links logout-ul">
+            <li class="contact-us"><a href="{% url 'contact-us' %}">Contact us</a></li>
             <li class="all-events"><a href="{% url 'all-events-page' %}">All Events</a></li>
             <li class="favourite-events"><a href="{% url 'user-favourite-events-page' %}">Favourites</a></li>
             <li class="tickets-events"><a href="{% url 'all-user-tickets-events' %}">Tickets</a></li>

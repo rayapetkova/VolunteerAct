@@ -26,7 +26,7 @@ header ul.last-links {
     display: flex;
     padding: 0;
     margin-left: auto;
-    width: 11%;
+    width: 18%;
     justify-content: space-between;
     align-items: center;
 }
@@ -86,7 +86,7 @@ header ul.last-links li .dark-login-a {
     color: #203069;
 }
 
-header ul.sign-in-ul li:nth-child(2) a, header ul.last-links .logout-btn a {
+header ul.sign-in-ul li:nth-child(3) a, header ul.last-links .logout-btn a {
     background-color: #08376b;
     padding: 0.4em 0.7em;
     color: rgb(255, 255, 255);
@@ -94,7 +94,7 @@ header ul.sign-in-ul li:nth-child(2) a, header ul.last-links .logout-btn a {
     transition: background-color 0.2s ease-in-out;
 }
 
-header ul.sign-in-ul li:nth-child(2) a:hover,
+header ul.sign-in-ul li:nth-child(3) a:hover,
 header ul.last-links .logout-btn a:hover {
     cursor: pointer;
     background-color: rgba(13, 74, 141, 0.89);
