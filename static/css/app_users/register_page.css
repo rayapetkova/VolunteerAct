@@ -10,6 +10,14 @@ body {
 
 
 
+header ul.last-links li.all-events a,
+header ul.last-links li.contact-us a{
+    color: #ffffff;
+}
+
+
+
+
 
 
 video {

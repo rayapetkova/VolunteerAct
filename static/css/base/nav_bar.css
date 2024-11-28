@@ -47,6 +47,7 @@ header ul.last-links li.contact-us a{
 }
 
 header ul.last-links li.all-events a:hover,
+header ul.sign-in-ul li.sign-in-li a:hover,
 header ul.last-links li.contact-us a:hover {
     color: rgba(84, 165, 255, 0.89)!important;
 }
