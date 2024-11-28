@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 
 from VolunteerAct.categories.models import Category, Event
 from django.utils import timezone
@@ -8,6 +8,7 @@ from VolunteerAct.categories.utils import get_cities
 from decouple import config
 
 from VolunteerAct.favourites.models import Favourites
+from VolunteerAct.home.forms import ContactUsForm
 
 
 def home_page(request):
@@ -32,3 +33,17 @@ def home_page(request):
     }
 
     return render(request, "home/home_page.html", context=context)
+
+
+def contact_us_page(request):
+    form = ContactUsForm(request.POST or None)
+
+    if request.method == 'POST':
+        if form.is_valid():
+            return redirect('contact-us')
+
+    context = {
+        'form': form
+    }
+
+    return render(request, 'home/contact_us_page.html', context=context)
