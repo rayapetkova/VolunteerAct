@@ -13,10 +13,6 @@ body {
     font-family: "Poppins", sans-serif;
 }
 
-header ul.last-links li a {
-    color: #203069;
-}
-
 
 
 
@@ -39,13 +35,13 @@ video {
     left: 0;
     align-items: center;
     width: 100%;
-    top: 7%;
+    top: 6%;
 }
 
 
 .card {
     width: 70%;
-    background-color: rgba(215, 215, 215, 0.78);
+    background-color: rgba(215, 215, 215, 0.67);
     box-shadow: 10px 10px 20px #3e3e42;
     padding: 2em 4em;
     display: flex;
@@ -62,10 +58,11 @@ video {
 
 .card .head-contact h2 {
     color: rgb(32, 48, 105);
+    margin-bottom: 0.3em;
 }
 
 .card .head-contact p {
-    color: rgba(32, 48, 105, 0.75);
+    color: rgb(16, 24, 52);
     width: 55%;
     text-align: center;
     margin-top: 0;
@@ -127,6 +124,7 @@ video {
     width: 47%;
     font-size: 1em;
     color: rgb(32, 48, 105);
+    font-weight: 500;
 }
 
 .left form .row .field input {
@@ -134,7 +132,7 @@ video {
     border-radius: 3px;
     padding: 3%;
     color: rgb(107, 107, 107);
-    font-size: 1.1em;
+    font-size: 0.9em;
     background-color: rgba(240, 248, 255, 0.849);
 }
 
@@ -158,10 +156,10 @@ video {
 }
 
 .left form .message-row {
-    font-weight: 400;
     font-size: 1em;
     color: rgb(32, 48, 105);
     display: flex;
+    font-weight: 500;
     flex-direction: column;
     margin-top: 1.3em;
 }
@@ -172,7 +170,7 @@ video {
     font-family: inherit;
     padding: 1.7% 1.6%;
     color: rgb(107, 107, 107);
-    font-size: 1.1em;
+    font-size: 0.9em;
     background-color: rgba(240, 248, 255, 0.849);
 }
 
@@ -221,14 +219,15 @@ video {
 
 
 .right h3 {
-    color: rgb(192, 192, 192);
+    color: rgb(16, 24, 52);
     font-size: 1.5em;
     margin: 0;
     margin-bottom: 0.2em;
 }
 
 .right > p {
-    color: rgb(139, 139, 139);
+    color: rgb(16, 24, 52);
+    font-weight: 400;
     font-size: 1.1em;
     margin: 0;
     margin-bottom: 3em;
@@ -242,20 +241,25 @@ video {
 
 .right .info-container .one-section {
     display: flex;
+    align-items: center;
 }
 
 .right .info-container .one-section .img-container {
-    width: 5%;
+    width: 1.7em;
+    height: 1.7em;
+    margin: 0;
+    padding: 0;
 }
 
 .right .info-container .one-section .img-container img {
     width: 100%;
+    height: 100%;
 }
 
 .right .info-container .one-section p {
     margin-left: 2%;
     font-weight: 500;
-    color: rgb(177, 177, 177);
+    color: rgb(232, 236, 255);
     font-size: 1em;
 }
 
@@ -270,41 +274,49 @@ video {
 }
 
 .follow-us .socials a {
-    width: 30%;
+    width: 3.2em;
+    height: 3.2em;
     border-radius: 10px;
 }
 
 .follow-us .socials a:hover {
-    background-color: white;
+    background-color: rgba(77, 77, 77, 0.67);;
 }
 
 .follow-us .socials img {
     width: 100%;
+    height: 100%;
 }
 
 
 
 
 
+
+.location-centering {
+    display: flex;
+    justify-content: center;
+}
+
 .location-container {
-    margin: 0;
+    padding: 2em 4em;
     margin-top: 100vh;
     margin-bottom: 2%;
-    width: 60%;
+    width: 70%;
     height: 50%;
 }
 
 .location-container h2 {
-    color: rgb(221, 221, 221);
+    color: rgb(32, 48, 105);
 }
 
 .location-container p {
-    color: rgb(139, 139, 139);;
+    color: rgb(16, 24, 52);
 }
 
-.location-container .map-container {
+.location-container iframe {
     width: 100%;
-    height: 50em;
+    height: 35em;
     border-radius: 3px;
 }
 

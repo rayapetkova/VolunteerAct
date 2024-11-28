@@ -11,7 +11,7 @@
 </head>
 <body>
 
-    {% include 'base/nav_bar.html' %}
+    {% include 'base/nav_bar.html' with logo_color='light' %}
 
     <video src="{% static 'images/volunteer_act_video.mp4' %}" muted autoplay loop></video>
 
@@ -93,9 +93,9 @@
                         <h3>Follow Us:</h3>
 
                         <div class='socials'>
-                            <a href="https://github.com/rayapetkova" target="_blank"><img src="{% static 'images/github_icon.png' %}" alt="github" /></a>
-                            <a href="https://www.linkedin.com/in/raya-petkova-77418a2a0" target="_blank"><img src="{% static 'images/linkedin_icon.png' %}" alt="linkedin" /></a>
-                            <a href="https://www.facebook.com/raya.petkova.54/" target="_blank"><img src="{% static 'images/facebook_icon.png' %}" alt="facebook" /></a>
+                            <a href="https://github.com/rayapetkova" target="_blank"><img src="{% static 'images/github.png' %}" alt="github" /></a>
+                            <a href="https://www.linkedin.com/in/raya-petkova-77418a2a0" target="_blank"><img src="{% static 'images/linkedin.png' %}" alt="linkedin" /></a>
+                            <a href="https://www.facebook.com/raya.petkova.54/" target="_blank"><img src="{% static 'images/facebook.png' %}" alt="facebook" /></a>
                         </div>
                     </section>
                 </div>
@@ -104,11 +104,13 @@
         </div>
     </div>
 
-    <div class='location-container'>
-        <h2>Where are we located?</h2>
-        <p>Coordinates - 41.935750, 25.555057</p>
+    <div class="location-centering">
+        <div class='location-container'>
+            <h2>Where are we located?</h2>
+            <p>Coordinates - 41.935750, 25.555057</p>
 
-        <iframe src="https://www.google.com/maps?q=Haskovo, ul. Rakovski&output=embed&maptype=satellite"></iframe>
+            <iframe src="https://www.google.com/maps?q=Haskovo, ul. Rakovski&output=embed&maptype=satellite"></iframe>
+        </div>
     </div>
 
     {% include 'base/footer.html' %}
