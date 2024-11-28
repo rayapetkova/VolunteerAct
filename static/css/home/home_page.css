@@ -15,10 +15,8 @@ body {
 
 
 
-header ul.last-links li.favourite-events a,
-header ul.last-links li.tickets-events a,
-header ul.last-links li.my-events a,
-header ul.last-links li.all-events a{
+header ul.last-links li.all-events a,
+header ul.last-links li.contact-us a{
     color: #ffffff;
 }
 
@@ -51,7 +49,7 @@ video {
     align-items: center;
     margin-top: 3em;
     position: absolute;
-    top: 4%;
+    top: 7%;
 }
 
 .main-content .first-section .left {

@@ -18,10 +18,16 @@
         <ul class="last-links logout-ul">
             <li class="contact-us"><a href="{% url 'contact-us' %}">Contact us</a></li>
             <li class="all-events"><a href="{% url 'all-events-page' %}">All Events</a></li>
-            <li class="favourite-events"><a href="{% url 'user-favourite-events-page' %}">Favourites</a></li>
-            <li class="tickets-events"><a href="{% url 'all-user-tickets-events' %}">Tickets</a></li>
-            <li class="my-events"><a href="{% url 'my-events-page' %}">My events</a></li>
-            <li class="profile-img-container"><a href="{% url 'profile-details-update' pk=request.user.profile.id %}"><img src="{{ request.user.profile.profile_image.url }}" alt="profile-icon"></a></li>
+
+            <div class="dropdown">
+                <a class="dropbtn"><img src="{{ request.user.profile.profile_image.url }}" alt="profile-icon"></a>
+                <div class="dropdown-content">
+                    <a class="favourite-events" href="{% url 'user-favourite-events-page' %}">Favourites</a>
+                    <a class="tickets-events" href="{% url 'all-user-tickets-events' %}">Tickets</a>
+                    <a class="my-events" href="{% url 'my-events-page' %}">My events</a>
+                    <a href="{% url 'profile-details-update' pk=request.user.profile.id %}">My profile</a>
+                </div>
+            </div>
             <li class="logout-btn"><a href="{% url 'logout-user' %}">Log Out</a></li>
         </ul>
     {% endif %}
