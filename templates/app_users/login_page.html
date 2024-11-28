@@ -1,3 +1,4 @@
+{% load socialaccount %}
 {% load static %}
 <!DOCTYPE html>
 <html lang="en">
@@ -35,7 +36,10 @@
                 <a href="{% url "register-user" %}">Register</a>
             </div>
 
-            <button type="submit">Log In</button>
+            <div class="sign-in-buttons-cont">
+                    <button type="submit">Log In</button>
+                    <a href="{% provider_login_url 'google' %}?next=/" class="login-with-google-btn">Login with Google</a>
+                </div>
         </form>
     </div>
     </div>

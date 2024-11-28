@@ -18,31 +18,31 @@
 
     <div class="main-content">
         <div class="login-box">
-        <form method="POST" action="{% url 'register-user' %}">
-            <h1>Sign Up</h1>
+            <form method="POST" action="{% url 'register-user' %}">
+                <h1>Sign Up</h1>
 
-            {% csrf_token %}
+                {% csrf_token %}
 
-            {% for field in form %}
-                <p>
-                    {{ field.label }}
-                    {{ field }}
+                {% for field in form %}
+                    <p>
+                        {{ field.label }}
+                        {{ field }}
 
-                    {{ field.errors }}
-                </p>
-            {% endfor %}
+                        {{ field.errors }}
+                    </p>
+                {% endfor %}
 
-            <div class="login-container">
-                <p class="log-in-p">Already have an account?</p>
-                <a href="{% url "login-user" %}">Log In</a>
-            </div>
+                <div class="login-container">
+                    <p class="log-in-p">Already have an account?</p>
+                    <a href="{% url "login-user" %}">Log In</a>
+                </div>
 
-
-            <button type="submit">Sign Up</button>
-        </form>
-
-        <a href="{% provider_login_url 'google' %}?next=/">Login with Google</a>
-    </div>
+                <div class="sign-in-buttons-cont">
+                    <button type="submit">Sign Up</button>
+                    <a href="{% provider_login_url 'google' %}?next=/" class="login-with-google-btn">Login with Google</a>
+                </div>
+            </form>
+        </div>
     </div>
 
 </body>
