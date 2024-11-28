@@ -1,0 +1,123 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact us</title>
+    <link rel="stylesheet" href="{% static 'css/base/nav_bar.css' %}">
+    <link rel="stylesheet" href="{% static 'css/base/footer.css' %}">
+    <link rel="stylesheet" href="{% static 'css/home/contact_us_page.css' %}">
+</head>
+<body>
+
+    {% include 'base/nav_bar.html' %}
+
+    <video src="{% static 'images/volunteer_act_video.mp4' %}" muted autoplay loop></video>
+
+    <div class='main-page-with-maps'>
+        <div class='card'>
+            <section class='head-contact'>
+                <h2>Contact Us</h2>
+                <p>Email us with any questions or inquiries. We would be happy to answer your questions and we'll get in touch as soon as we can!</p>
+            </section>
+
+            <section class='form-and-info'>
+                <div class='left'>
+                    <form method="POST">
+                        <div class='row'>
+                            <div class='field'>
+                                {{ form.full_name.label }}
+                                {{ form.full_name }}
+                                {{ form.full_name.errors }}
+                            </div>
+
+                            <div class='field'>
+                                {{ form.email.label }}
+                                {{ form.email }}
+                                {{ form.email.errors }}
+                            </div>
+                        </div>
+
+                        <div class='row'>
+                            <div class='field subject-field'>
+                                {{ form.subject.label }}
+                                {{ form.subject }}
+                                {{ form.subject.errors }}
+                            </div>
+                        </div>
+
+                        <div class='message-row'>
+                            {{ form.message.label }}
+                            {{ form.message }}
+                            {{ form.message.errors }}
+                        </div>
+
+                        <div class='buttons'>
+                            <button class='send-button'>Send</button>
+                        </div>
+                    </form>
+                </div>
+
+                <div class='right'>
+                    <h3>Contact Information</h3>
+                    <p>Reach out to us for further communication.</p>
+
+                    <section class='info-container'>
+                        <div class='one-section'>
+                            <div class='img-container'>
+                                <img src="{% static 'images/phone_icon.png' %}" alt="phone" />
+                            </div>
+
+                            <p>+359 899 899-899</p>
+                        </div>
+
+                        <div class='one-section'>
+                            <div class='img-container'>
+                                <img src="{% static 'images/email_icon.png' %}" alt="email" />
+                            </div>
+
+                            <p>rayapetkova12321@gmail.com</p>
+                        </div>
+
+                        <div class='one-section'>
+                            <div class='img-container'>
+                                <img src="{% static 'images/map_icon.png' %}" alt="map" />
+                            </div>
+
+                            <p>6300 Haskovo, Bulgaria</p>
+                        </div>
+                    </section>
+
+                    <section class='follow-us'>
+                        <h3>Follow Us:</h3>
+
+                        <div class='socials'>
+                            <a href="https://github.com/rayapetkova" target="_blank"><img src="{% static 'images/github_icon.png' %}" alt="github" /></a>
+                            <a href="https://www.linkedin.com/in/raya-petkova-77418a2a0" target="_blank"><img src="{% static 'images/linkedin_icon.png' %}" alt="linkedin" /></a>
+                            <a href="https://www.facebook.com/raya.petkova.54/" target="_blank"><img src="{% static 'images/facebook_icon.png' %}" alt="facebook" /></a>
+                        </div>
+                    </section>
+                </div>
+            </section>
+
+        </div>
+    </div>
+
+    <div class='location-container'>
+        <h2>Where are we located?</h2>
+        <p>Coordinates - 41.935750, 25.555057</p>
+
+        <iframe src="https://www.google.com/maps?q=Haskovo, ul. Rakovski&output=embed&maptype=satellite"></iframe>
+    </div>
+
+    {% include 'base/footer.html' %}
+
+</body>
+
+<script src="{% static 'js/nav_bar.js' %}"
+    lightLogo="{% static 'images/volunteer_act_logo_light.png' %}"
+    darkLogo="{% static 'images/volunteer_act_logo_dark.png' %}"
+></script>
+
+</html>
