@@ -1,3 +1,4 @@
+from django.core.mail import send_mail
 from django.shortcuts import render, redirect
 
 from VolunteerAct.categories.models import Category, Event
@@ -6,6 +7,7 @@ from django.utils import timezone
 from VolunteerAct.categories.utils import get_cities
 
 from decouple import config
+from django.conf import settings
 
 from VolunteerAct.favourites.models import Favourites
 from VolunteerAct.home.forms import ContactUsForm
@@ -38,8 +40,27 @@ def home_page(request):
 def contact_us_page(request):
     form = ContactUsForm(request.POST or None)
 
+    if request.user.is_authenticated:
+        form.fields['full_name'].initial = f"{request.user.profile.first_name} {request.user.profile.last_name}"
+        form.fields['email'].initial = request.user.email
+
     if request.method == 'POST':
         if form.is_valid():
+            full_name = form.cleaned_data['full_name']
+            subject = form.cleaned_data['subject']
+            message = form.cleaned_data['message']
+            from_email = form.cleaned_data['email']
+            recipient_list = [settings.EMAIL_HOST_USER]
+
+            message += f"\n\n\n\nSend by {full_name}, {from_email}"
+
+            send_mail(
+                subject=subject,
+                message=message,
+                from_email=from_email,
+                recipient_list=recipient_list
+            )
+
             return redirect('contact-us')
 
     context = {

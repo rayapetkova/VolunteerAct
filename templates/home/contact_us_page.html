@@ -25,6 +25,8 @@
             <section class='form-and-info'>
                 <div class='left'>
                     <form method="POST">
+                        {% csrf_token %}
+
                         <div class='row'>
                             <div class='field'>
                                 {{ form.full_name.label }}

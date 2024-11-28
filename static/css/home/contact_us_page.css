@@ -212,6 +212,22 @@ video {
 }
 
 
+form ul.errorlist {
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    margin-top: 0.3em;
+}
+
+form ul.errorlist li {
+    list-style: none;
+    color: #9d0000;
+    margin: 0;
+    padding: 0;
+    font-size: 0.85em;
+}
+
+
 
 
 

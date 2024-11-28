@@ -8,7 +8,8 @@ class ContactUsForm(forms.Form):
     )
 
     subject = forms.CharField(
-        required=True
+        required=True,
+        min_length=2
     )
 
     email = forms.EmailField(
@@ -17,5 +18,6 @@ class ContactUsForm(forms.Form):
 
     message = forms.CharField(
         widget=forms.Textarea,
-        required=True
+        required=True,
+        min_length=10
     )
