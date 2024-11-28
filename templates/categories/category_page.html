@@ -42,7 +42,7 @@
 
                         {% if request.user.is_authenticated %}
                             <div class="one">
-                                <a href="{% url 'create-new-event-page' %}" class="add-event-btn">Add Event</a>
+                                <a href="{% url 'create-new-event-page-with-category' categoryId=category.id %}" class="add-event-btn">Add Event</a>
                             </div>
                         {% endif %}
 

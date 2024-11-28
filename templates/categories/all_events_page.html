@@ -37,8 +37,10 @@
                 <form action="{% url 'all-events-page' %}" method="GET">
                     {{ filter_form }}
 
-                    <button>Filter</button>
-                    <a href="{% url 'all-events-page' %}">Clear</a>
+                    <div class="filtering-btns-container">
+                        <button>Filter</button>
+                        <a href="{% url 'all-events-page' %}">Clear</a>
+                    </div>
                 </form>
             </aside>
 

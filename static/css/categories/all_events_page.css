@@ -153,8 +153,15 @@ aside form legend {
     padding: 0;
 }
 
-aside form button {
+aside form .filtering-btns-container {
+    display: flex;
+    flex-direction: column;
     width: 50%;
+    gap: 0.7em;
+}
+
+aside form .filtering-btns-container button, aside form .filtering-btns-container a {
+    width: 100%;
     padding: 0.5em 0;
     border-radius: 2px;
     border: none;
@@ -162,9 +169,24 @@ aside form button {
     color: #ffffff;
     align-self: start;
     transition: background-color 0.2s ease-in-out;
+    text-align: center;
+    text-decoration: none;
+    font-size: 0.9em;
+    font-family: inherit;
+    font-weight: 500;
 }
 
-aside form button:hover {
+aside form .filtering-btns-container a {
+    color: #08376b;
+    background-color: #e8e8e8;
+}
+
+aside form .filtering-btns-container a:hover {
+    cursor: pointer;
+    background-color: rgba(236, 236, 236, 0.77);
+}
+
+aside form .filtering-btns-container button:hover {
     cursor: pointer;
     background-color: rgba(8, 55, 107, 0.89);
 }
