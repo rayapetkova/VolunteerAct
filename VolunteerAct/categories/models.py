@@ -47,6 +47,20 @@ class Category(models.Model):
         return self.name
 
 
+class CategoryImages(models.Model):
+    image = CloudinaryField('image')
+
+    category = models.ForeignKey(
+        to=Category,
+        on_delete=models.CASCADE
+    )
+
+    author = models.ForeignKey(
+        to=AppUser,
+        on_delete=models.CASCADE
+    )
+
+
 class Event(models.Model):
     poster_image = CloudinaryField('image')
 
