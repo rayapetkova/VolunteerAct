@@ -242,6 +242,13 @@ form input[type="datetime-local"] {
     font-family: inherit;
 }
 
+form input[type="datetime-local"]::-webkit-calendar-picker-indicator {
+    background-color: rgba(239, 239, 239, 0.87);
+    border-radius: 50%;
+    padding: 5px;
+    cursor: pointer;
+}
+
 
 
 
