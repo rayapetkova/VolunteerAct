@@ -1,7 +1,7 @@
 from django import forms
 from django.forms import ModelForm, widgets, Form
 
-from VolunteerAct.categories.models import Event
+from VolunteerAct.categories.models import Event, CategoryImages
 from VolunteerAct.categories.utils import get_categories, get_cities
 
 
@@ -28,6 +28,13 @@ class EventForm(ModelForm):
                 attrs={'placeholder': 'https://'}
             )
         }
+
+
+class CategoryImagesForm(ModelForm):
+
+    class Meta:
+        model = CategoryImages
+        fields = ('image', )
 
 
 class EventEditForm(EventForm):

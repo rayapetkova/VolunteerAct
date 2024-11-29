@@ -16,7 +16,7 @@ from rest_framework.generics import UpdateAPIView, RetrieveUpdateAPIView
 from rest_framework.response import Response
 from rest_framework.views import APIView
 
-from VolunteerAct.categories.forms import EventForm, FilterForm, EventEditForm, EventDeleteForm
+from VolunteerAct.categories.forms import EventForm, FilterForm, EventEditForm, EventDeleteForm, CategoryImagesForm
 from VolunteerAct.categories.models import Category, Event
 from VolunteerAct.categories.serializers import EventSerializer
 from VolunteerAct.categories.utils import count_events, extract_keywords
@@ -24,7 +24,7 @@ from VolunteerAct.favourites.models import Favourites
 
 
 def category_details(request, pk):
-    event_form = EventForm(request.POST or None, request.FILES or None)
+    category_images_form = CategoryImagesForm(request.POST or None, request.FILES or None)
 
     category = Category.objects.get(pk=pk)
     category_name_for_url = category.name.replace('&', '%26')
@@ -65,19 +65,17 @@ def category_details(request, pk):
     all_category_locations = ', '.join(all_category_locations)
 
     if request.method == "POST":
-        if event_form.is_valid():
-            event = event_form.save(commit=False)
-            event.host = request.user
-            event.category = category
+        if category_images_form.is_valid():
+            image = category_images_form.save(commit=False)
+            image.author = request.user
+            image.category = category
 
-            event.save()
-
-            event.attendees.add(request.user)
+            image.save()
             return redirect('category-page', pk=pk)
 
     context = {
         'category': category,
-        'event_form': event_form,
+        'category_images_form': category_images_form,
         'upcoming_events': upcoming_events[:2],
         'past_events': past_events[:2],
         'count_upcoming_events': count_events(len(upcoming_events), 2),

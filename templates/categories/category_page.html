@@ -10,330 +10,375 @@
     <link rel="stylesheet" href="{% static 'css/categories/category_page.css' %}">
 </head>
 <body>
-    <main>
+<main>
 
-        {% include 'base/nav_bar.html' %}
+    {% include 'base/nav_bar.html' %}
 
-        <div class="main-section">
-            <section class="category-info">
-                <div class="left">
-                    <img src="{{ category.poster_img.url }}" alt="category-image">
-                </div>
-
-                <div class="right">
-                    <h2>{{ category.name }}</h2>
-                    <p>{{ category.short_description }}</p>
-
-                    <div class="more-info">
-                        <div class="one">
-                            <img src="{% static 'images/events.png' %}" alt="events">
-                            <p>{{ category.category_events.count }} events</p>
-                        </div>
-
-                        <div class="one">
-                            <img src="{% static 'images/members.png' %}" alt="members">
-                            <p>{{ active_members|length }} active members</p>
-                        </div>
-
-                        <div class="one">
-                            <img src="{% static 'images/location.png' %}" alt="locations">
-                            <p>{{ all_category_locations }} and others</p>
-                        </div>
-
-                        {% if request.user.is_authenticated %}
-                            <div class="one">
-                                <a href="{% url 'create-new-event-page-with-category' categoryId=category.id %}" class="add-event-btn">Add Event</a>
-                            </div>
-                        {% endif %}
-
-                    </div>
-                </div>
-            </section>
-
-            <div class="navigate-category">
-                <a href="#about" class="about-btn">About</a>
-                <a href="#photos" class="photos-btn">Photos</a>
+    <div class="main-section">
+        <section class="category-info">
+            <div class="left">
+                <img src="{{ category.poster_img.url }}" alt="category-image">
             </div>
 
-            <section class="info-section">
-                <div class="left">
-                    <h4>What we're about</h4>
+            <div class="right">
+                <h2>{{ category.name }}</h2>
+                <p>{{ category.short_description }}</p>
 
-                    <div class="text-info fading-at-bottom">
-                        <p>{{ category.long_description }}</p>
+                <div class="more-info">
+                    <div class="one">
+                        <img src="{% static 'images/events.png' %}" alt="events">
+                        <p>{{ category.category_events.count }} events</p>
                     </div>
 
-                    <p id="read_more_desc">Read more <img src="{% static 'images/arrow_down.png' %}" alt="arrow-down"></p>
-
-                    <div class="upcoming-events">
-                        <div class="events-title-container">
-                            <h4>Upcoming events ({{ count_upcoming_events }})</h4>
-                            <a href="{% url 'all-events-page' %}?category={{ category.category_name_for_url }}&time=Upcoming">See all</a>
-                        </div>
-
-                        <div class="all-events">
-
-                            {% for upcoming_event in upcoming_events %}
-                                <a href="{% url 'event-page' categoryId=category.id pk=upcoming_event.id %}" class="event-container">
-
-                                    <div class="date-and-save-to-favs">
-                                        <p>{{ upcoming_event.time }}</p>
-
-                                        {% if request.user.is_authenticated %}
-                                            <div class="image-container">
-                                                {% if upcoming_event.saved_to_favourites_by_logged_in_user %}
-                                                    <img src="{% static 'images/already_saved_event_icon.png' %}"
-                                                         class="save-to-favourites-btn {{ upcoming_event.id }} already-saved"
-                                                         alt="delete-icon">
-                                                {% else %}
-                                                    <img src="{% static 'images/save_event_icon.png' %}"
-                                                         class="save-to-favourites-btn {{ upcoming_event.id }}"
-                                                         alt="delete-icon">
-                                                {% endif %}
-                                            </div>
-                                        {% endif %}
-
-                                    </div>
-
-                                    <div class="title-and-img">
-                                        <div class="title-container">
-                                            <h6>{{ upcoming_event.title }}</h6>
-                                            <div class="location">
-                                                <img src="{% static 'images/location_grey.png' %}" alt="locations">
-                                                <p>{{ upcoming_event.exact_location }}</p>
-                                            </div>
-
-                                            {% if upcoming_event.host.id == request.user.id %}
-                                                <div class="your-event-container">
-                                                    <p>Your event</p>
-                                                    <img src="{% static 'images/your_event_icon.png' %}" alt="your-event-icon" >
-                                                </div>
-                                            {% endif %}
-                                        </div>
-
-                                        <div class="container-event-img">
-                                            <img src="{{ upcoming_event.poster_image.url }}" alt="category-img">
-                                        </div>
-                                    </div>
-
-                                    <p class="details">{{ upcoming_event.details }}</p>
-                                </a>
-                            {% empty %}
-                                <p class="no-events">No upcoming events yet</p>
-                            {% endfor %}
-
-                        </div>
+                    <div class="one">
+                        <img src="{% static 'images/members.png' %}" alt="members">
+                        <p>{{ active_members|length }} active members</p>
                     </div>
 
-                    <div class="past-events">
-                        <div class="events-title-container">
-                            <h4>Past events ({{ count_past_events }})</h4>
-                            <a href="{% url 'all-events-page' %}?category={{ category.category_name_for_url }}&time=Past">See all</a>
-                        </div>
-
-                        <div class="all-events">
-
-                            {% for past_event in past_events %}
-                                <a href="{% url 'event-page' categoryId=category.id pk=past_event.id %}" class="event-container">
-
-                                    <div class="date-and-save-to-favs">
-                                        <p>{{ past_event.time }}</p>
-
-                                        {% if request.user.is_authenticated %}
-                                            <div class="image-container">
-                                                {% if past_event.saved_to_favourites_by_logged_in_user %}
-                                                    <img src="{% static 'images/already_saved_event_icon.png' %}"
-                                                         class="save-to-favourites-btn {{ past_event.id }} already-saved"
-                                                         alt="delete-icon">
-                                                {% else %}
-                                                    <img src="{% static 'images/save_event_icon.png' %}"
-                                                         class="save-to-favourites-btn {{ past_event.id }}"
-                                                         alt="delete-icon">
-                                                {% endif %}
-                                            </div>
-                                        {% endif %}
-
-                                    </div>
-
-                                    <div class="title-and-img">
-                                        <div class="title-container">
-                                            <h6>{{ past_event.title }}</h6>
-                                            <div class="location">
-                                                <img src="{% static 'images/location_grey.png' %}" alt="locations">
-                                                <p>{{ past_event.exact_location }}</p>
-                                            </div>
-
-                                            {% if past_event.host.id == request.user.id %}
-                                                <div class="your-event-container">
-                                                    <p>Your event</p>
-                                                    <img src="{% static 'images/your_event_icon.png' %}" alt="your-event-icon" >
-                                                </div>
-                                            {% endif %}
-                                        </div>
-
-                                        <div class="container-event-img">
-                                            <img src="{{ past_event.poster_image.url }}" alt="category-img">
-                                        </div>
-                                    </div>
-
-                                    <p class="details">{{ past_event.details }}</p>
-                                </a>
-                            {% empty %}
-                                <p class="no-events">No past events yet</p>
-                            {% endfor %}
-
-                        </div>
+                    <div class="one">
+                        <img src="{% static 'images/location.png' %}" alt="locations">
+                        <p>{{ all_category_locations }} and others</p>
                     </div>
+
+                    {% if request.user.is_authenticated %}
+                        <div class="one">
+                            <a href="{% url 'create-new-event-page-with-category' categoryId=category.id %}"
+                               class="add-event-btn">Add Event</a>
+                        </div>
+                    {% endif %}
+
                 </div>
+            </div>
+        </section>
 
-                <div class="right">
-                    <div class="title-and-see-all">
-                        <h4>Active members</h4>
-                        <a href="#">See all</a>
-                    </div>
-
-                    <div class="members">
-
-                        {% if request.user.is_authenticated %}
-                            {% for active_member in active_members %}
-                                <a href="{% url 'profile-details-update' pk=active_member.profile.id %}" class="active-member-img-cont">
-                                    <img src="{{ active_member.profile.profile_image.url }}" alt="profile-img">
-                                </a>
-                            {% empty %}
-                                <p>Be the first one to attend an event in the {{ category.name }} category!</p>
-                            {% endfor %}
-                        {% else %}
-                            <div class="not-allowed-to-see">
-                                <p>You are not allowed to see the active members in this category! You need to log in first!</p>
-                                <a>Log In</a>
-                            </div>
-                        {% endif %}
-
-
-                    </div>
-                </div>
-            </section>
-            <section class="photos-section">
-                <h1>Hiiiiiii!</h1>
-            </section>
+        <div class="navigate-category">
+            <a href="#about" class="about-btn">About</a>
+            <a href="#photos" class="photos-btn">Photos</a>
         </div>
 
-        {% include 'base/footer.html' %}
+        <section class="info-section">
+            <div class="left">
+                <h4>What we're about</h4>
 
-    </main>
+                <div class="text-info fading-at-bottom">
+                    <p>{{ category.long_description }}</p>
+                </div>
+
+                <p id="read_more_desc">Read more <img src="{% static 'images/arrow_down.png' %}" alt="arrow-down"></p>
+
+                <div class="upcoming-events">
+                    <div class="events-title-container">
+                        <h4>Upcoming events ({{ count_upcoming_events }})</h4>
+                        <a href="{% url 'all-events-page' %}?category={{ category.category_name_for_url }}&time=Upcoming">See
+                            all</a>
+                    </div>
+
+                    <div class="all-events">
+
+                        {% for upcoming_event in upcoming_events %}
+                            <a href="{% url 'event-page' categoryId=category.id pk=upcoming_event.id %}"
+                               class="event-container">
+
+                                <div class="date-and-save-to-favs">
+                                    <p>{{ upcoming_event.time }}</p>
+
+                                    {% if request.user.is_authenticated %}
+                                        <div class="image-container">
+                                            {% if upcoming_event.saved_to_favourites_by_logged_in_user %}
+                                                <img src="{% static 'images/already_saved_event_icon.png' %}"
+                                                     class="save-to-favourites-btn {{ upcoming_event.id }} already-saved"
+                                                     alt="delete-icon">
+                                            {% else %}
+                                                <img src="{% static 'images/save_event_icon.png' %}"
+                                                     class="save-to-favourites-btn {{ upcoming_event.id }}"
+                                                     alt="delete-icon">
+                                            {% endif %}
+                                        </div>
+                                    {% endif %}
+
+                                </div>
+
+                                <div class="title-and-img">
+                                    <div class="title-container">
+                                        <h6>{{ upcoming_event.title }}</h6>
+                                        <div class="location">
+                                            <img src="{% static 'images/location_grey.png' %}" alt="locations">
+                                            <p>{{ upcoming_event.exact_location }}</p>
+                                        </div>
+
+                                        {% if upcoming_event.host.id == request.user.id %}
+                                            <div class="your-event-container">
+                                                <p>Your event</p>
+                                                <img src="{% static 'images/your_event_icon.png' %}"
+                                                     alt="your-event-icon">
+                                            </div>
+                                        {% endif %}
+                                    </div>
+
+                                    <div class="container-event-img">
+                                        <img src="{{ upcoming_event.poster_image.url }}" alt="category-img">
+                                    </div>
+                                </div>
+
+                                <p class="details">{{ upcoming_event.details }}</p>
+                            </a>
+                        {% empty %}
+                            <p class="no-events">No upcoming events yet</p>
+                        {% endfor %}
+
+                    </div>
+                </div>
+
+                <div class="past-events">
+                    <div class="events-title-container">
+                        <h4>Past events ({{ count_past_events }})</h4>
+                        <a href="{% url 'all-events-page' %}?category={{ category.category_name_for_url }}&time=Past">See
+                            all</a>
+                    </div>
+
+                    <div class="all-events">
+
+                        {% for past_event in past_events %}
+                            <a href="{% url 'event-page' categoryId=category.id pk=past_event.id %}"
+                               class="event-container">
+
+                                <div class="date-and-save-to-favs">
+                                    <p>{{ past_event.time }}</p>
+
+                                    {% if request.user.is_authenticated %}
+                                        <div class="image-container">
+                                            {% if past_event.saved_to_favourites_by_logged_in_user %}
+                                                <img src="{% static 'images/already_saved_event_icon.png' %}"
+                                                     class="save-to-favourites-btn {{ past_event.id }} already-saved"
+                                                     alt="delete-icon">
+                                            {% else %}
+                                                <img src="{% static 'images/save_event_icon.png' %}"
+                                                     class="save-to-favourites-btn {{ past_event.id }}"
+                                                     alt="delete-icon">
+                                            {% endif %}
+                                        </div>
+                                    {% endif %}
+
+                                </div>
+
+                                <div class="title-and-img">
+                                    <div class="title-container">
+                                        <h6>{{ past_event.title }}</h6>
+                                        <div class="location">
+                                            <img src="{% static 'images/location_grey.png' %}" alt="locations">
+                                            <p>{{ past_event.exact_location }}</p>
+                                        </div>
+
+                                        {% if past_event.host.id == request.user.id %}
+                                            <div class="your-event-container">
+                                                <p>Your event</p>
+                                                <img src="{% static 'images/your_event_icon.png' %}"
+                                                     alt="your-event-icon">
+                                            </div>
+                                        {% endif %}
+                                    </div>
+
+                                    <div class="container-event-img">
+                                        <img src="{{ past_event.poster_image.url }}" alt="category-img">
+                                    </div>
+                                </div>
+
+                                <p class="details">{{ past_event.details }}</p>
+                            </a>
+                        {% empty %}
+                            <p class="no-events">No past events yet</p>
+                        {% endfor %}
+
+                    </div>
+                </div>
+            </div>
+
+            <div class="right">
+                <div class="title-and-see-all">
+                    <h4>Active members</h4>
+                    <a href="#">See all</a>
+                </div>
+
+                <div class="members">
+
+                    {% if request.user.is_authenticated %}
+                        {% for active_member in active_members %}
+                            <a href="{% url 'profile-details-update' pk=active_member.profile.id %}"
+                               class="active-member-img-cont">
+                                <img src="{{ active_member.profile.profile_image.url }}" alt="profile-img">
+                            </a>
+                        {% empty %}
+                            <p>Be the first one to attend an event in the {{ category.name }} category!</p>
+                        {% endfor %}
+                    {% else %}
+                        <div class="not-allowed-to-see">
+                            <p>You are not allowed to see the active members in this category! You need to log in
+                                first!</p>
+                            <a>Log In</a>
+                        </div>
+                    {% endif %}
+
+
+                </div>
+            </div>
+        </section>
+
+        <section class="photos-section">
+
+            {% if request.user.is_authenticated %}
+                <form method="POST" enctype="multipart/form-data">
+                    {% csrf_token %}
+                    {{ category_images_form }}
+
+                    <button type="submit">Add image</button>
+                </form>
+
+                <div class="row">
+                    <img src="{% static 'images/environment_category.jpg' %}" alt="category-image">
+                    <img src="{% static 'images/add_new_event_picture.png' %}" alt="category-image">
+                    <img src="{% static 'images/environment_category.jpg' %}" alt="category-image">
+                </div>
+
+                <div class="row">
+                    <img src="{% static 'images/environment_category.jpg' %}" alt="category-image">
+                    <img src="{% static 'images/add_new_event_picture.png' %}" alt="category-image">
+                    <img src="{% static 'images/environment_category.jpg' %}" alt="category-image">
+                </div>
+
+                <div class="row">
+                    <img src="{% static 'images/environment_category.jpg' %}" alt="category-image">
+                    <img src="{% static 'images/add_new_event_picture.png' %}" alt="category-image">
+                    <img src="{% static 'images/environment_category.jpg' %}" alt="category-image">
+                </div>
+
+                <div class="row">
+                    <img src="{% static 'images/environment_category.jpg' %}" alt="category-image">
+                    <img src="{% static 'images/add_new_event_picture.png' %}" alt="category-image">
+                    <img src="{% static 'images/environment_category.jpg' %}" alt="category-image">
+                </div>
+
+                <div class="row">
+                    <img src="{% static 'images/environment_category.jpg' %}" alt="category-image">
+                    <img src="{% static 'images/add_new_event_picture.png' %}" alt="category-image">
+                    <img src="{% static 'images/environment_category.jpg' %}" alt="category-image">
+                </div>
+            {% else %}
+                <p>You are not allowed to see the images of this category.</p>
+                <a href="{% url 'login-user' %}">Log in</a>
+            {% endif %}
+
+        </section>
+    </div>
+
+    {% include 'base/footer.html' %}
+
+</main>
 
 </body>
 
-    <script src="{% static 'js/nav_bar.js' %}"
+<script src="{% static 'js/nav_bar.js' %}"
         lightLogo="{% static 'images/volunteer_act_logo_light.png' %}"
         darkLogo="{% static 'images/volunteer_act_logo_dark.png' %}"
-    ></script>
+></script>
 
-    <script>
-        const aboutBtn = document.getElementsByClassName('about-btn')[0]
-        const photosBtn = document.getElementsByClassName('photos-btn')[0]
-        const aboutSection = document.getElementsByClassName('info-section')[0]
-        const photosSection = document.getElementsByClassName('photos-section')[0]
+<script>
+    const aboutBtn = document.getElementsByClassName('about-btn')[0]
+    const photosBtn = document.getElementsByClassName('photos-btn')[0]
+    const aboutSection = document.getElementsByClassName('info-section')[0]
+    const photosSection = document.getElementsByClassName('photos-section')[0]
 
-        aboutBtn.addEventListener('click', () => {
-            photosSection.style.display = 'none'
-            aboutSection.style.display = 'flex'
+    aboutBtn.addEventListener('click', () => {
+        photosSection.style.display = 'none'
+        aboutSection.style.display = 'flex'
 
-            aboutBtn.style.color = '#008ab4'
-            aboutBtn.style.fontWeight = '600'
+        aboutBtn.style.color = '#008ab4'
+        aboutBtn.style.fontWeight = '600'
 
-            photosBtn.style.color = '#5f5f5f'
-            photosBtn.style.fontWeight = '500'
-        })
+        photosBtn.style.color = '#5f5f5f'
+        photosBtn.style.fontWeight = '500'
+    })
 
-        photosBtn.addEventListener('click', () => {
-            aboutSection.style.display = 'none'
-            photosSection.style.display = 'flex'
+    photosBtn.addEventListener('click', () => {
+        aboutSection.style.display = 'none'
+        photosSection.style.display = 'flex'
 
-            photosBtn.style.color = '#008ab4'
-            photosBtn.style.fontWeight = '600'
+        photosBtn.style.color = '#008ab4'
+        photosBtn.style.fontWeight = '600'
 
-            aboutBtn.style.color = '#5f5f5f'
-            aboutBtn.style.fontWeight = '500'
-        })
-
-
+        aboutBtn.style.color = '#5f5f5f'
+        aboutBtn.style.fontWeight = '500'
+    })
 
 
-        const readMoreBtn = document.getElementById('read_more_desc')
-        const longDescElement = document.getElementsByClassName('text-info')[0]
+    const readMoreBtn = document.getElementById('read_more_desc')
+    const longDescElement = document.getElementsByClassName('text-info')[0]
 
-        readMoreBtn.addEventListener('click', () => {
-            if (readMoreBtn.textContent.includes('Read more')) {
-                longDescElement.style.height = 'auto'
-                readMoreBtn.innerHTML = 'Read less'
-                longDescElement.className = 'text-info'
-            } else {
-                readMoreBtn.innerHTML = 'Read more'
-                longDescElement.style.height = '10em'
-                longDescElement.className = 'text-info fading-at-bottom'
-            }
-        })
-
-
-
-
-
-
-
-        const saveToFavsBtns = document.getElementsByClassName('save-to-favourites-btn')
-
-        for (let saveBtn of saveToFavsBtns) {
-            const eventId = saveBtn.classList[1]
-            const eventContainer = saveBtn.parentElement.parentElement.parentElement
-            const eventHrefUrl = eventContainer.href
-
-            saveBtn.addEventListener('click', () => {
-
-                if (saveBtn.classList.contains('already-saved')) {
-                    eventContainer.href = '#remove-from-favs'
-
-                    const deleteFavouriteRecordUrl = `{% url 'delete-favourite-record-by-event-and-user-api' event_id='0' %}`.replace('0', eventId)
-
-                    fetch(deleteFavouriteRecordUrl, {
-                        method: 'DELETE',
-                        headers: {
-                            'Content-Type': 'application/json',
-                            'X-CSRFToken': `{{ csrf_token }}`
-                        }
-                    })
-                        .then((response) => response.json())
-                        .then((result) => {
-                            saveBtn.src = `{% static 'images/save_event_icon.png' %}`
-                            saveBtn.classList.remove('already-saved')
-
-                            eventContainer.href = eventHrefUrl
-                        })
-                } else {
-                    eventContainer.href = '#add-to-favs'
-
-                    fetch(`{% url 'list-create-favourites-record-api' %}`, {
-                        method: 'POST',
-                        headers: {
-                            'Content-Type': 'application/json',
-                            'X-CSRFToken': `{{ csrf_token }}`
-                        },
-                        body: JSON.stringify({
-                            user: `{{ request.user.id }}`,
-                            event: eventId
-                        })
-                    })
-                        .then((response) => response.json())
-                        .then((result) => {
-                            saveBtn.src = `{% static 'images/already_saved_event_icon.png' %}`
-                            saveBtn.classList.add('already-saved')
-
-                            eventContainer.href = eventHrefUrl
-                        })
-                }
-
-            })
+    readMoreBtn.addEventListener('click', () => {
+        if (readMoreBtn.textContent.includes('Read more')) {
+            longDescElement.style.height = 'auto'
+            readMoreBtn.innerHTML = 'Read less'
+            longDescElement.className = 'text-info'
+        } else {
+            readMoreBtn.innerHTML = 'Read more'
+            longDescElement.style.height = '10em'
+            longDescElement.className = 'text-info fading-at-bottom'
         }
+    })
 
-    </script>
+
+    const saveToFavsBtns = document.getElementsByClassName('save-to-favourites-btn')
+
+    for (let saveBtn of saveToFavsBtns) {
+        const eventId = saveBtn.classList[1]
+        const eventContainer = saveBtn.parentElement.parentElement.parentElement
+        const eventHrefUrl = eventContainer.href
+
+        saveBtn.addEventListener('click', () => {
+
+            if (saveBtn.classList.contains('already-saved')) {
+                eventContainer.href = '#remove-from-favs'
+
+                const deleteFavouriteRecordUrl = `{% url 'delete-favourite-record-by-event-and-user-api' event_id='0' %}`.replace('0', eventId)
+
+                fetch(deleteFavouriteRecordUrl, {
+                    method: 'DELETE',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'X-CSRFToken': `{{ csrf_token }}`
+                    }
+                })
+                    .then((response) => response.json())
+                    .then((result) => {
+                        saveBtn.src = `{% static 'images/save_event_icon.png' %}`
+                        saveBtn.classList.remove('already-saved')
+
+                        eventContainer.href = eventHrefUrl
+                    })
+            } else {
+                eventContainer.href = '#add-to-favs'
+
+                fetch(`{% url 'list-create-favourites-record-api' %}`, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'X-CSRFToken': `{{ csrf_token }}`
+                    },
+                    body: JSON.stringify({
+                        user: `{{ request.user.id }}`,
+                        event: eventId
+                    })
+                })
+                    .then((response) => response.json())
+                    .then((result) => {
+                        saveBtn.src = `{% static 'images/already_saved_event_icon.png' %}`
+                        saveBtn.classList.add('already-saved')
+
+                        eventContainer.href = eventHrefUrl
+                    })
+            }
+
+        })
+    }
+
+</script>
 </html>
