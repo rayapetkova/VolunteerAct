@@ -1,4 +1,5 @@
 from django.conf import settings
+from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.mixins import UserPassesTestMixin
 from django.core.exceptions import PermissionDenied
@@ -17,7 +18,7 @@ from rest_framework.response import Response
 from rest_framework.views import APIView
 
 from VolunteerAct.categories.forms import EventForm, FilterForm, EventEditForm, EventDeleteForm, CategoryImagesForm
-from VolunteerAct.categories.models import Category, Event
+from VolunteerAct.categories.models import Category, Event, CategoryImages
 from VolunteerAct.categories.serializers import EventSerializer
 from VolunteerAct.categories.utils import count_events, extract_keywords
 from VolunteerAct.favourites.models import Favourites
@@ -64,6 +65,9 @@ def category_details(request, pk):
     all_category_locations = set([event.city for event in category.category_events.all()[:3]])
     all_category_locations = ', '.join(all_category_locations)
 
+    category_images = CategoryImages.objects.filter(category=category)
+    user_events_in_this_category = Event.objects.filter(host=request.user, category=category)
+
     if request.method == "POST":
         if category_images_form.is_valid():
             image = category_images_form.save(commit=False)
@@ -76,6 +80,8 @@ def category_details(request, pk):
     context = {
         'category': category,
         'category_images_form': category_images_form,
+        'category_images': category_images,
+        'user_events_in_this_category': user_events_in_this_category,
         'upcoming_events': upcoming_events[:2],
         'past_events': past_events[:2],
         'count_upcoming_events': count_events(len(upcoming_events), 2),

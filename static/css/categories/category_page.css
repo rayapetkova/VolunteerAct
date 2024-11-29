@@ -114,122 +114,6 @@ header ul.last-links li a {
 
 
 
-form {
-    width: 90%;
-    background-color: rgba(79, 79, 91, 0.96);
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    border: solid 1px rgb(214, 213, 213);
-    border-radius: 4px;
-    padding: 2% 8%;
-}
-
-form h1 {
-    color: #ffffff;
-    font-size: 2em;
-    margin: 0;
-    margin-bottom: 0.3em;
-}
-
-form > p {
-    display: flex;
-    flex-direction: column;
-    margin: 0;
-    margin-top: 1em;
-    color: #ffffff;
-    width: 100%;
-}
-
-form p input, form p textarea {
-    padding: 0.6em 0.8em;
-    border: solid 1px rgb(156, 156, 156);
-    border-radius: 4px;
-    font-size: 1em;
-    outline: none;
-    font-family: inherit;
-}
-
-form p input[type='file']::file-selector-button {
-    border: none;
-    border-radius: 3px;
-    padding: 0.4em 0.9em;
-    background-color: rgba(196, 212, 255, 0.87);
-}
-
-form p input[type='file']:hover {
-    cursor: pointer;
-    background-color: rgba(173, 173, 173, 0.18);
-}
-
-form p input[type='file']::file-selector-button:hover {
-    cursor: pointer;
-    background-color: rgba(196, 212, 255, 0.68);
-}
-
-form .login-container {
-    display: flex;
-    align-items: flex-end;
-}
-
-form .log-in-p {
-    margin: 0;
-    margin-top: 1.3em;
-    color: #ffffff;
-}
-
-form .buttons-container {
-    display: flex;
-    align-self: start;
-    width: 40%;
-    justify-content: space-between;
-    gap: 1em;
-}
-
-form .buttons-container button {
-    width: 50%;
-    border-radius: 7px;
-    padding: 0.6em 0;
-    font-size: 1.3em;
-    border: none;
-    color: rgb(29, 20, 103);
-    background-color: rgba(196, 212, 255, 0.87);
-    font-weight: 600;
-    margin-top: 1em;
-}
-
-form button:hover {
-    cursor: pointer;
-    background-color: rgba(196, 212, 255, 0.68);
-}
-
-form .buttons-container button.cancel-btn {
-    background-color: rgba(255, 255, 255, 0.3);
-    color: #f1f1f1;
-}
-
-form .buttons-container button.cancel-btn:hover {
-    background-color: rgba(255, 255, 255, 0.44);
-}
-
-form ul.errorlist {
-    margin: 0;
-    padding: 0;
-    width: 60%;
-    margin-top: 0.3em;
-    align-self: start;
-}
-
-form ul.errorlist li {
-    list-style: none;
-    color: #e54343;
-    margin-bottom: -1.3em;
-    padding: 0;
-    font-size: 0.85em;
-}
-
-
-
 
 
 
@@ -266,10 +150,6 @@ form ul.errorlist li {
     justify-content: space-between;
     background-color: rgb(249, 249, 249);
     padding: 2% 15%;
-}
-
-.photos-section {
-    display: none;
 }
 
 .info-section .left {
@@ -575,24 +455,95 @@ form ul.errorlist li {
 
 
 .photos-section {
-    display: flex;
+    display: none;
     flex-direction: column;
-    margin: 4% 15%;
-    padding: 1% 2%;
-    gap: 2em;
-    background-color: red;
+    padding: 2% 15%;
+    background-color: rgb(249, 249, 249);
 }
 
-.photos-section .row {
+.photos-section h4 {
+    margin: 0;
+    font-size: 1.3em;
+}
+
+.photos-section > p {
+    margin-bottom: 0;
+    font-weight: 500;
+    color: #1d1de7;
+}
+
+.photos-section form {
+    display: flex;
+    align-items: center;
+}
+
+.photos-section form div {
+    width: 18%;
+}
+
+.photos-section form div input {
+    width: 70%;
+}
+
+.photos-section form div input::file-selector-button {
+    font-size: 0.9em;
+    background-color: rgba(221, 238, 255, 0.85);
+    padding: 0.3em 0.5em;
+    border: solid 1px #0f4e94;
+    border-radius: 3px;
+    transition: background-color 0.2s ease-in-out;
+}
+
+.photos-section form div input::file-selector-button:hover {
+    cursor: pointer;
+    background-color: rgba(104, 171, 208, 0.59);
+}
+
+.photos-section form button {
+    width: 8%;
+    border-radius: 7px;
+    padding: 0.6em 0;
+    font-size: 0.8em;
+    border: none;
+    color: rgb(29, 20, 103);
+    background-color: rgba(196, 212, 255, 0.87);
+    font-weight: 600;
+}
+
+.photos-section form button:hover {
+    cursor: pointer;
+    background-color: rgba(196, 212, 255, 0.68);
+}
+
+.photos-section form ul.errorlist {
+    margin: 0;
+    padding: 0;
+    width: 60%;
+    margin-top: 0.3em;
+    align-self: start;
+}
+
+.photos-section form ul.errorlist li {
+    list-style: none;
+    color: #e54343;
+    margin-bottom: -1.3em;
+    padding: 0;
+    font-size: 0.85em;
+}
+
+.photos-section .images-container {
     display: flex;
     padding: 0 4px;
     justify-content: space-between;
-    gap: 1em;
+    flex-wrap: wrap;
+    gap: 2em;
+    margin-top: 2em;
 }
 
-.photos-section .row img {
+.photos-section .images-container img {
     vertical-align: middle;
-    width: 22em;
+    width: 24em;
     height: 15em;
     object-fit: cover;
+    border: solid 1px #e0e0e0;
 }

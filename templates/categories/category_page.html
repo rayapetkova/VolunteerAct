@@ -57,6 +57,10 @@
         </div>
 
         <section class="info-section">
+            {% for message in messages %}
+                <p>{{ message }}</p>
+            {% endfor %}
+
             <div class="left">
                 <h4>What we're about</h4>
 
@@ -223,44 +227,25 @@
             </div>
         </section>
 
-        <section class="photos-section">
+        <section class="photos-section" id="photos">
+            <h4>Photos from events in this category</h4>
 
             {% if request.user.is_authenticated %}
-                <form method="POST" enctype="multipart/form-data">
-                    {% csrf_token %}
-                    {{ category_images_form }}
+                {% if user_events_in_this_category %}
+                    <p>Add new image:</p>
 
-                    <button type="submit">Add image</button>
-                </form>
+                    <form method="POST" enctype="multipart/form-data">
+                        {% csrf_token %}
+                        {{ category_images_form }}
 
-                <div class="row">
-                    <img src="{% static 'images/environment_category.jpg' %}" alt="category-image">
-                    <img src="{% static 'images/add_new_event_picture.png' %}" alt="category-image">
-                    <img src="{% static 'images/environment_category.jpg' %}" alt="category-image">
-                </div>
+                        <button type="submit">Add image</button>
+                    </form>
+                {% endif %}
 
-                <div class="row">
-                    <img src="{% static 'images/environment_category.jpg' %}" alt="category-image">
-                    <img src="{% static 'images/add_new_event_picture.png' %}" alt="category-image">
-                    <img src="{% static 'images/environment_category.jpg' %}" alt="category-image">
-                </div>
-
-                <div class="row">
-                    <img src="{% static 'images/environment_category.jpg' %}" alt="category-image">
-                    <img src="{% static 'images/add_new_event_picture.png' %}" alt="category-image">
-                    <img src="{% static 'images/environment_category.jpg' %}" alt="category-image">
-                </div>
-
-                <div class="row">
-                    <img src="{% static 'images/environment_category.jpg' %}" alt="category-image">
-                    <img src="{% static 'images/add_new_event_picture.png' %}" alt="category-image">
-                    <img src="{% static 'images/environment_category.jpg' %}" alt="category-image">
-                </div>
-
-                <div class="row">
-                    <img src="{% static 'images/environment_category.jpg' %}" alt="category-image">
-                    <img src="{% static 'images/add_new_event_picture.png' %}" alt="category-image">
-                    <img src="{% static 'images/environment_category.jpg' %}" alt="category-image">
+                <div class="images-container">
+                    {% for category_image in category_images %}
+                        <img src="{{ category_image.image.url }}" alt="category-img">
+                    {% endfor %}
                 </div>
             {% else %}
                 <p>You are not allowed to see the images of this category.</p>
