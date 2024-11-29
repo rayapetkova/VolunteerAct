@@ -261,7 +261,7 @@ form ul.errorlist li {
 
 
 
-.info-section, .photos-section {
+.info-section {
     display: flex;
     justify-content: space-between;
     background-color: rgb(249, 249, 249);
@@ -359,7 +359,7 @@ form ul.errorlist li {
     position: relative;
     height: 22em;
     text-decoration: none;
-    color: #000000;
+    color: #000000 !important;
     max-width: 50em;
 }
 
@@ -567,4 +567,32 @@ form ul.errorlist li {
 .info-section .right .members .not-allowed-to-see a:hover {
     cursor: pointer;
     background-color: rgba(13, 74, 141, 0.89);
+}
+
+
+
+
+
+
+.photos-section {
+    display: flex;
+    flex-direction: column;
+    margin: 4% 15%;
+    padding: 1% 2%;
+    gap: 2em;
+    background-color: red;
+}
+
+.photos-section .row {
+    display: flex;
+    padding: 0 4px;
+    justify-content: space-between;
+    gap: 1em;
+}
+
+.photos-section .row img {
+    vertical-align: middle;
+    width: 22em;
+    height: 15em;
+    object-fit: cover;
 }
