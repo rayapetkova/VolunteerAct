@@ -5,7 +5,7 @@ html {
 }
 
 body {
-    background-color: rgb(255, 255, 255);
+    background-color: rgb(249, 249, 249);
     margin: 0;
     padding: 0;
     font-family: "Poppins", sans-serif;
@@ -15,9 +15,21 @@ body {
 
 
 
+header ul.last-links li.all-events a,
+header ul.last-links li.contact-us a{
+    color: #ffffff;
+}
+
+
+
+
+
 
 .upper-section {
-    position: relative;
+    width: 100%;
+    position: absolute;
+    top: 0;
+    object-fit: cover;
 }
 
 .upper-section img {
@@ -30,7 +42,7 @@ body {
 .upper-section .emergency-description {
     padding: 0 15%;
     padding-bottom: 1.5%;
-    top: 20%;
+    top: 25%;
     display: flex;
     flex-direction: column;
     position: absolute;
@@ -62,9 +74,14 @@ body {
     text-align: center;
     border-radius: 10px;
     opacity: 0.9;
-    transition: 0.4s;
     text-decoration: none;
     margin-top: 2em;
+    transition: background-color 0.2s ease-in-out;
+}
+
+.upper-section .emergency-description a:hover {
+    cursor: pointer;
+    background-color: rgba(13, 73, 141, 0.93);
 }
 
 
@@ -75,7 +92,7 @@ body {
 
 main {
     padding: 5% 15%;
-    padding-bottom: 5%;
+    margin-top: 30%;
     background-color: rgb(249, 249, 249);
 }
 
@@ -146,7 +163,7 @@ main .right .all-events h3 {
     border-radius: 10px;
     margin-bottom: 1.5em;
     position: relative;
-    height: 32em;
+    height: 33em;
     text-decoration: none;
     color: #000000;
     max-width: 100%;

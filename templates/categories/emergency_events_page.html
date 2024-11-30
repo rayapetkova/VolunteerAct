@@ -11,7 +11,7 @@
     <link rel="stylesheet" href="{% static 'css/categories/emergency_events_page.css' %}">
 </head>
 <body>
-    {% include 'base/nav_bar.html' %}
+    {% include 'base/nav_bar.html' with logo_color='light'  %}
 
     <section class="upper-section">
         <img src="{% static 'images/emergency_background.jpg' %}" alt="event-img">
@@ -96,12 +96,23 @@
 
 </body>
 
-    <script src="{% static 'js/nav_bar.js' %}"
-            lightLogo="{% static 'images/volunteer_act_logo_light.png' %}"
-            darkLogo="{% static 'images/volunteer_act_logo_dark.png' %}"
-    ></script>
-
     <script>
+        const headerElement = document.getElementsByTagName('header')[0]
+
+        document.addEventListener('scroll', () => {
+            if (window.scrollY > 600) {
+                headerElement.style.backgroundColor = 'rgba(67, 79, 98, 0.76)'
+            } else {
+                headerElement.style.backgroundColor = 'transparent'
+            }
+        })
+
+
+
+
+
+
+
         const saveToFavsBtns = document.getElementsByClassName('save-to-favourites-btn')
 
         for (let saveBtn of saveToFavsBtns) {
