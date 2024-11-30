@@ -145,3 +145,46 @@ header ul.last-links .logout-btn a:hover {
 .dropdown:hover .dropbtn {
     cursor: pointer;
 }
+
+
+
+
+
+.emergency-li {
+    display: flex;
+    align-items: center;
+}
+
+.emergency-li .emergency-button {
+    background-color: #1c87c9;
+    -webkit-border-radius: 60px;
+    border: none;
+    color: #eeeeee;
+    cursor: pointer;
+    display: inline-block;
+    font-family: sans-serif;
+    font-size: 20px;
+    padding: 0.5em;
+    border-radius: 50%;
+    text-align: center;
+    text-decoration: none;
+}
+
+@keyframes glowing {
+    0% {
+        background-color: #850000;
+        box-shadow: 0 0 5px #850000;
+    }
+    50% {
+        background-color: #ef0000;
+        box-shadow: 0 0 30px #ef0000;
+    }
+    100% {
+        background-color: #850000;
+        box-shadow: 0 0 5px #850000;
+    }
+}
+
+.emergency-li .emergency-button {
+    animation: glowing 1300ms infinite;
+}

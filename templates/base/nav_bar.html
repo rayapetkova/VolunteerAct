@@ -16,6 +16,7 @@
         </ul>
     {% else %}
         <ul class="last-links logout-ul">
+            <li class="emergency-li"><a href="{% url 'emergency-events-page' %}" class="emergency-button"></a></li>
             <li class="contact-us"><a href="{% url 'contact-us' %}">Contact us</a></li>
             <li class="all-events"><a href="{% url 'all-events-page' %}">All Events</a></li>
 
