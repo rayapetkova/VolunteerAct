@@ -113,7 +113,11 @@ class Event(models.Model):
         blank=False
     )
 
-    is_emergency = models.BooleanField()
+    is_emergency = models.BooleanField(
+        null=False,
+        blank=True,
+        default=False
+    )
 
     host = models.ForeignKey(
         to=AppUserModel,
