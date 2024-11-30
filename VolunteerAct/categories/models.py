@@ -113,6 +113,8 @@ class Event(models.Model):
         blank=False
     )
 
+    is_emergency = models.BooleanField()
+
     host = models.ForeignKey(
         to=AppUserModel,
         on_delete=models.CASCADE,
