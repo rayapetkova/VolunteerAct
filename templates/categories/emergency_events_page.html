@@ -1,0 +1,161 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>All Events Page</title>
+    <link rel="icon" type="image/x-icon" href="{% static 'images/just_logo_without_background.png' %}">
+    <link rel="stylesheet" href="{% static 'css/base/nav_bar.css' %}">
+    <link rel="stylesheet" href="{% static 'css/base/footer.css' %}">
+    <link rel="stylesheet" href="{% static 'css/categories/emergency_events_page.css' %}">
+</head>
+<body>
+    {% include 'base/nav_bar.html' %}
+
+    <section class="upper-section">
+        <img src="{% static 'images/emergency_background.jpg' %}" alt="event-img">
+
+        <div class="emergency-description">
+            <h2>Emergency Events</h2>
+
+            <div class="more-info">
+                <p>This section is dedicated to urgent situations where immediate volunteer support is crucial. Here, you’ll find events that require quick action and assistance from volunteers like you. Each event highlights the specific needs and urgency, allowing you to respond quickly and confirm your participation with a simple click. Whether it's a local crisis or a sudden need for help, this page helps connect you to those critical moments when your involvement can make a real difference. Check the details, sign up, and take action when it matters most.</p>
+            </div>
+
+            <a href="#explore-emergency-events">Explore emergency events</a>
+        </div>
+
+    </section>
+
+
+    <main id="explore-emergency-events">
+
+        <section class="aside-and-right-content">
+            <div class="right">
+                <h2>Emergency Events</h2>
+
+                <div class="all-events">
+                    {% for event in emergency_events %}
+                        <a href="{% url 'event-page' categoryId=event.category.id pk=event.id %}" class="event-container {% if event.already_passed %}passed-event-container{% endif %}">
+
+                            <div class="date-and-save-to-favs">
+                                <p>{{ event.time }}</p>
+                                <div class="image-container">
+                                    {% if event.saved_to_favourites_by_logged_in_user %}
+                                        <img src="{% static 'images/already_saved_event_icon.png' %}"
+                                             class="save-to-favourites-btn {{ event.id }} already-saved"
+                                             alt="delete-icon">
+                                    {% else %}
+                                        <img src="{% static 'images/save_event_icon.png' %}"
+                                             class="save-to-favourites-btn {{ event.id }}"
+                                             alt="delete-icon">
+                                    {% endif %}
+                                </div>
+                            </div>
+
+                            <div class="title-and-img">
+                                <div class="title-container">
+                                    <h6>{{ event.title }}</h6>
+                                    <div class="location">
+                                        <img src="{% static 'images/location_grey.png' %}" alt="locations">
+                                        <p>{{ event.exact_location }}</p>
+                                    </div>
+
+                                    {% if event.host.id == request.user.id %}
+                                        <div class="your-event-container">
+                                            <p>Your event</p>
+                                            <img src="{% static 'images/your_event_icon.png' %}" alt="your-event-icon" >
+                                        </div>
+                                    {% endif %}
+
+                                    {% if event.already_passed %}
+                                        <div class="passed-event-message-cont">
+                                            <p>Already passed event</p>
+                                        </div>
+                                    {% endif %}
+                                </div>
+
+                                <div class="container-event-img">
+                                    <img src="{{ event.poster_image.url }}" alt="category-img">
+                                </div>
+                            </div>
+
+                            <p class="details">{{ event.details }}</p>
+                        </a>
+                    {% empty %}
+                        <h3>No events yet</h3>
+                    {% endfor %}
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    {% include 'base/footer.html' %}
+
+</body>
+
+    <script src="{% static 'js/nav_bar.js' %}"
+            lightLogo="{% static 'images/volunteer_act_logo_light.png' %}"
+            darkLogo="{% static 'images/volunteer_act_logo_dark.png' %}"
+    ></script>
+
+    <script>
+        const saveToFavsBtns = document.getElementsByClassName('save-to-favourites-btn')
+
+        for (let saveBtn of saveToFavsBtns) {
+            const eventId = saveBtn.classList[1]
+            const eventContainer = saveBtn.parentElement.parentElement.parentElement
+            const eventHrefUrl = eventContainer.href
+
+            saveBtn.addEventListener('click', () => {
+
+                if (saveBtn.classList.contains('already-saved')) {
+                    eventContainer.href = '#remove-from-favs'
+
+                    const deleteFavouriteRecordUrl = `{% url 'delete-favourite-record-by-event-and-user-api' event_id='0' %}`.replace('0', eventId)
+
+                    fetch(deleteFavouriteRecordUrl, {
+                        method: 'DELETE',
+                        headers: {
+                            'Content-Type': 'application/json',
+                            'X-CSRFToken': `{{ csrf_token }}`
+                        }
+                    })
+                        .then((response) => response.json())
+                        .then((result) => {
+                            saveBtn.src = `{% static 'images/save_event_icon.png' %}`
+                            saveBtn.classList.remove('already-saved')
+
+                            eventContainer.href = eventHrefUrl
+                        })
+                } else {
+                    eventContainer.href = '#add-to-favs'
+
+                    fetch(`{% url 'list-create-favourites-record-api' %}`, {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json',
+                            'X-CSRFToken': `{{ csrf_token }}`
+                        },
+                        body: JSON.stringify({
+                            user: `{{ request.user.id }}`,
+                            event: eventId
+                        })
+                    })
+                        .then((response) => response.json())
+                        .then((result) => {
+                            saveBtn.src = `{% static 'images/already_saved_event_icon.png' %}`
+                            saveBtn.classList.add('already-saved')
+
+                            eventContainer.href = eventHrefUrl
+                        })
+                }
+
+            })
+        }
+
+    </script>
+
+</html>

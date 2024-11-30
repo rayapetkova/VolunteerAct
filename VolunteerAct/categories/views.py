@@ -161,6 +161,16 @@ def my_events_view(request):
     return render(request, 'categories/my_events_page.html', context=context)
 
 
+def emergency_events_view(request):
+    emergency_events = Event.objects.filter(is_emergency=True)
+
+    context = {
+        'emergency_events': emergency_events
+    }
+
+    return render(request, 'categories/emergency_events_page.html', context=context)
+
+
 def create_event_view(request, categoryId=''):
     form = EventForm(request.POST or None, request.FILES or None)
 
