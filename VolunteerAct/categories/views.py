@@ -174,9 +174,17 @@ def emergency_events_view(request):
 def create_event_view(request, categoryId=''):
     form = EventForm(request.POST or None, request.FILES or None)
 
+    context = {}
+
     if categoryId:
         category = Category.objects.filter(id=categoryId).first()
         form.fields['category'].initial = category
+
+    if request.method == "GET":
+        emergency = request.GET.get('emergency')
+
+        if emergency:
+            context['emergency'] = emergency
 
     if request.method == 'POST':
         if form.is_valid():
@@ -188,9 +196,7 @@ def create_event_view(request, categoryId=''):
             event.attendees.add(request.user)
             return redirect('event-page', categoryId=event.category.id, pk=event.id)
 
-    context = {
-        'form': form
-    }
+    context['form'] = form
 
     return render(request, 'categories/add_new_event_page.html', context=context)
 

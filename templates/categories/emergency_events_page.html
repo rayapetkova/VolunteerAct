@@ -24,6 +24,7 @@
             </div>
 
             <a href="#explore-emergency-events">Explore emergency events</a>
+            <a href="{% url 'create-new-event-page' %}?emergency=emergency">Add Emergency Event</a>
         </div>
 
     </section>
@@ -84,7 +85,7 @@
                             <p class="details">{{ event.details }}</p>
                         </a>
                     {% empty %}
-                        <h3>No events yet</h3>
+                        <h3>No emergency events yet</h3>
                     {% endfor %}
                 </div>
             </div>

@@ -83,6 +83,12 @@ main > img {
     margin-bottom: 1em;
 }
 
+.right .emergency-message {
+    color: #b70000;
+    font-weight: 600;
+    font-size: 1.2em;
+}
+
 
 
 
@@ -153,9 +159,18 @@ main > img {
     background-color: #08376b;
 }
 
+.right button.emergency-btn {
+    background-color: #b70000;
+    width: 15%;
+}
+
 .right button:hover {
     cursor: pointer;
     background-color: #0f4e94;
+}
+
+.right button.emergency-btn:hover {
+    background-color: #d70000;
 }
 
 form select {

@@ -21,6 +21,10 @@
         <div class="content-edit">
             <section class="info-section">
                 <div class="right">
+                    {% if emergency %}
+                        <p class="emergency-message">You are now creating an emergency event! Emails will be sent to active members of the category you choose!</p>
+                    {% endif %}
+
                     <form method="POST" enctype="multipart/form-data">
                         {% csrf_token %}
 
@@ -82,7 +86,11 @@
                             </div>
                         </section>
 
-                        <button type="submit">Add event</button>
+                        {% if not emergency %}
+                            <button type="submit">Add event</button>
+                        {% else %}
+                            <button type="submit" class="emergency-btn">Add Emergency Event</button>
+                        {% endif %}
                     </form>
                 </div>
             </section>
