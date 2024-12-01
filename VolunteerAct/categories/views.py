@@ -175,6 +175,7 @@ def create_event_view(request, categoryId=''):
     form = EventForm(request.POST or None, request.FILES or None)
 
     context = {}
+    emergency = False
 
     if categoryId:
         category = Category.objects.filter(id=categoryId).first()
@@ -190,6 +191,9 @@ def create_event_view(request, categoryId=''):
         if form.is_valid():
             event = form.save(commit=False)
             event.host = request.user
+
+            if emergency:
+                event.is_emergency = True
 
             event.save()
 
