@@ -5,6 +5,8 @@ from rest_framework.response import Response
 from rest_framework.views import APIView
 
 from VolunteerAct.categories.serializers import EventSerializer
+from VolunteerAct.home.utils import get_emergency_events
+
 
 @login_required
 def all_tickets_events_view(request):
@@ -14,7 +16,8 @@ def all_tickets_events_view(request):
         ticket_event.already_passed = True if ticket_event.time < timezone.now() else False
 
     context = {
-        'user_tickets_events': user_tickets_events
+        'user_tickets_events': user_tickets_events,
+        'emergency_events': get_emergency_events()
     }
 
     return render(request, 'tickets_events/user_tickets_events.html', context=context)

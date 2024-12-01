@@ -5,6 +5,7 @@ import requests
 
 from VolunteerAct.categories.models import Event
 from VolunteerAct.categories.utils import count_events
+from VolunteerAct.home.utils import get_emergency_events
 
 
 def city_details_view(request, city_name):
@@ -21,6 +22,7 @@ def city_details_view(request, city_name):
         'past_events': past_events,
         'count_upcoming_events': count_events(len(upcoming_events), 2),
         'count_past_events': count_events(len(past_events), 2),
+        'emergency_events': get_emergency_events()
     }
 
     return render(request, 'cities/city.html', context=context)

@@ -12,6 +12,7 @@ from django.conf import settings
 
 from VolunteerAct.app_users.forms import AppUserForm, EditAppUserForm, DeleteAppUserForm
 from VolunteerAct.app_users.models import Profile
+from VolunteerAct.home.utils import get_emergency_events
 
 AppUserModel = get_user_model()
 
@@ -26,6 +27,12 @@ class RegisterUserView(UserPassesTestMixin, CreateView):
 
     def handle_no_permission(self):
         return redirect('home-page')
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['emergency_events'] = get_emergency_events()
+
+        return context
 
     def form_valid(self, form):
         result = super().form_valid(form)
@@ -68,6 +75,12 @@ class LoginUserView(UserPassesTestMixin, LoginView):
     def handle_no_permission(self):
         return redirect('home-page')
 
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['emergency_events'] = get_emergency_events()
+
+        return context
+
 
 class ProfileView(LoginRequiredMixin, UpdateView, DetailView):
     model = Profile
@@ -85,6 +98,7 @@ class ProfileView(LoginRequiredMixin, UpdateView, DetailView):
         context = super().get_context_data(**kwargs)
 
         context['form'].fields['email'].initial = self.request.user.email
+        context['emergency_events'] = get_emergency_events()
 
         return context
 
@@ -107,7 +121,8 @@ def delete_profile_view(request):
         return redirect('home-page')
 
     context = {
-        'form': form
+        'form': form,
+        'emergency_events': get_emergency_events()
     }
 
     return render(request, 'app_users/delete_profile.html', context=context)

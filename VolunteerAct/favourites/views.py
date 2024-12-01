@@ -9,6 +9,7 @@ from VolunteerAct.categories.forms import FilterForm
 from VolunteerAct.categories.serializers import EventSerializer
 from VolunteerAct.favourites.models import Favourites
 from VolunteerAct.favourites.serializers import FavouritesSerializer, FavouritesSerializerWithEventInfo
+from VolunteerAct.home.utils import get_emergency_events
 
 
 @login_required
@@ -41,7 +42,8 @@ def favourite_events_view(request):
 
     context = {
         'filter_form': filter_form,
-        'user_favourite_events': user_favourite_events
+        'user_favourite_events': user_favourite_events,
+        'emergency_events': get_emergency_events()
     }
 
     return render(request, 'favourites/favourite_events.html', context=context)

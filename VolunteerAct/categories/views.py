@@ -22,6 +22,7 @@ from VolunteerAct.categories.models import Category, Event, CategoryImages
 from VolunteerAct.categories.serializers import EventSerializer
 from VolunteerAct.categories.utils import count_events, extract_keywords
 from VolunteerAct.favourites.models import Favourites
+from VolunteerAct.home.utils import get_emergency_events
 
 
 def category_details(request, pk):
@@ -87,7 +88,8 @@ def category_details(request, pk):
         'count_upcoming_events': count_events(len(upcoming_events), 2),
         'count_past_events': count_events(len(past_events), 2),
         'active_members': active_members[:36],
-        'all_category_locations': all_category_locations
+        'all_category_locations': all_category_locations,
+        'emergency_events': get_emergency_events()
     }
 
     return render(request, 'categories/category_page.html', context=context)
@@ -130,7 +132,8 @@ def all_events_view(request):
 
     context = {
         'filter_form': filter_form,
-        'all_events': all_events
+        'all_events': all_events,
+        'emergency_events': get_emergency_events()
     }
 
     return render(request, 'categories/all_events_page.html', context=context)
@@ -155,7 +158,8 @@ def my_events_view(request):
         'past_host_events': past_host_events,
         'count_upcoming_events': count_events(len(upcoming_host_events), 2),
         'count_past_events': count_events(len(past_host_events), 2),
-        'active_members': active_members[:36]
+        'active_members': active_members[:36],
+        'emergency_events': get_emergency_events()
     }
 
     return render(request, 'categories/my_events_page.html', context=context)
@@ -165,7 +169,7 @@ def emergency_events_view(request):
     emergency_events = Event.objects.filter(is_emergency=True)
 
     context = {
-        'emergency_events': emergency_events
+        'emergency_events': emergency_events,
     }
 
     return render(request, 'categories/emergency_events_page.html', context=context)
@@ -175,7 +179,6 @@ def create_event_view(request, categoryId=''):
     form = EventForm(request.POST or None, request.FILES or None)
 
     context = {}
-    emergency = False
 
     if categoryId:
         category = Category.objects.filter(id=categoryId).first()
@@ -192,7 +195,8 @@ def create_event_view(request, categoryId=''):
             event = form.save(commit=False)
             event.host = request.user
 
-            if emergency:
+            is_emergency = request.GET.get('emergency')
+            if is_emergency:
                 event.is_emergency = True
 
             event.save()
@@ -201,6 +205,7 @@ def create_event_view(request, categoryId=''):
             return redirect('event-page', categoryId=event.category.id, pk=event.id)
 
     context['form'] = form
+    context['emergency_events'] = get_emergency_events()
 
     return render(request, 'categories/add_new_event_page.html', context=context)
 
@@ -227,6 +232,8 @@ class EventDetailsView(DetailView, DeleteView):
         comments = self.object.comments.all().order_by('-created_at')
         context['event_comments'] = comments[:3]
         context['count_comments'] = count_events(len(comments), 3)
+
+        context['emergency_events'] = get_emergency_events()
 
         if self.request.user.is_authenticated:
             user_favourite_event = Favourites.objects.filter(user=self.request.user, event=self.object)
@@ -265,6 +272,12 @@ class EventUpdateView(UserPassesTestMixin, UpdateView):
     def form_invalid(self, form):
         print(form.fields['category'].initial)
         return super().form_invalid(form)
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['emergency_events'] = get_emergency_events()
+
+        return context
 
     def get_success_url(self):
         return reverse_lazy('event-page', kwargs={

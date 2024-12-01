@@ -11,13 +11,13 @@ from django.conf import settings
 
 from VolunteerAct.favourites.models import Favourites
 from VolunteerAct.home.forms import ContactUsForm
+from VolunteerAct.home.utils import get_emergency_events
 
 
 def home_page(request):
     popular_cities = [city[0] for city in get_cities() if city[0] != 'online_event']
     pixabay_api_url = config('PIXABAY_API_URL')
     upcoming_events = Event.objects.filter(time__gte=timezone.now()).order_by('time')[:4]
-    emergency_events = Event.objects.filter(is_emergency=True)
 
     if request.user.is_authenticated:
         for event in upcoming_events:
@@ -33,7 +33,7 @@ def home_page(request):
         'upcoming_events': upcoming_events,
         'popular_cities': popular_cities[:6],
         'pixabay_api_url': pixabay_api_url,
-        'emergency_events': emergency_events
+        'emergency_events': get_emergency_events()
     }
 
     return render(request, "home/home_page.html", context=context)
@@ -66,7 +66,8 @@ def contact_us_page(request):
             return redirect('contact-us')
 
     context = {
-        'form': form
+        'form': form,
+        'emergency_events': get_emergency_events()
     }
 
     return render(request, 'home/contact_us_page.html', context=context)
