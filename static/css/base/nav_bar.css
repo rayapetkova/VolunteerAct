@@ -155,7 +155,7 @@ header ul.last-links .logout-btn a:hover {
     align-items: center;
 }
 
-.emergency-li .emergency-button {
+.emergency-li a {
     background-color: #1c87c9;
     -webkit-border-radius: 60px;
     border: none;
@@ -168,6 +168,11 @@ header ul.last-links .logout-btn a:hover {
     border-radius: 50%;
     text-align: center;
     text-decoration: none;
+}
+
+.emergency-li .emergency-button-green {
+    background-color: #008300;
+    box-shadow: 0 0 20px #00cc00;
 }
 
 @keyframes glowing {

@@ -17,6 +17,7 @@ def home_page(request):
     popular_cities = [city[0] for city in get_cities() if city[0] != 'online_event']
     pixabay_api_url = config('PIXABAY_API_URL')
     upcoming_events = Event.objects.filter(time__gte=timezone.now()).order_by('time')[:4]
+    emergency_events = Event.objects.filter(is_emergency=True)
 
     if request.user.is_authenticated:
         for event in upcoming_events:
@@ -31,7 +32,8 @@ def home_page(request):
         'categories': Category.objects.order_by('id').all(),
         'upcoming_events': upcoming_events,
         'popular_cities': popular_cities[:6],
-        'pixabay_api_url': pixabay_api_url
+        'pixabay_api_url': pixabay_api_url,
+        'emergency_events': emergency_events
     }
 
     return render(request, "home/home_page.html", context=context)
