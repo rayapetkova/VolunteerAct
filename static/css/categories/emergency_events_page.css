@@ -64,7 +64,14 @@ header ul.last-links li.contact-us a{
     color: rgba(250, 250, 250, 0.87);
 }
 
-.upper-section .emergency-description a {
+.upper-section .emergency-description .emergency-buttons-container {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5em;
+    margin-top: 2em;
+}
+
+.upper-section .emergency-description .emergency-buttons-container a {
     background-color: #08376b;
     color: rgb(255, 255, 255);
     font-size: 1em;
@@ -75,13 +82,20 @@ header ul.last-links li.contact-us a{
     border-radius: 10px;
     opacity: 0.9;
     text-decoration: none;
-    margin-top: 2em;
     transition: background-color 0.2s ease-in-out;
+}
+
+.upper-section .emergency-description .emergency-buttons-container a.add-emergency-event-btn {
+    background-color: #b70000;
 }
 
 .upper-section .emergency-description a:hover {
     cursor: pointer;
     background-color: rgba(13, 73, 141, 0.93);
+}
+
+.upper-section .emergency-description .emergency-buttons-container a.add-emergency-event-btn:hover {
+    background-color: #d70000;
 }
 
 

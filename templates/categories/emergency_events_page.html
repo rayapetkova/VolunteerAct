@@ -23,8 +23,10 @@
                 <p>This section is dedicated to urgent situations where immediate volunteer support is crucial. Here, you’ll find events that require quick action and assistance from volunteers like you. Each event highlights the specific needs and urgency, allowing you to respond quickly and confirm your participation with a simple click. Whether it's a local crisis or a sudden need for help, this page helps connect you to those critical moments when your involvement can make a real difference. Check the details, sign up, and take action when it matters most.</p>
             </div>
 
-            <a href="#explore-emergency-events">Explore emergency events</a>
-            <a href="{% url 'create-new-event-page' %}?emergency=emergency">Add Emergency Event</a>
+            <div class="emergency-buttons-container">
+                <a href="#explore-emergency-events">Explore emergency events</a>
+                <a href="{% url 'create-new-event-page' %}?emergency=emergency" class="add-emergency-event-btn">Add Emergency Event</a>
+            </div>
         </div>
 
     </section>
