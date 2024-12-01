@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Emergency Event!</title>
+    <style>
+        html, body {
+            width: 100%;
+            height: 100%;
+            font-family: 'Trebuchet MS', sans-serif;
+        }
+
+        .text-box .regards p {
+            margin: 0;
+        }
+
+        span {
+            color: rgb(0, 55, 255);
+            font-weight: 600;
+        }
+
+        span.black {
+            color: rgb(0, 0, 0);
+        }
+    </style>
+</head>
+<body>
+    <p>Hello, active members of <span class="black">{{ category_name }}</span>!🌟</p>
+
+    <p>We hope this message finds you well. An emergency event has just been reported in the <span>{{ category_name }}</span> category, and your prompt attention may be needed!</p>
+
+    <p>Here are the event details:</p>
+    <p><span class="black">Event:</span> {{ event_title }}</p>
+    <p><span class="black">Date & Time:</span> {{ event_time }}</p>
+    <p><span class="black">Location:</span> {{ event_exact_location }}</p>
+    <p><span class="black">Category:</span> {{ category_name }}</p>
+
+    <p>Please consider offering assistance or helping spread the word. Thank you for being an active participant and contributing to the safety and support of our community.</p>
+    <p>Feel free to contact the event organizer at <span class="black">{{ host_email }}</span> if you have any questions or need further information.</p>
+
+    <p>Stay safe!</p>
+
+    <br>
+
+    <div class="regards">
+        <p>Best regards,</p>
+        <p><span class="black">Raya Petkova</span></p>
+    </div>
+</body>
+</html>

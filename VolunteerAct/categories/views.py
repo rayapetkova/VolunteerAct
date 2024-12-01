@@ -20,7 +20,8 @@ from rest_framework.views import APIView
 from VolunteerAct.categories.forms import EventForm, FilterForm, EventEditForm, EventDeleteForm, CategoryImagesForm
 from VolunteerAct.categories.models import Category, Event, CategoryImages
 from VolunteerAct.categories.serializers import EventSerializer
-from VolunteerAct.categories.utils import count_events, extract_keywords
+from VolunteerAct.categories.utils import count_events, extract_keywords, get_active_members_for_category, \
+    send_email_to_active_members_in_this_category
 from VolunteerAct.favourites.models import Favourites
 from VolunteerAct.home.utils import get_emergency_events
 
@@ -192,6 +193,7 @@ def create_event_view(request, categoryId=''):
 
     if request.method == 'POST':
         if form.is_valid():
+
             event = form.save(commit=False)
             event.host = request.user
 
@@ -201,13 +203,22 @@ def create_event_view(request, categoryId=''):
 
             event.save()
 
+            if is_emergency:
+                active_members_in_this_category = get_active_members_for_category(form.cleaned_data['category'])
+                send_email_to_active_members_in_this_category(request, active_members_in_this_category, form.cleaned_data['category'], event)
+
             event.attendees.add(request.user)
+
             return redirect('event-page', categoryId=event.category.id, pk=event.id)
 
     context['form'] = form
     context['emergency_events'] = get_emergency_events()
 
     return render(request, 'categories/add_new_event_page.html', context=context)
+
+
+
+
 
 
 class EventDetailsView(DetailView, DeleteView):
