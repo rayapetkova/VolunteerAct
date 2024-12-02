@@ -48,10 +48,13 @@ def get_active_members_for_category(category):
     events = Event.objects.filter(category=category)
 
     members_events_in_category = [event.attendees.all() for event in events]
+    active_members = []
     if members_events_in_category:
-        members_events_in_category = list(members_events_in_category[0])  # get the queryset inside a list
+        for event_attendees in members_events_in_category:
+            for attendee in event_attendees:
+                active_members.append(attendee)
 
-    active_category_members = members_events_in_category
+    active_category_members = list(set(active_members))
 
     return active_category_members
 
