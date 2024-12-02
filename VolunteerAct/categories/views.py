@@ -20,8 +20,8 @@ from rest_framework.views import APIView
 from VolunteerAct.categories.forms import EventForm, FilterForm, EventEditForm, EventDeleteForm, CategoryImagesForm
 from VolunteerAct.categories.models import Category, Event, CategoryImages
 from VolunteerAct.categories.serializers import EventSerializer
-from VolunteerAct.categories.utils import count_events, extract_keywords, get_active_members_for_category, \
-    send_email_to_active_members_in_this_category
+from VolunteerAct.categories.tasks import send_email_to_active_members_in_this_category
+from VolunteerAct.categories.utils import count_events, extract_keywords, get_active_members_for_category
 from VolunteerAct.favourites.models import Favourites
 from VolunteerAct.home.utils import get_emergency_events
 
@@ -55,14 +55,20 @@ def category_details(request, pk):
                 p_event.saved_to_favourites_by_logged_in_user = False
 
     members_upcoming_events = [event.attendees.all() for event in upcoming_events]
+    members_first = []
     if members_upcoming_events:
-        members_upcoming_events = list(members_upcoming_events[0])  # get the queryset inside a list
+        for event_attendees in members_upcoming_events:
+            for attendee in event_attendees:
+                members_first.append(attendee)
 
     members_past_events = [event.attendees.all() for event in past_events]
+    members_second = []
     if members_past_events:
-        members_past_events = list(members_past_events[0])
+        for event_attendees in members_past_events:
+            for attendee in event_attendees:
+                members_second.append(attendee)
 
-    active_members = members_upcoming_events + members_past_events
+    active_members = list(set(members_first + members_second))
 
     all_category_locations = set([event.city for event in category.category_events.all()[:3]])
     all_category_locations = ', '.join(all_category_locations)
@@ -145,14 +151,20 @@ def my_events_view(request):
     past_host_events = request.user.host_events.filter(time__lt=timezone.now()).order_by('time')
 
     members_upcoming_events = [event.attendees.all() for event in upcoming_host_events]
+    members_first = []
     if members_upcoming_events:
-        members_upcoming_events = list(members_upcoming_events[0])  # get the queryset inside a list
+        for event_attendees in members_upcoming_events:
+            for attendee in event_attendees:
+                members_first.append(attendee)
 
     members_past_events = [event.attendees.all() for event in past_host_events]
+    members_second = []
     if members_past_events:
-        members_past_events = list(members_past_events[0])
+        for event_attendees in members_past_events:
+            for attendee in event_attendees:
+                members_second.append(attendee)
 
-    active_members = members_upcoming_events + members_past_events
+    active_members = list(set(members_first + members_second))
 
     context = {
         'upcoming_host_events': upcoming_host_events,
@@ -204,8 +216,8 @@ def create_event_view(request, categoryId=''):
             event.save()
 
             if is_emergency:
-                active_members_in_this_category = get_active_members_for_category(form.cleaned_data['category'])
-                send_email_to_active_members_in_this_category(request, active_members_in_this_category, form.cleaned_data['category'], event)
+                category = Category.objects.filter(name=form.cleaned_data['category']).first()
+                send_email_to_active_members_in_this_category.delay(category.id, request.user.id, event.id)
 
             event.attendees.add(request.user)
 
