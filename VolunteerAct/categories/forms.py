@@ -46,13 +46,13 @@ class EventDeleteForm(EventForm):
 
 
 class FilterForm(Form):
-    CATEGORY_CHOICES = get_categories()
-    CITY_CHOICES = get_cities()
+    CATEGORY_CHOICES = []
+    CITY_CHOICES = []
 
-    TIME_CHOICES = (
-        ('Upcoming', 'Upcoming'),
-        ('Past', 'Past')
-    )
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        self.fields['category'].choices = get_categories()
+        self.fields['city'].choices = get_cities()
 
     category = forms.MultipleChoiceField(
         widget=forms.CheckboxSelectMultiple,
