@@ -49,6 +49,11 @@ class FilterForm(Form):
     CATEGORY_CHOICES = []
     CITY_CHOICES = []
 
+    TIME_CHOICES = (
+        ('Upcoming', 'Upcoming'),
+        ('Past', 'Past')
+    )
+
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
         self.fields['category'].choices = get_categories()
