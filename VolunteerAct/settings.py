@@ -150,6 +150,13 @@ STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 # https://docs.djangoproject.com/en/5.1/ref/settings/#default-auto-field
 
 
+CSRF_TRUSTED_ORIGINS = [
+    'https://volunteeract.azurewebsites.net',
+    'http://localhost:8000',
+    'http://127.0.0.1:8000',
+]
+
+
 # Sign up with google configuration
 AUTHENTICATION_BACKENDS = [
     'django.contrib.auth.backends.ModelBackend',
