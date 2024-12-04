@@ -42,11 +42,11 @@ INSTALLED_APPS = [
     'VolunteerAct.cities',
     'VolunteerAct.tickets_events',
 
-    'django.contrib.sites',
-    'allauth',
-    'allauth.account',
-    'allauth.socialaccount',
-    'allauth.socialaccount.providers.google'
+    # 'django.contrib.sites',
+    # 'allauth',
+    # 'allauth.account',
+    # 'allauth.socialaccount',
+    # 'allauth.socialaccount.providers.google'
 ]
 
 MIDDLEWARE = [
@@ -58,7 +58,7 @@ MIDDLEWARE = [
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 
-    'allauth.account.middleware.AccountMiddleware',
+    # 'allauth.account.middleware.AccountMiddleware',
     'whitenoise.middleware.WhiteNoiseMiddleware'
 ]
 
@@ -158,38 +158,38 @@ CSRF_TRUSTED_ORIGINS = [
 
 
 # Sign up with google configuration
-AUTHENTICATION_BACKENDS = [
-    'django.contrib.auth.backends.ModelBackend',
-    'allauth.account.auth_backends.AuthenticationBackend',
+# AUTHENTICATION_BACKENDS = [
+#     'django.contrib.auth.backends.ModelBackend',
+#     'allauth.account.auth_backends.AuthenticationBackend',
+#
+#     'django.contrib.auth.backends.ModelBackend',
+# ]
+#
+# SOCIALACCOUNT_PROVIDERS = {
+#     'google': {
+#         'SCOPE': [
+#             'profile',
+#             'email'
+#         ],
+#         'AUTH_PARAMS': {
+#             'access_type':'online',
+#         }
+#     }
+# }
 
-    'django.contrib.auth.backends.ModelBackend',
-]
-
-SOCIALACCOUNT_PROVIDERS = {
-    'google': {
-        'SCOPE': [
-            'profile',
-            'email'
-        ],
-        'AUTH_PARAMS': {
-            'access_type':'online',
-        }
-    }
-}
-
-ACCOUNT_EMAIL_REQUIRED = True
-ACCOUNT_UNIQUE_EMAIL = True
-ACCOUNT_EMAIL_VERIFICATION = 'mandatory'
-ACCOUNT_USERNAME_REQUIRED = False
-ACCOUNT_AUTHENTICATION_METHOD = 'email'
-ACCOUNT_USER_MODEL_USERNAME_FIELD = None
-SOCIALACCOUNT_LOGIN_ON_GET = True
-SOCIALACCOUNT_AUTO_SIGN_UP = True
-
-if not DEBUG:
-    SITE_ID = 3
-else:
-    SITE_ID = 1
+# ACCOUNT_EMAIL_REQUIRED = True
+# ACCOUNT_UNIQUE_EMAIL = True
+# ACCOUNT_EMAIL_VERIFICATION = 'mandatory'
+# ACCOUNT_USERNAME_REQUIRED = False
+# ACCOUNT_AUTHENTICATION_METHOD = 'email'
+# ACCOUNT_USER_MODEL_USERNAME_FIELD = None
+# SOCIALACCOUNT_LOGIN_ON_GET = True
+# SOCIALACCOUNT_AUTO_SIGN_UP = True
+#
+# if not DEBUG:
+#     SITE_ID = 3
+# else:
+#     SITE_ID = 1
 
 
 
