@@ -189,7 +189,7 @@ SOCIALACCOUNT_AUTO_SIGN_UP = True
 if not DEBUG:
     SITE_ID = 3
 else:
-    SITE_ID = 3
+    SITE_ID = 1
 
 
 
