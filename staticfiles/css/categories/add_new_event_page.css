@@ -1,0 +1,285 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+
+body {
+    background-color: rgb(255, 255, 255);
+    margin: 0;
+    padding: 0;
+    font-family: "Poppins", sans-serif;
+}
+
+
+
+
+main {
+    display: flex;
+}
+
+main > img {
+    width: 100%;
+    height: 100vh;
+    object-fit: cover;
+    filter: brightness(30%);
+}
+
+
+
+.content-edit {
+    display: flex;
+    justify-content: center;
+    position: absolute;
+    top: 10%;
+    width: 100%;
+}
+
+.info-section {
+    display: flex;
+    align-items: center;
+    padding: 2% 1%;
+    position: relative;
+    width: 95%;
+    border-radius: 4px;
+}
+
+.left {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 30%
+}
+
+.left .img-container {
+    width: 16em;
+    height: 16em;
+}
+
+.left .img-container img {
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    object-fit: cover;
+}
+
+.left .user-info .name {
+    font-size: 1.5em;
+    font-weight: 800;
+    color: #08376b;
+    margin-top: 0.1em;
+}
+
+
+
+
+.right {
+    width: 100%;
+    margin-left: 2%;
+}
+
+.right > h3 {
+    margin: 0;
+    border-bottom: solid;
+    border-width: 0.15em;
+    font-size: 1.5em;
+    color: #08376b;
+    margin-bottom: 1em;
+}
+
+.right .emergency-message {
+    color: #b70000;
+    font-weight: 600;
+    font-size: 1.2em;
+}
+
+
+
+
+
+.right form .all-fields {
+    display: flex;
+    flex-flow: row wrap;
+    gap: 1em;
+    width: 100%;
+    justify-content: space-between;
+}
+
+.field {
+    display: flex;
+    flex-direction: column;
+    width: 47%;
+    font-weight: 600;
+    color: rgb(239, 239, 239);
+}
+
+.field:nth-child(even) {
+    margin-right: 2em;
+}
+
+.field:last-child {
+    flex: 1;
+    margin-right: 2em;
+}
+
+.field textarea {
+    border: solid 1px rgb(160, 159, 161);
+    border-radius: 3px;
+    font-family: inherit;
+    padding: 1% 1%;
+    color: rgb(107, 107, 107);
+    font-size: 1.1em;
+    background-color: rgba(240, 248, 255, 0.849);
+    outline: none;
+    max-width: 100%;
+}
+
+.field input {
+    border: solid 1px rgb(160, 159, 161);
+    border-radius: 3px;
+    padding: 2% 2%;
+    color: rgb(107, 107, 107);
+    font-size: 1.1em;
+    background-color: rgba(240, 248, 255, 0.849);
+}
+
+.field input:focus, .field textarea:focus, form select:focus {
+    background-color: rgb(240, 248, 255);
+    outline: none;
+    color: black;
+}
+
+.right button {
+    width: 10%;
+    padding: 0.8%;
+    border: none;
+    border-radius: 4px;
+    font-family: inherit;
+    font-weight: 700;
+    font-size: 1em;
+    color: rgb(255, 255, 255);
+    margin-top: 1em;
+    transition: background-color 0.2s ease-in-out;
+    background-color: #08376b;
+}
+
+.right button.emergency-btn {
+    background-color: #b70000;
+    width: 15%;
+}
+
+.right button:hover {
+    cursor: pointer;
+    background-color: #0f4e94;
+}
+
+.right button.emergency-btn:hover {
+    background-color: #d70000;
+}
+
+form select {
+    outline: none;
+    margin: 0;
+    width: 100%;
+    font-family: inherit;
+    border-radius: 0.25em;
+    padding: 2.3% 2%;
+    font-size: 1em;
+    cursor: pointer;
+    background-color: rgba(240, 248, 255, 0.849);
+}
+
+
+
+
+form .break-line {
+    background-color: red;
+    width: 100%;
+}
+
+form .online-meeting-link-field {
+    display: none;
+}
+
+
+
+
+form input[type="file"]::file-selector-button {
+    font-size: 0.9em;
+    background-color: rgba(221, 238, 255, 0.85);
+    padding: 0.3em 0.5em;
+    border: solid 1px #0f4e94;
+    border-radius: 3px;
+}
+
+form input[type="file"]::file-selector-button:hover {
+    cursor: pointer;
+}
+
+
+
+
+form input[type="checkbox"] {
+    -webkit-appearance: none;
+    appearance: none;
+    background-color: rgba(240, 248, 255, 0.849);
+    margin: 0;
+    font: inherit;
+    color: currentColor;
+    width: 8%;
+    padding: 1.8% 1%;
+    border-radius: 0.15em;
+    transform: translateY(-0.075em);
+    display: grid;
+    place-content: center;
+}
+
+form input[type="checkbox"]:hover {
+    cursor: pointer;
+    background-color: rgb(240, 248, 255);
+}
+
+form input[type="checkbox"]::before {
+    content: "";
+    width: 1.4em;
+    height: 1.4em;
+    transform: scale(0);
+    transition: 120ms transform ease-in-out;
+    box-shadow: inset 1em 1em #0f4e94;;
+    transform-origin: bottom left;
+    clip-path: polygon(14% 44%, 0 65%, 50% 100%, 100% 16%, 80% 0%, 43% 62%);
+}
+
+form input[type="checkbox"]:checked::before {
+  transform: scale(1);
+}
+
+
+
+
+form input[type="datetime-local"] {
+    font-family: inherit;
+}
+
+form input[type="datetime-local"]::-webkit-calendar-picker-indicator {
+    background-color: rgba(239, 239, 239, 0.87);
+    border-radius: 50%;
+    padding: 5px;
+    cursor: pointer;
+}
+
+
+
+
+
+form ul.errorlist {
+    margin: 0;
+    padding: 0;
+    width: 100%;
+}
+
+form ul.errorlist li {
+    list-style: none;
+    color: #a40000;
+    margin: 0;
+    padding: 0;
+    font-size: 0.85em;
+}
+
+

@@ -1,0 +1,776 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    background-color: rgb(255, 255, 255);
+    margin: 0;
+    padding: 0;
+    font-family: "Poppins", sans-serif;
+}
+
+
+
+
+.upper-section {
+    padding: 0 15%;
+    padding-bottom: 1.5%;
+    display: flex;
+    flex-direction: column;
+    border-bottom: solid 0.15em rgb(209, 209, 209);
+}
+
+.upper-section h2 {
+    font-size: 2em;
+}
+
+.upper-section .host, .all-comments .comment-container .author {
+    display: flex;
+    align-items: center;
+}
+
+.all-comments .first-one p.first-to-comment-message {
+    text-align: center;
+    color: #5f5f5f;
+    margin: 0;
+}
+
+.all-comments .first-one {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.all-comments .first-one a.login-btn {
+    background-color: #08376b;
+    padding: 0.4em 0.7em;
+    color: rgb(255, 255, 255);
+    border-radius: 5px;
+    transition: background-color 0.2s ease-in-out;
+    text-decoration: none;
+    margin-top: 1em;
+}
+
+.all-comments .first-one a.login-btn:hover {
+    cursor: pointer;
+    background-color: rgba(8, 55, 107, 0.89);
+}
+
+.upper-section .host .img-container,.all-comments .comment-container .author .img-container {
+    width: 4em;
+    height: 4em;
+}
+
+.upper-section .host .img-container img, .all-comments .comment-container .author .img-container img {
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    object-fit: cover;
+}
+
+.upper-section .host .more-info, .all-comments .comment-container .author .more-info {
+    display: flex;
+    flex-direction: column;
+    margin-left: 0.8em;
+}
+
+.upper-section .host .more-info p, .all-comments .comment-container .author .more-info p {
+    margin: 0;
+}
+
+.upper-section .host .more-info a.host-name, .all-comments .comment-container .author .more-info a.host-name {
+    font-weight: 600;
+    text-decoration: none;
+    color: rgb(0, 0, 0);
+}
+
+.upper-section .host .more-info a.host-name:hover, .all-comments .comment-container .author .more-info a.host-name:hover {
+    text-decoration: underline;
+}
+
+.all-comments .comment-container .author .editing-icons {
+    margin-left: auto;
+    display: flex;
+    gap: 1em;
+}
+
+.all-comments .comment-container .author .editing-icons img {
+    width: 1.2em;
+    height: 1.2em;
+}
+
+.all-comments .comment-container .author .editing-icons img:hover {
+    cursor: pointer;
+}
+
+.all-comments .comment-container input.edit-comment-input {
+    outline: none;
+    border: solid 1px rgb(160, 159, 161);
+    border-radius: 1em;
+    padding: 1em;
+    display: flex;
+    color: rgb(107, 107, 107);
+    background-color: #f5f5f5;
+    width: 96%;
+    margin-top: 1em;
+}
+
+.all-comments .comment-container input.edit-comment-input:focus {
+    background-color: rgb(240, 248, 255);
+    outline: none;
+    color: black;
+}
+
+.all-comments .comment-container div.comment-buttons-container {
+    margin-left: auto;
+    margin-top: 0.5em;
+    display: flex;
+    gap: 1em;
+    justify-content: end;
+}
+
+.all-comments .comment-container button {
+    background-color: #08376b;
+    color: #ffffff;
+    padding: 0.2em 0.8em;
+    border: none;
+    font-size: 1em;
+    border-radius: 3px;
+    font-weight: 600;
+    font-family: inherit;
+    transition: background-color 0.2s ease-in-out;
+}
+
+.all-comments .comment-container button.save-edited-btn:hover {
+    background-color: rgba(8, 55, 107, 0.88);
+    cursor: pointer;
+}
+
+.all-comments .comment-container button.cancel-edit-btn {
+    background-color: #fcfcfc;
+    color: #08376b;
+}
+
+.all-comments .comment-container button.cancel-edit-btn:hover {
+    background-color: rgba(252, 252, 252, 0.65);
+    cursor: pointer;
+}
+
+
+
+
+
+
+
+.info-section {
+    display: flex;
+    justify-content: space-between;
+    background-color: #f9f9f9;
+    padding: 2% 15%;
+}
+
+.info-section .left {
+    width: 65%;
+    overflow: hidden;
+}
+
+.info-section .left h4 {
+    margin: 0;
+    font-size: 1.3em;
+}
+
+.info-section .left p {
+    font-size: 1em;
+    line-height: 1.4em;
+}
+
+.info-section .left .text-info {
+    overflow: hidden;
+}
+
+
+
+
+
+
+.info-section .left .buttons-container-edit-delete {
+    display: flex;
+    gap: 0.8em;
+    margin-bottom: 1em;
+}
+
+.info-section .left .buttons-container-edit-delete a {
+    padding: 0.5em 1em;
+    font-weight: 500;
+    border: none;
+    border-radius: 3px;
+    color: #ffffff;
+    font-family: inherit;
+    text-decoration: none;
+}
+
+.info-section .left .buttons-container-edit-delete .edit-btn {
+    background-color: #08376b;
+}
+
+.info-section .left .buttons-container-edit-delete .edit-btn:hover {
+    cursor: pointer;
+    background-color: #08366bce;
+}
+
+.info-section .left .buttons-container-edit-delete .delete-btn {
+    background-color: #880000;
+
+}
+
+.info-section .left .buttons-container-edit-delete .delete-btn:hover {
+    cursor: pointer;
+    background-color: rgba(136, 0, 0, 0.82);
+}
+
+.info-section .left a.save-to-favs-btn {
+    background-color: rgba(53, 191, 237, 0.18);
+    display: flex;
+    align-items: center;
+    color: #000000;
+    transition: background-color 0.2s ease-in-out;
+}
+
+.info-section .left a.save-to-favs-btn:hover {
+    background-color: rgba(53, 191, 237, 0.38);
+    cursor: pointer;
+}
+
+.info-section .left .save-to-favs-btn img {
+    width: 1.1em;
+    height: 1.1em;
+    margin-left: 0.4em;
+}
+
+.info-section .left a.saved-to-favs:hover {
+    background-color: rgba(53, 191, 237, 0.18);
+    cursor: auto;
+}
+
+
+
+.info-section .left .already-passed-event {
+    color: red;
+}
+
+
+
+
+
+
+
+
+.left .event-img-container {
+    width: 100%;
+    height: 30em;
+    margin-bottom: 2em;
+}
+
+.left .event-img-container img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.left .keywords-container {
+    display: flex;
+    gap: 0.8em;
+}
+
+.left .keywords-container p {
+    background-color: #35bfed6b;
+    padding: 0.3em 0.5em;
+    border-radius: 5px;
+    font-size: 0.85em;
+    font-weight: 600;
+}
+
+
+
+.left .comments-container {
+    margin-top: 3em;
+}
+
+.left .comments-container .send-comment-container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.left .comments-container .send-comment-container input#add-new-comment {
+    outline: none;
+    border: solid 1px rgb(160, 159, 161);
+    border-radius: 3em;
+    padding: 1em;
+    display: flex;
+    color: rgb(107, 107, 107);
+    background-color: #f5f5f5;
+    width: 93%;
+}
+
+.left .comments-container .send-comment-container input#add-new-comment:focus {
+    background-color: rgb(240, 248, 255);
+    outline: none;
+    color: black;
+}
+
+.left .comments-container .send-comment-container img {
+    width: 1.2em;
+    height: 1.2em;
+}
+
+.left .comments-container .send-comment-container img:hover {
+    cursor: pointer;
+}
+
+.left .comments-container ul.errors-new-comment {
+    padding: 0;
+    margin: 0;
+    margin-top: -1.5em;
+}
+
+.left .comments-container ul.errors-new-comment li {
+    list-style: none;
+    color: #d70000;
+    margin: 0;
+    padding: 0;
+    font-size: 1em;
+}
+
+.left .comments-container .title-container a {
+    font-size: 1em;
+}
+
+.left .all-comments {
+    display: flex;
+    flex-direction: column;
+    gap: 2em;
+}
+
+.left .all-comments .comment-container {
+    background-color: rgba(53, 191, 237, 0.18);
+    padding: 1.5em 2em;
+}
+
+.left .all-comments .comment-container > p {
+    margin-bottom: 0;
+}
+
+.left .all-comments .comment-container .author .img-container {
+    width: 2.5em;
+    height: 2.5em;
+}
+
+.left .all-comments .comment-container ul.errors-edited-comment {
+    margin: 0;
+    padding: 0;
+    margin-top: 0.3em;
+}
+
+.left .all-comments .comment-container ul.errors-edited-comment li {
+    list-style: none;
+    color: #d70000;
+    margin: 0;
+    padding: 0;
+    font-size: 0.9em;
+}
+
+.left .all-comments .comment-container p.confirm-deleting-comment {
+    color: #EE6161;
+    font-weight: 600;
+}
+
+
+
+
+
+
+
+.info-section .right {
+    width: 27%;
+    display: flex;
+    flex-direction: column;
+    gap: 2em;
+    position: sticky;
+    top: 20%;
+    height: 50%;
+}
+
+.info-section .attending {
+    gap: 0;
+}
+
+.info-section .right .title-and-see-all {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.info-section .right .title-and-see-all h4 {
+    font-size: 1.3em;
+    margin: 0;
+}
+
+.info-section .right .location-container, .info-section .right .event-category {
+    background-color: rgb(255, 255, 255);
+    padding: 1.4em;
+    border-radius: 15px;
+    width: 90%;
+}
+
+.info-section .right .location-container img {
+    width: 1.2em;
+    height: 1.2em;
+}
+
+.info-section .right .event-category a {
+    text-decoration: none;
+    display: flex;
+    align-self: center;
+    gap: 0.5em;
+    margin-top: 0.8em;
+    color: #0f4e94;
+}
+
+.info-section .right .event-category a:hover {
+    text-decoration: underline;
+}
+
+.info-section .right .event-category a img {
+    width: 1.5em;
+    height: 1.5em;
+}
+
+.info-section .attending div.event-category {
+    margin-bottom: 1em;
+}
+
+.box {
+    display: flex;
+    align-items: center;
+    gap: 0.4em;
+    margin: 0.5em;
+}
+
+.info-section .right .location-container iframe {
+    border: solid 1px grey;
+    border-radius: 5px;
+    height: 200px;
+    width: 100%;
+    margin-top: 1em;
+}
+
+.info-section .right p.you-are-attending-message {
+    color: #c0b70e;
+    font-weight: 600;
+    text-align: center;
+    margin-top: 1em;
+}
+
+.info-section .right .buttons-container-attend {
+    display: flex;
+    justify-content: center;
+    gap: 0.8em;
+}
+
+.info-section .right .buttons-container-attend button {
+    padding: 0.8em 1.3em;
+    border: none;
+    font-size: 1em;
+    border-radius: 5px;
+    font-weight: 600;
+    font-family: inherit;
+}
+
+.info-section .right .buttons-container-attend button.attend, button.cancel-attendance {
+    background-color: #08376b;
+    color: #ffffff;
+}
+
+.info-section .right .buttons-container-attend button.attend:hover, button.cancel-attendance:hover {
+    cursor: pointer;
+    background-color: rgba(8, 55, 107, 0.88);
+}
+
+.info-section .right .buttons-container-attend button.share {
+    color: #08376b;
+    background-color: #e8e8e8;
+    display: flex;
+    align-items: center;
+    transition: background-color 0.2s ease-in-out;
+}
+
+.info-section .right .buttons-container-attend button.share img {
+    width: 1.2em;
+    height: 1.2em;
+    margin-left: 0.3em;
+}
+
+.info-section .right .buttons-container-attend button.share:hover {
+    cursor: pointer;
+    background-color: rgba(236, 236, 236, 0.77);
+}
+
+
+
+
+
+
+.upcoming-events {
+    display: flex;
+    flex-direction: column;
+    padding: 5% 15%;
+    border-top: solid 0.15em rgb(209, 209, 209);
+}
+
+.title-container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 0.8em;
+}
+
+.title-container h3 {
+    font-size: 1.3em;
+    margin: 0;
+}
+
+.title-container a {
+    font-weight: 600;
+    color: #08458b;
+    font-family: inherit;
+    font-size: 1.1em;
+    transition: color 0.2s ease-in-out;
+}
+
+.title-container a:hover {
+    color: #1272de;
+}
+
+.upcoming-events .events {
+    display: flex;
+    gap: 1.4em;
+}
+
+.upcoming-events .events h2 {
+    align-self: center;
+    font-size: 1.1em;
+    margin: auto;
+    margin-top: 1em;
+    color: #5f5f5f;
+}
+
+.upcoming-events .events .event-container {
+    display: flex;
+    flex-direction: column;
+    width: 24%;
+    justify-content: center;
+    align-items: center;
+    text-decoration: none;
+    padding: 1em 0.5em;
+    border-radius: 7px;
+    transition: background-color 0.4s ease-in-out;
+}
+
+.upcoming-events .events .event-container:hover {
+    background-color: #f3f4ff;
+}
+
+.upcoming-events .events .event-container .img-container {
+    width: 95%;
+    height: 12em;
+}
+
+.upcoming-events .events .event-container .img-container img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 15px;
+}
+
+.upcoming-events .events .event-container .info {
+    width: 95%;
+}
+
+.upcoming-events .events .event-container .info h6 {
+    font-size: 1.4em;
+    margin: 0;
+    margin-top: 1em;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    color: #000000;
+}
+
+.upcoming-events .events .event-container .info p {
+    margin: 0;
+    margin-top: 0.6em;
+    color: rgb(112 112 112);
+    font-weight: 600;
+    font-size: 0.8em;
+}
+
+.upcoming-events .events .event-container .info .your-event-container {
+    display: flex;
+    margin-top: 0.5em;
+}
+
+.upcoming-events .events .event-container .info .your-event-container p {
+    color: #EE6161;
+    margin: 0;
+    font-weight: 600;
+}
+
+.upcoming-events .events .event-container .info .your-event-container img {
+    width: 1.2em;
+    height: 1.2em;
+    margin-left: 0.5em;
+}
+
+
+
+
+
+.box p {
+    margin: 0;
+    max-width: 90%;
+    text-overflow: clip;
+    word-wrap: break-word;
+}
+
+.online-event-box {
+    align-items: start;
+}
+
+.attending-cont, .delete-event-cont, .cancel-attendance-cont {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+
+.going-to-event-container, .delete-event-cont form {
+    background-color: #ffffff;
+    position: fixed;
+    top: 20%;
+    width: 50%;
+    height: 40%;
+    display: none;
+    flex-direction: column;
+    justify-content: center;
+    padding: 1.2em;
+    border: solid 1px #ababab;
+    box-shadow: 4px 4px 5px #ababab;
+    border-radius: 5px;
+}
+
+.delete-event-cont form {
+    height: 50%;
+}
+
+.going-to-event-container h3, .delete-event-cont form h3 {
+    font-size: 2em;
+    margin-top: 0;
+    margin-bottom: 0.5em;
+    color: #08376b;
+}
+
+.going-to-event-container section, .delete-event-cont form section {
+    display: flex;
+    gap: 1em;
+}
+
+.going-to-event-container .left-img-container, .delete-event-cont form section .left-img-container {
+    width: 50%;
+    height: 20em;
+}
+
+.going-to-event-container .left-img-container img, .delete-event-cont form section .left-img-container img {
+    width: 100%;
+    height: 100%;
+    border-radius: 2px;
+    object-fit: cover;
+}
+
+.going-to-event-container .right, .delete-event-cont form section .right {
+    display: flex;
+    flex-direction: column;
+    width: 50%;
+}
+
+.going-to-event-container .right h5, .delete-event-cont form section .right h5 {
+    font-size: 1.2em;
+}
+
+.going-to-event-container .right .box img, .delete-event-cont form section .right .box img {
+    width: 1.5em;
+    height: 1.5em;
+}
+
+.going-to-event-container .right .box p.reminder-message {
+    color: #c0b70e;
+    font-weight: 600;
+}
+
+.going-to-event-container .right button, .delete-event-cont form button {
+    display: flex;
+    justify-content: center;
+    gap: 0.5em;
+    text-align: center;
+    font-family: inherit;
+    font-weight: 600;
+    font-size: 1em;
+    border: solid 1px #ababab;
+    border-radius: 5px;
+    padding: 1.2em 0;
+    transition: background-color 0.3s ease-in-out;
+}
+
+.going-to-event-container .right button.cancel, .delete-event-cont form button.cancel-deleting-btn {
+    color: #08376b;
+    padding: 0.7em 0;
+    margin-bottom: 0.5em;
+    margin-top: auto;
+    background-color: #f1f1f1;
+}
+
+.delete-event-cont form button.delete-event-btn {
+    margin-top: auto;
+    background-color: #08376b;
+    color: #ffffff;
+}
+
+.delete-event-cont form button.cancel-deleting-btn {
+    margin-top: 1em;
+}
+
+.going-to-event-container .right button.cancel:hover, .delete-event-cont form button.cancel-deleting-btn:hover {
+    background-color: rgba(232, 234, 246, 0.81);
+    cursor: pointer;
+}
+
+.going-to-event-container .right button.share {
+    background-color: #08376b;
+    color: #ffffff;
+}
+
+.going-to-event-container .right button.share:hover, .delete-event-cont form button.delete-event-btn:hover {
+    cursor: pointer;
+    background-color: rgba(8, 55, 107, 0.89);
+}
+
+.going-to-event-container .right button img {
+    width: 1.2em;
+    height: 1.2em;
+}
+
+.going-to-event-container .right h5, .delete-event-cont form .right h5 {
+    margin: 0;
+}
+

@@ -1,0 +1,169 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+
+body {
+    background-color: rgb(255, 255, 255);
+    margin: 0;
+    padding: 0;
+    font-family: "Poppins", sans-serif;
+}
+
+
+
+
+header ul.last-links li.all-events a,
+header ul.last-links li.contact-us a{
+    color: #ffffff;
+}
+
+
+
+
+
+
+video {
+    width: 100%;
+    height: 100vh;
+    position: absolute;
+    top: 0;
+    object-fit: cover;
+    filter: brightness(30%);
+}
+
+
+
+
+
+
+.main-content {
+    width: 100%;
+    position: absolute;
+    display: flex;
+    justify-content: center;
+    top: 17%;
+}
+
+
+
+.login-box {
+    display: flex;
+    justify-content: center;
+    width: 35%;
+}
+
+form {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 5em 0;
+    border: solid 1px rgb(214, 213, 213);
+    border-radius: 4px;
+    padding: 5em 7em;
+}
+
+form h1 {
+    color: #ffffff;
+    font-size: 2.5em;
+    margin: 0;
+    margin-bottom: 0.3em;
+}
+
+form > p {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    margin: 0;
+    margin-top: 1em;
+    color: #ffffff;
+}
+
+form p input {
+    padding: 0.6em 0.8em;
+    border: solid 1px rgb(156, 156, 156);
+    border-radius: 4px;
+    font-size: 1em;
+}
+
+form .login-container {
+    display: flex;
+    align-items: flex-end;
+}
+
+form .log-in-p {
+    margin: 0;
+    margin-top: 1.3em;
+    color: #ffffff;
+}
+
+form .login-container a {
+    color: #418adc;
+    margin-left: 0.6em;
+}
+
+form .login-container a:hover {
+    color: #6dacf8;
+}
+
+form .sign-in-buttons-cont {
+    display: flex;
+    flex-direction: column;
+    margin-top: 1em;
+    gap: 0.5em;
+    width: 60%;
+    align-items: center;
+}
+
+form button {
+    width: 100%;
+    border-radius: 7px;
+    padding: 0.7em 0;
+    font-size: 1.3em;
+    border: none;
+    color: rgb(255, 255, 255);
+    background-color: #08376b;
+    font-weight: 600;
+}
+
+form button:hover {
+    cursor: pointer;
+    background-color: #0f4e94;
+}
+
+
+
+.login-with-google-btn {
+    padding: 12px 16px 12px 42px;
+    width: 50%;
+    border: none;
+    border-radius: 3px;
+    box-shadow: 0 -1px 0 rgba(0, 0, 0, .04), 0 1px 1px rgba(0, 0, 0, .25);
+    color: #757575;
+    font-size: 14px;
+    font-weight: 500;
+    font-family:  inherit;
+    text-decoration: none;
+    background-image: url(data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTgiIGhlaWdodD0iMTgiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PGcgZmlsbD0ibm9uZSIgZmlsbC1ydWxlPSJldmVub2RkIj48cGF0aCBkPSJNMTcuNiA5LjJsLS4xLTEuOEg5djMuNGg0LjhDMTMuNiAxMiAxMyAxMyAxMiAxMy42djIuMmgzYTguOCA4LjggMCAwIDAgMi42LTYuNnoiIGZpbGw9IiM0Mjg1RjQiIGZpbGwtcnVsZT0ibm9uemVybyIvPjxwYXRoIGQ9Ik05IDE4YzIuNCAwIDQuNS0uOCA2LTIuMmwtMy0yLjJhNS40IDUuNCAwIDAgMS04LTIuOUgxVjEzYTkgOSAwIDAgMCA4IDV6IiBmaWxsPSIjMzRBODUzIiBmaWxsLXJ1bGU9Im5vbnplcm8iLz48cGF0aCBkPSJNNCAxMC43YTUuNCA1LjQgMCAwIDEgMC0zLjRWNUgxYTkgOSAwIDAgMCAwIDhsMy0yLjN6IiBmaWxsPSIjRkJCQzA1IiBmaWxsLXJ1bGU9Im5vbnplcm8iLz48cGF0aCBkPSJNOSAzLjZjMS4zIDAgMi41LjQgMy40IDEuM0wxNSAyLjNBOSA5IDAgMCAwIDEgNWwzIDIuNGE1LjQgNS40IDAgMCAxIDUtMy43eiIgZmlsbD0iI0VBNDMzNSIgZmlsbC1ydWxlPSJub256ZXJvIi8+PHBhdGggZD0iTTAgMGgxOHYxOEgweiIvPjwvZz48L3N2Zz4=);
+    background-color: white;
+    background-repeat: no-repeat;
+    background-position: 12px 11px;
+    transition: background-color 0.2s ease-in-out;
+}
+
+.login-with-google-btn:hover {
+    background-color: rgba(232, 232, 232, 0.9);
+}
+
+form ul.errorlist {
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    margin-top: 0.3em;
+}
+
+form ul.errorlist li {
+    list-style: none;
+    color: #d70000;
+    margin: 0;
+    padding: 0;
+    font-size: 0.85em;
+}
