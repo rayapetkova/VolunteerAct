@@ -461,6 +461,25 @@ header ul.last-links li a {
     background-color: rgb(249, 249, 249);
 }
 
+.photos-section .login-first {
+    text-decoration: none;
+    color: rgb(255, 255, 255);
+    font-size: 1em;
+    width: 8%;
+    text-align: center;
+    font-weight: 600;
+    background-color: #08376b;
+    padding: 0.4em 0.7em;
+    border-radius: 5px;
+    margin-top: 1em;
+    transition: background-color 0.2s ease-in-out;
+}
+
+.photos-section .login-first:hover {
+    cursor: pointer;
+    background-color: rgba(13, 74, 141, 0.89);
+}
+
 .photos-section h4 {
     margin: 0;
     font-size: 1.3em;

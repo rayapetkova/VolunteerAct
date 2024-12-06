@@ -74,7 +74,10 @@ def category_details(request, pk):
     all_category_locations = ', '.join(all_category_locations)
 
     category_images = CategoryImages.objects.filter(category=category)
-    user_events_in_this_category = Event.objects.filter(host=request.user, category=category)
+
+    user_events_in_this_category = []
+    if request.user.is_authenticated:
+        user_events_in_this_category = Event.objects.filter(host=request.user, category=category)
 
     if request.method == "POST":
         if category_images_form.is_valid():
