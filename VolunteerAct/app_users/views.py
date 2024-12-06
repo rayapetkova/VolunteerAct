@@ -1,5 +1,6 @@
 from django.contrib.auth import login, logout, get_user_model
 from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
+from django.contrib.auth.models import Group
 from django.contrib.auth.views import LoginView
 from django.core.mail import send_mail
 from django.http import Http404
@@ -37,7 +38,9 @@ class RegisterUserView(UserPassesTestMixin, CreateView):
     def form_valid(self, form):
         result = super().form_valid(form)
 
-        login(self.request, self.object,  backend='django.contrib.auth.backends.ModelBackend')
+        login(self.request, self.object, backend='django.contrib.auth.backends.ModelBackend')
+        group = Group.objects.filter(name='regular_users').first()
+        self.object.groups.add(group)
 
         email_context = {
             'first_name': form.cleaned_data['first_name'],
