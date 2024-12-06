@@ -30,7 +30,7 @@ video {
     position: absolute;
     top: 0;
     object-fit: cover;
-    filter: brightness(30%);
+    filter: brightness(50%);
 }
 
 
@@ -49,7 +49,7 @@ video {
     align-items: center;
     margin-top: 3em;
     position: absolute;
-    top: 5%;
+    top: 6%;
 }
 
 .main-content .first-section .left {

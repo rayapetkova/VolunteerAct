@@ -3,11 +3,11 @@ Super user:
     password: VolunteerAct123!!
 
 Other users:
-    1. email: andy@email.com
+    1. email: andy@email.com (staff members group)
        password: Andy123!!AA
 
-    2. email: petya@email.com
+    2. email: petya@email.com (staff members group)
        password: Petya123!!PP
 
-    3. (staff) email: stanislav@email.com
+    3. email: stanislav@email.com
        password: Stanislav123!!SS
