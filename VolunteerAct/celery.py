@@ -8,6 +8,13 @@ app = Celery('VolunteerAct')
 
 app.config_from_object('django.conf:settings', namespace='CELERY')
 
+app.conf.update(
+    broker_transport_options={
+        'visibility_timeout': 3600,
+        'max_connections': 5
+    }
+)
+
 app.autodiscover_tasks()
 
 @app.task(bind=True)

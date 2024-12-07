@@ -16,9 +16,9 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'django-insecure-@(5i83=##511v8z%r@7(4-s$$9-3=4_(yf^aw28x*z054fh=sg'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = True if config('DEBUG') == "True" else False
 
-ALLOWED_HOSTS = ['*']
+ALLOWED_HOSTS = config('ALLOWED_HOSTS').split(' ')
 
 # Application definition
 
@@ -85,28 +85,16 @@ WSGI_APPLICATION = 'VolunteerAct.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/5.1/ref/settings/#databases
 
-if not DEBUG:
-    DATABASES = {
-        "default": {
-            "ENGINE": "django.db.backends.postgresql",
-            "NAME": 'volunteer_act_db',
-            "USER": 'postgres',
-            "PASSWORD": 'postgres',
-            "HOST": 'localhost',
-            "PORT": '5432',
-        }
+DATABASES = {
+    "default": {
+        "ENGINE": "django.db.backends.postgresql",
+        "NAME": config('DB_NAME'),
+        "USER": config('DB_USER'),
+        "PASSWORD": config('DB_PASSWORD'),
+        "HOST": config('DB_HOST'),
+        "PORT": config('DB_PORT'),
     }
-else:
-    DATABASES = {
-        "default": {
-            "ENGINE": "django.db.backends.postgresql",
-            "NAME": config('DB_NAME'),
-            "USER": config('DB_USER'),
-            "PASSWORD": config('DB_PASSWORD'),
-            "HOST": config('DB_HOST'),
-            "PORT": config('DB_PORT'),
-        }
-    }
+}
 
 # Password validation
 # https://docs.djangoproject.com/en/5.1/ref/settings/#auth-password-validators
@@ -150,11 +138,7 @@ STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 # https://docs.djangoproject.com/en/5.1/ref/settings/#default-auto-field
 
 
-CSRF_TRUSTED_ORIGINS = [
-    'https://volunteeract.azurewebsites.net',
-    'http://localhost:8000',
-    'http://127.0.0.1:8000',
-]
+CSRF_TRUSTED_ORIGINS = config('CSRF_TRUSTED_ORIGINS').split(' ')
 
 
 # Sign up with google configuration
@@ -221,8 +205,8 @@ EMAIL_HOST_PASSWORD = config('EMAIL_HOST_PASSWORD')
 
 
 # Celery
-CELERY_BROKER_URL = 'redis://default:PYOX26mdhhKxQ4FzbrPtH5XB8ZeG8p4v@redis-16247.c282.east-us-mz.azure.redns.redis-cloud.com:16247'
-CELERY_RESULT_BACKEND = 'redis://default:PYOX26mdhhKxQ4FzbrPtH5XB8ZeG8p4v@redis-16247.c282.east-us-mz.azure.redns.redis-cloud.com:16247'
+CELERY_BROKER_URL = config('CELERY_URL')
+CELERY_RESULT_BACKEND = config('CELERY_URL')
 CELERY_ACCEPT_CONTENT = ['json']
 CELERY_TASK_SERIALIZER = 'json'
 CELERYD_POOL = 'solo'
