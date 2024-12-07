@@ -232,8 +232,17 @@ def create_event_view(request, categoryId=''):
     return render(request, 'categories/add_new_event_page.html', context=context)
 
 
+@login_required
+def event_comments_view(request, categoryId, pk):
+    event = Event.objects.filter(id=pk).first()
+    comments = event.comments.all()
 
+    context = {
+        'event': event,
+        'comments': comments
+    }
 
+    return render(request, 'categories/event_comments_page.html', context=context)
 
 
 class EventDetailsView(DetailView, DeleteView):

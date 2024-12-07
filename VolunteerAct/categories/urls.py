@@ -2,11 +2,12 @@ from django.urls import path
 
 from VolunteerAct.categories.views import category_details, EventDetailsView, all_events_view, EventUpdateView, \
     EventListAPIView, EventUpdateAPIView, AttendEventSendEmailAPIView, my_events_view, create_event_view, \
-    emergency_events_view
+    emergency_events_view, event_comments_view
 
 urlpatterns = [
     path('<int:pk>/', category_details, name='category-page'),
     path('<int:categoryId>/events/<int:pk>/', EventDetailsView.as_view(), name='event-page'),
+    path('<int:categoryId>/events/<int:pk>/comments/', event_comments_view, name='event-comments-page'),
     path('events/add/', create_event_view, name='create-new-event-page'),
     path('<int:categoryId>/events/add/', create_event_view, name='create-new-event-page-with-category'),
     path('<int:categoryId>/events/<int:pk>/edit/', EventUpdateView.as_view(), name='edit-event'),
