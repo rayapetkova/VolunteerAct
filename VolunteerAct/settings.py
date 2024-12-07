@@ -221,8 +221,8 @@ EMAIL_HOST_PASSWORD = config('EMAIL_HOST_PASSWORD')
 
 
 # Celery
-CELERY_BROKER_URL = 'redis://localhost:6379/0'
-CELERY_RESULT_BACKEND = 'redis://localhost:6379/0'
+CELERY_BROKER_URL = 'redis://default:PYOX26mdhhKxQ4FzbrPtH5XB8ZeG8p4v@redis-16247.c282.east-us-mz.azure.redns.redis-cloud.com:16247'
+CELERY_RESULT_BACKEND = 'redis://default:PYOX26mdhhKxQ4FzbrPtH5XB8ZeG8p4v@redis-16247.c282.east-us-mz.azure.redns.redis-cloud.com:16247'
 CELERY_ACCEPT_CONTENT = ['json']
 CELERY_TASK_SERIALIZER = 'json'
 CELERYD_POOL = 'solo'
