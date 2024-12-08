@@ -1,3 +1,4 @@
+from django.contrib.auth.models import Group
 from django.db.models.signals import post_save
 from django.dispatch import receiver
 
@@ -12,3 +13,6 @@ def create_profile(sender, instance, created, **kwargs):  # if created is True t
         )
 
         profile.save()
+
+        group = Group.objects.filter(name='regular_users').first()
+        instance.groups.add(group)

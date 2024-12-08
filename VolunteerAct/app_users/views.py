@@ -40,8 +40,6 @@ class RegisterUserView(UserPassesTestMixin, CreateView):
         result = super().form_valid(form)
 
         login(self.request, self.object, backend='django.contrib.auth.backends.ModelBackend')
-        group = Group.objects.filter(name='regular_users').first()
-        self.object.groups.add(group)
 
         send_email_to_new_registered_user.delay(form.cleaned_data['email'], form.cleaned_data['first_name'])
 

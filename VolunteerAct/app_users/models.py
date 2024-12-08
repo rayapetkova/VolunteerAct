@@ -9,6 +9,8 @@ from django.utils.translation import gettext_lazy as _
 
 from decouple import config
 
+from VolunteerAct.app_users.validators import first_name_validator, last_name_validator, phone_number_validator
+
 
 class AppUser(AbstractBaseUser, PermissionsMixin):
     email = models.EmailField(
@@ -43,7 +45,8 @@ class Profile(models.Model):
         null=True,
         blank=False,
         validators=[
-            validators.MinLengthValidator(2, message="First name needs to be at least 2 characters long.")
+            validators.MinLengthValidator(2, message="First name needs to be at least 2 characters long."),
+            first_name_validator
         ],
     )
 
@@ -52,7 +55,8 @@ class Profile(models.Model):
         null=True,
         blank=False,
         validators=[
-            validators.MinLengthValidator(2, message="Last name needs to be at least 2 characters long.")
+            validators.MinLengthValidator(2, message="Last name needs to be at least 2 characters long."),
+            last_name_validator
         ]
     )
 
@@ -61,7 +65,8 @@ class Profile(models.Model):
         null=True,
         blank=True,
         validators=[
-            validators.MinLengthValidator(10, message="Phone number needs to be exact 10 characters long.")
+            validators.MinLengthValidator(10, message="Phone number needs to be exact 10 characters long."),
+            phone_number_validator
         ]
     )
 
