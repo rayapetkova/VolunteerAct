@@ -13,6 +13,7 @@ from django.conf import settings
 
 from VolunteerAct.app_users.forms import AppUserForm, EditAppUserForm, DeleteAppUserForm
 from VolunteerAct.app_users.models import Profile
+from VolunteerAct.app_users.tasks import send_email_to_new_registered_user
 from VolunteerAct.home.utils import get_emergency_events
 
 AppUserModel = get_user_model()
@@ -42,28 +43,7 @@ class RegisterUserView(UserPassesTestMixin, CreateView):
         group = Group.objects.filter(name='regular_users').first()
         self.object.groups.add(group)
 
-        email_context = {
-            'first_name': form.cleaned_data['first_name'],
-        }
-
-        subject = 'Welcome to VolunteerAct!'
-        to_email = form.cleaned_data['email']
-        recipient_list = [to_email]
-        template_name = 'emails/welcome_to_volunteeract.html'
-        convert_to_html_content = render_to_string(
-            template_name=template_name,
-            context=email_context
-        )
-        plain_message = strip_tags(convert_to_html_content)
-
-        send_mail(
-            subject=subject,
-            message=plain_message,
-            from_email=settings.EMAIL_HOST_USER,
-            recipient_list=recipient_list,
-            html_message=convert_to_html_content,
-            fail_silently=True
-        )
+        send_email_to_new_registered_user.delay(form.cleaned_data['email'], form.cleaned_data['first_name'])
 
         return result
 
