@@ -54,6 +54,7 @@ class LoginUserView(UserPassesTestMixin, LoginView):
     def test_func(self):
         if self.request.user.is_authenticated:
             return False
+
         return True
 
     def handle_no_permission(self):
@@ -113,5 +114,7 @@ def delete_profile_view(request):
 
 
 def logout_view(request):
-    logout(request)
+    if request.user.is_authenticated:
+        logout(request)
+
     return redirect('home-page')

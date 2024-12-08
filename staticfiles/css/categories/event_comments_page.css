@@ -1,0 +1,288 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    background-color: rgb(249, 249, 249);
+    margin: 0;
+    padding: 0;
+    font-family: "Poppins", sans-serif;
+}
+
+
+
+
+
+header ul.last-links li.all-events a,
+header ul.last-links li.contact-us a,
+header ul.last-links li.about-us a {
+    color: #ffffff;
+}
+
+
+
+
+
+
+.upper-section {
+    width: 100%;
+    position: absolute;
+    top: 0;
+    object-fit: cover;
+}
+
+.upper-section img {
+    width: 100%;
+    height: 40em;
+    object-fit: cover;
+    filter: brightness(40%);
+}
+
+.upper-section .emergency-description {
+    padding: 0 15%;
+    padding-bottom: 1.5%;
+    top: 25%;
+    display: flex;
+    flex-direction: column;
+    position: absolute;
+}
+
+.upper-section .emergency-description h2 {
+    font-size: 2em;
+    margin-bottom: 0.3em;
+    color: rgba(255, 255, 255, 0.88);
+}
+
+.upper-section .emergency-description .more-info {
+    display: flex;
+    flex-direction: column;
+}
+
+.upper-section .emergency-description .more-info p {
+    margin: 0;
+    color: rgba(250, 250, 250, 0.87);
+}
+
+.upper-section .emergency-description .emergency-buttons-container {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5em;
+    margin-top: 2em;
+}
+
+.upper-section .emergency-description .emergency-buttons-container a {
+    background-color: #08376b;
+    color: rgb(255, 255, 255);
+    font-size: 1em;
+    padding: 0.7em 0;
+    border: none;
+    width: 70%;
+    text-align: center;
+    border-radius: 10px;
+    opacity: 0.9;
+    text-decoration: none;
+    transition: background-color 0.2s ease-in-out;
+}
+
+.upper-section .emergency-description .emergency-buttons-container a.add-emergency-event-btn {
+    background-color: #b70000;
+}
+
+.upper-section .emergency-description a:hover {
+    cursor: pointer;
+    background-color: rgba(13, 73, 141, 0.93);
+}
+
+.upper-section .emergency-description .emergency-buttons-container a.add-emergency-event-btn:hover {
+    background-color: #d70000;
+}
+
+
+
+
+
+
+
+main {
+    padding: 5% 15%;
+    margin-top: 30%;
+    background-color: rgb(249, 249, 249);
+}
+
+main .aside-and-right-content {
+    display: flex;
+    gap: 6em;
+}
+
+
+
+main section.search-events-bar-section {
+    display: flex;
+    align-items: center;
+    width: 30%;
+}
+
+main section.search-events-bar-section input {
+    width: 100%;
+    height: 60%;
+    border: solid 1px rgb(156, 156, 156);
+    border-radius: 10px;
+    padding: 0.7em;
+    font-family: inherit;
+    font-size: 1em;
+    background-color: transparent;
+    color: rgb(107, 107, 107);
+    margin-bottom: 2em;
+    outline: none;
+}
+
+main section.search-events-bar-section input:focus {
+    color: #252525;
+    background-color: rgb(240, 248, 255);
+}
+
+
+
+
+
+
+
+main .right {
+    width: 100%;
+}
+
+main .right h2 {
+    margin-top: 0;
+}
+
+main .right .all-comments-cont {
+    display: flex;
+    flex-direction: column;
+    gap: 1em;
+
+}
+
+main .right .all-comments-cont h3 {
+    text-align: center;
+    color: #008300;
+}
+
+
+
+
+.all-comments-cont .comment-container {
+    background-color: rgba(53, 191, 237, 0.18);
+    padding: 1.5em 2em;
+}
+
+.all-comments-cont .comment-container p.confirm-deleting-comment {
+    color: #EE6161;
+    font-weight: 600;
+}
+
+.all-comments-cont .comment-container .author {
+    display: flex;
+    align-items: center;
+}
+
+.all-comments-cont .comment-container .author .img-container {
+    width: 4em;
+    height: 4em;
+}
+
+.all-comments-cont .comment-container .author .img-container img {
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    object-fit: cover;
+}
+
+.all-comments-cont .comment-container .author .more-info {
+    display: flex;
+    flex-direction: column;
+    margin-left: 0.8em;
+}
+
+.all-comments-cont .comment-container .author .more-info p {
+    margin: 0;
+}
+
+.all-comments-cont .comment-container .author .more-info a.host-name {
+    font-weight: 600;
+    text-decoration: none;
+    color: rgb(0, 0, 0);
+}
+
+.all-comments-cont .comment-container .author .more-info a.host-name:hover {
+    text-decoration: underline;
+}
+
+.all-comments-cont .comment-container .author .editing-icons {
+    margin-left: auto;
+    display: flex;
+    gap: 1em;
+}
+
+.all-comments-cont .comment-container .author .editing-icons img {
+    width: 1.2em;
+    height: 1.2em;
+}
+
+.all-comments-cont .comment-container .author .editing-icons img:hover {
+    cursor: pointer;
+}
+
+.all-comments-cont .comment-container input.edit-comment-input {
+    outline: none;
+    border: solid 1px rgb(160, 159, 161);
+    border-radius: 1em;
+    padding: 1em;
+    display: flex;
+    color: rgb(107, 107, 107);
+    background-color: #f5f5f5;
+    width: 96%;
+    margin-top: 1em;
+}
+
+.all-comments-cont .comment-container input.edit-comment-input:focus {
+    background-color: rgb(240, 248, 255);
+    outline: none;
+    color: black;
+}
+
+.all-comments-cont .comment-container div.comment-buttons-container {
+    margin-left: auto;
+    margin-top: 0.5em;
+    display: flex;
+    gap: 1em;
+    justify-content: end;
+}
+
+.all-comments-cont .comment-container button {
+    background-color: #08376b;
+    color: #ffffff;
+    padding: 0.2em 0.8em;
+    border: none;
+    font-size: 1em;
+    border-radius: 3px;
+    font-weight: 600;
+    font-family: inherit;
+    transition: background-color 0.2s ease-in-out;
+}
+
+.all-comments-cont .comment-container button.save-edited-btn:hover {
+    background-color: rgba(8, 55, 107, 0.88);
+    cursor: pointer;
+}
+
+.all-comments-cont .comment-container button.cancel-edit-btn {
+    background-color: #fcfcfc;
+    color: #08376b;
+}
+
+.all-comments-cont .comment-container button.cancel-edit-btn:hover {
+    background-color: rgba(252, 252, 252, 0.65);
+    cursor: pointer;
+}

@@ -1,0 +1,154 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    background-color: rgb(249, 249, 249);
+    margin: 0;
+    padding: 0;
+    font-family: "Poppins", sans-serif;
+}
+
+
+
+
+
+header ul.last-links li.all-events a,
+header ul.last-links li.contact-us a,
+header ul.last-links li.about-us a {
+    color: #ffffff;
+}
+
+
+
+
+
+
+.upper-section {
+    width: 100%;
+    position: absolute;
+    top: 0;
+    object-fit: cover;
+    height: 36em;
+    background-color: #496972;
+    box-shadow: -10px -30px 30px -20px lightblue inset;
+}
+
+.upper-section .title-cont-about-us {
+    padding: 0 15%;
+    padding-bottom: 1.5%;
+    top: 25%;
+    display: flex;
+    flex-direction: column;
+    position: absolute;
+}
+
+.upper-section .title-cont-about-us h2 {
+    font-size: 2em;
+    margin-bottom: 0.3em;
+    color: rgba(255, 255, 255, 0.88);
+}
+
+.upper-section .title-cont-about-us p {
+    margin-top: 0.2em;
+    color: rgba(255, 255, 255, 0.88);
+}
+
+.upper-section .title-cont-about-us a {
+    background-color: #08376b;
+    color: rgb(255, 255, 255);
+    font-size: 1em;
+    padding: 0.7em 0;
+    border: none;
+    width: 10%;
+    text-align: center;
+    border-radius: 10px;
+    opacity: 0.9;
+    text-decoration: none;
+    transition: background-color 0.2s ease-in-out;
+}
+
+.upper-section .title-cont-about-us a:hover {
+    cursor: pointer;
+    background-color: rgba(13, 73, 141, 0.93);
+}
+
+
+
+
+.image-section {
+    height: 50em;
+    margin-top: 25%;
+}
+
+.image-section img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    filter: brightness(60%);
+}
+
+
+
+
+
+
+
+main {
+    background-color: rgb(249, 249, 249);
+    margin-bottom: 10em;
+    padding-top: 3em;
+}
+
+main h3 {
+    padding: 0 15%;
+    font-size: 2em;
+    margin-top: 2em;
+    color: #08376b;
+}
+
+main .what-you-can-do {
+    display: flex;
+    gap: 5em;
+    padding: 0 15%;
+}
+
+main .what-you-can-do .container-about-us {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 30%;
+}
+
+main .what-you-can-do .container-about-us img {
+    width: 10em;
+    height: 10em;
+}
+
+main .what-you-can-do .container-about-us h5 {
+    font-size: 1.4em;
+    margin: 0;
+    color: #4a6e79;
+}
+
+main .what-you-can-do .container-about-us p {
+    font-weight: 500;
+    text-align: center;
+}
+
+main .what-you-can-do .container-about-us a {
+    margin-top: auto;
+    background-color: #08376b;
+    padding: 0.4em 0.9em;
+    color: rgb(255, 255, 255);
+    border-radius: 5px;
+    transition: background-color 0.2s ease-in-out;
+    text-decoration: none;
+}
+
+main .what-you-can-do .container-about-us a:hover {
+    cursor: pointer;
+    background-color: rgba(13, 74, 141, 0.89);
+}

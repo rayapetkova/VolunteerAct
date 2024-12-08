@@ -149,6 +149,7 @@ def all_events_view(request):
     return render(request, 'categories/all_events_page.html', context=context)
 
 
+@login_required
 def my_events_view(request):
     upcoming_host_events = request.user.host_events.filter(time__gte=timezone.now()).order_by('-time')
     past_host_events = request.user.host_events.filter(time__lt=timezone.now()).order_by('time')
@@ -191,6 +192,7 @@ def emergency_events_view(request):
     return render(request, 'categories/emergency_events_page.html', context=context)
 
 
+@login_required
 def create_event_view(request, categoryId=''):
     form = EventForm(request.POST or None, request.FILES or None)
 
@@ -235,7 +237,7 @@ def create_event_view(request, categoryId=''):
 @login_required
 def event_comments_view(request, categoryId, pk):
     event = Event.objects.filter(id=pk).first()
-    comments = event.comments.all()
+    comments = event.comments.all().order_by('-created_at')
 
     context = {
         'event': event,
@@ -296,7 +298,7 @@ class EventUpdateView(UserPassesTestMixin, UpdateView):
     template_name = 'categories/edit_event_page.html'
 
     def test_func(self):
-        if self.get_object().host == self.request.user or self.request.user.is_staff:
+        if self.get_object().host == self.request.user or self.request.user.groups.filter(name='staff_members') or self.request.user.is_superuser:
             return True
 
         return False
@@ -305,7 +307,6 @@ class EventUpdateView(UserPassesTestMixin, UpdateView):
         raise PermissionDenied()
     
     def form_invalid(self, form):
-        print(form.fields['category'].initial)
         return super().form_invalid(form)
 
     def get_context_data(self, **kwargs):
@@ -321,7 +322,16 @@ class EventUpdateView(UserPassesTestMixin, UpdateView):
         })
 
 
-class EventListAPIView(APIView):
+class EventListAPIView(UserPassesTestMixin, APIView):
+
+    def test_func(self):
+        if self.request.is_authenticated:
+            return True
+
+        return False
+
+    def handle_no_permission(self):
+        raise PermissionDenied()
 
     def get(self, request):
         searched_title = request.GET['searchedTitle']
@@ -332,7 +342,7 @@ class EventListAPIView(APIView):
         return Response(data=json_data)
 
 
-class EventUpdateAPIView(RetrieveUpdateAPIView):
+class EventUpdateAPIView(UserPassesTestMixin, RetrieveUpdateAPIView):
     queryset = Event.objects.all()
     serializer_class = EventSerializer
 
