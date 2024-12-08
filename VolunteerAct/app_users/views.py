@@ -13,7 +13,6 @@ from django.conf import settings
 
 from VolunteerAct.app_users.forms import AppUserForm, EditAppUserForm, DeleteAppUserForm
 from VolunteerAct.app_users.models import Profile
-from VolunteerAct.app_users.tasks import send_email_to_new_registered_user
 from VolunteerAct.home.utils import get_emergency_events
 
 AppUserModel = get_user_model()
@@ -40,8 +39,6 @@ class RegisterUserView(UserPassesTestMixin, CreateView):
         result = super().form_valid(form)
 
         login(self.request, self.object, backend='django.contrib.auth.backends.ModelBackend')
-
-        send_email_to_new_registered_user.delay(form.cleaned_data['email'], form.cleaned_data['first_name'])
 
         return result
 

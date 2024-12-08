@@ -193,11 +193,13 @@
             {% endif %}
 
             <div class="buttons-container-attend">
-                {% if request.user.is_authenticated and not event.host == request.user %}
-                    {% if request.user in object.attendees.all %}
-                        <button class="cancel-attendance">Cancel attendance</button>
-                    {% else %}
-                        <button class="attend">Attend</button>
+                {% if not object.passed_event %}
+                    {% if request.user.is_authenticated and not event.host == request.user %}
+                        {% if request.user in object.attendees.all %}
+                            <button class="cancel-attendance">Cancel attendance</button>
+                        {% else %}
+                            <button class="attend">Attend</button>
+                        {% endif %}
                     {% endif %}
                 {% endif %}
 
