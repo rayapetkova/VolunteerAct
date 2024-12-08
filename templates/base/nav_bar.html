@@ -15,6 +15,7 @@
             {% else %}
                 <li class="emergency-li"><a href="{% url 'emergency-events-page' %}" class="emergency-button-green"></a></li>
             {% endif %}
+            <li class="about-us"><a href="{% url 'about-us' %}">About Us</a></li>
             <li class="contact-us"><a href="{% url 'contact-us' %}">Contact us</a></li>
             <li class="sign-in-li"><a href="{% url 'login-user' %}" {% if dark_login_color == "dark" %}class="dark-login-a"{% endif %}>Log In</a></li>
             <li class="log-in-li"><a href="{% url 'register-user' %}">Sign Up</a></li>
@@ -26,6 +27,7 @@
             {% else %}
                 <li class="emergency-li"><a href="{% url 'emergency-events-page' %}" class="emergency-button-green"></a></li>
             {% endif %}
+            <li class="about-us"><a href="{% url 'about-us' %}">About Us</a></li>
             <li class="contact-us"><a href="{% url 'contact-us' %}">Contact us</a></li>
             <li class="all-events"><a href="{% url 'all-events-page' %}">All Events</a></li>
 

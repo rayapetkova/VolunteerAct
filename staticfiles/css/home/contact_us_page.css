@@ -16,7 +16,8 @@ body {
 
 
 header ul.last-links li.all-events a,
-header ul.last-links li.contact-us a{
+header ul.last-links li.contact-us a,
+header ul.last-links li.about-us a{
     color: #ffffff;
 }
 

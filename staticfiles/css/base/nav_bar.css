@@ -41,14 +41,16 @@ header ul.last-links li {
 
 header ul.last-links li.all-events a,
 header ul.sign-in-ul li a,
-header ul.last-links li.contact-us a{
+header ul.last-links li.contact-us a,
+header ul.last-links li.about-us a {
     transition: color 0.2s ease-in-out;
     color: #203069;
 }
 
 header ul.last-links li.all-events a:hover,
 header ul.sign-in-ul li.sign-in-li a:hover,
-header ul.last-links li.contact-us a:hover {
+header ul.last-links li.contact-us a:hover,
+header ul.last-links li.about-us a:hover {
     color: rgba(84, 165, 255, 0.89)!important;
 }
 

@@ -32,11 +32,11 @@ header ul.last-links {
 }
 
 header ul.sign-in-ul {
-    width: 20%;
+    width: 27%;
 }
 
 header ul.logout-ul {
-    width: 25%;
+    width: 33%;
 }
 
 header ul.last-links li {
@@ -45,14 +45,16 @@ header ul.last-links li {
 
 header ul.last-links li.all-events a,
 header ul.sign-in-ul li a,
-header ul.last-links li.contact-us a{
+header ul.last-links li.contact-us a,
+header ul.last-links li.about-us a {
     transition: color 0.2s ease-in-out;
     color: #203069;
 }
 
 header ul.last-links li.all-events a:hover,
 header ul.sign-in-ul li.sign-in-li a:hover,
-header ul.last-links li.contact-us a:hover {
+header ul.last-links li.contact-us a:hover,
+header ul.last-links li.about-us a:hover {
     color: rgba(84, 165, 255, 0.89)!important;
 }
 
@@ -87,7 +89,7 @@ header ul.last-links li .dark-login-a {
     color: #203069;
 }
 
-header ul.sign-in-ul li:nth-child(4) a, header ul.last-links .logout-btn a {
+header ul.sign-in-ul li:nth-child(5) a, header ul.last-links .logout-btn a {
     background-color: #08376b;
     padding: 0.4em 0.7em;
     color: rgb(255, 255, 255);
@@ -95,7 +97,7 @@ header ul.sign-in-ul li:nth-child(4) a, header ul.last-links .logout-btn a {
     transition: background-color 0.2s ease-in-out;
 }
 
-header ul.sign-in-ul li:nth-child(4) a:hover,
+header ul.sign-in-ul li:nth-child(5) a:hover,
 header ul.last-links .logout-btn a:hover {
     cursor: pointer;
     background-color: rgba(13, 74, 141, 0.89);
