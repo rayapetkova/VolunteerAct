@@ -268,8 +268,12 @@
 ></script>
 
 <script>
-    const successfullyLoggedInMessage = document.querySelector('.info-section > p')
-    successfullyLoggedInMessage.remove()
+    const pElements = document.getElementsByTagName('p')
+    for (let pElement of pElements) {
+        if (pElement.textContent.includes('Successfully signed in')) {
+            pElement.remove()
+        }
+    }
 
     const aboutBtn = document.getElementsByClassName('about-btn')[0]
     const photosBtn = document.getElementsByClassName('photos-btn')[0]

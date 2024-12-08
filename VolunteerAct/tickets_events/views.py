@@ -1,4 +1,6 @@
 from django.contrib.auth.decorators import login_required
+from django.contrib.auth.mixins import UserPassesTestMixin
+from django.core.exceptions import PermissionDenied
 from django.shortcuts import render
 from django.utils import timezone
 from rest_framework.response import Response
@@ -23,7 +25,16 @@ def all_tickets_events_view(request):
     return render(request, 'tickets_events/user_tickets_events.html', context=context)
 
 
-class AllTicketsUserApiView(APIView):
+class AllTicketsUserApiView(UserPassesTestMixin, APIView):
+
+    def test_func(self):
+        if self.request.user.is_authenticated:
+            return True
+
+        return False
+
+    def handle_no_permission(self):
+        raise PermissionDenied()
 
     def get(self, request):
         searched_title = request.GET['searchedTitle']

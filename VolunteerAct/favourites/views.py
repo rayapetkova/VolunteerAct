@@ -1,4 +1,6 @@
 from django.contrib.auth.decorators import login_required
+from django.contrib.auth.mixins import UserPassesTestMixin
+from django.core.exceptions import PermissionDenied
 from django.shortcuts import render
 from django.utils import timezone
 from rest_framework import status
@@ -49,7 +51,16 @@ def favourite_events_view(request):
     return render(request, 'favourites/favourite_events.html', context=context)
 
 
-class AllFavouriteEventsApiView(APIView):
+class AllFavouriteEventsApiView(UserPassesTestMixin, APIView):
+
+    def test_func(self):
+        if self.request.user.is_authenticated:
+            return True
+
+        return False
+
+    def handle_no_permission(self):
+        raise PermissionDenied()
 
     def get(self, request):
         searched_title = request.GET['searchedTitle']
@@ -64,7 +75,16 @@ class AllFavouriteEventsApiView(APIView):
         return Response(data=json_data)
 
 
-class FavouritesCreateApiView(APIView):
+class FavouritesCreateApiView(UserPassesTestMixin, APIView):
+
+    def test_func(self):
+        if self.request.user.is_staff or self.request.user.is_superuser:
+            return True
+
+        return False
+
+    def handle_no_permission(self):
+        raise PermissionDenied()
 
     def post(self, request):
         serializer = FavouritesSerializer(data=request.data)

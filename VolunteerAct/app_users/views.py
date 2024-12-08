@@ -2,6 +2,7 @@ from django.contrib.auth import login, logout, get_user_model
 from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
 from django.contrib.auth.models import Group
 from django.contrib.auth.views import LoginView
+from django.core.exceptions import PermissionDenied
 from django.core.mail import send_mail
 from django.http import Http404
 from django.shortcuts import render, redirect
@@ -24,7 +25,10 @@ class RegisterUserView(UserPassesTestMixin, CreateView):
     success_url = reverse_lazy('home-page')
 
     def test_func(self):
-        return not self.request.user.is_authenticated
+        if self.request.user.is_authenticated:
+            return False
+
+        return True
 
     def handle_no_permission(self):
         return redirect('home-page')
@@ -48,7 +52,9 @@ class LoginUserView(UserPassesTestMixin, LoginView):
     success_url = reverse_lazy('home-page')
 
     def test_func(self):
-        return not self.request.user.is_authenticated
+        if self.request.user.is_authenticated:
+            return False
+        return True
 
     def handle_no_permission(self):
         return redirect('home-page')
