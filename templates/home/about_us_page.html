@@ -1,0 +1,81 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About Us</title>
+    <link rel="icon" type="image/x-icon" href="{% static 'images/just_logo_without_background.png' %}">
+    <link rel="stylesheet" href="{% static 'css/base/nav_bar.css' %}">
+    <link rel="stylesheet" href="{% static 'css/base/footer.css' %}">
+    <link rel="stylesheet" href="{% static 'css/home/about_us_page.css' %}">
+</head>
+<body>
+    {% include 'base/nav_bar.html' with logo_color='light'  %}
+
+    <section class="upper-section">
+        <div class="title-cont-about-us">
+            <h2>Empowering Communities, One Volunteer at a Time</h2>
+            <p>At VolunteerAct, we believe in the power of collective action. Our platform connects passionate individuals with meaningful opportunities to make a difference. Whether it's a neighborhood cleanup, a community event, or an emergency situation, we bring together volunteers and causes that matter.</p>
+            <a href="#see-more" class="see-more-btn">See more</a>
+        </div>
+    </section>
+
+    <section class="image-section">
+        <img src="{% static 'images/environment_category.jpg' %}" alt="enviroment-image" />
+    </section>
+
+
+    <main id="see-more">
+
+        <h3>What you can do</h3>
+
+        <div class="what-you-can-do">
+            <div class="container-about-us">
+                <img src="{% static 'images/contact_us_about_us_icon.png' %}" alt="contact-us-icon" />
+
+                <h5>Contact Us</h5>
+                <p>Have a question or need assistance? We're here to support you! Whether you have feedback, need help with the platform, or want to learn more about volunteer opportunities, don't hesitate to reach out.</p>
+
+                <a href="{% url 'contact-us' %}">Contact Us</a>
+            </div>
+
+            <div class="container-about-us">
+                <img src="{% static 'images/explore_events_about_us_icon.png' %}" alt="contact-us-icon" />
+
+                <h5>Explore Events</h5>
+                <p>Discover a wide range of volunteer opportunities that match your passions and interests. From local community activities to urgent causes, find events that inspire you to take action and make a meaningful impact!</p>
+
+                <a href="{% url 'all-events-page' %}">Explore Events</a>
+            </div>
+
+            <div class="container-about-us">
+                <img src="{% static 'images/contact_us_about_us_icon.png' %}" alt="contact-us-icon" />
+
+                <h5>Create Event</h5>
+                <p>Have an idea for a volunteer activity or urgent cause? Bring your community together by creating a new event! Whether it’s a planned initiative or an emergency, you can easily organize and invite others to join your mission.</p>
+
+                <a href="{% url 'create-new-event-page' %}">Create Event</a>
+            </div>
+        </div>
+
+    </main>
+
+    {% include 'base/footer.html' %}
+
+</body>
+
+    <script>
+        const headerElement = document.getElementsByTagName('header')[0]
+
+        document.addEventListener('scroll', () => {
+            if (window.scrollY > 600) {
+                headerElement.style.backgroundColor = 'rgba(67, 79, 98, 0.76)'
+            } else {
+                headerElement.style.backgroundColor = 'transparent'
+            }
+        })
+
+    </script>
+
+</html>

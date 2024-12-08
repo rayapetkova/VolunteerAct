@@ -71,3 +71,7 @@ def contact_us_page(request):
     }
 
     return render(request, 'home/contact_us_page.html', context=context)
+
+
+def about_us_page(request):
+    return render(request, 'home/about_us_page.html')
