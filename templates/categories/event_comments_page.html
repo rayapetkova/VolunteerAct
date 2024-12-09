@@ -20,7 +20,7 @@
             <h2>{{ event.title }}</h2>
 
             <div class="emergency-buttons-container">
-                <a href="#explore-emergency-events">All Comments</a>
+                <a href="#explore-all-comments">All Comments</a>
                 <a href="{% url 'event-page' categoryId=event.category.id pk=event.id %}" class="add-emergency-event-btn">See more details</a>
             </div>
         </div>
@@ -28,11 +28,11 @@
     </section>
 
 
-    <main id="explore-emergency-events">
+    <main id="explore-all-comments">
 
         <section class="aside-and-right-content">
             <div class="right">
-                <h2 class="all-comments-title-and-count">All Comments ({{ comments|length }})</h2>
+                <h2 class="all-comments-title-and-count" id="comments-count">All Comments ({{ comments|length }})</h2>
 
                 <div class="all-comments-cont">
                     {% for comment in comments %}
@@ -62,8 +62,25 @@
                             <p class="comment-body">{{ comment.body }}</p>
                         </div>
                     {% empty %}
-                        <h3>No comments yet</h3>
+                        <div class="first-one">
+                            <p class="first-to-comment-message">Be the first one to comment!</p>
+
+                            {% if not request.user.is_authenticated %}
+                                <a href="{% url 'login-user' %}" class="login-btn">Log In</a>
+                            {% endif %}
+                        </div>
                     {% endfor %}
+
+                    {% if request.user.is_authenticated %}
+                        <div class="send-comment-container">
+                            <input type="text" id="add-new-comment" name="add-new-comment" placeholder="Add new comment..." >
+                            <img src="{% static 'images/send_icon.png' %}" class="send-comment" alt="send-icon">
+                        </div>
+
+                        <ul class="errors-new-comment">
+
+                        </ul>
+                    {% endif %}
                 </div>
             </div>
         </section>
@@ -76,6 +93,134 @@
 
     <script>
         const headerElement = document.getElementsByTagName('header')[0]
+
+
+        const sendCommentElement = document.getElementsByClassName('send-comment')[0]
+        const addNewCommentInput = document.getElementById('add-new-comment')
+        const commentsContainer = document.getElementsByClassName('all-comments-cont')[0]
+        const commentsCountElement = document.getElementById('comments-count')
+        const allCommentContainers = document.getElementsByClassName('comment-container')
+        const beTheFirstOneToCommentMessage = document.getElementsByClassName('first-to-comment-message')[0]
+
+        if (sendCommentElement) {
+            sendCommentElement.addEventListener('click', () => {
+
+                const addNewCommentRequest = async() => {
+                    const response = fetch('{% url 'list-create-comments-api' %}', {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json',
+                            'X-CSRFToken': `{{ csrf_token }}`
+                        },
+                        body: JSON.stringify({
+                            body: addNewCommentInput.value,
+                            event: `{{ event.id }}`,
+                            user: `{{ request.user.id }}`,
+                        })
+                    })
+                        .then((response) => response.json())
+                        .then((result) => {
+                            const ulErrorsNewComment = document.getElementsByClassName('errors-new-comment')[0]
+
+                            if (typeof result.body !== "string") {
+                                for (let error of result.body) {
+
+                                    if (!ulErrorsNewComment.textContent.includes(error)) {
+                                        const liErrorEl = document.createElement('li')
+                                        liErrorEl.textContent = error
+
+                                        ulErrorsNewComment.appendChild(liErrorEl)
+                                    }
+                                }
+                            } else {
+
+                                addNewCommentInput.value = ''
+
+                                const createdCommentUrl = `{% url 'details-comment-api' pk='0' %}`.replace('0', result.id)
+
+                                const createdCommentWholeDetails = fetch(createdCommentUrl)
+                                    .then((response2) => response2.json())
+                                    .then((commentResult) => {
+                                        if (ulErrorsNewComment) {
+                                            ulErrorsNewComment.innerHTML = ''
+                                        }
+
+                                        const newCommentContainer = document.createElement('div')
+                                        newCommentContainer.className = 'comment-container'
+
+                                        const profileURL = `{% url 'profile-details-update' pk='0' %}`.replace('0', commentResult.user.profile.id)
+                                        const requestUserId = `{{ request.user.id }}`
+                                        const requestUserIsStaff = `{{ request.user.is_staff }}`
+
+                                        const editCommentIconClass = `edit-comment-icon ${commentResult.id}`
+                                        const deleteCommentIconClass = `delete-comment-icon ${commentResult.id}`
+
+                                        if (requestUserId == `${commentResult.user.id}` || requestUserIsStaff === 'True') {
+                                            newCommentContainer.innerHTML = `
+                                                <div class="author">
+                                                    <a href="${profileURL}" class="img-container">
+                                                        <img src="${commentResult.profile_image_full_url}" alt="host-img">
+                                                    </a>
+
+                                                    <div class="more-info">
+                                                        <a href="${profileURL}" class="host-name">You</a>
+                                                    </div>
+
+                                                    <div class="editing-icons">
+                                                        <img src="{% static 'images/edit_icon.png' %}" alt="edit-icon" class="${editCommentIconClass}">
+                                                        <img src="{% static 'images/delete_icon.png' %}" alt="delete-icon" class="${deleteCommentIconClass}">
+                                                    </div>
+                                                </div>
+
+                                                <p class="comment-body">${commentResult.body}</p>
+                                            `
+                                        } else {
+                                            newCommentContainer.innerHTML = `
+                                                <div class="author">
+                                                    <a href="${profileURL}" class="img-container">
+                                                        <img src="${commentResult.profile_image_full_url}" alt="host-img">
+                                                    </a>
+
+                                                    <div class="more-info">
+                                                        <a href="${profileURL}" class="host-name">${commentResult.user.profile.full_name}</a>
+                                                    </div>
+                                                </div>
+
+                                                <p class="comment-body">${commentResult.body}</p>
+                                            `
+                                        }
+
+                                        commentsContainer.prepend(newCommentContainer)
+
+                                        editingComments()
+                                        deletingComments()
+
+                                        if (beTheFirstOneToCommentMessage) {
+                                            beTheFirstOneToCommentMessage.style.display = 'none'
+                                        }
+
+                                        for (let symbol of commentsCountElement.textContent) {
+                                            if (Number(symbol)) {
+                                                const newNumberComments = Number(symbol) + 1
+                                                commentsCountElement.textContent = `All Comments (${newNumberComments})`
+                                            }
+                                        }
+                                    })
+
+                                }
+
+                        })
+                }
+
+                addNewCommentRequest()
+
+            })
+        }
+
+
+
+
+
 
         document.addEventListener('scroll', () => {
             if (window.scrollY > 600) {

@@ -78,7 +78,7 @@ header ul.last-links li.about-us a {
     font-size: 1em;
     padding: 0.7em 0;
     border: none;
-    width: 70%;
+    width: 20%;
     text-align: center;
     border-radius: 10px;
     opacity: 0.9;
@@ -167,6 +167,55 @@ main .right .all-comments-cont {
 main .right .all-comments-cont h3 {
     text-align: center;
     color: #008300;
+}
+
+
+
+
+main .right .all-comments-cont .send-comment-container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+main .right .all-comments-cont .send-comment-container input#add-new-comment {
+    outline: none;
+    border: solid 1px rgb(160, 159, 161);
+    border-radius: 3em;
+    padding: 1em;
+    display: flex;
+    color: rgb(107, 107, 107);
+    background-color: #f5f5f5;
+    width: 95%;
+}
+
+main .right .all-comments-cont .send-comment-container input#add-new-comment:focus {
+    background-color: rgb(240, 248, 255);
+    outline: none;
+    color: black;
+}
+
+main .right .all-comments-cont .send-comment-container img {
+    width: 1.2em;
+    height: 1.2em;
+}
+
+main .right .all-comments-cont .send-comment-container img:hover {
+    cursor: pointer;
+}
+
+main .right .all-comments-cont ul.errors-new-comment {
+    padding: 0;
+    margin: 0;
+    margin-top: -1.5em;
+}
+
+main .right .all-comments-cont ul.errors-new-comment li {
+    list-style: none;
+    color: #d70000;
+    margin: 0;
+    padding: 0;
+    font-size: 1em;
 }
 
 

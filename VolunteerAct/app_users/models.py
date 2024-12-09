@@ -34,7 +34,7 @@ class AppUser(AbstractBaseUser, PermissionsMixin):
 
 class Profile(models.Model):
     profile_image = CloudinaryField(
-        'image',
+        resource_type='image',
         default=config('DEFAULT_PROFILE_IMAGE'),
         null=True,
         blank=True
