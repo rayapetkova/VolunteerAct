@@ -74,4 +74,8 @@ def contact_us_page(request):
 
 
 def about_us_page(request):
-    return render(request, 'home/about_us_page.html')
+    context = {
+        'emergency_events': get_emergency_events()
+    }
+
+    return render(request, 'home/about_us_page.html', context=context)

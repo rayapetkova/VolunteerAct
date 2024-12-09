@@ -163,9 +163,16 @@
                                                         <img src="${commentResult.profile_image_full_url}" alt="host-img">
                                                     </a>
 
-                                                    <div class="more-info">
-                                                        <a href="${profileURL}" class="host-name">You</a>
-                                                    </div>
+                                                    ${requestUserId == `${commentResult.user.id}` ? `
+                                                        <div class="more-info">
+                                                            <a href="${profileURL}" class="host-name">You</a>
+                                                        </div>
+                                                    ` : `
+                                                        <div class="more-info">
+                                                            <a href="${profileURL}" class="host-name">${commentResult.user.profile.full_name}</a>
+                                                        </div>
+                                                    `}
+
 
                                                     <div class="editing-icons">
                                                         <img src="{% static 'images/edit_icon.png' %}" alt="edit-icon" class="${editCommentIconClass}">

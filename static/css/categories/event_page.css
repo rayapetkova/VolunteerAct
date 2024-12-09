@@ -26,6 +26,12 @@ body {
     font-size: 2em;
 }
 
+.upper-section .emergency-event-message {
+    color: #bd0000;
+    font-weight: 500;
+    margin-top: -1em;
+}
+
 .upper-section .host, .all-comments .comment-container .author {
     display: flex;
     align-items: center;

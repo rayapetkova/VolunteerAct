@@ -70,7 +70,7 @@ def category_details(request, pk):
 
     active_members = list(set(members_first + members_second))
 
-    all_category_locations = set([event.city for event in category.category_events.all()[:3]])
+    all_category_locations = set([event.city for event in category.category_events.all()[:3] if event.city != 'online_event'])
     all_category_locations = ', '.join(all_category_locations)
 
     category_images = CategoryImages.objects.filter(category=category)
@@ -301,7 +301,7 @@ class EventUpdateView(UserPassesTestMixin, UpdateView):
     template_name = 'categories/edit_event_page.html'
 
     def test_func(self):
-        if self.get_object().host == self.request.user or self.request.user.groups.filter(name='staff_members') or self.request.user.is_superuser:
+        if self.get_object().host == self.request.user or self.request.user.groups.filter(name='staff_members').exists() or self.request.user.is_superuser:
             return True
 
         return False

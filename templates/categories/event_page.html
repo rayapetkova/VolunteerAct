@@ -18,6 +18,10 @@
     <section class="upper-section">
         <h2>{{ object.title }}</h2>
 
+        {% if object.is_emergency %}
+            <p class="emergency-event-message">This event is urgent! Only after its deletion, the event will no longer be marked as an emergency!</p>
+        {% endif %}
+
         <div class="host">
             <a href="{% url 'profile-details-update' pk=object.host.profile.id %}" class="img-container">
                 <img src="{{ object.host.profile.profile_image.url }}" alt="host-img">
@@ -111,7 +115,7 @@
                                     {% if request.user.id == comment.user.id %}
                                         <a href="{% url 'profile-details-update' pk=comment.user.profile.id %}" class="host-name">You</a>
                                     {% else %}
-                                        <a href="{% url 'profile-details-update' pk=object.host.profile.id %}"
+                                        <a href="{% url 'profile-details-update' pk=comment.user.profile.id %}"
                                            class="host-name">{{ comment.user.profile.full_name }}</a>
                                     {% endif %}
                                 </div>
@@ -563,9 +567,15 @@
                                                     <img src="${commentResult.profile_image_full_url}" alt="host-img">
                                                 </a>
 
-                                                <div class="more-info">
-                                                    <a href="${profileURL}" class="host-name">You</a>
-                                                </div>
+                                                ${requestUserId == `${commentResult.user.id}` ? `
+                                                    <div class="more-info">
+                                                        <a href="${profileURL}" class="host-name">You</a>
+                                                    </div>
+                                                ` : `
+                                                    <div class="more-info">
+                                                        <a href="${profileURL}" class="host-name">${commentResult.user.profile.full_name}</a>
+                                                    </div>
+                                                `}
 
                                                 <div class="editing-icons">
                                                     <img src="{% static 'images/edit_icon.png' %}" alt="edit-icon" class="${editCommentIconClass}">

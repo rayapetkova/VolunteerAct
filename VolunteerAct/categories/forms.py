@@ -1,5 +1,7 @@
 from django import forms
+from django.core.exceptions import ValidationError
 from django.forms import ModelForm, widgets, Form
+from django.utils import timezone
 
 from VolunteerAct.categories.models import Event, CategoryImages
 from VolunteerAct.categories.utils import get_categories, get_cities
@@ -28,6 +30,14 @@ class EventForm(ModelForm):
                 attrs={'placeholder': 'https://'}
             )
         }
+
+    def clean_time(self):
+        time = self.cleaned_data['time']
+
+        if time < timezone.now():
+            raise ValidationError("The event's time needs to be in the future.")
+
+        return time
 
 
 class CategoryImagesForm(ModelForm):
