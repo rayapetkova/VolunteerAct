@@ -26,7 +26,7 @@ body {
     font-size: 2em;
 }
 
-.upper-section .emergency-event-message {
+.upper-section p.emergency-event-message {
     color: #bd0000;
     font-weight: 500;
     margin-top: -1em;

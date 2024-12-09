@@ -74,7 +74,9 @@
                     </div>
                 </div>
             {% else %}
-                <p class="already-passed-event">This event has passed! Click here to see more: <a href="#explore">See more</a></p>
+                {% if not object.is_emergency %}
+                    <p class="already-passed-event">This event has passed! Click here to see more events: <a href="#explore">See more</a></p>
+                {% endif %}
             {% endif %}
 
             <div class="event-img-container">
