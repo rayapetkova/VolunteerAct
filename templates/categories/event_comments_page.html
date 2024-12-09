@@ -51,7 +51,7 @@
                                     {% endif %}
                                 </div>
 
-                                {% if request.user.id == comment.user.id or request.user.is_staff %}
+                                {% if request.user.id == comment.user.id or user_in_staff_members or request.user.is_superuser %}
                                     <div class="editing-icons">
                                         <img src="{% static 'images/edit_icon.png' %}" alt="edit-icon" class="edit-comment-icon {{ comment.id }}">
                                         <img src="{% static 'images/delete_icon.png' %}" alt="delete-icon" class="delete-comment-icon {{ comment.id }}">
@@ -150,12 +150,13 @@
 
                                         const profileURL = `{% url 'profile-details-update' pk='0' %}`.replace('0', commentResult.user.profile.id)
                                         const requestUserId = `{{ request.user.id }}`
-                                        const requestUserIsStaff = `{{ request.user.is_staff }}`
+                                        const requestUserIsStaff = `{{ user_in_staff_members }}`
+                                        const requestUserIsSuperuser = `{{ request.user.is_superuser }}`
 
                                         const editCommentIconClass = `edit-comment-icon ${commentResult.id}`
                                         const deleteCommentIconClass = `delete-comment-icon ${commentResult.id}`
 
-                                        if (requestUserId == `${commentResult.user.id}` || requestUserIsStaff === 'True') {
+                                        if (requestUserId == `${commentResult.user.id}` || requestUserIsStaff === 'True' || requestUserIsSuperuser === 'True') {
                                             newCommentContainer.innerHTML = `
                                                 <div class="author">
                                                     <a href="${profileURL}" class="img-container">

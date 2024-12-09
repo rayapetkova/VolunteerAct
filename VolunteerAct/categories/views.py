@@ -241,7 +241,8 @@ def event_comments_view(request, categoryId, pk):
 
     context = {
         'event': event,
-        'comments': comments
+        'comments': comments,
+        'user_in_staff_members': request.user.groups.filter(name='staff_members').exists()
     }
 
     return render(request, 'categories/event_comments_page.html', context=context)
@@ -271,6 +272,8 @@ class EventDetailsView(DetailView, DeleteView):
         context['count_comments'] = count_events(len(comments), 3)
 
         context['emergency_events'] = get_emergency_events()
+
+        context['user_in_staff_members'] = self.request.user.groups.filter(name='staff_members').exists()
 
         if self.request.user.is_authenticated:
             user_favourite_event = Favourites.objects.filter(user=self.request.user, event=self.object)
