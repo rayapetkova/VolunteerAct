@@ -77,6 +77,15 @@ class AllFavouriteEventsApiView(UserPassesTestMixin, APIView):
 
 class FavouritesCreateApiView(UserPassesTestMixin, APIView):
 
+    def test_func(self):
+        if self.request.user.is_authenticated:
+            return True
+
+        return False
+
+    def handle_no_permission(self):
+        raise PermissionDenied()
+
     def post(self, request):
         serializer = FavouritesSerializer(data=request.data)
 
@@ -87,7 +96,16 @@ class FavouritesCreateApiView(UserPassesTestMixin, APIView):
         return Response(serializer.data, status=status.HTTP_400_BAD_REQUEST)
 
 
-class FavouritesDeleteByEventAndUserIdsApiView(APIView):
+class FavouritesDeleteByEventAndUserIdsApiView(UserPassesTestMixin, APIView):
+
+    def test_func(self):
+        if self.request.user.is_authenticated:
+            return True
+
+        return False
+
+    def handle_no_permission(self):
+        raise PermissionDenied()
 
     def delete(self, request, event_id):
         favourite_event = Favourites.objects.all().filter(event__id=event_id, user=request.user).first()
@@ -100,7 +118,16 @@ class FavouritesDeleteByEventAndUserIdsApiView(APIView):
         return Response(status=status.HTTP_400_BAD_REQUEST)
 
 
-class FavouritesDeleteApiView(APIView):
+class FavouritesDeleteApiView(UserPassesTestMixin, APIView):
+
+    def test_func(self):
+        if self.request.user.is_authenticated:
+            return True
+
+        return False
+
+    def handle_no_permission(self):
+        raise PermissionDenied()
 
     def delete(self, request, pk):
         favourite_event = Favourites.objects.all().filter(id=pk).first()

@@ -489,3 +489,40 @@ main {
 .how-volunteeract-works .containers .box a:hover {
     text-decoration: underline;
 }
+
+
+
+
+@keyframes slideIn {
+    from {
+        transform: translateX(-100%);
+        opacity: 0;
+    }
+    to {
+        transform: translateX(0);
+        opacity: 1;
+    }
+}
+
+@keyframes slideTop {
+    from {
+        transform: translateY(-80%);
+        opacity: 0;
+    }
+    to {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+.main-content .first-section .left h1 {
+    animation: slideTop 2s ease-out forwards;
+}
+
+.main-content .first-section .left p {
+    animation: slideTop 2s ease-out forwards;
+}
+
+.main-content .first-section .left a {
+    animation: slideTop 2s ease-out forwards;
+}

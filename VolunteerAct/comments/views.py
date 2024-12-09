@@ -1,3 +1,5 @@
+from django.contrib.auth.mixins import UserPassesTestMixin
+from django.core.exceptions import PermissionDenied
 from django.shortcuts import render
 from rest_framework import status
 from rest_framework.generics import RetrieveAPIView
@@ -8,7 +10,16 @@ from VolunteerAct.comments.models import Comment
 from VolunteerAct.comments.serializers import CommentSerializer, CommentCreateSerializer
 
 
-class CommentListApiView(APIView):
+class CommentListApiView(UserPassesTestMixin, APIView):
+
+    def test_func(self):
+        if self.request.user.is_authenticated:
+            return True
+
+        return False
+
+    def handle_no_permission(self):
+        raise PermissionDenied()
 
     def get(self, request):
         comments = Comment.objects.all().order_by('-created_at')
@@ -27,14 +38,32 @@ class CommentListApiView(APIView):
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
 
-class CommentDetailsApiView(RetrieveAPIView):
+class CommentDetailsApiView(UserPassesTestMixin, RetrieveAPIView):
     serializer_class = CommentSerializer
+
+    def test_func(self):
+        if self.request.user.is_authenticated:
+            return True
+
+        return False
+
+    def handle_no_permission(self):
+        raise PermissionDenied()
 
     def get_queryset(self):
         return Comment.objects.all()
 
 
-class CommentEditAndDeleteApiView(APIView):
+class CommentEditAndDeleteApiView(UserPassesTestMixin, APIView):
+
+    def test_func(self):
+        if self.request.user.is_authenticated:
+            return True
+
+        return False
+
+    def handle_no_permission(self):
+        raise PermissionDenied()
 
     def patch(self, request, pk):
         comment = Comment.objects.all().filter(id=pk).first()

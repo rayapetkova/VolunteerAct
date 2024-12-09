@@ -346,8 +346,26 @@ class EventUpdateAPIView(UserPassesTestMixin, RetrieveUpdateAPIView):
     queryset = Event.objects.all()
     serializer_class = EventSerializer
 
+    def test_func(self):
+        if self.request.is_authenticated:
+            return True
+
+        return False
+
+    def handle_no_permission(self):
+        raise PermissionDenied()
+
 
 class AttendEventSendEmailAPIView(APIView):
+
+    def test_func(self):
+        if self.request.is_authenticated:
+            return True
+
+        return False
+
+    def handle_no_permission(self):
+        raise PermissionDenied()
 
     def post(self, request, event_id):
         event = Event.objects.filter(id=event_id).first()
