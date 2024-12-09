@@ -136,6 +136,9 @@ class Event(models.Model):
         related_name='events'
     )
 
+    def __str__(self):
+        return self.title
+
     def exact_location(self):
         if self.city != 'online_event' and self.location != 'online_event':
             return f"{self.location}, {self.city}"
