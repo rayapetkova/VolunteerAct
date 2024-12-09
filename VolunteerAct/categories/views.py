@@ -325,7 +325,7 @@ class EventUpdateView(UserPassesTestMixin, UpdateView):
 class EventListAPIView(UserPassesTestMixin, APIView):
 
     def test_func(self):
-        if self.request.is_authenticated:
+        if self.request.user.is_authenticated:
             return True
 
         return False
@@ -335,8 +335,8 @@ class EventListAPIView(UserPassesTestMixin, APIView):
 
     def get(self, request):
         searched_title = request.GET['searchedTitle']
-        events = Event.objects.filter(title__icontains=searched_title)
-        serializer = EventSerializer(events, many=True)
+        events = Event.objects.filter(title__icontains=searched_title).order_by('-time')
+        serializer = EventSerializer(events, many=True, context={'request': request})
         json_data = serializer.data
 
         return Response(data=json_data)
@@ -347,7 +347,7 @@ class EventUpdateAPIView(UserPassesTestMixin, RetrieveUpdateAPIView):
     serializer_class = EventSerializer
 
     def test_func(self):
-        if self.request.is_authenticated:
+        if self.request.user.is_authenticated:
             return True
 
         return False
@@ -359,7 +359,7 @@ class EventUpdateAPIView(UserPassesTestMixin, RetrieveUpdateAPIView):
 class AttendEventSendEmailAPIView(APIView):
 
     def test_func(self):
-        if self.request.is_authenticated:
+        if self.request.user.is_authenticated:
             return True
 
         return False

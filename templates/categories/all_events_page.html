@@ -48,7 +48,7 @@
             <div class="right">
                 <h2>Events</h2>
 
-                <div class="all-events">
+                <div class="all-events" id="all-events-container">
                     {% for event in all_events %}
                         <a href="{% url 'event-page' categoryId=event.category.id pk=event.id %}" class="event-container {% if event.already_passed %}passed-event-container{% endif %}">
 
@@ -116,11 +116,73 @@
 
     <script>
 
+        function saveToFavouritesFunctionality() {
+            const saveToFavsBtns = document.getElementsByClassName('save-to-favourites-btn')
+
+            for (let saveBtn of saveToFavsBtns) {
+                const eventId = saveBtn.classList[1]
+                const eventContainer = saveBtn.parentElement.parentElement.parentElement
+                const eventHrefUrl = eventContainer.href
+
+                saveBtn.addEventListener('click', () => {
+
+                    if (saveBtn.classList.contains('already-saved')) {
+                        eventContainer.href = '#remove-from-favs'
+
+                        const deleteFavouriteRecordUrl = `{% url 'delete-favourite-record-by-event-and-user-api' event_id='0' %}`.replace('0', eventId)
+
+                        fetch(deleteFavouriteRecordUrl, {
+                            method: 'DELETE',
+                            headers: {
+                                'Content-Type': 'application/json',
+                                'X-CSRFToken': `{{ csrf_token }}`
+                            }
+                        })
+                            .then((response) => response.json())
+                            .then((result) => {
+                                console.log('tukaaaaaaaaa')
+                                saveBtn.src = `{% static 'images/save_event_icon.png' %}`
+                                saveBtn.classList.remove('already-saved')
+
+                                eventContainer.href = eventHrefUrl
+                            })
+                    } else {
+                        eventContainer.href = '#add-to-favs'
+
+                        fetch(`{% url 'list-create-favourites-record-api' %}`, {
+                            method: 'POST',
+                            headers: {
+                                'Content-Type': 'application/json',
+                                'X-CSRFToken': `{{ csrf_token }}`
+                            },
+                            body: JSON.stringify({
+                                user: `{{ request.user.id }}`,
+                                event: eventId
+                            })
+                        })
+                            .then((response) => response.json())
+                            .then((result) => {
+                                saveBtn.src = `{% static 'images/already_saved_event_icon.png' %}`
+                                saveBtn.classList.add('already-saved')
+
+                                eventContainer.href = eventHrefUrl
+                            })
+                    }
+
+                })
+            }
+        }
+
+        saveToFavouritesFunctionality()
+
+
+
+
         const searchEventsInput = document.getElementsByClassName('search-events-input')[0]
 
         searchEventsInput.addEventListener('input', () => {
             const eventsUrl = `{% url 'list-events-api' %}?searchedTitle=${searchEventsInput.value}`
-            const allEventsElement = document.getElementsByClassName('all-events')[0]
+            const allEventsElement = document.getElementById('all-events-container')
 
             const response = fetch(eventsUrl)
                 .then((response) => response.json())
@@ -142,7 +204,20 @@
 
                         if (requestUserId == `${event.host}`) {
                             aEventElement.innerHTML = `
-                                <p>${event.event_time_formatted}</p>
+                                <div class="date-and-save-to-favs">
+                                    <p>${event.event_time_formatted}</p>
+                                    <div class="image-container">
+                                        ${event.saved_to_favourites_by_user ? `
+                                            <img src="{% static 'images/already_saved_event_icon.png' %}"
+                                                 class="save-to-favourites-btn ${event.id} already-saved"
+                                                 alt="delete-icon">
+                                        ` : `
+                                            <img src="{% static 'images/save_event_icon.png' %}"
+                                                 class="save-to-favourites-btn ${event.id}"
+                                                 alt="delete-icon">
+                                        `}
+                                    </div>
+                                </div>
 
                                 <div class="title-and-img">
                                     <div class="title-container">
@@ -156,6 +231,12 @@
                                             <p>Your event</p>
                                             <img src="{% static 'images/your_event_icon.png' %}" alt="your-event-icon" >
                                         </div>
+
+                                        ${event.already_passed ? `
+                                            <div class="passed-event-message-cont">
+                                                <p>Already passed event</p>
+                                            </div>
+                                        ` : ``}
                                     </div>
 
                                     <div class="container-event-img">
@@ -167,7 +248,20 @@
                             `
                         } else {
                             aEventElement.innerHTML = `
-                                <p>${event.event_time_formatted}</p>
+                                <div class="date-and-save-to-favs">
+                                    <p>${event.event_time_formatted}</p>
+                                    <div class="image-container">
+                                        ${event.saved_to_favourites_by_user ? `
+                                            <img src="{% static 'images/already_saved_event_icon.png' %}"
+                                                 class="save-to-favourites-btn ${event.id} already-saved"
+                                                 alt="delete-icon">
+                                        ` : `
+                                            <img src="{% static 'images/save_event_icon.png' %}"
+                                                 class="save-to-favourites-btn ${event.id}"
+                                                 alt="delete-icon">
+                                        `}
+                                    </div>
+                                </div>
 
                                 <div class="title-and-img">
                                     <div class="title-container">
@@ -176,6 +270,12 @@
                                             <img src="{% static 'images/location_grey.png' %}" alt="locations">
                                             <p>${event.exact_location}</p>
                                         </div>
+
+                                        ${event.already_passed ? `
+                                            <div class="passed-event-message-cont">
+                                                <p>Already passed event</p>
+                                            </div>
+                                        ` : ``}
                                     </div>
 
                                     <div class="container-event-img">
@@ -189,69 +289,11 @@
 
 
                         allEventsElement.appendChild(aEventElement)
+                        saveToFavouritesFunctionality()
                     }
 
                 })
         })
-
-
-
-
-
-
-        const saveToFavsBtns = document.getElementsByClassName('save-to-favourites-btn')
-
-        for (let saveBtn of saveToFavsBtns) {
-            const eventId = saveBtn.classList[1]
-            const eventContainer = saveBtn.parentElement.parentElement.parentElement
-            const eventHrefUrl = eventContainer.href
-
-            saveBtn.addEventListener('click', () => {
-
-                if (saveBtn.classList.contains('already-saved')) {
-                    eventContainer.href = '#remove-from-favs'
-
-                    const deleteFavouriteRecordUrl = `{% url 'delete-favourite-record-by-event-and-user-api' event_id='0' %}`.replace('0', eventId)
-
-                    fetch(deleteFavouriteRecordUrl, {
-                        method: 'DELETE',
-                        headers: {
-                            'Content-Type': 'application/json',
-                            'X-CSRFToken': `{{ csrf_token }}`
-                        }
-                    })
-                        .then((response) => response.json())
-                        .then((result) => {
-                            saveBtn.src = `{% static 'images/save_event_icon.png' %}`
-                            saveBtn.classList.remove('already-saved')
-
-                            eventContainer.href = eventHrefUrl
-                        })
-                } else {
-                    eventContainer.href = '#add-to-favs'
-
-                    fetch(`{% url 'list-create-favourites-record-api' %}`, {
-                        method: 'POST',
-                        headers: {
-                            'Content-Type': 'application/json',
-                            'X-CSRFToken': `{{ csrf_token }}`
-                        },
-                        body: JSON.stringify({
-                            user: `{{ request.user.id }}`,
-                            event: eventId
-                        })
-                    })
-                        .then((response) => response.json())
-                        .then((result) => {
-                            saveBtn.src = `{% static 'images/already_saved_event_icon.png' %}`
-                            saveBtn.classList.add('already-saved')
-
-                            eventContainer.href = eventHrefUrl
-                        })
-                }
-
-            })
-        }
 
     </script>
 
