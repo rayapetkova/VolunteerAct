@@ -14,7 +14,7 @@
 
     {% include 'base/nav_bar.html' with logo_color='light' emergency_events=emergency_events %}
 
-    <video src="https://res.cloudinary.com/dzfgtuvut/video/upload/v1733858481/hpa9u4juklyarwjzchxw.mp4" muted autoplay loop></video>
+    <video src="{{ video_url }}" muted autoplay loop type="video/mp4"></video>
 
     <div class='main-page-with-maps'>
         <div class='card'>
@@ -96,7 +96,7 @@
                         </div>
                     </section>
 
-                    <section class='follow-us'>
+                    <section class='follow-us-on'>
                         <h3>Follow Us:</h3>
 
                         <div class='socials'>
@@ -109,10 +109,12 @@
             </section>
 
         </div>
+
+        <a href="#see-more" class="see-more-btn">See more</a>
     </div>
 
     <div class="location-centering">
-        <div class='location-container'>
+        <div class='location-container' id="see-more">
             <h2>Where are we located?</h2>
             <p>g.k. Druzhba I, bul. "G.S.Rakovski" 13А</p>
 

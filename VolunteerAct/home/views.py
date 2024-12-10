@@ -35,7 +35,8 @@ def home_page(request):
         'upcoming_events': upcoming_events,
         'popular_cities': popular_cities[:6],
         'pixabay_api_url': pixabay_api_url,
-        'emergency_events': get_emergency_events()
+        'emergency_events': get_emergency_events(),
+        'video_url': config('VIDEO_URL')
     }
 
     return render(request, "home/home_page.html", context=context)
@@ -66,7 +67,8 @@ def contact_us_page(request):
 
     context = {
         'form': form,
-        'emergency_events': get_emergency_events()
+        'emergency_events': get_emergency_events(),
+        'video_url': config('VIDEO_URL')
     }
 
     return render(request, 'home/contact_us_page.html', context=context)

@@ -1,3 +1,4 @@
+from decouple import config
 from django.contrib.auth import login, logout, get_user_model
 from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
 from django.contrib.auth.models import Group
@@ -36,6 +37,7 @@ class RegisterUserView(UserPassesTestMixin, CreateView):
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context['emergency_events'] = get_emergency_events()
+        context['video_url'] = config('VIDEO_URL')
 
         return context
 
@@ -63,6 +65,7 @@ class LoginUserView(UserPassesTestMixin, LoginView):
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context['emergency_events'] = get_emergency_events()
+        context['video_url'] = config('VIDEO_URL')
 
         return context
 
@@ -84,6 +87,7 @@ class ProfileView(LoginRequiredMixin, UpdateView, DetailView):
 
         context['form'].fields['email'].initial = self.request.user.email
         context['emergency_events'] = get_emergency_events()
+        context['video_url'] = config('VIDEO_URL')
 
         return context
 
@@ -107,7 +111,8 @@ def delete_profile_view(request):
 
     context = {
         'form': form,
-        'emergency_events': get_emergency_events()
+        'emergency_events': get_emergency_events(),
+        'video_url': config('VIDEO_URL')
     }
 
     return render(request, 'app_users/delete_profile.html', context=context)
