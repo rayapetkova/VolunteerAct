@@ -38,14 +38,17 @@
                 <form action="{% url 'user-favourite-events-page' %}" method="GET">
                     {{ filter_form }}
 
-                    <button>Filter</button>
+                    <div class="filtering-btns-container">
+                        <button>Filter</button>
+                        <a href="{% url 'user-favourite-events-page' %}">Clear</a>
+                    </div>
                 </form>
             </aside>
 
             <div class="right">
                 <h2>Your Favourite Events</h2>
 
-                <div class="all-events">
+                <div class="all-events" id="favourites-all-events">
                     {% for favourite in user_favourite_events %}
                         <a href="{% url 'event-page' categoryId=favourite.event.category.id pk=favourite.event.id %}" class="event-container {% if favourite.already_passed %}passed-event-container{% endif %}">
                             <div class="date-and-delete">
@@ -111,7 +114,7 @@
 
         searchEventsInput.addEventListener('input', () => {
             const eventsUrl = `{% url 'list-all-favourite-events-api' %}?searchedTitle=${searchEventsInput.value}`
-            const allEventsElement = document.getElementsByClassName('all-events')[0]
+            const allEventsElement = document.getElementById('favourites-all-events')
 
             const response = fetch(eventsUrl)
                 .then((response) => response.json())
@@ -312,6 +315,22 @@
                 })
             })
 
+        }
+
+
+
+
+
+
+        const cityFieldsDiv = document.getElementById('id_city')
+
+        for (let div of cityFieldsDiv.children) {
+            let label = div.querySelector('label')
+            const labelInput = div.querySelector('label input')
+
+            label.textContent = label.textContent.substring(0, label.textContent.length - 4)
+
+            label.prepend(labelInput)
         }
     </script>
 

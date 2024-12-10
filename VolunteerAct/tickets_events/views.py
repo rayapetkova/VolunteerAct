@@ -39,7 +39,7 @@ class AllTicketsUserApiView(UserPassesTestMixin, APIView):
     def get(self, request):
         searched_title = request.GET['searchedTitle']
         events = request.user.events.all().filter(title__icontains=searched_title)
-        serializer = EventSerializer(events, many=True)
+        serializer = EventSerializer(events, many=True, context={'request': request})
         json_data = serializer.data
 
         return Response(data=json_data)

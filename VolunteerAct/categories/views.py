@@ -288,6 +288,12 @@ class EventDetailsView(DetailView, DeleteView):
     def form_invalid(self, form):
         return self.form_valid(form)
 
+    def post(self, request, *args, **kwargs):
+        if self.get_object().host == request.user or request.user.groups.filter(name='staff_members').exists() or request.user.is_superuser:
+            return super().post(request, *args, **kwargs)
+
+        raise PermissionDenied()
+
     # This is another way
     # def post(self, request, *args, **kwargs):
     #     self.object = self.get_object()
@@ -308,9 +314,6 @@ class EventUpdateView(UserPassesTestMixin, UpdateView):
 
     def handle_no_permission(self):
         raise PermissionDenied()
-    
-    def form_invalid(self, form):
-        return super().form_invalid(form)
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
