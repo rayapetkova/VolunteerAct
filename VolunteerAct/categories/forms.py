@@ -1,3 +1,5 @@
+from PIL import Image
+from cloudinary import CloudinaryResource
 from django import forms
 from django.core.exceptions import ValidationError
 from django.forms import ModelForm, widgets, Form
@@ -31,6 +33,20 @@ class EventForm(ModelForm):
             )
         }
 
+    def clean_poster_image(self):
+        poster_image = self.cleaned_data['poster_image']
+
+        if isinstance(poster_image, CloudinaryResource):
+            return poster_image
+
+        try:
+            img = Image.open(poster_image)
+            img.verify()
+
+            return poster_image
+        except:
+            raise ValidationError('Poster picture needs to be an image.')
+
     def clean_time(self):
         time = self.cleaned_data['time']
 
@@ -45,6 +61,20 @@ class CategoryImagesForm(ModelForm):
     class Meta:
         model = CategoryImages
         fields = ('image', )
+
+    def clean_image(self):
+        image = self.cleaned_data['image']
+
+        if isinstance(image, CloudinaryResource):
+            return image
+
+        try:
+            img = Image.open(image)
+            img.verify()
+
+            return image
+        except:
+            raise ValidationError('Picture needs to be an image.')
 
 
 class EventEditForm(EventForm):

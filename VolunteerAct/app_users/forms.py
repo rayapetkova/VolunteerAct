@@ -1,5 +1,8 @@
+from cloudinary import CloudinaryResource
 from django import forms
 from django.contrib.auth import forms as auth_forms, get_user_model
+from django.core.exceptions import ValidationError
+from PIL import Image
 from django.utils.translation import gettext_lazy as _
 
 from VolunteerAct.app_users.models import Profile
@@ -56,6 +59,20 @@ class EditAppUserForm(forms.ModelForm):
         labels = {
             'profile_image': 'Change image'
         }
+
+    def clean_profile_image(self):
+        profile_image = self.cleaned_data['profile_image']
+
+        if isinstance(profile_image, CloudinaryResource):
+            return profile_image
+
+        try:
+            img = Image.open(profile_image)
+            img.verify()
+            
+            return profile_image
+        except:
+            raise ValidationError('Profile picture needs to be an image.')
 
     def save(self, commit=True):
         profile = super().save(commit=commit)

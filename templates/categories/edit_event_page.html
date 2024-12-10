@@ -97,18 +97,23 @@
                     </div>
 
                     <section class="box">
-                        <img src="{% static 'images/clock.png' %}" alt="clock_icon">
-                        <p>
-                            {{ form.time.label }}
-                            {{ form.time }}
+                        <div>
+                            <div class="one-row">
+                                <img src="{% static 'images/clock.png' %}" alt="clock_icon">
+                                {{ form.time.label }}
+                                {{ form.time }}
+                            </div>
+
                             {{ form.time.errors }}
-                        </p>
+                        </div>
                     </section>
 
                     <section class="box">
                         <div class="{% if object.exact_location != 'Online' %}not-displaying{% endif %}">
-                            <img src="{% static 'images/location_grey.png' %}" alt="location_grey_icon">
-                            {{ form.online_meeting_link.label }}
+                            <div class="one-row-online">
+                                <img src="{% static 'images/location_grey.png' %}" alt="location_grey_icon">
+                                {{ form.online_meeting_link.label }}
+                            </div>
 
                             <div class="online-meeting-link-input">
                                 {{ form.online_meeting_link }}
@@ -116,20 +121,27 @@
                             </div>
                         </div>
 
-                        <p class="city-field {% if object.exact_location == 'Online' %}not-displaying{% endif %}">
+                        <div class="city-field {% if object.exact_location == 'Online' %}not-displaying{% endif %}">
                             <img src="{% static 'images/location_grey.png' %}" alt="location_grey_icon">
-                            {{ form.city.label }}
-                            {{ form.city }}
-                            {{ form.city.errors }}
-                        </p>
 
-                        <p class="location-field {% if object.exact_location == 'Online' %}not-displaying{% endif %}">
+                            <div class="one-row">
+                                {{ form.city.label }}
+                                {{ form.city }}
+                            </div>
+
+                            {{ form.city.errors }}
+                        </div>
+
+                        <div class="location-field {% if object.exact_location == 'Online' %}not-displaying{% endif %}">
                             <img src="{% static 'images/city_icon.png' %}" alt="location_grey_icon">
 
-                            {{ form.location.label }}
-                            {{ form.location }}
+                            <div class="one-row">
+                                {{ form.location.label }}
+                                {{ form.location }}
+                            </div>
+
                             {{ form.location.errors }}
-                        </p>
+                        </div>
                     </section>
 
                     {% if object.exact_location != 'Online' %}
@@ -156,9 +168,11 @@
 
     const eventImgContainerInputDiv = document.querySelectorAll('.event-img-container div')[0]
     const eventImgInput = eventImgContainerInputDiv.getElementsByTagName('input')[0]
+    const eventImgErrorList = eventImgContainerInputDiv.querySelector('.errorlist')
 
     eventImgContainerInputDiv.textContent = ''
     eventImgContainerInputDiv.appendChild(eventImgInput)
+    eventImgContainerInputDiv.appendChild(eventImgErrorList)
 
 
 

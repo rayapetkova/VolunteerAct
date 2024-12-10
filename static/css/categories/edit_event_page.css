@@ -105,7 +105,7 @@ input:focus {
 .info-section .left h4 {
     margin: 0;
     font-size: 1.3em;
-    margin-top: 6em;
+    margin-top: 7em;
 }
 
 .info-section .left p {
@@ -200,6 +200,11 @@ input:focus {
     gap: 0.8em;
 }
 
+.left .event-img-container ul.errorlist {
+    margin-top: -1em;
+    margin-bottom: 1.3em;
+}
+
 .left .keywords-container p {
     background-color: #35bfed6b;
     padding: 0.3em 0.5em;
@@ -272,10 +277,24 @@ input:focus {
     margin: 0.5em;
 }
 
+.box > div {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+}
+
+.box ul.errorlist {
+    margin-top: 0;
+}
+
 .box input {
     font-family: inherit;
     padding: 0.5em;
     font-size: 0.8em;
+}
+
+.box .one-row-online {
+    display: flex;
 }
 
 .box .online-meeting-link-input {
@@ -286,6 +305,7 @@ input:focus {
 
 .box .online-meeting-link-input input {
     margin: 0;
+    max-width: 95%;
 }
 
 .not-displaying {
