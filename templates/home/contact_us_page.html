@@ -19,6 +19,10 @@
     <div class='main-page-with-maps'>
         <div class='card'>
             <section class='head-contact'>
+                {% for message in messages %}
+                    <p class="successfully-sent-email-message">{{ message }}</p>
+                {% endfor %}
+
                 <h2>Contact Us</h2>
                 <p>Email us with any questions or inquiries. We would be happy to answer your questions and we'll get in touch as soon as we can!</p>
             </section>
@@ -110,9 +114,9 @@
     <div class="location-centering">
         <div class='location-container'>
             <h2>Where are we located?</h2>
-            <p>Coordinates - 41.935750, 25.555057</p>
+            <p>g.k. Druzhba I, bul. "G.S.Rakovski" 13А</p>
 
-            <iframe src="https://www.google.com/maps?q=Haskovo, ul. Rakovski&output=embed&maptype=satellite"></iframe>
+            <iframe src="https://www.google.com/maps?q=Haskovo, g.k. Druzhba I, bul. G.S.Rakovski 13А&output=embed&maptype=satellite"></iframe>
         </div>
     </div>
 
@@ -130,6 +134,17 @@
             headerElement.style.backgroundColor = 'transparent'
         }
     })
+
+
+
+
+    const messagesDisplayed = document.getElementsByClassName('successfully-sent-email-message')
+
+    for (let messageElement of messagesDisplayed) {
+        if (messageElement.textContent.includes('Successfully signed in as')) {
+            messageElement.remove()
+        }
+    }
 </script>
 
 </html>
