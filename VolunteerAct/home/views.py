@@ -1,4 +1,5 @@
 from django.contrib import messages
+from django.contrib.auth.decorators import login_required
 from django.core.mail import send_mail
 from django.shortcuts import render, redirect
 
@@ -42,14 +43,14 @@ def home_page(request):
     return render(request, "home/home_page.html", context=context)
 
 
+@login_required
 def contact_us_page(request):
     form = ContactUsForm(request.POST or None)
 
-    if request.user.is_authenticated:
-        if request.user.profile.first_name and request.user.profile.last_name:
-            form.fields['full_name'].initial = f"{request.user.profile.first_name} {request.user.profile.last_name}"
+    if request.user.profile.first_name and request.user.profile.last_name:
+        form.fields['full_name'].initial = f"{request.user.profile.first_name} {request.user.profile.last_name}"
 
-        form.fields['email'].initial = request.user.email
+    form.fields['email'].initial = request.user.email
 
     if request.method == 'POST':
         if form.is_valid():
