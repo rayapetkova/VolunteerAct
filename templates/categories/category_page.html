@@ -201,7 +201,6 @@
             <div class="right">
                 <div class="title-and-see-all">
                     <h4>Active members</h4>
-                    <a href="#">See all</a>
                 </div>
 
                 <div class="members">
@@ -246,6 +245,8 @@
                 <div class="images-container">
                     {% for category_image in category_images %}
                         <img src="{{ category_image.image.url }}" alt="category-img">
+                    {% empty %}
+                        <p class="no-photos-yet-message">No photos yet</p>
                     {% endfor %}
                 </div>
             {% else %}

@@ -3,8 +3,15 @@
     <section class="links-section">
         <div>
             <h6>Your Account</h6>
-            <a href="{% url 'register-user' %}">Sign Up</a>
-            <a href="{% url 'login-user' %}">Log In</a>
+            {% if not request.user.is_authenticated %}
+                <a href="{% url 'register-user' %}">Sign Up</a>
+                <a href="{% url 'login-user' %}">Log In</a>
+            {% else %}
+                <a href="{% url 'profile-details-update' pk=request.user.id %}">Profile</a>
+                <a href="{% url 'user-favourite-events-page' %}">Favourites</a>
+                <a href="{% url 'all-user-tickets-events' %}">Tickets</a>
+                <a href="{% url 'my-events-page' %}">My Events</a>
+            {% endif %}
         </div>
 
         <div>
