@@ -655,3 +655,78 @@ ul.errorlist li {
     font-size: 1em;
 }
 
+
+
+
+@media screen and (max-width: 600px) {
+
+    .upper-section h2 {
+        font-size: 1.3em;
+    }
+
+    .upper-section {
+        padding: 0 5%;
+        padding-bottom: 2em;
+    }
+
+    .upper-section input {
+        width: 90%;
+    }
+
+    .info-section {
+        flex-direction: column;
+        padding: 2% 5%;
+        padding-top: 2em;
+    }
+
+    .info-section .left {
+        width: 100%;
+    }
+
+    .info-section .right {
+        width: 100%;
+        padding: 2em 0;
+    }
+
+    .upcoming-events {
+        padding: 5%;
+    }
+
+    .title-container a {
+        font-size: 0.9em;
+    }
+
+    .upcoming-events .events {
+        flex-direction: column;
+    }
+
+    .upcoming-events .events .event-container {
+        width: 100%;
+    }
+
+    .upcoming-events .events .event-container .info h6 {
+        font-size: 1em;
+    }
+
+    .upcoming-events .events .event-container .info .event-more-info .save-image-container {
+        width: 1.4em;
+        height: 1.4em;
+    }
+
+    .info-section .left .text-info p textarea {
+        width: 97%;
+    }
+
+    form .edit-cancel-buttons-cont {
+        width: 75%;
+    }
+
+    form .edit-cancel-buttons-cont button {
+        width: 60%;
+    }
+
+    form .edit-cancel-buttons-cont a {
+        width: 30%;
+    }
+
+}

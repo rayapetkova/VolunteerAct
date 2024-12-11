@@ -373,3 +373,63 @@ header ul.last-links li a {
     cursor: pointer;
     background-color: rgba(13, 74, 141, 0.89);
 }
+
+
+
+@media screen and (max-width: 600px) {
+
+    .upper-section {
+        padding: 0 5%;
+        padding-bottom: 1.2em;
+    }
+
+    .upper-section h2 {
+        font-size: 1.4em;
+    }
+
+    .upper-section .more-info p {
+        font-size: 0.8em;
+    }
+
+    .upper-section a.create-new-event-btn {
+        width: 30%;
+        font-size: 0.8em;
+        padding: 0.8em 0;
+    }
+
+    main .right h2 {
+        font-size: 1.3em;
+    }
+
+    .event-container .title-and-img h6 {
+        font-size: 1em;
+    }
+
+    .event-container .location p {
+        font-size: 0.9em;
+    }
+
+    .title-and-img .your-event-container p,
+    .title-and-img .passed-event-message-cont p {
+        font-size: 0.9em;
+    }
+
+    .event-container .details {
+        font-size: 0.8em;
+    }
+
+    .info-section {
+        padding: 4% 5%;
+        flex-direction: column;
+    }
+
+    .info-section .left {
+        width: 100%;
+    }
+
+    .info-section .right {
+        width: 100%;
+        padding-bottom: 3em;
+    }
+
+}

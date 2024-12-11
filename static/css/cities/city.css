@@ -330,3 +330,53 @@ header ul.last-links li a {
 .no-events {
     text-align: center;
 }
+
+
+
+
+@media screen and (max-width: 600px) {
+
+    .category-info .left {
+        width: 100%;
+    }
+
+    .category-info {
+        flex-direction: column;
+        align-items: center;
+        padding: 4% 5%;
+    }
+
+    .category-info .right {
+        width: 100%;
+    }
+
+    .category-info .right h2 {
+        font-size: 1.3em;
+    }
+
+    .category-info .right > p {
+        font-size: 0.8em;
+    }
+
+    .info-section {
+        padding: 2% 5%;
+    }
+
+    .event-container .title-and-img h6 {
+        font-size: 1em;
+    }
+
+    .event-container .location p {
+        font-size: 0.9em;
+    }
+
+    .title-and-img .your-event-container p,
+    .title-and-img .passed-event-message-cont p {
+        font-size: 0.9em;
+    }
+
+    .event-container .details {
+        font-size: 0.8em;
+    }
+
+}

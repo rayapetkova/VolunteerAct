@@ -86,7 +86,7 @@ aside {
     width: 20%;
     position: sticky;
     top: 12%;
-    height: 80vh;
+    height: fit-content;
     border-right: solid 1px rgb(172, 172, 172);
 }
 
@@ -353,4 +353,63 @@ main .right .all-events .explore-events-btn:hover {
 .passed-event-container h6,
 .passed-event-container > p:nth-child(1){
     color: #707070;
+}
+
+
+
+
+@media screen and (max-width: 600px) {
+
+    .upper-section {
+        padding: 0 5%;
+        padding-bottom: 1.2em;
+    }
+
+    main {
+        padding: 4% 5%;
+    }
+
+    .upper-section h2 {
+        font-size: 1.4em;
+    }
+
+    .upper-section .more-info p {
+        font-size: 0.8em;
+    }
+
+    main section.search-events-bar-section {
+        width: 55%;
+    }
+
+    .event-container .title-and-img h6 {
+        font-size: 1em;
+    }
+
+    .event-container .location p {
+        font-size: 0.9em;
+    }
+
+    .title-and-img .your-event-container p,
+    .title-and-img .passed-event-message-cont p {
+        font-size: 0.9em;
+    }
+
+    main .aside-and-right-content {
+        flex-direction: column;
+    }
+
+    aside {
+        width: 100%;
+        position: relative;
+        height: fit-content;
+    }
+
+    main .right h2 {
+        font-size: 1.2em;
+    }
+
+    main .right {
+        width: 100%;
+    }
+
 }

@@ -575,3 +575,99 @@ header ul.last-links li a {
     color: #5f5f5f;
     margin-top: 0;
 }
+
+
+
+
+@media screen and (max-width: 600px) {
+
+    .category-info {
+        flex-direction: column;
+    }
+
+    .category-info {
+        flex-direction: column;
+        align-items: center;
+        padding: 4% 5%;
+    }
+
+    .category-info .right {
+        width: 100%;
+    }
+
+    .category-info .right h2 {
+        font-size: 1.3em;
+    }
+
+    .category-info .right > p {
+        font-size: 0.8em;
+    }
+
+    .category-info {
+        margin: 0;
+    }
+
+    .category-info .left {
+        width: 100%;
+    }
+
+    .info-section {
+        padding: 2% 5%;
+        flex-direction: column;
+    }
+
+    .info-section .left {
+        width: 100%;
+    }
+
+    .info-section .right {
+        width: 100%;
+    }
+
+    .info-section .left .text-info.fading-at-bottom::after {
+        content: "";
+        bottom: 0;
+        left: 0;
+        height: 0;
+        width: 0;
+        background: transparent;
+    }
+
+    .info-section .left {
+        margin-top: 2em;
+    }
+
+    .info-section .left .text-info {
+        height: fit-content;
+    }
+
+    .navigate-category {
+        margin: 0 5%;
+    }
+
+    .info-section .left > p {
+        width: 25%;
+    }
+
+    .event-container .title-and-img h6 {
+        font-size: 1em;
+    }
+
+    .event-container .location p {
+        font-size: 0.9em;
+    }
+
+    .title-and-img .your-event-container p,
+    .title-and-img .passed-event-message-cont p {
+        font-size: 0.9em;
+    }
+
+    .event-container .details {
+        font-size: 0.8em !important;
+    }
+
+    .info-section .right .members {
+        margin-bottom: 2em;
+    }
+
+}

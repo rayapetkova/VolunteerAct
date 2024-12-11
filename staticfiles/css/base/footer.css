@@ -57,3 +57,48 @@ footer .follow-us .socials a {
 footer .follow-us .socials a img {
     width: 100%;
 }
+
+
+
+
+@media screen and (max-width: 600px) {
+    footer {
+        padding: 11% 7%;
+    }
+
+    footer .links-section {
+        display: flex;
+        justify-content: space-between;
+        width: 100%;
+    }
+
+    footer .links-section div {
+        width: 30%;
+    }
+
+    footer .links-section div a:hover {
+        color: rgb(255, 255, 255);
+    }
+
+    footer .follow-us {
+        margin-top: 3em;
+    }
+    footer .follow-us h6 {
+        font-size: 1em;
+        margin: 0;
+        color: rgb(255, 255, 255);
+        margin-bottom: 0.8em;
+    }
+
+    footer .follow-us .socials {
+        width: 28%;
+    }
+
+    footer .follow-us .socials a {
+        width: 27%;
+    }
+
+    footer .follow-us .socials a img {
+        width: 100%;
+    }
+}

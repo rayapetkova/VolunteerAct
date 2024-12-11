@@ -780,3 +780,58 @@ body {
     margin: 0;
 }
 
+
+
+
+
+@media screen and (max-width: 600px) {
+
+    .upper-section h2 {
+        font-size: 1.3em;
+    }
+
+    .upper-section {
+        padding-bottom: 2em;
+    }
+
+    .info-section {
+        flex-direction: column;
+        padding: 2% 5%;
+        padding-top: 2em;
+    }
+
+    .info-section .left {
+        width: 100%;
+    }
+
+    .info-section .right {
+        width: 100%;
+        padding: 2em 0;
+    }
+
+    .upcoming-events {
+        padding: 5%;
+    }
+
+    .title-container a {
+        font-size: 0.9em;
+    }
+
+    .upcoming-events .events {
+        flex-direction: column;
+    }
+
+    .upcoming-events .events .event-container {
+        width: 100%;
+    }
+
+    .upcoming-events .events .event-container .info h6 {
+        font-size: 1em;
+    }
+
+    .upcoming-events .events .event-container .info .event-more-info .save-image-container {
+        width: 1.4em;
+        height: 1.4em;
+    }
+
+}

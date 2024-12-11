@@ -283,3 +283,37 @@ form ul.errorlist li {
 }
 
 
+
+
+@media screen and (max-width: 600px) {
+
+    main > img {
+        width: 100%;
+        height: 120vh;
+        object-fit: cover;
+        filter: brightness(30%);
+    }
+
+    .field {
+        width: 100%;
+    }
+
+    .field input {
+        max-width: 100%;
+    }
+
+    .field:nth-child(even) {
+        margin: 0;
+    }
+
+    form input[type="checkbox"] {
+        width: 11%;
+    }
+
+    .right button {
+        width: 35%;
+        padding: 0.7em 0.7em;
+        font-size: 0.9em;
+    }
+
+}

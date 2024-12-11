@@ -152,3 +152,41 @@ main .what-you-can-do .container-about-us a:hover {
     cursor: pointer;
     background-color: rgba(13, 74, 141, 0.89);
 }
+
+
+
+
+@media screen and (max-width: 600px) {
+    .image-section {
+        height: 30em;
+        margin-top: 58vh;
+    }
+
+    .upper-section .title-cont-about-us h2 {
+        font-size: 1.3em;
+    }
+
+    .upper-section .title-cont-about-us p {
+        font-size: 1em;
+    }
+
+    .upper-section .title-cont-about-us a {
+        width: 35%;
+    }
+
+    main h3 {
+        font-size: 1.3em;
+    }
+
+    main .what-you-can-do {
+        flex-direction: column;
+    }
+
+    main .what-you-can-do .container-about-us {
+        width: 100%;
+    }
+
+    main .what-you-can-do .container-about-us p {
+        font-size: 0.9em;
+    }
+}

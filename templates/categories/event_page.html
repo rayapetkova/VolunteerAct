@@ -99,7 +99,7 @@
                 <div class="title-container">
                     <h3 id="comments-count">Comments ({{ count_comments }})</h3>
 
-                    {% if event_comments and request.user.is_authenticated %}
+                    {% if request.user.is_authenticated %}
                         <a href="{% url 'event-comments-page' categoryId=object.category.id pk=object.id %}">See all comments</a>
                     {% endif %}
                 </div>

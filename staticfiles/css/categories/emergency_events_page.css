@@ -302,3 +302,52 @@ main .right .all-events h3 {
 .passed-event-container > p:nth-child(1){
     color: #707070;
 }
+
+
+
+
+@media screen and (max-width: 600px) {
+
+    .upper-section .emergency-description {
+        padding: 0 5%;
+        top: 15%;
+    }
+
+    .upper-section .emergency-description .emergency-buttons-container {
+        flex-direction: row;
+        justify-content: space-between;
+    }
+
+    .upper-section .emergency-description .emergency-buttons-container a {
+        width: 48%;
+        font-size: 0.9em;
+        padding: 0.8em 1em;
+    }
+
+    main {
+        padding: 5%;
+        padding-top: 60vh;
+    }
+
+    main .right h2 {
+        font-size: 1.3em;
+    }
+
+    .event-container .title-and-img h6 {
+        font-size: 1em;
+    }
+
+    .event-container .location p {
+        font-size: 0.9em;
+    }
+
+    .title-and-img .your-event-container p,
+    .title-and-img .passed-event-message-cont p {
+        font-size: 0.9em;
+    }
+
+    .event-container .details {
+        font-size: 0.8em;
+    }
+
+}

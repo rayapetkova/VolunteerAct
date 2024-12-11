@@ -256,7 +256,7 @@ main {
     align-self: center;
 }
 
-.join-section .left h2 {
+.upcoming-events .title-container h2 {
     font-size: 2em;
     margin: 0;
 }
@@ -526,3 +526,131 @@ main {
 .main-content .first-section .left a {
     animation: slideTop 2s ease-out forwards;
 }
+
+
+
+
+@media screen and (max-width: 600px) {
+
+    .main-content {
+        padding: 45% 5%;
+        padding-bottom: 2%;
+    }
+
+    .main-content .first-section {
+        top: 3%;
+    }
+
+    .main-content .first-section .left {
+        width: 90%;
+    }
+
+    .main-content .first-section .left h1 {
+        font-size: 1.5em;
+    }
+
+    .main-content .first-section .left p {
+        font-size: 1em;
+    }
+
+
+
+
+    main {
+        margin-top: 70vh;
+    }
+
+
+
+    .upcoming-events .title-container h2,
+    .explore-categories h2,
+    .popular-cities-section h2,
+    .how-volunteeract-works h2 {
+        font-size: 1.3em;
+    }
+
+    .upcoming-events .title-container a {
+        font-size: 0.9em;
+    }
+
+    .upcoming-events .events {
+        flex-direction: column;
+    }
+
+    .upcoming-events .events .event-container {
+        width: 100%;
+    }
+
+    .upcoming-events .events .event-container .info h6 {
+        font-size: 1em;
+    }
+
+    .upcoming-events .events .event-container .info .event-more-info .save-image-container {
+        width: 1.4em;
+        height: 1.4em;
+    }
+
+
+
+
+
+    .explore-categories .categories {
+        display: flex;
+        flex-flow: row wrap;
+    }
+
+    .explore-categories .categories .category-container {
+        width: 25%;
+        margin-top: 1em;
+    }
+
+    .explore-categories .categories .category-container p {
+        word-wrap: break-word
+    }
+
+
+
+
+    .popular-cities-section .cities {
+        display: flex;
+        flex-flow: row wrap;
+        justify-content: space-between;
+        gap: 1em;
+    }
+
+    .popular-cities-section .cities .city-container button {
+        width: 9em;
+        height: 9em;
+    }
+
+    .popular-cities-section .cities .city-container {
+        width: 25%;
+        align-items: center;
+    }
+
+    .popular-cities-section .cities .city-container a {
+        font-size: 1em;
+    }
+
+
+
+    .how-volunteeract-works .containers {
+        flex-direction: column;
+        gap: 1.5em;
+    }
+
+    .how-volunteeract-works .containers .box {
+        width: fit-content;
+        max-width: 100%;
+    }
+
+    .how-volunteeract-works .containers .box h6 {
+        font-size: 1.1em;
+    }
+
+    .how-volunteeract-works .containers .box p {
+        font-size: 0.9em;
+    }
+
+}
+
