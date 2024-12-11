@@ -191,6 +191,11 @@
                     </section>
                 {% endif %}
 
+                <section class="box">
+                    <img src="{% static 'images/people_attendees_icon.png' %}" alt="people_attendees_icon">
+                    <p>{{ event_attendees|length }} attendees</p>
+                </section>
+
                 {% if object.exact_location != 'Online' %}
                     <iframe src="https://www.google.com/maps?q={{ object.exact_location }}&output=embed&maptype=satellite"></iframe>
                 {% endif %}

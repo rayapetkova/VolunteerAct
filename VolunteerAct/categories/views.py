@@ -276,6 +276,8 @@ class EventDetailsView(DetailView, DeleteView):
 
         context['user_in_staff_members'] = self.request.user.groups.filter(name='staff_members').exists()
 
+        context['event_attendees'] = self.object.attendees.all()
+
         if self.request.user.is_authenticated:
             user_favourite_event = Favourites.objects.filter(user=self.request.user, event=self.object)
             context['user_favourite_event'] = user_favourite_event
