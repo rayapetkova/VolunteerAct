@@ -337,9 +337,11 @@
    git clone https://github.com/rayapetkova/VolunteerAct.git
    ```
 
+2. Create and activate venv
+
 2. Install requirements.txt:
    ```sh
-   pip install requirements.txt
+   pip install -r requirements.txt
    ```
 
 3. Open new terminal and run the command:
