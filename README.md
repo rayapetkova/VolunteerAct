@@ -344,7 +344,12 @@
    pip install -r requirements.txt
    ```
 
-3. Open new terminal and run the command:
+3. Start the project:
+  ```sh
+     python manage.py runserver
+   ```
+  
+4. Open new terminal and run the command:
    ```sh
    celery -A VolunteerAct worker --pool=solo --loglevel=info 
    ```
