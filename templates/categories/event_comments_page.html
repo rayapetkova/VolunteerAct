@@ -102,11 +102,13 @@
         const allCommentContainers = document.getElementsByClassName('comment-container')
         const beTheFirstOneToCommentMessage = document.getElementsByClassName('first-to-comment-message')[0]
 
+        const listCreateCommentsApiURL = `{% url 'list-create-comments-api' eventId='0' %}`.replace('0', `{{ event.id }}`)
+
         if (sendCommentElement) {
             sendCommentElement.addEventListener('click', () => {
 
                 const addNewCommentRequest = async() => {
-                    const response = fetch('{% url 'list-create-comments-api' %}', {
+                    const response = fetch(listCreateCommentsApiURL, {
                         method: 'POST',
                         headers: {
                             'Content-Type': 'application/json',

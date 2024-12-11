@@ -27,7 +27,7 @@ main video {
     display: flex;
     justify-content: center;
     position: absolute;
-    top: 17%;
+    top: 15%;
     width: 100%;
 }
 
@@ -36,8 +36,9 @@ main video {
     padding: 2% 1%;
     position: relative;
     border-radius: 4px;
+    width: 85%;
     border: solid 1px rgb(214, 213, 213);
-    background-color: rgba(255, 255, 255, 0.53);
+    background-color: rgba(255, 255, 255, 0.66);
 }
 
 .left {
@@ -212,5 +213,5 @@ form ul.errorlist li {
     color: #a40000;
     margin: 0;
     padding: 0;
-    font-size: 0.85em;
+    font-size: 14px;
 }

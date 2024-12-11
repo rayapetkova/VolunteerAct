@@ -65,7 +65,7 @@ class Profile(models.Model):
         null=True,
         blank=True,
         validators=[
-            validators.MinLengthValidator(10, message="Phone number needs to be exact 10 characters long."),
+            validators.MinLengthValidator(10, message="Phone number needs to be exactly 10 characters long."),
             phone_number_validator
         ]
     )

@@ -17,7 +17,7 @@ body {
 
 header ul.last-links li.all-events a,
 header ul.last-links li.contact-us a,
-header ul.last-links li.about-us a{
+header ul.last-links li.about-us a {
     color: #ffffff;
 }
 
@@ -46,6 +46,21 @@ video {
     top: 6%;
 }
 
+.main-page-with-maps > a {
+    background-color: #0051a4;
+    padding: 0.4em 0.8em;
+    margin-top: 2em;
+    color: rgb(255, 255, 255);
+    text-decoration: none;
+    border-radius: 5px;
+    transition: background-color 0.2s ease-in-out;
+}
+
+.main-page-with-maps > a:hover {
+    cursor: pointer;
+    background-color: #005bb7;
+}
+
 
 .card {
     width: 70%;
@@ -62,6 +77,15 @@ video {
     flex-direction: column;
     align-items: center;
     margin-bottom: 3%;
+}
+
+.card .head-contact .successfully-sent-email-message {
+    background-color: #006b00;
+    color: white;
+    font-weight: 500;
+    width: 25%;
+    padding: 0.8em 0;
+    margin: 0;
 }
 
 .card .head-contact h2 {
@@ -287,27 +311,27 @@ form ul.errorlist li {
     font-size: 1em;
 }
 
-.follow-us h3 {
+.follow-us-on h3 {
     margin-bottom: 0.4em;
 }
 
-.follow-us .socials {
+.follow-us-on .socials {
     display: flex;
     width: 32%;
     justify-content: space-between;
 }
 
-.follow-us .socials a {
+.follow-us-on .socials a {
     width: 3.2em;
     height: 3.2em;
     border-radius: 10px;
 }
 
-.follow-us .socials a:hover {
+.follow-us-on .socials a:hover {
     background-color: rgba(77, 77, 77, 0.67);;
 }
 
-.follow-us .socials img {
+.follow-us-on .socials img {
     width: 100%;
     height: 100%;
 }
@@ -331,6 +355,7 @@ form ul.errorlist li {
 }
 
 .location-container h2 {
+    margin-top: 3em;
     color: rgb(32, 48, 105);
 }
 

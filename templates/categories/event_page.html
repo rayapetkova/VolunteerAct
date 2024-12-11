@@ -509,10 +509,12 @@
     const beTheFirstOneToCommentMessage = document.getElementsByClassName('first-to-comment-message')[0]
 
     if (sendCommentElement) {
+        const listCreateCommentsApiURL = `{% url 'list-create-comments-api' eventId='0' %}`.replace('0', `{{ object.id }}`)
+
         sendCommentElement.addEventListener('click', () => {
 
             const addNewCommentRequest = async() => {
-                const response = fetch('{% url 'list-create-comments-api' %}', {
+                const response = fetch(listCreateCommentsApiURL, {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json',
@@ -859,7 +861,9 @@
                 })
                     .then((response) => response.json())
                     .then((result) => {
-                        const firstThreeComments = fetch(`{% url 'list-create-comments-api' %}`)
+                        const listCommentsURL = `{% url 'list-create-comments-api' eventId='0' %}`.replace('0', `{{ object.id }}`)
+
+                        const firstThreeComments = fetch(listCommentsURL)
                             .then((response) => response.json())
                             .then((resultComments) => {
                                 const firstThreeComments = resultComments.slice(0, 3)

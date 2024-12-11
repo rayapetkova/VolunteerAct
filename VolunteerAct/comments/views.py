@@ -6,6 +6,7 @@ from rest_framework.generics import RetrieveAPIView
 from rest_framework.response import Response
 from rest_framework.views import APIView
 
+from VolunteerAct.categories.models import Event
 from VolunteerAct.comments.models import Comment
 from VolunteerAct.comments.serializers import CommentSerializer, CommentCreateSerializer
 
@@ -21,14 +22,15 @@ class CommentListApiView(UserPassesTestMixin, APIView):
     def handle_no_permission(self):
         raise PermissionDenied()
 
-    def get(self, request):
-        comments = Comment.objects.all().order_by('-created_at')
+    def get(self, request, eventId):
+        event = Event.objects.filter(id=eventId).first()
+        comments = Comment.objects.filter(event=event).order_by('-created_at')
         serializer = CommentSerializer(comments, many=True)
         json_data = serializer.data
 
         return Response(data=json_data)
 
-    def post(self, request):
+    def post(self, request, eventId):
         serializer = CommentCreateSerializer(data=request.data)
 
         if serializer.is_valid():
