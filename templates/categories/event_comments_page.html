@@ -11,7 +11,7 @@
     <link rel="stylesheet" href="{% static 'css/categories/event_comments_page.css' %}">
 </head>
 <body>
-    {% include 'base/nav_bar.html' with logo_color='light'  %}
+    {% include 'base/nav_bar.html' with logo_color='light' emergency_events=emergency_events  %}
 
     <section class="upper-section">
         <img src="{{ event.poster_image.url }}" alt="event-img">

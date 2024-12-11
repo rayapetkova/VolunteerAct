@@ -244,7 +244,7 @@
 
         const cancelAttendanceBtns = document.getElementsByClassName('cancel-attendance-btn')
         const currentLoggedInUserId = `{{ request.user.id }}`
-        const allEventsContainer = document.getElementsByClassName('all-events')[0]
+        const allEventsContainer = document.getElementById('events-all-container')
 
         for (let cancelBtn of cancelAttendanceBtns) {
             const eventUpdateURL = `{% url 'update-event-api' pk='0' %}`.replace('0', cancelBtn.classList[1])

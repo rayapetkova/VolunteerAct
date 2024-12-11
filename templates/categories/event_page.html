@@ -42,7 +42,7 @@
 
     <section class="info-section">
         <div class="left">
-            {% if object.host.id == request.user.id or user_in_staff_members or request.user.is_superuser and not object.passed_event %}
+            {% if object.host.id == request.user.id or user_in_staff_members or request.user.is_superuser %}
                 <div>
                     <div class="buttons-container-edit-delete">
                         <a href="{% url 'edit-event' categoryId=object.category.id pk=object.id %}" class="edit-btn">Edit Event</a>
@@ -61,7 +61,7 @@
                         {% endif %}
                     </div>
                 </div>
-            {% elif not object.passed_event %}
+            {% else %}
                 <div>
                     <div class="buttons-container-edit-delete">
                         {% if request.user.is_authenticated %}
@@ -73,7 +73,9 @@
                         {% endif %}
                     </div>
                 </div>
-            {% else %}
+            {% endif %}
+
+            {% if object.passed_event %}
                 {% if not object.is_emergency %}
                     <p class="already-passed-event">This event has passed! Click here to see more events: <a href="#explore">See more</a></p>
                 {% endif %}

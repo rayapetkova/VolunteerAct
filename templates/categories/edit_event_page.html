@@ -96,17 +96,24 @@
                         <h4>More info</h4>
                     </div>
 
-                    <section class="box">
-                        <div>
-                            <div class="one-row">
-                                <img src="{% static 'images/clock.png' %}" alt="clock_icon">
-                                {{ form.time.label }}
-                                {{ form.time }}
-                            </div>
+                    {% if not object.passed_event %}
+                        <section class="box">
+                            <div>
+                                <div class="one-row">
+                                    <img src="{% static 'images/clock.png' %}" alt="clock_icon">
+                                    {{ form.time.label }}
+                                    {{ form.time }}
+                                </div>
 
-                            {{ form.time.errors }}
-                        </div>
-                    </section>
+                                {{ form.time.errors }}
+                            </div>
+                        </section>
+                    {% else %}
+                        <section class="box">
+                            <img src="{% static 'images/clock.png' %}" alt="clock_icon">
+                            <p>{{ object.time }}</p>
+                        </section>
+                    {% endif %}
 
                     <section class="box">
                         <div class="{% if object.exact_location != 'Online' %}not-displaying{% endif %}">

@@ -242,7 +242,8 @@ def event_comments_view(request, categoryId, pk):
     context = {
         'event': event,
         'comments': comments,
-        'user_in_staff_members': request.user.groups.filter(name='staff_members').exists()
+        'user_in_staff_members': request.user.groups.filter(name='staff_members').exists(),
+        'emergency_events': get_emergency_events()
     }
 
     return render(request, 'categories/event_comments_page.html', context=context)
@@ -318,6 +319,8 @@ class EventUpdateView(UserPassesTestMixin, UpdateView):
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context['emergency_events'] = get_emergency_events()
+
+        self.object.passed_event = True if self.object.time < timezone.now() else False
 
         return context
 
