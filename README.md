@@ -1,7 +1,6 @@
 # 🌼 VolunteerAct
 ### A Django-based application that allows users to browse and participate in volunteer events across various categories. Users can register, login, add events to favourites, attend events, and more.
 
-### Deployed version: https://volunteeract.azurewebsites.net/
 ### Recommended resolution on computer: 1920x1080
 ### Recommended resolution on phone: <600px
 
