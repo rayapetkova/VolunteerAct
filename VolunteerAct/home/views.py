@@ -43,7 +43,6 @@ def home_page(request):
     return render(request, "home/home_page.html", context=context)
 
 
-@login_required
 def contact_us_page(request):
     form = ContactUsForm(request.POST or None)
 
