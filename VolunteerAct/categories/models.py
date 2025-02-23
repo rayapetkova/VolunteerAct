@@ -35,11 +35,11 @@ class Category(models.Model):
     )
 
     long_description = models.CharField(
-        max_length=1100,
+        max_length=500,
         null=False,
         blank=False,
         validators=[
-            validators.MinLengthValidator(450, message="Category's long description needs to be at least 70 characters long.")
+            validators.MinLengthValidator(50, message="Category's long description needs to be at least 50 characters long.")
         ]
     )
 
