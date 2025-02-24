@@ -300,6 +300,7 @@
 - **HTML**: Language for the structure of the templates.
 - **CSS**: Styling the application.
 - **Azure**: Deployment platform.
+- **PythonAnywhere**: Deployment platform (deployed later after Azure).
 - **Cloudinary**: Storing user profile pictures.
 - **Google AllAuth**: Login and register with Google.
 - **Google Email**: Sending emails and receiving emails.
