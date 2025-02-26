@@ -1,9 +1,12 @@
 Other users:
-    1. email: andy@email.com
+    1. email: andy@email.com (staff_members group)
        password: Andy123!!AA
 
-    2. email: petya@email.com
+    2. email: petya@email.com (staff_members group)
        password: Petya123!!PP
 
-    3. (staff) email: stanislav@email.com
+    3. email: stan@email.com (regular_users group)
        password: Stanislav123!!SS
+
+    4. email: anastasia@email.com (regular_users group)
+       password: Anii123!!AA

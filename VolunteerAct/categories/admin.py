@@ -6,7 +6,7 @@ from VolunteerAct.categories.models import Category, Event
 # Register your models here.
 @admin.register(Category)
 class CategoryAdmin(admin.ModelAdmin):
-    exclude = ('image', )
+    fields = ('image', 'poster_img', 'name', 'short_description', 'long_description')
 
     search_fields = ('name', 'short_description')
 
