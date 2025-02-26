@@ -75,7 +75,7 @@
                             <div class="field">
                                 <label>Bio</label>
                                 {% if object.bio %}
-                                    <textarea rows="10">{{ object.bio }}</textarea>
+                                    <textarea rows="10" readonly>{{ object.bio }}</textarea>
                                 {% else %}
                                     <p>No bio yet</p>
                                 {% endif %}
