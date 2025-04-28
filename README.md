@@ -3,9 +3,6 @@
 
 ### Deployed version: https://volunteeract-rpetkova.pythonanywhere.com/ 
 
-### Recommended resolution on computer: 1920x1080
-### Recommended resolution on phone: <600px
-
 ## ✨ Features
 ### 🔐 Authentication
 - **Register**: Users can register, providing First Name, Last Name, Email, Password and Confirm Password - error messages are displayed if the values are not in the correct format. Users can also register with Google.
