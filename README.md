@@ -1,8 +1,6 @@
 # 🌼 VolunteerAct
 ### A Django-based application that allows users to browse and participate in volunteer events across various categories. Users can register, login, add events to favourites, attend events, and more.
 
-### Deployed version: https://volunteeract-rpetkova.pythonanywhere.com/ 
-
 ## ✨ Features
 ### 🔐 Authentication
 - **Register**: Users can register, providing First Name, Last Name, Email, Password and Confirm Password - error messages are displayed if the values are not in the correct format. Users can also register with Google.
